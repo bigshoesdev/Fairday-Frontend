@@ -20,12 +20,12 @@ const Notification: React.FC = () => {
     if (
       commonSliceConfig&&
       commonSliceConfig.messageNotification&&
-      commonSliceConfig.messageNotification.length > 0
+      commonSliceConfig.messageNotification.message&& 
+      commonSliceConfig.messageNotification.message.length > 0
     ) {
-
-      openNotification("topRight", commonSliceConfig.messageNotification)
+      openNotification("topRight", commonSliceConfig.messageNotification.message)
     }
-  }, commonSliceConfig)
+  }, commonSliceConfig.message)
 
   const openNotification = (placement: NotificationPlacement, content: string) => {
     api.info({
