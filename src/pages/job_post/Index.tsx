@@ -5,8 +5,11 @@ import OhterCategory from 'src/pages/job_post/OhterCategory';
 import JobDescription from 'src/pages/job_post/JobDescription';
 import JobType from 'src/pages/job_post/JobType';
 import JobPay from 'src/pages/job_post/JobPay';
+import ApplicantType from 'src/pages/job_post/ApplicantType';
+import YearsExperience from 'src/pages/job_post/YearsExperience';
 import NameSection from 'src/pages/job_post/NameSection';
 import Address from 'src/pages/job_post/Address';
+import Contact from 'src/pages/job_post/Contact';
 import Button from 'src/components/common/Button';
 
 const PostJob = () => {
@@ -30,8 +33,11 @@ const PostJob = () => {
         <JobDescription />
         <JobType />
         <JobPay />
+        <ApplicantType />
+        <YearsExperience />
         <NameSection />
         <Address />
+        <Contact />
         <div className='flex flex-col gap-4 w-full'>
           <Button
             text="VIEW JOB POST"

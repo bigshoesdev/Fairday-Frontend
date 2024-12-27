@@ -9,6 +9,36 @@
             "label": "Job Category",
             "avaialble": ["category", "string"],
             "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "jobtype",
+            "value": "jobtype",
+            "action": "read",
+            "key": "category",
+            "label": "Job Type",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "applicanttype",
+            "value": "applicanttype",
+            "action": "read",
+            "key": "category",
+            "label": "Applicant Type",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "salary",
+            "value": "salary",
+            "action": "read",
+            "key": "category",
+            "label": "Salary",
+            "avaialble": ["category", "string"],
+            "registerType": 3
         }
     ],
     "create": [
@@ -19,7 +49,7 @@
             "action": "create",
             "key": "category",
             "label": "Job Category",
-            "avaialble": ["category", "string"],
+            "avaialble": ["category", "string", "min", "max"],
             "registerType": 1
         }
     ],
@@ -31,6 +61,36 @@
             "action": "delete",
             "key": "category",
             "label": "Job Category",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/delete",
+            "dbName": "jobtype",
+            "value": "jobtype",
+            "action": "delete",
+            "key": "Job Type",
+            "label": "Job Category",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/delete",
+            "dbName": "applicanttype",
+            "value": "applicanttype",
+            "action": "delete",
+            "key": "category",
+            "label": "Applicant Type",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/delete",
+            "dbName": "salary",
+            "value": "salary",
+            "action": "delete",
+            "key": "category",
+            "label": "Salary",
             "avaialble": ["category", "string"],
             "registerType": 1
         }

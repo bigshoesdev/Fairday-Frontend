@@ -40,9 +40,10 @@ const adminConfigSlice = createSlice({
       }
       state.loading = false;
     },
-    constMangeDelete(state, { payload }: PayloadAction<any>) {
+     constMangeDelete(state, { payload }: PayloadAction<any>) {
       console.log('Before filter:', JSON.parse(JSON.stringify(state.constMange)));
-      state.constMange = state.constMange.filter((item: any) => item.id !== payload._id);
+      const newState = state.constMange.filter((item: any) => item.id !== payload._id);
+      state.constMange = [...newState];  // Create a new reference to trigger re-render
       console.log('After filter:', JSON.parse(JSON.stringify(state.constMange)));
       state.loading = false;
     },

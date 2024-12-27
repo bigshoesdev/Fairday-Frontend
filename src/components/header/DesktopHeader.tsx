@@ -32,10 +32,13 @@ const DesktopHeader: React.FC = () => {
   return (
     <div className="hidden header_change:block">
       <div className="flex justify-between items-center">
-        <img
-          src="http://localhost:5173/src/assets/images/logo.png"
-          className="w-[210px] h-[36px] border border-red-500 cursor-pointer"
-        />
+        <a href="http://localhost:5173/">
+          <img
+            src="http://localhost:5173/src/assets/images/logo.png"
+            className="w-[210px] h-[36px] border border-red-500 cursor-pointer"
+          />
+        </a>
+
         <div className="flex justify-start items-center">
           {layoutMenuList.header.map((item, index) => (
             <p
@@ -59,19 +62,19 @@ const DesktopHeader: React.FC = () => {
           </p>
 
           <img
-            src="src/assets/images/fb_header.png"
+            src="http://localhost:5173/src/assets/images/fb_header.png"
             className="ml-10 opacity-50 hover:opacity-100 cursor-pointer transition-all"
           />
           <img
-            src="src/assets/images/ig_header.png"
+            src="http://localhost:5173/src/assets/images/ig_header.png"
             className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"
           />
           <img
-            src="src/assets/images/x_header.png"
+            src="http://localhost:5173/src/assets/images/x_header.png"
             className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"
           />
           <img
-            src="src/assets/images/linkedin.png"
+            src="http://localhost:5173/src/assets/images/linkedin.png"
             className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"
           />
         </div>

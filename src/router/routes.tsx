@@ -15,7 +15,7 @@ const routes = [
         element: <Home />,
     },
     {
-        path: "/post_job",
+        path: "/post-job",
         element: <PostJob />,
     },
     {

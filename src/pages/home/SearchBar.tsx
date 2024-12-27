@@ -22,7 +22,7 @@ export default function SearchBar() {
     const [radius, setRadius] = React.useState('');
 
     useEffect(() => {
-        dispatch(getJobCategoryByAlpha());
+        dispatch(getJobCategoryByAlpha({category: 'jobcategory'}));
     }, [dispatch]);
 
 
