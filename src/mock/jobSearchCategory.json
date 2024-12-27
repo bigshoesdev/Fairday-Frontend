@@ -1,0 +1,89 @@
+{
+  "jobsearchitem_salary": {
+    "jobsearchtitle": "Salary Estimate",
+    "jobsearchitems": [
+      {
+        "item": "$ 70,000",
+        "count": 6574
+      },
+      {
+        "item": "$ 90,000",
+        "count": 2345
+      },
+      {
+        "item": "$ 100,000",
+        "count": 1234
+      },
+      {
+        "item": "$ 190,000",
+        "count": 3456
+      }
+    ]
+  },
+  "jobsearchitem_employment": {
+    "jobsearchtitle": "Employment Type",
+    "jobsearchitems": [
+      {
+        "item": "Full-Time",
+        "count": 6574
+      },
+      {
+        "item": "Permanent",
+        "count": 2345
+      },
+      {
+        "item": "Contract",
+        "count": 1234
+      },
+      {
+        "item": "Part-Time",
+        "count": 3456
+      },
+      {
+        "item": "Temporary",
+        "count": 2468
+      },
+      {
+        "item": "Seavices Wanted",
+        "count": 1543
+      },
+      {
+        "item": "Trade & Barter",
+        "count": 3456
+      },
+      {
+        "item": "Gigs",
+        "count": 3041
+      },
+      {
+        "item": "Cash & Tips",
+        "count": 4538
+      }
+    ]
+  },
+  "jobsearchitem_location": {
+    "jobsearchtitle": "Location",
+    "jobsearchitems": [
+      {
+        "item": "Durban",
+        "count": 6574
+      },
+      {
+        "item": "Sydney",
+        "count": 2345
+      },
+      {
+        "item": "Manhattan",
+        "count": 1234
+      },
+      {
+        "item": "New York",
+        "count": 3456
+      },
+      {
+        "item": "London",
+        "count": 3456
+      }
+    ]
+  }
+}
