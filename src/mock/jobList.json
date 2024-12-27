@@ -1,0 +1,90 @@
+{
+    "jobs": [
+        {
+            "avatar": "src/assets/images/avatar.png",
+            "jobTitle": "Product Manager",
+            "jobType": "Full Time",
+            "jobApplications": "68",
+            "jobDate": "6",
+            "userAvatar": "src/assets/images/user1.png",
+            "userName": "Rohit Sharma",
+            "userEmail": "rohit.sharma@tecorb.com",
+            "jobIndustry": "IT, Services",
+            "jobSeniority": "Internship",
+            "jobPosision": "Durban",
+            "company": "Appscito"
+        },
+        {
+            "avatar": "src/assets/images/avatar.png",
+            "jobTitle": "Product Manager",
+            "jobType": "Full Time",
+            "jobApplications": "68",
+            "jobDate": "6",
+            "userAvatar": "src/assets/images/user1.png",
+            "userName": "Rohit Sharma",
+            "userEmail": "rohit.sharma@tecorb.com",
+            "jobIndustry": "IT, Services",
+            "jobSeniority": "Internship",
+            "jobPosision": "Durban",
+            "company": "Appscito"
+        },
+        {
+            "avatar": "src/assets/images/avatar.png",
+            "jobTitle": "Product Manager",
+            "jobType": "Full Time",
+            "jobApplications": "68",
+            "jobDate": "6",
+            "userAvatar": "src/assets/images/user1.png",
+            "userName": "Rohit Sharma",
+            "userEmail": "rohit.sharma@tecorb.com",
+            "jobIndustry": "IT, Services",
+            "jobSeniority": "Internship",
+            "jobPosision": "Durban",
+            "company": "Appscito"
+        },
+        {
+            "avatar": "src/assets/images/avatar.png",
+            "jobTitle": "Product Manager",
+            "jobType": "Full Time",
+            "jobApplications": "68",
+            "jobDate": "6",
+            "userAvatar": "src/assets/images/user1.png",
+            "userName": "Rohit Sharma",
+            "userEmail": "rohit.sharma@tecorb.com",
+            "jobIndustry": "IT, Services",
+            "jobSeniority": "Internship",
+            "jobPosision": "Durban",
+            "company": "Appscito"
+        },
+        {
+            "avatar": "src/assets/images/avatar.png",
+            "jobTitle": "Product Manager",
+            "jobType": "Full Time",
+            "jobApplications": "68",
+            "jobDate": "6",
+            "userAvatar": "src/assets/images/user1.png",
+            "userName": "Rohit Sharma",
+            "userEmail": "rohit.sharma@tecorb.com",
+            "jobIndustry": "IT, Services",
+            "jobSeniority": "Internship",
+            "jobPosision": "Durban",
+            "company": "Appscito"
+        },
+        {
+            "avatar": "src/assets/images/avatar.png",
+            "jobTitle": "Product Manager",
+            "jobType": "Full Time",
+            "jobApplications": "68",
+            "jobDate": "6",
+            "userAvatar": "src/assets/images/user1.png",
+            "userName": "Rohit Sharma",
+            "userEmail": "rohit.sharma@tecorb.com",
+            "jobIndustry": "IT, Services",
+            "jobSeniority": "Internship",
+            "jobPosision": "Durban",
+            "company": "Appscito"
+        }
+
+    ]
+   
+}

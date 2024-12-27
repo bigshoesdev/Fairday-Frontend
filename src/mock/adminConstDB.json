@@ -1,0 +1,38 @@
+{
+    "read": [
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "jobcategory",
+            "value": "jobcategory",
+            "action": "read",
+            "key": "category",
+            "label": "Job Category",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        }
+    ],
+    "create": [
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/create",
+            "dbName": "jobcategory",
+            "value": "jobcategory",
+            "action": "create",
+            "key": "category",
+            "label": "Job Category",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        }
+    ],
+    "delete": [
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/delete",
+            "dbName": "jobcategory",
+            "value": "jobcategory",
+            "action": "delete",
+            "key": "category",
+            "label": "Job Category",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        }
+    ]
+}

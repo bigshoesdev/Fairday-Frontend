@@ -1,0 +1,110 @@
+{
+    "header":[
+        {
+            "link": "/#",
+            "menu": "HOME"
+        },
+        {
+            "link": "/#",
+            "menu": "JOBS"
+        },
+        {
+            "link": "/#",
+            "menu": "HIRE NOW"
+        },
+        {
+            "link": "/#",
+            "menu": "FEEDBACK"
+        },
+        {
+            "link": "/#",
+            "menu": "HELP"
+        }
+    ],
+    "footer":[
+        {
+            "title": "Man Power",
+            "list": [
+                {
+                    "link": "/#",
+                    "menu": "Jobs"
+                },
+                {
+                    "link": "/#",
+                    "menu": "labours"
+                },
+                {
+                    "link": "/#",
+                    "menu": "Categories"
+                },
+                {
+                    "link": "/#",
+                    "menu": "companies"
+                }
+            ]
+        },  
+        {
+            "title": "About",
+            "list": [
+                {
+                    "link": "/#",
+                    "menu": "About us"
+                },
+                {
+                    "link": "/#",
+                    "menu": "How it Works"
+                },
+                {
+                    "link": "/#",
+                    "menu": "Security"
+                },
+                {
+                    "link": "/#",
+                    "menu": "Updates"
+                }
+            ]
+        },  
+        {
+            "title": "Settings",
+            "list": [
+                {
+                    "link": "/#",
+                    "menu": "Login"
+                },
+                {
+                    "link": "/#",
+                    "menu": "Register"
+                },
+                {
+                    "link": "/#",
+                    "menu": "Profile"
+                },
+                {
+                    "link": "/#",
+                    "menu": "Account"
+                }
+            ]
+        },
+        {
+            "title": "Terms",
+            "list": [
+                {
+                    "link": "/#",
+                    "menu": "Privacy Policy"
+                },
+                {
+                    "link": "/#",
+                    "menu": "Terms and Conditions"
+                },
+                {
+                    "link": "/#",
+                    "menu": "Code Of Conduct"
+                },
+                {
+                    "link": "/#",
+                    "menu": "Fee's and Charges"
+                }
+            ]
+        }
+    ]   
+}

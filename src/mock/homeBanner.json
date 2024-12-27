@@ -1,0 +1,57 @@
+{
+    "startProject": [
+        {
+            "link": "#",
+            "title": "HIRE LOCAL TODAY",
+            "subTitle": "It's easy. Simply Post a job you need completed",
+            "img": "/src/assets/images/home_project1.png"
+        },
+        {
+            "link": "#",
+            "title": "HOMETOWM SERVICE HEROS",
+            "subTitle": "Advertisements, Special Offers and Discounts",
+            "img": "/src/assets/images/home_project2.png"
+        },
+        {
+            "link": "#",
+            "title": "FAIR DAY FOR FAIR PAY GUIDE",
+            "subTitle": "Review Farness Standards and Good Business Practices",
+            "img": "/src/assets/images/home_project3.png"
+        },
+        {
+            "link": "#",
+            "title": "TERMS",
+            "subTitle": "Customize your privacy settings & public promotions",
+            "img": "/src/assets/images/home_project4.png"
+        },
+        {
+            "link": "#",
+            "title": "WORLD SEARCH",
+            "subTitle": "Search for Work Anywhere !",
+            "img": "/src/assets/images/home_project5.png"
+        }
+
+    ],
+    "headerMenu": [
+        {
+            "link": "#",
+            "title": "Employment opportunities"
+        },
+        {
+            "link": "#",
+            "title": "Part time Local jobs"
+        },
+        {
+            "link": "#",
+            "title": "Bid on services Needed"
+        },
+        {
+            "link": "#",
+            "title": "Help around the house"
+        },
+        {
+            "link": "#",
+            "title": "List Jobs for contract"
+        }
+    ]
+}
