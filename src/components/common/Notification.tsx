@@ -12,11 +12,7 @@ const Notification: React.FC = () => {
   const [api, contextHolder] = notification.useNotification();
   const { commonSliceConfig } = useSelector((state: any) => state);
 
-  console.log("1", commonSliceConfig);
-
   useEffect(() => {
-    console.log("2", commonSliceConfig);
-
     if (
       commonSliceConfig&&
       commonSliceConfig.messageNotification&&
@@ -28,7 +24,7 @@ const Notification: React.FC = () => {
   }, commonSliceConfig.message)
 
   const openNotification = (placement: NotificationPlacement, content: string) => {
-    api.info({
+    api.success({
       message: `Notification`,
       description: <Context.Consumer>{({ name }) => content}</Context.Consumer>,
       placement,

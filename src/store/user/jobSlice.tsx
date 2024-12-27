@@ -31,10 +31,10 @@ const jobConfigSlice = createSlice({
   },
 });
 
-export const getJobCategoryByAlpha = () => async (dispatch: any): Promise<any> => {
+export const getJobCategoryByAlpha = (data: any) => async (dispatch: any): Promise<any> => {
     try {
       dispatch(configLoading());
-      const response = await axios.get("http://localhost:8000/api/v1/admin/constmanagement/sorted-grouped");
+      const response = await axios.post("http://localhost:8000/api/v1/user/job/get-category-list-by-alpha", data);
       dispatch(constMangeRead(response.data));
     } catch (error: any) {
       dispatch(configError(error.message || "Failed to fetch data"));
