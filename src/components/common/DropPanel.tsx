@@ -1,4 +1,6 @@
 import React, { useState, ReactNode } from "react";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 interface DropPanelProps {
     header: ReactNode;
@@ -22,12 +24,11 @@ const DropPanel: React.FC<DropPanelProps> = ({
                     {header}
                 </div>
                 <p onClick={() => setOpen(!open)}>
-                    {open ? "▲" : "▼"}
+                    {open ? <ExpandMoreIcon fontSize="large" className="text-black"/> : <KeyboardArrowRightIcon fontSize="large" className="text-black"/>}
                 </p>
             </div>
             <div
-                className={` left-0 w-full px-6 transition-all rounded-b-xl  duration-300 ${open ? "max-h-96" : "max-h-0"
-                    } overflow-hidden`}
+                className={`left-0 w-full px-6 transition-all duration-500 ease-in-out overflow-hidden ${open ? "max-h-[2000px]" : "max-h-0"}`}
             >
                 <div className={contentClassName}>
                     {children}
@@ -36,5 +37,4 @@ const DropPanel: React.FC<DropPanelProps> = ({
         </div>
     );
 };
-
 export default DropPanel;

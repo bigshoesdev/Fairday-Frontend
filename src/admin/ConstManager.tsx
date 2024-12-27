@@ -23,107 +23,139 @@ interface DumpData {
 	[key: string]: any; 
 }
 
+
 const ConstManager: React.FC = () => {
-	const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
 
-	const [searchhint, setSearchhint] = useState("")
-	const [isModalVisible, setIsModalVisible] = useState(false);
-	const [constCategory, setConstCategory] = useState('');
-	const { adminConfig } = useSelector((state: any) => state);
+  const [searchhint, setSearchhint] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [constCategory, setConstCategory] = useState('');
+  const { adminConfig } = useSelector((state: any) => state);
+  const [dumpData, setDumpData] = useState<DumpData | undefined>(undefined);
 
+  useEffect(() => {
+    if (constCategory !== '') {
+      const data = (adminConstDB as AdminConstDB).read.find(
+        (item: DumpData) => item.dbName === constCategory
+      );
+      if (data) {
+        setDumpData(data);  // Store it in local state
+        dispatch(fetchConstMangeAPI({ ...data, searchhint, page: 1, pageSize: 10 }));
+      }
+    }
+  }, [dispatch, searchhint, constCategory]);
 
-	useEffect(() => {
-		if (constCategory !== '') {
-			const dumpData = (adminConstDB as AdminConstDB).read.find((item: DumpData) => item.dbName === constCategory);
-			if (dumpData) {
-				dispatch(fetchConstMangeAPI({ ...dumpData, searchhint, page: 1, pageSize: 10 }));
-			}
-		}
-	}, [dispatch, searchhint, constCategory]);
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
 
-	// useEffect(() => {
-	// 	if (constCategory !== '') {
-	// 		const dumpData = adminConstDB.create.find((item: any) => item.dbName === constCategory);
-	// 		dispatch(fetchConstMangeAPI(dumpData));
-	// 	}
-	// }, [constCategory, dispatch]);
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
-	const showModal = () => {
-		setIsModalVisible(true);
-	};
+  const onSearch: SearchProps['onSearch'] = (value: any, _e: any) => setSearchhint(value);
 
-	const handleCancel = () => {
-		setIsModalVisible(false);
-	};
+  const onDelete = (_id: string) => {
 
-	const onSearch: SearchProps['onSearch'] = (value: any, _e: any) => setSearchhint(value);
+	const data = (adminConstDB as AdminConstDB).delete.find(
+        (item: DumpData) => item.dbName === constCategory
+      );
+      if (data) {
+		dispatch(deleteConstMangeAPI({ ...data, _id }));
+      }
+  };
 
-	const handleCreate = (newEntry: string) => {
-		console.log(`New ${constCategory} entry:`, newEntry);
-		setIsModalVisible(false);
-	};
+  const columns = dumpData?.registerType === 1
+    ? [
+        {
+          title: 'String',
+          dataIndex: 'string',
+          key: 'string',
+          render: (text) => <a>{text}</a>,
+        },
+        {
+          title: 'Actions',
+          dataIndex: '_id',
+          key: '_id',
+          render: (_id) => (
+            <div>
+              <Button danger onClick={() => onDelete(_id)}>Delete</Button>
+            </div>
+          ),
+        },
+      ]
+    : [
+        {
+          title: 'String',
+          dataIndex: 'string',
+          key: 'string',
+          render: (text) => <a>{text}</a>,
+        },
+        {
+          title: 'Min',
+          dataIndex: 'min',
+          key: 'min',
+          render: (text) => <a>{text}</a>,
+        },
+        {
+          title: 'Max',
+          dataIndex: 'max',
+          key: 'max',
+          render: (text) => <a>{text}</a>,
+        },
+        {
+          title: 'Actions',
+          dataIndex: '_id',
+          key: '_id',
+          render: (_id) => (
+            <div>
+              <Button danger onClick={() => onDelete(_id)}>Delete</Button>
+            </div>
+          ),
+        },
+      ];
 
-	const onDelete = (_id: string) => {
+  return (
+    <div className="w-screen p-20">
+      <div className="flex justify-between">
+        <div className='flex items-center flex-row gap-x-10'>
+          <Select
+            defaultValue={constCategory}
+            style={{ width: 250 }}
+            onChange={setConstCategory}
+            options={adminConstDB.read}
+          />
+          <Search
+            placeholder="input search text"
+            onSearch={onSearch}
+            enterButton
+            style={{ width: 500 }}
+          />
+        </div>
+        <Button type="primary" onClick={showModal}>
+          Create
+        </Button>
+      </div>
 
-		const dumpData = (adminConstDB as AdminConstDB).delete.find((item: DumpData) => item.dbName === constCategory);
-		dispatch(deleteConstMangeAPI({...dumpData, _id}))
-		
-	};
+      <Table
+        columns={columns}
+        rowKey={(record: any) => record._id}
+        dataSource={adminConfig[adminConfig.category]?.result || []}
+        className="mt-10"
+      />
 
-	return (
-		<div className="w-screen p-20">
-			<div className="flex justify-between">
-				<div className='flex items-center flex-row gap-x-10'>
-					<Select
-						defaultValue={constCategory}
-						style={{ width: 250 }}
-						onChange={setConstCategory}
-						options={adminConstDB.read}
-					/>
-					<Search
-						placeholder="input search text"
-						onSearch={onSearch}
-						enterButton
-						style={{ width: 500 }}
-					/>
-				</div>
-				<Button type="primary" onClick={showModal}>
-					Create
-				</Button>
-			</div>
-
-			<Table
-				columns={[
-					{
-						title: 'String',
-						dataIndex: 'string',
-						key: 'string',
-						render: (text) => <a>{text}</a>,
-					},
-					{
-						title: 'Actions',
-						dataIndex: '_id',
-						key: '_id',
-						render: (_id) => <div>
-							<Button danger onClick={() => onDelete(_id)}>Delete</Button>
-						</div>,
-					},
-				]}
-				rowKey={(record: any) => record._id}
-				// pagination={tableParams.pagination}
-				// loading={loading}
-				// onChange={handleTableChange}
-				dataSource={adminConfig[adminConfig.category]?.result || []}
-				className="mt-10"
-			/>
-
-			<CreateEntryModal
-				visible={isModalVisible}
-				category={constCategory}
-				onCancel={handleCancel}
-			/>
-		</div>
-	);
+      {/* Pass dumpData as a prop to CreateEntryModal */}
+      <CreateEntryModal
+        visible={isModalVisible}
+        category={constCategory}
+        dumpData={dumpData}  // Pass dumpData here
+        onCancel={handleCancel}
+      />
+    </div>
+  );
 };
+
+
+  
 
 export default ConstManager;

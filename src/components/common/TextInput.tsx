@@ -6,7 +6,7 @@ interface Props {
     value: string;
     type: string;
     style: string;
-    rows?: number; 
+    rows?: number;
     multiline?: boolean;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -16,8 +16,8 @@ const TextInput = ({
     value,
     type,
     style,
-    rows = 1, 
-    multiline = false, 
+    rows = 1,
+    multiline = false,
     onChange,
 }: Props) => {
     return (
