@@ -5,6 +5,8 @@ const Home = lazy(() => import("src/pages/home"));
 const JobSearch = lazy(() => import("src/pages/jobSearch"));
 const PostJob = lazy(() => import("src/pages/job_post/Index"));
 const VerifyEmail = lazy(() => import("src/pages/verifyEmail"));
+const EmployerDetail = lazy(() => import("src/pages/employerDetail"));
+const ContactUs = lazy(() => import("src/pages/contactUs"));
 
 const routes = [
   {
@@ -20,8 +22,16 @@ const routes = [
     element: <JobSearch />,
   },
   {
+    path: "/contact_us",
+    element: <ContactUs />,
+  },
+  {
     path: "/verify_email_address",
     element: <VerifyEmail />,
+  },
+  {
+    path: "/employer_detail",
+    element: <EmployerDetail />,
   },
   {
     path: "/post_job",
