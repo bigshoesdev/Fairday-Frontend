@@ -9,4 +9,7 @@ export default defineConfig({
       'src': path.resolve('src'), // This will resolve relative to the current working directory
     },
   },
+  server: {
+    host: '0.0.0.0', // Allow access from the local network
+  },
 });
