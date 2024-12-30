@@ -2,9 +2,7 @@ import { useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const JobDescription = () => {
-
-  const [detailJobDescription, setDetailJobDescription] = useState('');
+const JobDescription = ({detailJobDescription, setDetailJobDescription }) => {
 
   return (
     <div className='w-full'>
@@ -12,7 +10,6 @@ const JobDescription = () => {
 
         <span className="font-bold text-[26px] text-[#33495E]">
           Job Description Details*</span>
-
 
         <TextInput
           type="email"

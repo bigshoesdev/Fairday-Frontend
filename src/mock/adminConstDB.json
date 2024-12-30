@@ -39,6 +39,16 @@
             "label": "Salary",
             "avaialble": ["category", "string"],
             "registerType": 3
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "experienceyears",
+            "value": "experienceyears",
+            "action": "read",
+            "key": "category",
+            "label": "Experience Years",
+            "avaialble": ["category", "string"],
+            "registerType": 1
         }
     ],
     "create": [
@@ -91,6 +101,16 @@
             "action": "delete",
             "key": "category",
             "label": "Salary",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/delete",
+            "dbName": "experienceyears",
+            "value": "experienceyears",
+            "action": "delete",
+            "key": "category",
+            "label": "Experience Years",
             "avaialble": ["category", "string"],
             "registerType": 1
         }

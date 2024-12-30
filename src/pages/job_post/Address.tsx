@@ -2,20 +2,8 @@ import { useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const Address = () => {
-
-  const [userStreet, setUserStreet] = useState('');
-  const [userCity, setUsercity] = useState('');
-  const [userCountry, setUserCountry] = useState('');
-  const [addressConfirm, setAddressConfirm] = useState(false);
-
-  const addressConfirmChange = () => {
-    setAddressConfirm((prev) => {
-      const newState = !prev;
-      return newState;
-    });
-  };
-
+const Address = ({userStreet, userCity, userCountry, addressConfirm, setUserStreet, setUsercity, setUserCountry, setAddressConfirm}) => {
+  
   return (
     <div className='w-full'>
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow'}>
@@ -26,7 +14,7 @@ const Address = () => {
             type="checkbox"
             className="w-[25px] h-[25px] form-checkbox text-blue-600"
             checked={addressConfirm}
-            onChange={addressConfirmChange}
+            onChange={() => setAddressConfirm((prev) => !prev)}
           />
           <span className="font-bold text-[20px] text-[#33495E]">
           Same address as Job Location listed above</span>
