@@ -19,7 +19,7 @@ const routes = [
     element: <Home />,
   },
   {
-    path: "/job_search",
+    path: "/job-search",
     element: <JobSearch />,
   },
   {
@@ -27,19 +27,19 @@ const routes = [
     element: <UserProfile />,
   },
   {
-    path: "/contact_us",
+    path: "/contact-us",
     element: <ContactUs />,
   },
   {
-    path: "/verify_email_address",
+    path: "/verify-email-address",
     element: <VerifyEmail />,
   },
   {
-    path: "/employer_detail",
+    path: "/employer-detail",
     element: <EmployerDetail />,
   },
   {
-    path: "/post_job",
+    path: "/post-job",
     element: <PostJob />,
   },
   {
