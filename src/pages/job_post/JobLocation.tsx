@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const JobLocation = () => {
-
-  const [street, setStreet] = useState('');
-  const [city, setCity] = useState('');
-  const [country, setCountry] = useState('');
+const JobLocation = ({street, setStreet, city, setCity, country, setCountry}) => {
 
   return (
     <div className='w-full'>

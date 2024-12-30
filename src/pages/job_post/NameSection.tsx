@@ -2,9 +2,7 @@ import { useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const NameSection = () => {
-
-  const [businessName, setBusinessName] = useState('');
+const NameSection = ({businessName, setBusinessName}) => {
 
   return (
     <div className='w-full'>

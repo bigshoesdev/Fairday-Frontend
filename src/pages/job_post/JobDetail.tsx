@@ -3,26 +3,22 @@ import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 import Button from 'src/components/common/Button';
 
-const JobDetail = () => {
-
-  const [jobTitle, setJobTitle] = useState('');
-  const [jobDescription, setJobDescription] = useState('');
-  const [employer, setEmploye] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [emailConfirm, setEmailConfirm] = useState(false);
+const JobDetail = ({ jobTitle,
+  jobDescription,
+  employer,
+  name,
+  email,
+  emailConfirm,
+  setJobTitle,
+  setJobDescription,
+  setEmploye,
+  setName,
+  setEmail,
+  setEmailConfirm }) => {
 
   const buttonClick = () => {
     console.log('this is button clicked');
   };
-
-  const handleEmailConfirmChange = () => {
-    setEmailConfirm((prev) => {
-      const newState = !prev;
-      return newState;
-    });
-  };
-
 
   return (
     <div className='w-full'>
@@ -82,7 +78,7 @@ const JobDetail = () => {
             type="checkbox"
             className="w-[25px] h-[25px] form-checkbox text-blue-600"
             checked={emailConfirm}
-            onChange={handleEmailConfirmChange}
+            onChange={() => setEmailConfirm((prev) => !prev)}
           />
           <span className="font-bold text-[20px] text-[#33495E]">
             Email Confirmation Required for posting all jobs</span>

@@ -2,17 +2,7 @@ import  { useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const OhterCategory = () => {
-
-  const [otherCategory, setOtherCategory] = useState('');
-  const [categoryConfirm, setCategoryConfirm] = useState(false);
-
-  const otherCategoryConfirmChange = () => {
-    setCategoryConfirm((prev) => {
-      const newState = !prev;
-      return newState;
-    });
-  };
+const OhterCategory = ({otherCategory, setOtherCategory, categoryConfirm, setCategoryConfirm}) => {
 
   return (
     <div className='w-full'>
@@ -22,7 +12,7 @@ const OhterCategory = () => {
             type="checkbox"
             className="w-[25px] h-[25px] form-checkbox text-blue-600"
             checked={categoryConfirm}
-            onChange={otherCategoryConfirmChange}
+            onChange={() => setCategoryConfirm((prev) => !prev)}
           />
           <span className="font-bold text-[26px] text-[#33495E]">
             Other Category <span className='text-blue-500 font-normal'>(Optional)</span></span>
