@@ -2,9 +2,8 @@ import { useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const JobPay = () => {
+const JobPay = ({jobPayRate, setJobPayRate}) => {
 
-  const [jobPayRate, setJobPayRate] = useState('');
 
   return (
     <div className='w-full'>

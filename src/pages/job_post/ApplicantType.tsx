@@ -1,17 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from 'src/store';
 import DropPanel from 'src/components/common/DropPanel';
-import SmallTextInput from 'src/components/common/smallTextInput';
 import CheckboxLable from 'src/components/common/CheckboxLable';
+import { getJobConstManage } from 'src/store/user/jobSlice';
 
-const ApplicantType = () => {
+const ApplicantType = ({checkboxStates, setCheckboxStates}) => {
 
-  const [addressConfirm, setAddressConfirm] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const addressConfirmChange = () => {
-    setAddressConfirm(!addressConfirm);
+  useEffect(() => {
+    dispatch(getJobConstManage());
+  }, [dispatch]);
+
+  const { jobConfig } = useSelector((state: any) => state);
+  const GroupData = jobConfig.jobConstManage;
+  const applicantTypeData = GroupData.filter(item => item.category === 'applicanttype');
+
+  const handleCheckboxChange = (label: string) => {
+    setCheckboxStates((prevState) => ({
+      ...prevState,
+      [label]: !prevState[label],
+    }));
   };
-
-  const [email, setEmail] = useState('');
 
   return (
     <div className='w-full'>
@@ -20,33 +31,20 @@ const ApplicantType = () => {
           <div className='flex flex-col gap-2'>
             <span className='text-[#1880F1] text-[22px] font-bold'>Applicant Type* <span className='text-black font-normal'>(Select all as applicable)</span></span>
             <span className='text-black text-[22px]'>Skilled</span>
-
           </div>
         }
       >
         <div className='flex flex-col gap-4'>
-          <CheckboxLable
-            label="Unskilled/Trainee"
-            checked={addressConfirm}
-            onChange={addressConfirmChange}
-          />
-
-          <CheckboxLable
-            label="Skilled"
-            checked={addressConfirm}
-            onChange={addressConfirmChange}
-          />
-
-          <SmallTextInput
-            type="email"
-            label="Description text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            style="left-7 w-1/2"
-          />
-
+          {/* Map over the applicantTypeData to dynamically render checkboxes */}
+          {applicantTypeData.map((item) => (
+            <CheckboxLable
+              key={item._id}
+              label={item.string} // Display the string value for each checkbox
+              checked={checkboxStates[item._id] || false} // Check if the checkbox is selected
+              onChange={() => handleCheckboxChange(item._id)} // Toggle the checkbox
+            />
+          ))}
         </div>
-
       </DropPanel>
     </div>
   );

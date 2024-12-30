@@ -3,173 +3,189 @@ import DropPanel from 'src/components/common/DropPanel';
 import SmallTextInput from 'src/components/common/smallTextInput';
 import RadioLabel from 'src/components/common/RadioLabel';
 
-const Contact = () => {
+const Contact = ({
+  selectedOption,
+  telephone,
+  facebook,
+  instagram,
+  linkedin,
+  skype,
+  whatsApp,
+  contactOther,
+  contactEmail,
+  setSelectedOption,
+  setTelephone,
+  setFacebook,
+  setInstagram,
+  setLinkedIn,
+  setSkype,
+  setWhatsApp,
+  setContactOther,
+  setContactEmail
 
-  const [addressConfirm, setAddressConfirm] = useState<boolean>(false);
+}) => {
 
-  const addressConfirmChange = () => {
-    setAddressConfirm(!addressConfirm);
+  const handleOptionChange = (option: string) => {
+    setSelectedOption(option);
   };
 
-  const [email, setEmail] = useState('');
 
   return (
-    <div className='w-full'>
+    <div className="w-full">
       <DropPanel
         header={
-          <div className='flex flex-col gap-2'>
-            <span className='text-[#1880F1] text-[22px] font-bold'>Employer Preferred Method of Contact</span>
-            <span className='text-black text-[22px]'>Keep Contact info Private (Verified and Rated Applicants only)</span>
-
+          <div className="flex flex-col gap-2">
+            <span className="text-[#1880F1] text-[22px] font-bold">
+              Employer Preferred Method of Contact
+            </span>
+            <span className="text-black text-[22px]">
+              Keep Contact info Private (Verified and Rated Applicants only)
+            </span>
           </div>
         }
       >
-        <div className='flex flex-col gap-4'>
+        <div className="flex flex-col gap-4">
           <RadioLabel
             label="Keep Contact info Private (Verified & Rated Applicants Only via masked email by FAIRDAY JOBS)"
-            checked={addressConfirm}
-            onChange={addressConfirmChange}
+            checked={selectedOption === 'private'}
+            onChange={() => handleOptionChange('private')}
             labelClass="pr-[150px]"
           />
-
           <RadioLabel
             label="Publish the following Contact preferences with Job Post (Make Public for a broader range of applicant responses)"
-            checked={addressConfirm}
-            onChange={addressConfirmChange}
+            checked={selectedOption === 'public'}
+            onChange={() => handleOptionChange('public')}
             labelClass="pr-[150px]"
           />
 
-          <div className='flex flex-row gap-4'>
+          <div className="flex flex-row gap-4">
             <RadioLabel
               label="Telephone"
-              checked={addressConfirm}
-              onChange={addressConfirmChange}
-              spanClass='min-w-[120px]'
+              checked={selectedOption === 'telephone'}
+              onChange={() => handleOptionChange('telephone')}
+              spanClass="min-w-[120px]"
             />
             <SmallTextInput
-              type="email"
+              type="text"
               label="Description text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={telephone}
+              onChange={(e) => setTelephone(e.target.value)}
               style="left-7 w-1/2"
             />
           </div>
 
-          <div className='flex flex-row gap-4'>
+          <div className="flex flex-row gap-4">
             <RadioLabel
               label="Email"
-              checked={addressConfirm}
-              spanClass='min-w-[120px]'
-              onChange={addressConfirmChange}
+              checked={selectedOption === 'email'}
+              onChange={() => handleOptionChange('email')}
+              spanClass="min-w-[120px]"
             />
             <SmallTextInput
               type="email"
               label="Description text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={contactEmail}
+              onChange={(e) => setContactEmail(e.target.value)}
               style="left-7 w-1/2"
             />
           </div>
 
-          <div className='flex flex-row gap-4'>
+          <div className="flex flex-row gap-4">
             <RadioLabel
               label="Facebook"
-              checked={addressConfirm}
-              onChange={addressConfirmChange}
-              spanClass='min-w-[120px]'
+              checked={selectedOption === 'facebook'}
+              onChange={() => handleOptionChange('facebook')}
+              spanClass="min-w-[120px]"
             />
             <SmallTextInput
-              type="email"
+              type="text"
               label="Description text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={facebook}
+              onChange={(e) => setFacebook(e.target.value)}
               style="left-7 w-1/2"
             />
           </div>
 
-          <div className='flex flex-row gap-4'>
+          <div className="flex flex-row gap-4">
             <RadioLabel
               label="Instagram"
-              checked={addressConfirm}
-              onChange={addressConfirmChange}
-              spanClass='min-w-[120px]'
+              checked={selectedOption === 'instagram'}
+              onChange={() => handleOptionChange('instagram')}
+              spanClass="min-w-[120px]"
             />
             <SmallTextInput
-              type="email"
+              type="text"
               label="Description text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={instagram}
+              onChange={(e) => setInstagram(e.target.value)}
               style="left-7 w-1/2"
             />
           </div>
 
-          <div className='flex flex-row gap-4'>
+          <div className="flex flex-row gap-4">
             <RadioLabel
-              label="Linkedin"
-              checked={addressConfirm}
-              onChange={addressConfirmChange}
-              spanClass='min-w-[120px]'
+              label="LinkedIn"
+              checked={selectedOption === 'linkedin'}
+              onChange={() => handleOptionChange('linkedin')}
+              spanClass="min-w-[120px]"
             />
             <SmallTextInput
-              type="email"
+              type="text"
               label="Description text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={linkedin}
+              onChange={(e) => setLinkedIn(e.target.value)}
               style="left-7 w-1/2"
             />
           </div>
 
-          <div className='flex flex-row gap-4'>
+          <div className="flex flex-row gap-4">
             <RadioLabel
               label="Skype"
-              checked={addressConfirm}
-              onChange={addressConfirmChange}
-              spanClass='min-w-[120px]'
+              checked={selectedOption === 'skype'}
+              onChange={() => handleOptionChange('skype')}
+              spanClass="min-w-[120px]"
             />
             <SmallTextInput
-              type="email"
+              type="text"
               label="Description text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={skype}
+              onChange={(e) => setSkype(e.target.value)}
               style="left-7 w-1/2"
             />
           </div>
 
-          <div className='flex flex-row gap-4'>
+          <div className="flex flex-row gap-4">
             <RadioLabel
-              label="Whats App"
-              checked={addressConfirm}
-              onChange={addressConfirmChange}
-              spanClass='min-w-[120px]'
+              label="WhatsApp"
+              checked={selectedOption === 'whatsapp'}
+              onChange={() => handleOptionChange('whatsapp')}
+              spanClass="min-w-[120px]"
             />
             <SmallTextInput
-              type="email"
+              type="text"
               label="Description text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={whatsApp}
+              onChange={(e) => setWhatsApp(e.target.value)}
               style="left-7 w-1/2"
             />
           </div>
 
-          <div className='flex flex-row gap-4'>
+          <div className="flex flex-row gap-4">
             <RadioLabel
               label="Other"
-              checked={addressConfirm}
-              onChange={addressConfirmChange}
-              spanClass='min-w-[120px]'
+              checked={selectedOption === 'other'}
+              onChange={() => handleOptionChange('other')}
+              spanClass="min-w-[120px]"
             />
             <SmallTextInput
-              type="email"
+              type="text"
               label="Description text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={contactOther}
+              onChange={(e) => setContactOther(e.target.value)}
               style="left-7 w-1/2"
             />
           </div>
-
-
         </div>
-
       </DropPanel>
     </div>
   );

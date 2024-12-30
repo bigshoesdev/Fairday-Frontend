@@ -24,7 +24,7 @@ const routes = [
     element: <VerifyEmail />,
   },
   {
-    path: "/post_job",
+    path: "/post-job",
     element: <PostJob />,
   },
   {
