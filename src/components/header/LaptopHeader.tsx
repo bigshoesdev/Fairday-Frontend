@@ -31,7 +31,7 @@ const DesktopHeader = () => {
 
     return (
         <div className="block header_change:hidden">
-            <div className="flex justify-between items-start items-center">
+            <div className="flex justify-between items-center">
                 <div className="text-center border border-white-100 rounded-[5px] cursor-pointer p-1" onClick={toggleDrawer}>
                     <svg className="w-9 h-8 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="M5 7h14M5 12h14M5 17h14" />
