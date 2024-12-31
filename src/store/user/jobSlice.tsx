@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 interface JobConfigState {
+
   jobDetails: object[];
   jobConstManage: object[];
   jobCategoryList: object[];
@@ -11,8 +12,8 @@ interface JobConfigState {
 
 const initialState: JobConfigState = {
   jobDetails:[],
-  jobCategoryList: [],
   jobConstManage: [],
+  jobCategoryList: [],
   loading: false,
   error: null,
 };
@@ -44,6 +45,18 @@ const jobConfigSlice = createSlice({
 });
 
 
+
+export const getAllJobs = () => async (dispatch: any): Promise<any> => {
+  try {
+    dispatch(configLoading());
+    const response = await axios.post("http://localhost:8000/api/v1/user/job/get-all-jobs");
+    dispatch(constJobDetailsRead(response.data));
+  } catch (error: any) {
+    dispatch(configError(error.message || "Failed to fetch data"));
+  }
+};
+
+
 export const postJob = (data) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
@@ -73,6 +86,7 @@ export const getJobConstManage = () => async (dispatch: any): Promise<any> => {
     dispatch(configError(error.message || "Failed to fetch data"));
   }
 };
+
 
 
 

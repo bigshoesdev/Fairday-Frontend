@@ -20,6 +20,7 @@
     "@reduxjs/toolkit": "^2.5.0",
     "antd": "^5.22.5",
     "axios": "^1.7.9",
+    "dayjs": "^1.11.13",
     "i18next": "^24.1.2",
     "i18next-browser-languagedetector": "^8.0.2",
     "i18next-http-backend": "^3.0.1",
@@ -33,6 +34,7 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.0.2",
     "redux-persist": "^6.0.0",
+    "relative-time": "^1.0.0",
     "vite-plugin-tsconfig-paths": "^1.4.1"
   },
   "devDependencies": {

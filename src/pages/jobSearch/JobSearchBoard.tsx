@@ -1,9 +1,12 @@
 import JobBanner from "./jobBanner";
-import JobCard from "./jobCard";
+import JobList from "./jobList";
 import JobCount from "./jobCount";
 import JobSearchOptions from "./jobSearchOptions";
 
-const JobSearchBoard = () => {
+const JobSearchBoard = (props: any) => {
+
+  const { jobDetailsInfos, GroupData } = props
+
   return (
     <div className="w-full flex justify-center">
       <div className="grid grid-cols-12 gap-4 pl-20 pr-20">
@@ -15,7 +18,10 @@ const JobSearchBoard = () => {
         {/* Job Count and Job Cards */}
         <div className="col-span-12 lg:col-span-7 md:col-span-6 text-white p-4">
           <JobCount />
-          <JobCard />
+          <JobList
+            jobDetailsInfos={jobDetailsInfos}
+            GroupData={GroupData}
+          />
         </div>
 
         {/* Job Banners */}

@@ -27,7 +27,10 @@ const authSlice = createSlice({
     authLoading(state) {
       state.loading = true;
     },
-    loginSuccess(state, { payload }: PayloadAction<{ user: object; token: string }>) {
+    loginSuccess(state, { payload }: PayloadAction<{ user: object; token: string, isAuthenticate:boolean }>) {
+      console.log('This is loginSuccess data', state.isAuthenticate);
+      
+      state.isAuthenticate = payload.isAuthenticate;
       state.user = payload.user;
       state.token = payload.token;
       state.loading = false;
@@ -57,11 +60,11 @@ export const loginAPI = (credentials: { email: string; password: string }) => as
   try {
     dispatch(authLoading());
     const response = await axios.post("http://localhost:8000/api/v1/auth/login", credentials);
-    
+    let isOkay = response.data.isOkay
     let userToken = response.data.access_token
     let parsedResult = jwtDecodeUtil(userToken)
     storage(userToken)
-    dispatch(loginSuccess({ user: parsedResult, token: userToken })); 
+    dispatch(loginSuccess({ user: parsedResult, token: userToken, isAuthenticate: isOkay})); 
 
   } catch (error: any) {
     dispatch(authError(error.message || "Login failed"));

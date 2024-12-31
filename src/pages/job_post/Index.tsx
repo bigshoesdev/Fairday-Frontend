@@ -114,11 +114,7 @@ const PostJob = () => {
     }
 
     console.log('data', data);
-    
-
     dispatch(postJob(data))
-
-
 
   };
 

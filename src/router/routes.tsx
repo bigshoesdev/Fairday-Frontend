@@ -23,7 +23,7 @@ const routes = [
     element: <JobSearch />,
   },
   {
-    path: "/user/userprofile",
+    path: "/user/userprofile/:userId",
     element: <UserProfile />,
   },
   {

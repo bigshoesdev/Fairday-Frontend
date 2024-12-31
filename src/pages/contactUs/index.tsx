@@ -9,7 +9,7 @@ const ContactUs = () => {
       <span className="mt-16 flex text-center text-[40px] font-semibold mb-14">
         CONTACT US
       </span>
-      <div className="grid xs:grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+      <div className="grid xs:grid-cols-1 md:grid-cols-2 gap-4 mb-5 w-full max-w-[1040px] px-5">
         <TextInput
           type="text"
           label="First Name*"
@@ -39,20 +39,23 @@ const ContactUs = () => {
           style="w-full  w-[400px]"
         />
       </div>
-      <TextInput
-        type="text"
-        label="Message*"
-        value={email}
-        multiline={true}
-        onChange={(e) => setEmail(e.target.value)}
-        style="w-full  w-[816px]"
-      />
+      <div className="w-full max-w-[1040px] flex items-center justify-center px-5">
+        <TextInput
+          type="text"
+          label="Message*"
+          value={email}
+          multiline={true}
+          onChange={(e) => setEmail(e.target.value)}
+          style="w-full "
+        />
+      </div>
+
       <Button
         className="bg-primaryBlue text-white px-12 hover:bg-blue-400 transition-all cursor-pointer mb-8 hover:border-blue-400 mt-8 focus:outline-none"
         onClick={() => console.log()}
         text="Send"
-      >
-      </Button>
+      />
+     
     </div>
   );
 };

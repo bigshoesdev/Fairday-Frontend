@@ -21,12 +21,17 @@ const HeroSection = () => {
                 <span>• TRADE JOBS</span>
             </div>
             <div className='mt-[85px] p-[5px] flex flex-row bg-[#172733] items-center rounded-[10px]'>
-                <span className='px-[30px] sm:text-[20px] md:text-[24px] text-white content-center cursor-pointer'>Post All Jobs Here!</span>
-                <Button
-                    text="Search Jobs Earn $"
-                    onClick={onClick}
-                    className='px-[20px] sm:text-[20px] md:text-[24px] font-bold bg-white text-black px-8 hover:bg-gray-400 transition-all cursor-pointer hover:border-gray-400 focus:outline-none'
-                />
+                <a href="http://localhost:5173/post-job">
+                    <span className='px-[30px] sm:text-[20px] md:text-[24px] text-white content-center cursor-pointer'>Post All Jobs Here!</span>
+                </a>
+                <a href="http://localhost:5173/job-search">
+                    <Button
+                        text="Search Jobs Earn $"
+                        onClick={onClick}
+                        className='px-[20px] sm:text-[20px] md:text-[24px] font-bold bg-white text-black px-8 hover:bg-gray-400 transition-all cursor-pointer hover:border-gray-400 focus:outline-none'
+                    />
+                </a>
+
             </div>
 
             <div className='mt-10 flex flex-row justify-between gap-10 sm:text-[16px] md:text-[20px] text-black font-bold'>
