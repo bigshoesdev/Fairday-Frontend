@@ -11,7 +11,6 @@ const NameSection = ({businessName, setBusinessName}) => {
         <span className="font-bold text-[26px] text-[#33495E]">
         Your Name or Business Name *</span>
 
-
         <TextInput
           type="email"
           label="Type Here..."

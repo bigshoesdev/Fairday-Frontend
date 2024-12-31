@@ -41,12 +41,15 @@ const DesktopHeader: React.FC = () => {
 
         <div className="flex justify-start items-center">
           {layoutMenuList.header.map((item, index) => (
-            <p
-              key={index}
-              className="text-[15px] mb-0 px-5 text-primaryGray hover:text-white border-r-[1px] border-primaryGray cursor-pointer h-[18px] transition-all"
-            >
-              {item.menu}
-            </p>
+            <a href={item.link}>
+              <p
+                key={index}
+                className="text-[15px] mb-0 px-5 text-primaryGray hover:text-white border-r-[1px] border-primaryGray cursor-pointer h-[18px] transition-all"
+              >
+                {item.menu}
+              </p>
+            </a>
+
           ))}
           <p
             onClick={() => handleOpenModal('login')}

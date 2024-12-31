@@ -1,11 +1,11 @@
 {
     "header":[
         {
-            "link": "/#",
+            "link": "/",
             "menu": "HOME"
         },
         {
-            "link": "/#",
+            "link": "/job-search",
             "menu": "JOBS"
         },
         {
@@ -26,7 +26,7 @@
             "title": "Man Power",
             "list": [
                 {
-                    "link": "/#",
+                    "link": "/job-search",
                     "menu": "Jobs"
                 },
                 {

@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import DropPanel from 'src/components/common/DropPanel';
 import RadioLabel from 'src/components/common/RadioLabel';
 
 const JobType = ({selectedJobType, setSelectedJobType}) => {
+  
   const { jobConfig } = useSelector((state: any) => state);
   const GroupData = jobConfig.jobConstManage;
   const jobTypeData = GroupData.filter(item => item.category === 'jobtype');

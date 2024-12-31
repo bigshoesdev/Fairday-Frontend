@@ -15,8 +15,6 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 export default function SearchBar() {
 
     const dispatch = useDispatch<AppDispatch>();
-    // const { jobConfig } = useSelector((state: any) => state);
-    // const groupedData = jobConfig.constMange;
     
     const [language, setLanguage] = React.useState('');
     const [radius, setRadius] = React.useState('');
@@ -24,7 +22,6 @@ export default function SearchBar() {
     useEffect(() => {
         dispatch(getJobCategoryByAlpha({category: 'jobcategory'}));
     }, [dispatch]);
-
 
     const languageChange = (event: SelectChangeEvent) => {
         setLanguage(event.target.value as string);
@@ -37,6 +34,7 @@ export default function SearchBar() {
     const buttonClick = () => {
         console.log('button clicked!!!')
     }
+    
     return (
         <div className='w-full p-3 bg-primaryBlue hidden sm:flex sm:flex-row items-center justify-center gap-x-20 gap-y-4'>
             <Box sx={{

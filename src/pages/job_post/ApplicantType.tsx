@@ -35,7 +35,6 @@ const ApplicantType = ({checkboxStates, setCheckboxStates}) => {
         }
       >
         <div className='flex flex-col gap-4'>
-          {/* Map over the applicantTypeData to dynamically render checkboxes */}
           {applicantTypeData.map((item) => (
             <CheckboxLable
               key={item._id}
