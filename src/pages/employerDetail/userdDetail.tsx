@@ -1,10 +1,10 @@
 import Button from "src/components/common/Button";
+import SecurityIcon from "@mui/icons-material/Security";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
 import WorkHistoryOutlinedIcon from "@mui/icons-material/WorkHistoryOutlined";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import SecurityIcon from "@mui/icons-material/Security";
 import LinearProgress from "@mui/material/LinearProgress";
 
 interface JobDetailProps {

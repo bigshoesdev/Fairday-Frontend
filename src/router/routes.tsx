@@ -10,6 +10,7 @@ const ContactUs = lazy(() => import("src/pages/contactUs"));
 const UserProfile = lazy(() => import("src/pages/userProfile"));
 const Terms = lazy(() => import("src/pages/Terms"));
 const Policy =lazy(() => import("src/pages/Policy"));
+const PublishAd =lazy(() => import("src/pages/publishAd"));
 
 const routes = [
   {
@@ -35,6 +36,10 @@ const routes = [
   {
     path: "/user/userprofile",
     element: <UserProfile />,
+  },
+  {
+    path: "/publish_Ad",
+    element: <PublishAd/>
   },
   {
     path: "/contact-us",
