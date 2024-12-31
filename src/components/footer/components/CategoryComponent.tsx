@@ -14,12 +14,15 @@ const CategoryComponent = () => {
                     </p>
 
                     {item.list.map((each, order) =>
-                        <p
-                            key={order}
-                            className="text-[16px] text-primaryGray cursor-pointer hover:text-white mb-3 transition-all"
-                        >
-                            {each.menu}
-                        </p>
+                        <a href={each.link}>
+                            <p
+                                key={order}
+                                className="text-[16px] text-primaryGray cursor-pointer hover:text-white mb-3 transition-all"
+                            >
+                                {each.menu}
+                            </p>
+                        </a>
+
                     )}
                 </div>
             )}

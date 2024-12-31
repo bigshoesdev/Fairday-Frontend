@@ -18,9 +18,11 @@ const JobCard = (props: any) => {
           />
         </div>
         <div className="ml-4">
-          <h2 className="text-[22px] font-semibold text-gray-800">
-            {job.jobTitle}
-          </h2>
+          <a href='/publish_Ad'>
+            <h2 className="text-[22px] font-semibold text-gray-800">
+              {job.jobTitle}
+            </h2>
+          </a>
           <span className="font-semibold text-gray-400">Requirements:</span>{" "}
           <span className="font-bold text-black mr-4">
             {job.applicantType.map((item) => GroupData.find((each) => each._id === item)?.string)}
