@@ -16,6 +16,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import WindowIcon from "@mui/icons-material/Window";
 import { Filters } from "../jobSearch";
+import { generateSearchUrl } from "src/utlies/commonfunctions";
 
 export default function JobSearchBar({
   filters,
@@ -26,6 +27,9 @@ export default function JobSearchBar({
 }) {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+
+  const { commonSliceConfig } = useSelector((state: any) => state);
+  console.log("commonSliceConfig", commonSliceConfig);
 
   useEffect(() => {
     dispatch(getJobCategoryByAlpha({ category: "jobcategory" }));
@@ -52,33 +56,7 @@ export default function JobSearchBar({
   };
 
   const buttonClick = () => {
-    const queryParams = new URLSearchParams();
-
-    // Add each filter to the query string if it has a value
-    if (filters.language) queryParams.append("language", filters.language);
-    if (filters.jobTitle) queryParams.append("jobTitle", filters.jobTitle);
-    if (filters.category) queryParams.append("category", filters.category);
-    if (filters.location) queryParams.append("location", filters.location);
-    if (filters.radius) queryParams.append("radius", filters.radius.toString());
-    if (filters.sortBy) queryParams.append("sortBy", filters.sortBy);
-    if (filters.distance)
-      queryParams.append("distance", filters.distance.toString());
-    if (filters.salary) queryParams.append("salary", filters.salary.toString());
-    if (filters.employmentType)
-      queryParams.append("employmentType", filters.employmentType);
-    if (filters.locationSelect)
-      queryParams.append("locationSelect", filters.locationSelect);
-
-    // Construct the full URL with query params
-    const currentPath = window.location.pathname;
-
-    // Build the new URL with the current path and updated query parameters
-    const newUrl = `${currentPath}?${queryParams.toString()}`;
-
-    // Use navigate to update the URL
-    navigate(newUrl);
-    // Navigate to the new URL (you can use window.location.href to update the browser URL)
-    // This will reload the page with the new URL
+    navigate(generateSearchUrl(filters, new URLSearchParams()));
   };
 
   return (

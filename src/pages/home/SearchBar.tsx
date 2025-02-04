@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getJobCategoryByAlpha } from "src/store/user/jobSlice";
 import { AppDispatch } from "src/store";
 import Button from "src/components/common/Button";
