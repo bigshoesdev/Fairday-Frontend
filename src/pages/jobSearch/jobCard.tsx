@@ -18,7 +18,7 @@ const JobCard = (props: any) => {
           />
         </div>
         <div className="ml-4 text-[15px]">
-          <a href='/publish_Ad'>
+          <a href={`/publish_Ad/?id=${job._id}`}>
             <h2 className="text-[20px] font-semibold text-gray-800">
               {job.jobTitle}
             </h2>
