@@ -15,15 +15,15 @@ const DropPanel: React.FC<DropPanelProps> = ({
     headerClassName = "bg-white text-blue-600 p-6 rounded-xl shadow-md z-10 cursor-pointer relative flex justify-between items-start",
     contentClassName = "bg-white rounded-b-xl p-6 shadow-lg",
 }) => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
 
     return (
         <div className="relative w-full">
-            <div className={headerClassName}>
+            <div className={headerClassName} onClick={() => setOpen(!open)}>
                 <div>
                     {header}
                 </div>
-                <p onClick={() => setOpen(!open)}>
+                <p >
                     {open ? <ExpandMoreIcon fontSize="large" className="text-black"/> : <KeyboardArrowRightIcon fontSize="large" className="text-black"/>}
                 </p>
             </div>

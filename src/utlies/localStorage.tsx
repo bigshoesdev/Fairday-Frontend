@@ -1,27 +1,31 @@
-import localStorage from "redux-persist/es/storage";
+import { persistStore } from 'redux-persist';
+import localStorage from 'redux-persist/es/storage';
 
-export const storage = (token: string)=> {
+export const storage = async (token: string) => {
   try {
-    localStorage.setItem('fairday_token', token)
-    console.log("success storing");
+    await localStorage.setItem('fairday_token', token); // Async handling
+    console.log("success storing", token);
   } catch (error: any) {
     console.error(error);
   }
 };
 
-export const getToken = ()=> {
+export const getToken = async (): Promise<string | null> => {
+  console.error("getToken");
   try {
-    localStorage.getItem('fairday_token')
-    console.error("success getting");
+    const token = await localStorage.getItem('fairday_token'); // Async handling
+    console.error("success getting", token);
+    return token;
   } catch (error: any) {
     console.error(error);
+    return null;
   }
 };
 
-export const clearToken = ()=> {
+export const clearToken = async () => {
   try {
-    localStorage.removeItem('fairday_token')
-    console.error("Error clearing token");
+    await localStorage.removeItem('fairday_token'); // Async handling
+    console.log("success clearing token");
   } catch (error: any) {
     console.error(error);
   }

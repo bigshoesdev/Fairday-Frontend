@@ -1,5 +1,6 @@
 import SearchBar from "src/pages/home/SearchBar"
 import JobSearchBoard from "src/pages/jobSearch/JobSearchBoard"
+import MapContent from "src/pages/jobSearch/MapContent"
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,26 +12,28 @@ const JobSearch = () => {
 
     const dispatch = useDispatch<AppDispatch>();
     const { jobConfig } = useSelector((state: any) => state);
-  
+
     const jobDetailsInfos = jobConfig.jobDetails;
     const GroupData = jobConfig.jobConstManage;
-  
-    console.log('jobDetailsInfos', jobDetailsInfos);
-    console.log('GroupData', GroupData);
-    
+
     useEffect(() => {
-      dispatch(getJobConstManage());
-      dispatch(getAllJobs());
+        dispatch(getJobConstManage());
+        dispatch(getAllJobs());
     }, [dispatch]);
 
     return (
-        <div className='w-full items-center flex-colflex justify-center bg-[#f7fbff]'>
-            <div className="container">This is map</div>
-            <SearchBar/>
-            <JobSearchBoard
-                jobDetailsInfos={jobDetailsInfos}
-                GroupData={GroupData}
-            />
+        <div className='w-full items-center flex-col flex justify-center bg-[#f7fbff]'>
+            <div className="w-full flex">
+                <MapContent />
+            </div>
+            <SearchBar />
+            <div className="w-[80%]">
+                <JobSearchBoard
+                    jobDetailsInfos={jobDetailsInfos}
+                    GroupData={GroupData}
+                />
+            </div>
+
         </div>
     )
 }

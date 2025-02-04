@@ -1,11 +1,11 @@
 const Policy = () => {
   return (
     <div>
-      <div className="max-w-[1000px] font-serif font-bold pb-[50px]">
-        <div className="text-[55px] text-center m-w-[800px] mt-[50px] mb-0 ml-[70px] mr-0">
+      <div className="font-serif font-bold pb-[50px] container text-[#515151] border border-red-500 flex flex-col justify-center items-center">
+        <div className="text-[55px] text-center  mt-[50px] mb-0 mr-0">
           PRIVACY POLICY FOR FAIRDAY JOBS
         </div>
-        <p>
+        <p className="mt-10">
           Privacy is very important to us. We need your personal information for
           personalization and to comply with the law. In particular, we must
           collect, use, disclose, and safeguard your information when you visit
@@ -21,7 +21,7 @@ const Policy = () => {
           information. By using this site, you agree to the terms of this
           Policy.
         </p>
-        <h1>1. Personal information</h1>
+        <h1 className="text-[2em]">1. Personal information</h1>
         <p>
           Personal information is information that specifically identifies you
           or, when combined with other information we have, can be used to
@@ -95,7 +95,7 @@ const Policy = () => {
             <li>Solicit support for the Site.</li>
           </ul>
         </p>
-        <h1>2. Non-Personal Information</h1>
+        <h1 className="text-[2em]">2. Non-Personal Information</h1>
         <p>
           We automatically collect information that does not reflect or
           reference an individually identifiable user (non-personal information)
@@ -115,7 +115,7 @@ const Policy = () => {
           about how you use or browse our site and what products you buy (order
           history).
         </p>
-        <h1>3. Collection, processing, use of personal data</h1>
+        <h1 className="text-[2em]">3. Collection, processing, use of personal data</h1>
         <p>
           Fairday Jobs collects, processes and uses your personal data for the
           establishment, implementation, modification or termination of the
@@ -130,7 +130,7 @@ const Policy = () => {
           that we may further improve the relevance of products, services, and
           advertisements offered on or through this site.
         </p>
-        <h1>4. Newsletter</h1>
+        <h1 className="text-[2em]">4. Newsletter</h1>
         <p>
           When registering for the newsletter, Fairday Jobs will use your email
           address for advertising purposes until you unsubscribe from the
@@ -144,8 +144,8 @@ const Policy = () => {
           a message to the contact option described below or via a dedicated
           link in the newsletter.
         </p>
-        <h1>5. Customer service</h1>
-        <p>
+        <h1 className="text-[2em]">5. Customer service</h1>
+        <p> 
           To answer your questions, process your inquiries or resolve them, it
           is sometimes necessary to ask for personal information such as name,
           address, email address and telephone number. Fairday Jobs can use this
@@ -157,7 +157,7 @@ const Policy = () => {
           permission, except as required by law or to the extent necessary for
           the execution and processing of your requests or for your assistance.
         </p>
-        <h1>6. Protection of data and disclosure to third parties</h1>
+        <h1 className="text-[2em]">6. Protection of data and disclosure to third parties</h1>
         <p>
           Information that we collect is stored on secure servers using standard
           security procedures and practices appropriate to the nature of the
@@ -209,7 +209,7 @@ const Policy = () => {
           non-personal information and personal information in connection with
           such a transaction.
         </p>
-        <h1>7. Use of cookies</h1>
+        <h1 className="text-[2em]">7. Use of cookies</h1>
         <p>
           When you visit the Fairday Jobs website, you remain anonymous. Every
           time you access the website and every time a file is accessed, access
@@ -265,7 +265,7 @@ const Policy = () => {
           their linking capabilities, please refer to their privacy policy
           listed in the above-mentioned platforms or listed under cookie policy.
         </p>
-        <h1>8. Google Analytics</h1>
+        <h1 className="text-[2em]">8. Google Analytics</h1>
         <p>
           Google Analytics, a web analytics service provided by Google
           Incorporated, 1600 Amphitheater Parkway, Mountain View, CA 94043 USA
@@ -300,7 +300,7 @@ const Policy = () => {
           </a>
           .
         </p>
-        <h1>9. Google Analytics for Remarketing</h1>
+        <h1 className="text-[2em]">9. Google Analytics for Remarketing</h1>
         <p>
           The Google Analytics tracking code implemented on this site has been
           enhanced with Remarketing for Google Display Advertising, a service
@@ -356,7 +356,7 @@ const Policy = () => {
           </a>
           .
         </p>
-        <h1>10. Pardot</h1>
+        <h1 className="text-[2em]">10. Pardot</h1>
         <p>
           Our website may also use Pardot, a service of Salesforce.com Inc., The
           Landmark @ One Market Street, San Francisco, CA 94105, USA. Pardot
@@ -375,7 +375,7 @@ const Policy = () => {
           you can ensure this by your browser settings, or by a corresponding
           extension of your browser
         </p>
-        <h1>11. reCAPTCHA</h1>
+        <h1 className="text-[2em]">11. reCAPTCHA</h1>
         <p>
           For your protection we use the service invisible reCAPTCHA of the
           company Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA
@@ -416,7 +416,7 @@ const Policy = () => {
           and is intended to ensure human action. It is therefore in our
           legitimate interest.
         </p>
-        <h1>12. Google Search Service</h1>
+        <h1 className="text-[2em]">12. Google Search Service</h1>
         <p>
           We use the Google Search Console service provided by Google Inc,. 1600
           Amphitheatre Parkway, Mountain View, CA 94043, United States, to
@@ -439,10 +439,10 @@ const Policy = () => {
           </a>
           .
         </p>
-        <h1>13. Other Social Media</h1>
+        <h1 className="text-[2em]">13. Other Social Media</h1>
         We may use the following social media plug-ins: Facebook, Twitter,
         LinkedIn (including SlideShare), Flickr, and YouTube.
-        <h1>14. Advertising by third parties, links to other websites</h1>
+        <h1 className="text-[2em]">14. Advertising by third parties, links to other websites</h1>
         <p>
           Occasionally, this site contains third party advertisements and links
           to third party websites for which Fairday Jobs is not responsible. In
@@ -454,7 +454,7 @@ const Policy = () => {
           as compliance with data protection regulations are the sole
           responsibility of the respective providers.
         </p>
-        <h1>15. Integration of third party content</h1>
+        <h1 className="text-[2em]">15. Integration of third party content</h1>
         <p>
           This website includes content from the service YouTube. These features
           are offered through YouTube, LLC 901 Cherry Ave. San Bruno, CA 94066
@@ -471,7 +471,7 @@ const Policy = () => {
           </a>
           .
         </p>
-        <h1>16. Social Bookmarks</h1>
+        <h1 className="text-[2em]">16. Social Bookmarks</h1>
         <p>
           Social Bookmarks are integrated on our website (for example,
           Facebook). Social bookmarks are Internet bookmarks that users of such
@@ -483,14 +483,14 @@ const Policy = () => {
           with your personal data when using this website can be found in the
           respective privacy policy of the provider.
         </p>
-        <h1>17. Changes</h1>
+        <h1 className="text-[2em]">17. Changes</h1>
         <p>
           Fairday Jobs can change this privacy policy or the content of the site
           at any time, even without notice. We therefore recommend that you read
           these terms each time you visit the website, so that you know at all
           times for what purposes we process your data
         </p>
-        <h1>18. Information and contact</h1>
+        <h1 className="text-[2em]">18. Information and contact</h1>
         <p>
           Upon request, Fairday Jobs provides information free of charge about
           the personal data we store about you. Upon request, we will correct
@@ -516,7 +516,7 @@ const Policy = () => {
           <br />
           Website: <a href="index.html">www.Fairday Jobs.com</a>
         </p>
-        <h1>19. International Visitors and Customers</h1>
+        <h1 className="text-[2em]">19. International Visitors and Customers</h1>
         <p>
           This website is hosted in the United States. If you are visiting from
           the European Union or other regions with laws governing data
@@ -528,7 +528,7 @@ const Policy = () => {
           transfer of your personal data to the United States as indicated
           above.
         </p>
-        <h1>20. California Privacy Rights</h1>
+        <h1 className="text-[2em]">20. California Privacy Rights</h1>
         <p>
           Pursuant to Section 1798.83 of the California Civil Code, residents of
           California can obtain certain information about the types of personal

@@ -6,7 +6,7 @@ const ContactUs = () => {
   const [email, setEmail] = useState("");
   return (
     <div className="w-full flex items-center flex-col bg-[#f7fbff]">
-      <span className="mt-16 flex text-center text-[40px] font-semibold mb-14">
+      <span className="mt-16 flex text-center title font-semibold mb-14">
         CONTACT US
       </span>
       <div className="grid xs:grid-cols-1 md:grid-cols-2 gap-4 mb-5 w-full max-w-[1040px] px-5">

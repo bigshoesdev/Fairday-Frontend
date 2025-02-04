@@ -4,7 +4,7 @@ import Button from "src/components/common/Button";
 
 const JobPreviews = () => {
   return (
-    <div className="w-full bg-blue-50">
+    <div className="w-full bg-[#fafafa]">
       <h2 className="text-blue-500 text-center text-2xl font-semibold pt-4">
         Top Recent Job
       </h2>

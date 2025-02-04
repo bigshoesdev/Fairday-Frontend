@@ -49,8 +49,190 @@
             "label": "Experience Years",
             "avaialble": ["category", "string"],
             "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "employerDescriptoin",
+            "value": "employerDescriptoin",
+            "action": "read",
+            "key": "category",
+            "label": "Employer Description",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "busniessyears",
+            "value": "busniessyears",
+            "action": "read",
+            "key": "category",
+            "label": "Business Years",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "insurancecoverage",
+            "value": "insurancecoverage",
+            "action": "read",
+            "key": "category",
+            "label": "Insurance Coverage",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "applicantverification",
+            "value": "applicantverification",
+            "action": "read",
+            "key": "category",
+            "label": "Application Verification",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "currencytype",
+            "value": "currencytype",
+            "action": "read",
+            "key": "category",
+            "label": "Currency Type",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "applicantRequirements",
+            "value": "applicantRequirements",
+            "action": "read",
+            "key": "category",
+            "label": "Applicant Requirements",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "paymentMethod",
+            "value": "paymentMethod",
+            "action": "read",
+            "key": "category",
+            "label": "Payment Method",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "employmentPayment",
+            "value": "employmentPayment",
+            "action": "read",
+            "key": "category",
+            "label": "Employment Payment",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "advertiseSize",
+            "value": "advertiseSize",
+            "action": "read",
+            "key": "category",
+            "label": "Advertise Size",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "advertiseRadius",
+            "value": "advertiseRadius",
+            "action": "read",
+            "key": "category",
+            "label": "Advertise Radius",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "advertiseDuration",
+            "value": "advertiseDuration",
+            "action": "read",
+            "key": "category",
+            "label": "Advertise Duration",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "userBusinessPlan",
+            "value": "userBusinessPlan",
+            "action": "read",
+            "key": "category",
+            "label": "User Business Plan",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "locationYears",
+            "value": "locationYears",
+            "action": "read",
+            "key": "category",
+            "label": "Location Years",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "experienceLevel",
+            "value": "experienceLevel",
+            "action": "read",
+            "key": "category",
+            "label": "Experience Level",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "reportsLink",
+            "value": "reportsLink",
+            "action": "read",
+            "key": "category",
+            "label": "Reports Link",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "businessYears",
+            "value": "businessYears",
+            "action": "read",
+            "key": "category",
+            "label": "Business Years",
+            "avaialble": ["category", "string"],
+            "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "certificateReports",
+            "value": "certificateReports",
+            "action": "read",
+            "key": "category",
+            "label": "Certificate Reports",
+            "avaialble": ["category", "string"],
+            "registerType": 1
         }
     ],
+
+
+
+
+
+
+
+
+
+
+
+
     "create": [
         {
             "link": "http://localhost:8000/api/v1/admin/constmanagement/create",

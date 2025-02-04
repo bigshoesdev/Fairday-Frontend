@@ -41,18 +41,18 @@ const VerifySpace = () => {
         </div>
       </div>
 
-      <h2 className="text-center text-2xl font-semibold mt-4">
+      <h2 className="text-center title mt-4">
         Verify your <span className="text-blue-600">email address</span>
       </h2>
 
-      <p className="text-center mt-4 text-gray-700">
+      <p className="text-center mt-4 text-gray-700 subtitle3">
         Welcome <strong>FAIRDAY JOBSEEKER</strong>,
       </p>
-      <p className="text-center mt-1 text-gray-700">
+      <p className="text-center mt-1 text-gray-700 text-contentText">
         We have received a query you sent for job listings in your area. Please
         verify your email ID.
       </p>
-      <p className="text-center mt-4 text-gray-500">
+      <p className="text-center mt-4 text-gray-500 text-contentText">
         Please confirm your email address by clicking the button below
       </p>
       <div className="flex justify-center mt-6">
@@ -62,7 +62,7 @@ const VerifySpace = () => {
           onClick={() => console.log()}
         />
       </div>
-      <p className="text-center mt-6 text-gray-500 text-sm">
+      <p className="text-center mt-6 text-gray-500 text-contentText">
         Or, paste this link into your browser:
       </p>
       <a

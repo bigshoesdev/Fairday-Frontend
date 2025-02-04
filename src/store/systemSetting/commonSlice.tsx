@@ -9,8 +9,6 @@ const commonSlice = createSlice({
   initialState,
   reducers: {
     setMessageNotification(state, action) {
-      console.log('setMessageNotification', action);
-      
       state.messageNotification = action.payload; // Update the state with the payload
     },
   },
@@ -28,8 +26,6 @@ export const messageHandle = (data) => async (dispatch) => {
   });
 };
 
-// Export the action creator
 export const { setMessageNotification } = commonSlice.actions;
 
-// Export the reducer
 export default commonSlice.reducer;

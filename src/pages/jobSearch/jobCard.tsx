@@ -9,17 +9,17 @@ const JobCard = (props: any) => {
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-6 w-full mt-5">
-      <div className="flex items-start mb-4">
+      <div className="flex items-start">
         <div className="w-[55px] h-[55px] bg-gray-200 rounded-full flex-shrink-0">
           <img
-            src={job.avatar}
-            className="w-[55px] h-[55px]"
+            src={`http://localhost:8000${job.logoImage}`}
+            className="w-[50px] h-[55px]"
             alt="Company Avatar"
           />
         </div>
-        <div className="ml-4">
+        <div className="ml-4 text-[15px]">
           <a href='/publish_Ad'>
-            <h2 className="text-[22px] font-semibold text-gray-800">
+            <h2 className="text-[20px] font-semibold text-gray-800">
               {job.jobTitle}
             </h2>
           </a>
@@ -44,14 +44,14 @@ const JobCard = (props: any) => {
               Commercial Employer
             </span>
           </p>
-          <div className="mb-4">
+          <div className="">
             <p className="text-gray-500 text-[16px]">
               {job.jobDescription.length > 250
                 ? `${job.jobDescription.slice(0, 250)}...`
                 : job.jobDescription}
             </p>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mt-[-10px]">
             <div className="flex items-center">
               <span className="text-[15px] text-gray-600 mr-2">{job.jobRate}</span>
               {[...Array(5)].map((_, index) => (

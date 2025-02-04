@@ -5,17 +5,15 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    
     extend: {
       screens: {
         'xs': '490px',
         'sm': '768px',
         'md': '1013px',
         'lg': '1419px',
-        'container': '1419px',
-        'header_change': '1132px',
+        // 'container': '1419px',
+        'header_change': '1132px'
       },
-      
       colors: {
         tealGray: '#304B5E',
         darkTealGray: '#263d4e',
@@ -26,7 +24,67 @@ module.exports = {
         primaryBlue: '#197ff2',
         darkYellow: '#D7B135'
       },
+      container: {
+        center: true, // Ensures the container is always centered
+        padding: {
+          DEFAULT: '3rem', // Default padding for all breakpoints
+          sm: '2rem',      // Padding for the 'sm' breakpoint
+          lg: '4rem',      // Padding for the 'lg' breakpoint
+          xl: '5rem',      // Padding for the 'xl' breakpoint
+        },
+        screens: {
+          xs: '490px',
+          sm: '640px',
+          md: '768px',
+          lg: '1024px',
+          xl: '1280px',
+        },
+      },
+
+      fontSize: {
+        title: ['25px'],
+        contentText: '18px',
+        subtitle3: '20px',
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities, theme }) {
+      const title = {
+        '.title': {
+          fontSize: theme('fontSize.title'),
+        },
+        '@screen xs': {
+          '.title': {
+            fontSize: '30px',
+          },
+        },
+        '@screen sm': {
+          '.title': {
+            fontSize: '30px',
+          },
+        },
+        '@screen md': {
+          '.title': {
+            fontSize: '44px',
+          },
+        },
+      };
+      addUtilities(title);
+    },
+
+    function ({ addUtilities, theme }) {
+      const subtitle3 = {
+        '.subtitle3': {
+          fontSize: theme('fontSize.subtitle3'),
+        },
+        '@screen sm': {
+          '.subtitle3': {
+            fontSize: '22px',
+          },
+        },
+      };
+      addUtilities(subtitle3);
+    },
+  ],
 };

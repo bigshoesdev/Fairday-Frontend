@@ -1,7 +1,7 @@
 import SecurityIcon from "@mui/icons-material/Security";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import Button from "src/components/common/Button";
-const JobPanel = () => {
+const JobPanel = ({ApplyClicked }: any) => {
   return (
     <div className="w-full max-w-[1200px] mx-10">
       <div className=" mx-auto bg-white rounded-lg mt-[-150px] pb-[20px] mb-0 shadow-lg overflow-hidden">
@@ -103,7 +103,7 @@ const JobPanel = () => {
         <Button
           text="APPLY NOW"
           className="bg-darkBlue items-center w-[50%] py-5 border-darkBlue hover:border-blue-400 border-l rounded-none text-white  text-[20px] hover:bg-blue-400 transition-all cursor-pointer focus:outline-none"
-          onClick={() => console.log()}
+          onClick={ApplyClicked}
         />
         </div>
       </div>

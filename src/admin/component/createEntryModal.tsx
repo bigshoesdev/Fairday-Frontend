@@ -38,8 +38,6 @@ const CreateEntryModal: React.FC<CreateEntryModalProps> = ({ visible, category, 
 					avaialble: ["category", "string"],
 				};
 
-				console.log('Creating entry with data:', data);
-
 				dispatch(createConstMangeAPI(data));
 				form.resetFields();
 				onCancel();

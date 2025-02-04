@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { messageHandle } from "src/store/systemSetting/commonSlice";
 import axios from "axios";
 
 interface JobConfigState {
@@ -7,11 +8,11 @@ interface JobConfigState {
   jobConstManage: object[];
   jobCategoryList: object[];
   loading: boolean;
-  error: string | null;
+  error: any;
 }
 
 const initialState: JobConfigState = {
-  jobDetails:[],
+  jobDetails: [],
   jobConstManage: [],
   jobCategoryList: [],
   loading: false,
@@ -44,26 +45,32 @@ const jobConfigSlice = createSlice({
   },
 });
 
-
-
 export const getAllJobs = () => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
     const response = await axios.post("http://localhost:8000/api/v1/user/job/get-all-jobs");
     dispatch(constJobDetailsRead(response.data));
   } catch (error: any) {
-    dispatch(configError(error.message || "Failed to fetch data"));
+    dispatch(configError("Failed to fetch data"));
   }
 };
-
 
 export const postJob = (data) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
     const response = await axios.post("http://localhost:8000/api/v1/user/job/post-job", data);
-    dispatch(constJobDetailsRead(response.data));
+
+    console.log("response", response);
+
+    if (response.data.isOkay) {
+      dispatch(constJobDetailsRead(response.data));
+      dispatch(messageHandle({ type: "success", message: response.data.message }));
+    } else {
+      dispatch(messageHandle({ type: "error", message: response.data.message }));
+    }
+
   } catch (error: any) {
-    dispatch(configError(error.message || "Failed to fetch data"));
+    dispatch(messageHandle({ type: "error", message: "Failed to fetch data" }));
   }
 };
 
@@ -73,7 +80,7 @@ export const getJobCategoryByAlpha = (data: any) => async (dispatch: any): Promi
     const response = await axios.post("http://localhost:8000/api/v1/user/job/get-category-list-by-alpha", data);
     dispatch(constCategoryRead(response.data));
   } catch (error: any) {
-    dispatch(configError(error.message || "Failed to fetch data"));
+    dispatch(configError("Failed to fetch data"));
   }
 };
 
@@ -83,13 +90,9 @@ export const getJobConstManage = () => async (dispatch: any): Promise<any> => {
     const response = await axios.get("http://localhost:8000/api/v1/user/job/get-const-list");
     dispatch(constManageRead(response.data));
   } catch (error: any) {
-    dispatch(configError(error.message || "Failed to fetch data"));
+    dispatch(configError("Failed to fetch data"));
   }
 };
-
-
-
-
 
 export const {
   configLoading,

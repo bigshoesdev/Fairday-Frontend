@@ -1,15 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Button from 'src/components/common/Button';
-import layoutMenuList from 'src/mock/layoutMenuList.json'
+import layoutMenuList from 'src/mock/layoutMenuList.json';
+import Login from 'src/pages/Login';
+import SignUp from 'src/pages/SignUp';
+
+const LaptopHeader = () => {
 
 
-const DesktopHeader = () => {
+    const navigate = useNavigate()
+
+    const { authSliceConfig } = useSelector((state: any) => state);
+    const user = authSliceConfig.user;
+
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-    const drawerRef = useRef(null);
+    const [activeModal, setActiveModal] = useState<'login' | 'register' | null>(null);
 
-    const buttonClick = () => {
-        console.log('buttonClick');
-    };
+    const drawerRef = useRef(null);
 
     const toggleDrawer = () => {
         setIsDrawerOpen(!isDrawerOpen);
@@ -23,15 +31,36 @@ const DesktopHeader = () => {
 
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
-
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
 
+    const handleOpenModal = () => {
+        setActiveModal('login');
+    };
+
+    const closeModal = () => {
+        setActiveModal(null);
+    };
+
+    const switchToRegister = () => {
+        setActiveModal('register');
+    };
+
+    const switchToLogin = () => {
+        setActiveModal('login');
+    };
+
+    const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (e.target === e.currentTarget) {
+            closeModal();
+        }
+    };
+
     return (
         <div className="block header_change:hidden">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center ">
                 <div className="text-center border border-white-100 rounded-[5px] cursor-pointer p-1" onClick={toggleDrawer}>
                     <svg className="w-9 h-8 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="M5 7h14M5 12h14M5 17h14" />
@@ -70,38 +99,52 @@ const DesktopHeader = () => {
                     </button>
                     <div className="py-4 overflow-y-auto">
                         <ul className="space-y-2 font-medium">
-                            {/* <li>
-                                <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                    <span className="ms-3">Dashboard</span>
-                                </a>
-                            </li> */}
-                            {layoutMenuList.header.map((item, index) =>
-                                <p
-                                    key={index}
-                                    className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group cursor-pointer'
-                                >
-                                    <span className='ms-3'>
-                                    {item.menu}
-                                    </span>
+                            {layoutMenuList.header.map((item, index) => (
+                                <p key={index} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group cursor-pointer">
+                                    <span className="ms-3">{item.menu}</span>
                                 </p>
-                            )}
+                            ))}
                         </ul>
                     </div>
                 </div>
 
-                <img src="src/assets/images/logo.png" alt="Logo" className="w-[210px] h-[36px] border border-red-500 cursor-pointer" />
+                <img src="src/assets/images/logo.png" alt="Logo" className="w-[160px] xs:w-[210px] xs:h-[36px]  cursor-pointer" />
+                {authSliceConfig.isAuthenticate ?
+                    <>
+                        <img src="http://localhost:5173/src/assets/images/user1.png" className='px-5 cursor-pointer' onClick={() => navigate('/user/userprofile')} />
 
-                <Button
+                        <p className='text-white mb-0 px-5 cursor-pointer'>
+                            {user?.email}
+                        </p>
+                    </>
+
+                    :
+                    < Button
+                        text="LOGIN"
+                        onClick={handleOpenModal}
+                        className="bg-primaryBlue text-white px-2 xs:px-4 md:px-6 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+                    />}
+
+
+                {/* < Button
                     text="LOGIN"
-                    onClick={buttonClick}
-                    className="bg-primaryBlue text-white px-6 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-                />
+                onClick={handleOpenModal}
+                className="bg-primaryBlue text-white px-6 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+                /> */}
             </div>
+
+            {/* Modal */}
+            {activeModal && (
+                <div onClick={handleBackgroundClick} className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-6 rounded-[20px] shadow-md w-[600px]">
+                        {activeModal === 'login' && <Login closeModal={closeModal} switchToRegister={switchToRegister} />}
+                        {activeModal === 'register' && <SignUp switchToLogin={switchToLogin} />}
+
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
 
-export default DesktopHeader;
-
-
-
+export default LaptopHeader;

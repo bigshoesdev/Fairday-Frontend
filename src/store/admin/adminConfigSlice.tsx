@@ -28,10 +28,6 @@ const adminConfigSlice = createSlice({
     },
     constMangeCreate(state, { payload }: PayloadAction<object>) {
       console.log('This is create action! Current state:', JSON.parse(JSON.stringify(state.constMange)));
-      // console.log('this is payload', payload)
-      // state.constMange.push(payload); // Adds a new item to the array
-      // console.log('After adding item:', JSON.parse(JSON.stringify(state.constMange)));
-      // state.loading = false;
     },
     constMangeUpdate(state, { payload }: PayloadAction<{ id: string; updatedData: object }>) {
       const index = state.constMange.findIndex((item: any) => item.id === payload.id);

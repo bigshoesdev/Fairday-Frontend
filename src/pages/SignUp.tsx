@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Panel from 'src/components/common/Panel';
 import Button from 'src/components/common/Button';
 import TextInput from 'src/components/common/TextInput';
@@ -7,14 +8,17 @@ import { signupAPI } from 'src/store/auth/authSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from 'src/store';
 
-
 interface SignUpProps {
     switchToLogin: () => void;
+    closeModal: () => void;
 }
 
-const SignUp: React.FC<SignUpProps> = ({ switchToLogin }) => {
+const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
 
     const dispatch = useDispatch<AppDispatch>();
+
+    const { authSliceConfig } = useSelector((state: any) => state);
+    const user = authSliceConfig.user;
 
     const [email, setEmail] = useState('');
     const [name, setUserName] = useState('');
@@ -24,13 +28,13 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin }) => {
     const [business, setBusiness] = useState(false);
     const [discountShopper, setDiscountShopper] = useState(false);
 
-
     const handleJobSeekerChange = () => {
         setJobSeeker((prev) => {
             const newState = !prev;
             return newState;
         });
     };
+
 
     const handleBusinessChange = () => {
         setBusiness((prev) => {
@@ -47,18 +51,20 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin }) => {
     };
 
     const buttonClick = () => {
-        const data:any = {
+        const data: any = {
             name: name,
             email: email,
             password: password,
             password1: password1,
             jobSeeker: jobSeeker,
             business: business,
-            localDiscount: discountShopper
+            localDiscount: discountShopper,
+            avaialble: ["name", "email", "password", "password1"]
         }
-
         dispatch(signupAPI(data))
-
+        if (authSliceConfig.isAuthenticate) {
+            closeModal()
+        }
     };
 
     return (

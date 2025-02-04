@@ -5,6 +5,7 @@ interface Props {
     label: string;
     value: string;
     type: string;
+    name?: string;
     style: string;
     rows?: number;
     multiline?: boolean;
@@ -16,6 +17,7 @@ const TextInput = ({
     value,
     type,
     style,
+    name,
     rows = 1,
     multiline = false,
     onChange,
@@ -25,6 +27,7 @@ const TextInput = ({
             label={label}
             value={value}
             type={type}
+            name={name}
             rows={rows}
             multiline={multiline}
             onChange={onChange}

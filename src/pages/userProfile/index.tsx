@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CandidateDetail from "src/pages/userProfile/candidateDetail";
 import { jobs } from "src/mock/jobList.json";
+import JobsSlidaBar from "./jobsSlidebar";
 
 
 const UserProfile = () => {
@@ -13,6 +14,7 @@ const UserProfile = () => {
       <div className="w-full max-w-[1400px] bg-blue-100 p-5">
         <CandidateDetail item={jobs[0]} />
       </div>
+      {/* <JobsSlidaBar/> */}
     </div>
 
   );

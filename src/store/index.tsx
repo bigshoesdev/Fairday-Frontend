@@ -9,7 +9,7 @@ import authSlice from "src/store/auth/authSlice";
 import adminConfigSlice from "src/store/admin/adminConfigSlice";
 
 // user
-import advertisementConfigSlice from "src/store/user/advertisement";
+import advertisementConfigSlice from "src/store/user/advertisementSlice";
 import homeConfigSlice from "src/store/user/homeSlice";
 import jobConfigSlice from "src/store/user/jobSlice";
 import userProfileConfigSlice from "src/store/user/userProfile";
@@ -23,9 +23,7 @@ const rootReducer = combineReducers({
   crudAPIModuleConfig: crudAPIModule,
   authSliceConfig: authSlice,
   adminConfig: adminConfigSlice,
-
   commonSliceConfig: commonSlice,
-
   advertisementConfig: advertisementConfigSlice,
   homeConfig: homeConfigSlice,
   jobConfig: jobConfigSlice,

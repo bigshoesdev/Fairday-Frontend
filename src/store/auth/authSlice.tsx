@@ -3,6 +3,7 @@ import axios from "axios";
 import { jwtDecodeUtil } from "src/utlies/jwt.decode";
 import { storage } from "src/utlies/localStorage";
 import { messageHandle } from "src/store/systemSetting/commonSlice";
+import { getToken } from "src/utlies/localStorage";
 
 interface AuthState {
   user: object | null;
@@ -20,6 +21,15 @@ const initialState: AuthState = {
   isAuthenticate: false
 };
 
+const loadAuthStateFromStorage = async () => {
+  const token = await getToken();
+  if (token) {
+    const decodedUser = jwtDecodeUtil(token);
+    return { user: decodedUser, token, isAuthenticate: true };
+  }
+  return { user: null, token: null, isAuthenticate: false };
+};
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -27,9 +37,7 @@ const authSlice = createSlice({
     authLoading(state) {
       state.loading = true;
     },
-    loginSuccess(state, { payload }: PayloadAction<{ user: object; token: string, isAuthenticate:boolean }>) {
-      console.log('This is loginSuccess data', state.isAuthenticate);
-      
+    loginSuccess(state, { payload }: PayloadAction<{ user: object; token: string; isAuthenticate: boolean }>) {
       state.isAuthenticate = payload.isAuthenticate;
       state.user = payload.user;
       state.token = payload.token;
@@ -56,15 +64,36 @@ const authSlice = createSlice({
   },
 });
 
+export const initializeAuth = () => async (dispatch: any) => {
+  try {
+    const storedAuth = await loadAuthStateFromStorage();
+    if (storedAuth.token) {
+      dispatch(loginSuccess(storedAuth)); // Automatically log in if a valid token is found
+    }
+  } catch (error: any) {
+    console.error("Error initializing auth:", error);
+  }
+};
+
+
 export const loginAPI = (credentials: { email: string; password: string }) => async (dispatch: any) => {
   try {
     dispatch(authLoading());
     const response = await axios.post("http://localhost:8000/api/v1/auth/login", credentials);
-    let isOkay = response.data.isOkay
-    let userToken = response.data.access_token
-    let parsedResult = jwtDecodeUtil(userToken)
-    storage(userToken)
-    dispatch(loginSuccess({ user: parsedResult, token: userToken, isAuthenticate: isOkay})); 
+
+    console.log('This is login response data', response.data);
+
+    if (response.data.isOkay) {
+      let isOkay = response.data.isOkay
+      let userToken = response.data.access_token
+      let parsedResult = jwtDecodeUtil(userToken)
+      storage(userToken)
+
+      dispatch(messageHandle({ type: response.data.isOkay ? "success" : "error", message: response.data.message }));
+      dispatch(loginSuccess({ user: parsedResult, token: userToken, isAuthenticate: isOkay }));
+    } else {
+      dispatch(messageHandle({ type: "error", message: response.data.message }));
+    }
 
   } catch (error: any) {
     dispatch(authError(error.message || "Login failed"));
@@ -77,15 +106,22 @@ export const signupAPI = (data) => async (dispatch: any): Promise<any> => {
       dispatch(authLoading());
 
       const response = await axios.post("http://localhost:8000/api/v1/auth/signup", data);
-      const userToken = response.data.access_token;
 
-      const parsedResult = jwtDecodeUtil(userToken);
-      storage(userToken);
+      if (response.data.isOkay) {
+        const userToken = response.data.access_token;
 
-      dispatch(messageHandle({ type: response.data.isOkay ? "success" : "error", message: response.data.message }));
-      dispatch(signupSuccess({ user: parsedResult, token: userToken, isAuthenticate: true }));
+        const parsedResult = jwtDecodeUtil(userToken);
+        storage(userToken);
 
-      resolve({ user: parsedResult, token: userToken }); // Resolve the promise with the parsed result and token
+        dispatch(messageHandle({ type: "success", message: response.data.message }));
+        dispatch(signupSuccess({ user: parsedResult, token: userToken, isAuthenticate: true }));
+
+        resolve({ user: parsedResult, token: userToken }); // Resolve the promise with the parsed result and token
+      } else {
+        dispatch(messageHandle({ type: "error", message: response.data.message }));
+
+      }
+
     } catch (error: any) {
       dispatch(authError(error.message || "Signup failed"));
       reject(error); // Reject the promise with the error
@@ -106,7 +142,7 @@ export const logoutAPI = () => async (dispatch: any) => {
 export const updateUserAPI = (userData: object) => async (dispatch: any) => {
   try {
     dispatch(authLoading());
-    const response = await axios.put("/api/auth/update", userData); 
+    const response = await axios.put("/api/auth/update", userData);
     dispatch(updateUser(response.data));
   } catch (error: any) {
     dispatch(authError(error.message || "Update failed"));

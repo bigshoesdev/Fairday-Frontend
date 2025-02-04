@@ -3,8 +3,8 @@ import LaptopHeader from "src/components/header/LaptopHeader"
 
 const Header = () => {
     return (
-        <div className="w-full bg-tealGray">
-            <header className='container px-5 py-[25px] mx-auto'>
+        <div className="w-full bg-tealGray ">
+            <header className='container px-2 xs:px-5 py-[25px] mx-auto'>
                 <DesktopHeader />
                 <LaptopHeader />
             </header>

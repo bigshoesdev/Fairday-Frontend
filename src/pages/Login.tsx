@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Panel from 'src/components/common/Panel';
 import Button from 'src/components/common/Button';
 import TextInput from 'src/components/common/TextInput';
@@ -9,21 +10,30 @@ import { AppDispatch } from 'src/store';
 
 interface LoginProps {
   switchToRegister: () => void;
+  closeModal: () => void;
 }
 
-const Login: React.FC<LoginProps> = ({ switchToRegister }) => {
+const Login: React.FC<LoginProps> = ({ switchToRegister, closeModal }) => {
 
   const dispatch = useDispatch<AppDispatch>();
+
+  const { authSliceConfig } = useSelector((state: any) => state);
+  const user = authSliceConfig.user;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const buttonClick = () => {
-    const data:any = {
+    const data: any = {
       email: email,
-      password: password
-  }
-  dispatch(loginAPI(data))
+      password: password,
+      avaialble: ["email", "password"]
+    }
+
+    dispatch(loginAPI(data))
+    if (authSliceConfig.isAuthenticate) {
+      closeModal()
+    }
   };
 
   return (
