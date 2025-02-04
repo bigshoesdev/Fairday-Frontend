@@ -21,6 +21,7 @@ export interface Filters {
   salary: number;
   employmentType: string;
   locationSelect: string;
+  page: number;
 }
 
 const JobSearch = () => {
@@ -37,7 +38,8 @@ const JobSearch = () => {
     distance: 0,
     salary: 0,
     employmentType: "",
-    locationSelect : "",
+    locationSelect: "",
+    page: 1,
   });
 
   const jobDetailsInfos = jobConfig.jobDetails;
@@ -47,9 +49,8 @@ const JobSearch = () => {
     dispatch(getJobConstManage());
     dispatch(getAllJobs());
     const newFilters = parseQueryParams(location.search);
-    setFilters(newFilters); 
-  }, [dispatch,location.search]);
-
+    setFilters(newFilters);
+  }, [dispatch, location.search]);
 
   const handleSearchChange = (newFilters: Partial<Filters>) => {
     setFilters((prev) => ({
