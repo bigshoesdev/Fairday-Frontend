@@ -16,13 +16,19 @@ const Home = () => {
                 <SearchBar />
             </div>
             <HeaderImage />
-            <div className='container'>
+            <div className='w-full'>
                 <HeroSection />
             </div>
-            <StartProjectSection />
-            <div className='container'>
+            <div className='w-full flex justify-center bg-primaryBlue'>
+                <StartProjectSection />
+            </div>
+            <div className='max-w-[1419px]'>
                 <Banner />
+            </div>
+            <div className='w-full bg-[#fafafa] flex justify-center'>
                 <JobContent />
+            </div>
+            <div className='max-w-[1419px]'>
                 <JobCategory />
             </div>
             <EndSection />
@@ -32,3 +38,6 @@ const Home = () => {
 }
 
 export default Home
+
+
+
