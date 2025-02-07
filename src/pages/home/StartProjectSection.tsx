@@ -4,7 +4,7 @@ import { startProject } from 'src/mock/homeBanner.json';
 const StartProjectSection = () => {
 
     return (
-        <div className='w-full bg-primaryBlue p-5 items-center flex flex-col'>
+        <div className='bg-primaryBlue p-5 items-center flex flex-col max-w-[1419px]'>
             <p className='px-5 py-10 text-center text-white text-[20px] font-bold'>Get your project started now...</p>
 
             <div className='bg-white w-[50px] h-1 rounded-[90px] '></div>

@@ -9,7 +9,7 @@ const HeroSection = () => {
     }
 
     return (
-        <div className='flex flex-col items-center py-10 md:px-2 lg:px-10 bg-[url("http://localhost:5173/src/assets/images/hero.png")] bg-contain bg-center bg-no-repeat'>
+        <div className='w-full flex flex-col items-center py-10 md:px-2 lg:px-10 bg-[url("http://localhost:5173/src/assets/images/hero.png")] bg-contain bg-center bg-no-repeat'>
             <p className='text-black sm:text-[30px] md:text-[40px] font-bold text-center'>
                 FAIRDAY JOBS MARKETPLACE
             </p>

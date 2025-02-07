@@ -121,12 +121,6 @@ const routes = [
     element: <BusinessProfileRegister />,
   },
 
-
-
-
-
-
-
   
 
   {
