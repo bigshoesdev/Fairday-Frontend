@@ -1,4 +1,3 @@
-// DesktopHeader.tsx
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import layoutMenuList from 'src/mock/layoutMenuList.json';
@@ -38,7 +37,7 @@ const DesktopHeader: React.FC = () => {
   };
   
   return (
-    <div className="hidden header_change:block ">
+    <div className="hidden header_change:block w-full container">
       <div className="flex justify-between items-center">
         <a href="http://localhost:5173/">
           <img

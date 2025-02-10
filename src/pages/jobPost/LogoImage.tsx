@@ -24,7 +24,7 @@ const LogoImage: React.FC<LogoImageProps> = ({ selectedLogo, setSelectedLogo }) 
     <div className='w-full'>
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow'}>
         <span className="font-bold text-[26px] text-[#33495E]">
-          Upload 1 image for Job Description (Optional)
+          Upload Employer Logo or Job Location Photo (Optional)
         </span>
         <div className='border border-[#e5e7eb] w-full h-[200px] rounded-xl flex justify-center items-center flex-col relative'>
           <FaCamera className='w-[50px] h-[50px] text-gray-300' />

@@ -7,6 +7,7 @@ import { BookmarkIcon, CheckCircleIcon } from "@heroicons/react/outline"
 interface JobDetailProps {
     avatar: string;
     jobTitle: string;
+    jobDescription: string;
     jobType: string;
     jobApplications: string;
     jobDate: string;
@@ -23,6 +24,7 @@ const JobDetail: React.FC<{ item: JobDetailProps }> = ({ item }) => {
     const {
         avatar,
         jobTitle,
+        jobDescription,
         jobType,
         jobApplications,
         jobDate,
@@ -96,13 +98,19 @@ const JobDetail: React.FC<{ item: JobDetailProps }> = ({ item }) => {
                     <HiDotsHorizontal />
                 </div>
 
+                <div>
+                {jobDescription.length > 150
+                ? `${jobDescription.slice(0, 150)}...`
+                : jobDescription}
+                </div>
+
                 <div className='flex justify-between w-full items-end'>
                     <div className='flex flex-row gap-2 text-[13px]'>
-                        <button className='px-4 py-2 bg-white text-gray-500 hover:text-white border border-gray-300 rounded-md hover:bg-primaryBlue focus:outline-none flex justify-between items-center w-28'>
+                        <button className='px-4 py-2 bg-white text-gray-500 hover:text-white border border-gray-300 rounded-md hover:bg-primaryBlue focus:outline-none flex justify-between items-center gap-3'>
                             <span>SAVE</span>
                             <BookmarkIcon className="w-4" />
                         </button>
-                        <button className='px-4 py-2 bg-white text-gray-500 hover:text-white border border-gray-300 rounded-md hover:bg-primaryBlue focus:outline-none flex justify-between items-center w-28'>
+                        <button className='px-4 py-2 bg-white text-gray-500 hover:text-white border border-gray-300 rounded-md hover:bg-primaryBlue focus:outline-none flex justify-between items-center'>
                             <span>APPLY</span>
                             <CheckCircleIcon className="w-4" />
                         </button>
