@@ -10,8 +10,8 @@ const JobCount = (props: any) => {
   };
 
   return (
-    <div className="p-2 w-full">
-      <div className="flex justify-between text-[16px] items-center p-4 border-gray-200 font-bold">
+    <div className="w-full">
+      <div className="flex justify-between text-[16px] items-center border-gray-200 font-bold">
         <div>
           <a href="#" className="text-blue-500 hover:underline font-bold">
             Upload your resume
@@ -30,7 +30,7 @@ const JobCount = (props: any) => {
           <div className="flex space-x-2">
             {/* List View Button */}
             <div
-              className={`flex items-center justify-center text-[40px] cursor-pointer ${
+              className={`hidden md:block flex items-center justify-center text-[40px] cursor-pointer ${
                 viewMode === "row" ? "text-blue-500 font-bold" : "text-gray-400"
               }`}
               onClick={() => handleViewModeChange("row")}
@@ -40,7 +40,7 @@ const JobCount = (props: any) => {
 
             {/* Grid View Button */}
             <div
-              className={`flex items-center justify-center text-[40px] cursor-pointer ${
+              className={`hidden md:block flex items-center justify-center text-[40px] cursor-pointer ${
                 viewMode === "column" ? "text-blue-500 font-bold" : "text-gray-400"
               }`}
               onClick={() => handleViewModeChange("column")}

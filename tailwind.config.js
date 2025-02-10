@@ -13,12 +13,12 @@ module.exports = {
         // 'lg': '1419px',
         // // 'container': '1419px',
         'header_change': '1132px',
-        xs: '475px', // Custom (not included by default)
-        sm: '640px', // Small screens (mobile)
-        md: '768px', // Medium screens (tablets)
-        lg: '1024px', // Large screens (laptops)
-        xl: '1280px', // Extra large screens (desktops)
-        '2xl': '1536px'
+        xs: '490px',
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1368px',
+        '2xl': '1600px'
       },
       colors: {
         tealGray: '#304B5E',
@@ -31,20 +31,23 @@ module.exports = {
         darkYellow: '#D7B135'
       },
       container: {
-        width: '1419px',
         center: true, // Ensures the container is always centered
         padding: {
-          DEFAULT: '3rem', // Default padding for all breakpoints
-          sm: '2rem',      // Padding for the 'sm' breakpoint
-          lg: '4rem',      // Padding for the 'lg' breakpoint
-          xl: '5rem',      // Padding for the 'xl' breakpoint
+          DEFAULT: '1rem',
+          xs: '1rem', // Default padding for all breakpoints
+          sm: '2rem', 
+          md:'3rem',     // Padding for the 'sm' breakpoint
+          lg: '3rem',      // Padding for the 'lg' breakpoint
+          xl: '3rem',      // Padding for the 'xl' breakpoint
+          '2xl': '3rem',      // Padding for the 'xl' breakpoint
         },
         screens: {
           xs: '490px',
           sm: '640px',
           md: '768px',
           lg: '1024px',
-          xl: '1280px',
+          xl: '1368px',
+          '2xl': '1600px'
         },
       },
 

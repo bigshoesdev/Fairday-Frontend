@@ -7,7 +7,7 @@ const JobList = (props: any) => {
     <div
       className={`w-full grid ${
         viewMode === "column" ? "grid-cols-2" : "grid-cols-1"
-      } gap-4`} // added `gap-4` for spacing between job cards
+      } gap-4`} 
     >
       {jobDetailsInfos.map((job, _id) => (
         <JobCard key={_id} job={job} GroupData={GroupData} />

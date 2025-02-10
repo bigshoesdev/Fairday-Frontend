@@ -4,19 +4,41 @@ import axios from "axios";
 
 interface JobConfigState {
 
+  keyword: string;
+  category: string;
+  location: string;
+  radius: string;
+  jobType: string;
+  applicantType: string;
+  experienceYearsType: string;
+  suggestions: string[];
   jobDetails: object[];
   jobConstManage: object[];
   jobCategoryList: object[];
   loading: boolean;
   error: any;
+
+  categoryCountList: number[];
 }
 
 const initialState: JobConfigState = {
+
+  keyword: '',
+  category: '',
+  location: '',
+  radius: '',
+  jobType: '',
+  applicantType: '',
+  experienceYearsType: '',
+  suggestions: [],
+
   jobDetails: [],
   jobConstManage: [],
   jobCategoryList: [],
   loading: false,
   error: null,
+
+  categoryCountList: []
 };
 
 const jobConfigSlice = createSlice({
@@ -25,6 +47,9 @@ const jobConfigSlice = createSlice({
   reducers: {
     configLoading(state) {
       state.loading = true;
+    },
+    categoryNumber(state, { payload }: PayloadAction<number[]>) {
+      state.categoryCountList = payload;
     },
     constCategoryRead(state, { payload }: PayloadAction<object[]>) {
       state.jobCategoryList = payload;
@@ -42,26 +67,42 @@ const jobConfigSlice = createSlice({
       state.error = payload;
       state.loading = false;
     },
+    updateSearchValue(state, { payload }: PayloadAction<any>) {
+      state[payload.key] = payload.value;
+    },
   },
 });
 
-export const getAllJobs = () => async (dispatch: any): Promise<any> => {
+export const getCategoryCount = () => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.post("http://localhost:8000/api/v1/user/job/get-all-jobs");
+    const response = await axios.get("http://localhost:8000/api/v1/user/job/get-category-count");
+    dispatch(categoryNumber(response.data[0].employmentTypeCounts));
+  } catch (error: any) {
+    dispatch(configError("Failed to fetch data"));
+  }
+};
+
+
+export const getJobsByQuery = (data: any) => async (dispatch: any): Promise<any> => {
+  try {
+    dispatch(configLoading());
+
+    let keyResult = Object.keys(data).map((key) => key)
+    keyResult.forEach(key => dispatch(updateSearchValue({  key: [key], value: data[key] })) );
+    
+    const response = await axios.post(`http://localhost:8000/api/v1/user/job/get-job-by-query?${data.toString()}`);
     dispatch(constJobDetailsRead(response.data));
   } catch (error: any) {
     dispatch(configError("Failed to fetch data"));
   }
 };
 
-export const postJob = (data) => async (dispatch: any): Promise<any> => {
+
+export const postJob = (data: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
     const response = await axios.post("http://localhost:8000/api/v1/user/job/post-job", data);
-
-    console.log("response", response);
-
     if (response.data.isOkay) {
       dispatch(constJobDetailsRead(response.data));
       dispatch(messageHandle({ type: "success", message: response.data.message }));
@@ -94,12 +135,18 @@ export const getJobConstManage = () => async (dispatch: any): Promise<any> => {
   }
 };
 
+export const updateCurrentJobData = (data: any) => async (dispatch: any): Promise<any> => {
+  dispatch(updateSearchValue(data));
+};
+
 export const {
   configLoading,
+  categoryNumber,
   configError,
   constCategoryRead,
   constManageRead,
-  constJobDetailsRead
+  constJobDetailsRead,
+  updateSearchValue,
 } = jobConfigSlice.actions;
 
 export default jobConfigSlice.reducer;

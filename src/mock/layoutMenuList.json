@@ -11,15 +11,8 @@
         {
             "link": "/#",
             "menu": "HIRE NOW"
-        },
-        {
-            "link": "/#",
-            "menu": "FEEDBACK"
-        },
-        {
-            "link": "/#",
-            "menu": "HELP"
         }
+      
     ],
     "footer":[
         {

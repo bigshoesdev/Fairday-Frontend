@@ -3,7 +3,7 @@ import JobList from "./jobList";
 import JobCount from "./jobCount";
 import JobSearchOptions from "./jobSearchOptions";
 
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "src/store";
 import { getAllAdvertisements } from "src/store/user/advertisementSlice";
@@ -12,8 +12,8 @@ const JobSearchBoard = (props: any) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const { advertisementConfig } = useSelector((state: any) => state);
-  const { filters, onSearchChange, jobDetailsInfos, GroupData } = props;
-  const [viewMode,setViewMode] = useState("row")
+  const { filters, onSearchChange, jobDetailsInfos, GroupData, searchCategory, categoryCountList } = props;
+  const [viewMode, setViewMode] = useState("row")
 
   useEffect(() => {
     dispatch(getAllAdvertisements());
@@ -25,27 +25,22 @@ const JobSearchBoard = (props: any) => {
     (item) => item.images[0]
   );
 
-  console.log("This is advertisemenges", advertisementImagePath);
-
   return (
-    <div className="w-full flex gap-4 grid grid-cols-12">
-      <div className="hidden md:block  md:col-span-2 p-4">
+    <div className="container w-full grid grid-cols-12 gap-8">
+      <div className="col-span-12 lg:col-span-4 xl:col-span-2">
         <JobSearchOptions
           filters={filters}
           onSearchChange={onSearchChange}
+          searchCategory={searchCategory}
+          categoryCountList={categoryCountList}
         />
       </div>
-      <div className="col-span-12 lg:col-span-7 md:col-span-6 text-white p-4">
+      <div className="col-span-12 lg:col-span-8 xl:col-span-7 text-white">
         <JobCount jobDetailsInfos={jobDetailsInfos} viewMode={viewMode} setViewMode={setViewMode}/>
         <JobList jobDetailsInfos={jobDetailsInfos} GroupData={GroupData} viewMode={viewMode} />
       </div>
-      <div className="hidden md:block md:col-span-3 p-4">
-        {advertisementImagePath.map((imagePath, index) => (
-          <JobBanner key={index} src={`http://localhost:8000${imagePath}`} />
-        ))}
-      </div>
 
-      <div className="block md:hidden col-span-12 p-4">
+      <div className="grid grid-cols-12 col-span-12 xl:col-span-3 gap-4 py-5 ">
         {advertisementImagePath.map((imagePath, index) => (
           <JobBanner key={index} src={`http://localhost:8000${imagePath}`} />
         ))}
@@ -55,3 +50,4 @@ const JobSearchBoard = (props: any) => {
 };
 
 export default JobSearchBoard;
+

@@ -1,4 +1,3 @@
-import React from 'react';
 import SearchComponent from 'src/components/footer/components/SearchComponent';
 import LogoShareComponent from 'src/components/footer/components/LogoShareComponent';
 import LogoRatingComponent from 'src/components/footer/components/LogoRatingComponent';

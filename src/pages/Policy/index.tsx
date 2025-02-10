@@ -1,7 +1,7 @@
 const Policy = () => {
   return (
     <div>
-      <div className="font-serif font-bold pb-[50px] container text-[#515151] border border-red-500 flex flex-col justify-center items-center">
+      <div className="font-serif font-bold pb-[50px] container text-[#515151] flex flex-col justify-center items-center">
         <div className="text-[55px] text-center  mt-[50px] mb-0 mr-0">
           PRIVACY POLICY FOR FAIRDAY JOBS
         </div>

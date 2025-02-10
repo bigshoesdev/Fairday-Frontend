@@ -9,7 +9,7 @@ const HeroSection = () => {
     }
 
     return (
-        <div className='w-full flex flex-col items-center py-10 md:px-2 lg:px-10 bg-[url("http://localhost:5173/src/assets/images/hero.png")] bg-contain bg-center bg-no-repeat'>
+        <div className='w-full flex flex-col items-center py-10 md:px-2 lg:px-10 bg-[url("http://localhost:5173/src/assets/images/hero.png")] bg-contain bg-center bg-no-repeat container'>
             <p className='text-black sm:text-[30px] md:text-[40px] font-bold text-center'>
                 FAIRDAY JOBS MARKETPLACE
             </p>
@@ -20,9 +20,13 @@ const HeroSection = () => {
                 <span></span>
                 <span>• TRADE JOBS</span>
             </div>
-            <div className='mt-[85px] p-[5px] flex flex-row bg-[#172733] items-center rounded-[10px]'>
-                <a href="http://localhost:5173/post-job">
-                    <span className='px-[30px] sm:text-[20px] md:text-[24px] text-white content-center cursor-pointer'>Post All Jobs Here!</span>
+            <div className='mt-[85px] p-[5px] flex flex-row bg-[#172733] items-center rounded-[10px] '>
+                <a href="http://localhost:5173/post-job ">
+                    <Button
+                        text="Post All Jobs Here!"
+                        onClick={onClick}
+                        className='px-[20px] sm:text-[20px] md:text-[24px] font-bold bg-[#172733] text-white px-8  transition-all cursor-pointer border-[#172733] hover:border-[#172733] focus:outline-none'
+                    />
                 </a>
                 <a href="http://localhost:5173/job-search">
                     <Button
@@ -53,29 +57,29 @@ const HeroSection = () => {
                 </div>
             </div>
 
-            <div className='flex flex-col sm:flex-row mt-10 gap-[10px] justify-between sm:w-auto w-full sm:text-[18px] md:text-[22px]'>
+            <div className='w-full flex flex-col sm:flex-row mt-10 gap-[2px] justify-center sm:max-w-[600px]  sm:text-[18px] md:text-[22px]'>
                 <Button
                     text="Business Tool Box"
                     onClick={onClick}
-                    className='px-[50px]  bg-primaryBlue text-white px-8 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none'
+                    className='w-full text-[22px] bg-primaryBlue text-white px-8 hover:bg-primaryBlue transition-all cursor-pointer hover:border-primaryBluefocus:outline-none'
                 />
                 <Button
                     text="Applicant Tool Box"
                     onClick={onClick}
-                    className='ml-1 px-[50px] bg-primaryBlue text-white px-8 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none'
+                    className='w-full text-[22px] bg-primaryBlue text-white px-8 hover:bg-primaryBlue transition-all cursor-pointer hover:border-primaryBluefocus:outline-none '
                 />
             </div>
 
-            <div className='flex flex-col md:flex-row mt-10 gap-[10px]'>
+            <div className='flex flex-col md:flex-row mt-10 gap-[10px] w-full justify-center '>
                 <Button
                     text="Advertise your Business Here"
                     onClick={onClick}
-                    className='px-[50px] text-[22px] bg-[#172733] text-white px-8 hover:bg-primaryBlue transition-all cursor-pointer hover:border-primaryBlue focus:outline-none'
+                    className='text-[22px] bg-[#172733] text-white px-5 hover:bg-primaryBlue transition-all cursor-pointer hover:border-primaryBlue focus:outline-none'
                 />
                 <Button
                     text="Search Local Promotions & Services Discounts"
                     onClick={onClick}
-                    className='ml-1 px-[50px] text-[22px] bg-[#172733] text-white px-8 hover:bg-primaryBlue transition-all cursor-pointer hover:border-primaryBluefocus:outline-none'
+                    className='text-[22px] bg-[#172733] text-white px-5 hover:bg-primaryBlue transition-all cursor-pointer hover:border-primaryBluefocus:outline-none'
                 />
             </div>
 

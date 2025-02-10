@@ -219,6 +219,16 @@
             "label": "Certificate Reports",
             "avaialble": ["category", "string"],
             "registerType": 1
+        },
+        {
+            "link": "http://localhost:8000/api/v1/admin/constmanagement/read",
+            "dbName": "radius",
+            "value": "radius",
+            "action": "read",
+            "key": "category",
+            "label": "radius",
+            "avaialble": ["category", "string"],
+            "registerType": 1
         }
     ],
 
