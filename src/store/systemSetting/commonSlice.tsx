@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  messageNotification: null, // Holds the message notification
+  messageNotification: null,
 };
 
 const commonSlice = createSlice({
@@ -9,19 +9,18 @@ const commonSlice = createSlice({
   initialState,
   reducers: {
     setMessageNotification(state, action) {
-      state.messageNotification = action.payload; // Update the state with the payload
+      state.messageNotification = action.payload; 
     },
   },
 });
 
-// Thunk for handling message notification
 export const messageHandle = (data) => async (dispatch) => {
   return new Promise<void>((resolve, reject) => {
     try {
-      dispatch(setMessageNotification(data)); // Dispatch action with the provided data
-      resolve(); // Resolve the promise if successful
+      dispatch(setMessageNotification(data)); 
+      resolve(); 
     } catch (error) {
-      reject(error); // Reject the promise in case of an error
+      reject(error); 
     }
   });
 };

@@ -13,6 +13,7 @@ import advertisementConfigSlice from "src/store/user/advertisementSlice";
 import homeConfigSlice from "src/store/user/homeSlice";
 import jobConfigSlice from "src/store/user/jobSlice";
 import userProfileConfigSlice from "src/store/user/userProfile";
+import supportSlice from "src/store/user/supportSlice";
 
 // common
 import commonSlice from "src/store/systemSetting/commonSlice";
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
   advertisementConfig: advertisementConfigSlice,
   homeConfig: homeConfigSlice,
   jobConfig: jobConfigSlice,
-  userProfile: userProfileConfigSlice
+  userProfile: userProfileConfigSlice,
+  supportConfig: supportSlice,
 });
 
 const store = configureStore({

@@ -10,7 +10,7 @@ const EmployerDetail = lazy(() => import("src/pages//employerDetail"));
 const ContactUs = lazy(() => import("src/pages/contactUs"));
 const UserProfile = lazy(() => import("src/pages/userProfile"));
 const Terms = lazy(() => import("src/pages/Terms"));
-const Policy =lazy(() => import("src/pages/Policy"));
+const Policy =lazy(() => import("src/pages/policy"));
 const PublishAd =lazy(() => import("src/pages/publishAd"));
 const AdverBusiness =lazy(() => import("src/pages/advertiseBusiness/Index"));
 const AdvertiseCheckout =lazy(() => import("src/pages/advertiseCheckout/Index"));
@@ -33,6 +33,7 @@ const PublishAdEmail = lazy(() => import("src/pages/publishAdEmail/index"));
 const JobManagement = lazy(() => import("src/pages/jobManagement/Index"));
 const JobProfileRegister = lazy(() => import("src/pages/jobProfileRegister/Index"));
 const BusinessProfileRegister = lazy(() => import("src/pages/businessProfileRegister/Index"));
+
 
 
 const routes = [
@@ -121,7 +122,8 @@ const routes = [
     element: <BusinessProfileRegister />,
   },
 
-  
+
+
 
   {
     path: "/verify-email-address",

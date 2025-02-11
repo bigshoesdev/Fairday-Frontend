@@ -57,7 +57,7 @@ export default function SearchBar() {
   const radiusTypeData = jobConfig.jobConstManage.filter(item => item.category === "radius");
   const allCategories = Object.values(groupedData)
     .flat()
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .sort((a:any, b:any) => a.name.localeCompare(b.name));
 
   const handleSearchValues = (key: string, value: string) => dispatch(updateCurrentJobData({ key: key, value: value }))
 
@@ -207,7 +207,7 @@ export default function SearchBar() {
                 }}
               >
                 {allCategories.length > 0 ? (
-                  allCategories.map((cat, index) => (
+                  allCategories.map((cat:any, index) => (
                     <MenuItem key={index} value={cat.id}>
                       {cat.name}
                     </MenuItem>
