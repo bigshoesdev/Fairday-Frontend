@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import { FaCamera } from "react-icons/fa";
+import { TiDelete } from "react-icons/ti";
 import { SlPicture } from "react-icons/sl";
 
 interface LogoImageProps {
@@ -53,12 +53,11 @@ const LogoImage: React.FC<LogoImageProps> = ({ selectedLogo, setSelectedLogo }) 
                   alt="Preview"
                   className="w-full h-full object-cover rounded-md"
                 />
-                <button
-                  onClick={handleRemoveFile}
-                  className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full text-xs"
+                <TiDelete
+                  onClick={() => handleRemoveFile()}
+                  className="absolute top-0 right-0 text-[30px] text-red-500"
                 >
-                  ✕
-                </button>
+                </TiDelete >
               </>
             ) : (
               <div className="text-gray-500 text-3xl"><SlPicture /></div>

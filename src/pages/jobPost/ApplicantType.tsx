@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from 'src/store';
 import DropPanel from 'src/components/common/DropPanel';
 import CheckboxLable from 'src/components/common/CheckboxLable';
 import { getJobConstManage } from 'src/store/user/jobSlice';
 
-const ApplicantType = ({checkboxStates, setCheckboxStates}) => {
+const ApplicantType = ({ checkboxStates, setCheckboxStates }) => {
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -30,7 +30,7 @@ const ApplicantType = ({checkboxStates, setCheckboxStates}) => {
         header={
           <div className='flex flex-col gap-2'>
             <span className='text-[#1880F1] text-[22px] font-bold'>Applicant Type* <span className='text-black font-normal'>(Select all as applicable)</span></span>
-            <span className='text-black text-[22px]'>Skilled</span>
+          
           </div>
         }
       >

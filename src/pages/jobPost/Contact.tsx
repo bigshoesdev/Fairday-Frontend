@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import DropPanel from 'src/components/common/DropPanel';
 import SmallTextInput from 'src/components/common/smallTextInput';
 import RadioLabel from 'src/components/common/RadioLabel';
