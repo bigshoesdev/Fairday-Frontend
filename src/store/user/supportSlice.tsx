@@ -45,8 +45,8 @@ const supportConfigSlice = createSlice({
 
 export const supportCreate = (data: any) => async (dispatch: any): Promise<any> => {
   try {
+    
     dispatch(loading(true));
-
     const response = await axios.post("http://localhost:8000/api/v1/admin/support/create", data);
     dispatch(messageHandle({ type: response.data.isOkay ? "success" : "error", message: response.data.message }));
     
@@ -54,11 +54,13 @@ export const supportCreate = (data: any) => async (dispatch: any): Promise<any> 
       let keyResult = Object.keys(data).map((key) => key)
       keyResult.forEach(key => dispatch(updateValue({  key: [key], value: ""})) );
     }
-
     dispatch(loading(false));
+
   } catch (error: any) {
     dispatch(error("Failed to fetch data"));
+    dispatch(loading(false));
   }
+
 };
 
 export const updateCurrentJobData = (data: any) => async (dispatch: any): Promise<any> => {

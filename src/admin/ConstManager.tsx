@@ -116,7 +116,7 @@ const ConstManager: React.FC = () => {
       ];
 
   return (
-    <div className="w-screen p-20">
+    <div className="">
       <div className="flex justify-between">
         <div className='flex items-center flex-row gap-x-10'>
           <Select

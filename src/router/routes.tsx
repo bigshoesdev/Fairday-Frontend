@@ -1,7 +1,12 @@
 import { lazy } from "react";
 
 const Error = lazy(() => import("src/components/Error"));
+
+const Admin = lazy(() => import("src/admin"));
 const ConstManager = lazy(() => import("src/admin/ConstManager"));
+const SupportTicketManager = lazy(() => import("src/admin/SupportTicketManager"));
+
+
 const Home = lazy(() => import("src/pages/home"));
 const JobSearch = lazy(() => import("src/pages/jobSearch"));
 const PostJob = lazy(() => import("src/pages/jobPost/Index"));
@@ -37,10 +42,19 @@ const BusinessProfileRegister = lazy(() => import("src/pages/businessProfileRegi
 
 
 const routes = [
+  
   {
+    path: "/admin",
+    element: <Admin />,
+  },{
     path: "/admin/constmanager",
     element: <ConstManager />,
   },
+  {
+    path: "/admin/supportTicket",
+    element: <SupportTicketManager />,
+  },
+  
   {
     path: "/",
     element: <Home />,

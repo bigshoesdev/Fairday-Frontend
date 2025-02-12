@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "src/store";
 import { supportCreate, updateCurrentJobData } from "src/store/user/supportSlice";
@@ -22,8 +21,7 @@ const ContactUs = () => {
       lastName: lastName,
       phoneNumber: phoneNumber,
       email: email,
-      message: message,
-      
+      message: message
     }
     dispatch(supportCreate(data))
   }
