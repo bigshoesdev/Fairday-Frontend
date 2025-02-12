@@ -2,11 +2,14 @@ import { useSelector } from 'react-redux';
 import DropPanel from 'src/components/common/DropPanel';
 import RadioLabel from 'src/components/common/RadioLabel';
 
-const AdvancedEmployer = ({selectedAdvancedEmployer, setSelectedAdvancedEmployer}) => {
-  
+const AdvancedEmployer = ({ selectedAdvancedEmployer, setSelectedAdvancedEmployer }) => {
+
   const { jobConfig } = useSelector((state: any) => state);
   const GroupData = jobConfig.jobConstManage;
   const jobTypeData = GroupData.filter(item => item.category === 'employerDescriptoin');
+
+  const selectedItem = jobTypeData.find(item => item._id === selectedAdvancedEmployer);
+
 
   return (
     <div className='w-full'>
@@ -14,7 +17,11 @@ const AdvancedEmployer = ({selectedAdvancedEmployer, setSelectedAdvancedEmployer
         header={
           <div className='flex flex-col gap-2'>
             <span className='text-[#1880F1] text-[22px] font-bold'>Employer Description* <span className='text-black font-normal'>(Select One)</span></span>
-            <span className='text-black text-[22px]'>Corporate Industrial Employer</span>
+            {selectedItem ? (
+              <span className='text-black text-[22px]'>{selectedItem.string.trim()}</span>
+            ) : (
+              <span className='text-gray-500 text-[22px] italic'></span>
+            )}
           </div>
         }
       >

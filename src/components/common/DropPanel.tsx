@@ -28,7 +28,7 @@ const DropPanel: React.FC<DropPanelProps> = ({
                 </p>
             </div>
             <div
-                className={`left-0 w-full px-6 transition-all duration-500 ease-in-out overflow-hidden ${open ? "max-h-[2000px]" : "max-h-0"}`}
+                className={`left-0 w-full px-6 transition-all duration-500 ease-in-out overflow-hidden ${open ? "max-h-[10000px]" : "max-h-0"}`}
             >
                 <div className={contentClassName}>
                     {children}

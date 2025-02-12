@@ -51,6 +51,8 @@ const PostJob = () => {
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
 
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
   //Other Category component Variables
   const [otherCategory, setOtherCategory] = useState('');
   const [categoryConfirm, setCategoryConfirm] = useState(false);
@@ -135,7 +137,7 @@ const PostJob = () => {
 
   //button click event
   const publishJob = () => {
-    const formData:any = new FormData();
+    const formData: any = new FormData();
     formData.append("jobTitle", jobTitle);
     formData.append("jobDescription", jobDescription);
     formData.append("employer", employer);
@@ -145,10 +147,13 @@ const PostJob = () => {
     formData.append("city", city);
     formData.append("street", street);
     formData.append("country", country);
+    formData.append("selectedCategory", selectedCategory);
     formData.append("otherCategory", otherCategory);
     formData.append("categoryConfirm", categoryConfirm);
     formData.append("detailJobDescription", detailJobDescription);
+    formData.append("selectedJobType", selectedJobType || "");
     formData.append("jobPayRate", jobPayRate);
+    formData.append("selectedYearOption", selectedYearOption);
     formData.append("businessName", businessName);
     formData.append("userStreet", userStreet);
     formData.append("userCity", userCity);
@@ -163,8 +168,6 @@ const PostJob = () => {
     formData.append("whatsApp", whatsApp);
     formData.append("contactOther", contactOther);
     formData.append("contactEmail", contactEmail);
-    formData.append("selectedYearOption", selectedYearOption);
-    formData.append("selectedJobType", selectedJobType || "");
     formData.append("logoImage", selectedLogo);
 
     formData.append("boolean", ["emailConfirm", "categoryConfirm", "addressConfirm"]);
@@ -176,7 +179,7 @@ const PostJob = () => {
     selectedImages.forEach((file) => {
       formData.append("images", file);
     });
-    
+
     dispatch(postJob(formData))
 
   };
@@ -211,7 +214,10 @@ const PostJob = () => {
           country={country}
           setCountry={setCountry}
         />
-        <JobCategory />
+        <JobCategory
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
         <OhterCategory
           otherCategory={otherCategory}
           setOtherCategory={setOtherCategory}
@@ -242,7 +248,6 @@ const PostJob = () => {
           selectedImages={selectedImages}
           setSelectedImages={setSelectedImages}
         />
-
         <NameSection
           businessName={businessName}
           setBusinessName={setBusinessName}
