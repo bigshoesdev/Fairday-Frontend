@@ -4,6 +4,11 @@ import axios from "axios";
 interface AdminConfigState {
   constMange: object[];
   category: string;
+
+  supportList: object[];
+  supportUserName: string;
+  supportTicketStatus: string;
+
   loading: boolean;
   error: string | null;
 }
@@ -11,6 +16,11 @@ interface AdminConfigState {
 const initialState: AdminConfigState = {
   constMange: [],
   category: 'constMange',
+
+  supportList: [],
+  supportUserName: '',
+  supportTicketStatus: '0',
+
   loading: false,
   error: null,
 };
@@ -39,7 +49,7 @@ const adminConfigSlice = createSlice({
      constMangeDelete(state, { payload }: PayloadAction<any>) {
       console.log('Before filter:', JSON.parse(JSON.stringify(state.constMange)));
       const newState = state.constMange.filter((item: any) => item.id !== payload._id);
-      state.constMange = [...newState];  // Create a new reference to trigger re-render
+      state.constMange = [...newState];
       console.log('After filter:', JSON.parse(JSON.stringify(state.constMange)));
       state.loading = false;
     },
@@ -47,6 +57,12 @@ const adminConfigSlice = createSlice({
       state.error = payload;
       state.loading = false;
     },
+    supportRead(state, { payload }: PayloadAction<any>) {
+      state.supportList = payload.result
+      state.loading = false;
+    },
+
+    
   },
 });
 
@@ -100,11 +116,25 @@ export const getSortedGroup = () => async (dispatch: any): Promise<any> => {
   }
 };
 
+export const supportListRead = () => async (dispatch: any): Promise<any> => {
+  try {
+    dispatch(adminConfigLoading());
+    const response = await axios.post("http://localhost:8000/api/v1/admin/support/read");
+    dispatch(supportRead(response.data));
+  } catch (error: any) {
+    dispatch(adminConfigError(error.message || "Failed to fetch data"));
+  }
+};
+
 export const {
   constMangeRead,
   constMangeCreate,
   constMangeUpdate,
   constMangeDelete,
+
+  supportRead,
+
+
   adminConfigLoading,
   adminConfigError,
 } = adminConfigSlice.actions;
