@@ -4,6 +4,8 @@ import { jwtDecodeUtil } from "src/utlies/jwt.decode";
 import { storage } from "src/utlies/localStorage";
 import { messageHandle } from "src/store/systemSetting/commonSlice";
 import { getToken } from "src/utlies/localStorage";
+import { setAuthorizationToken } from "src/utlies/axiosInstance";
+
 
 interface AuthState {
   user: object | null;
@@ -68,7 +70,8 @@ export const initializeAuth = () => async (dispatch: any) => {
   try {
     const storedAuth = await loadAuthStateFromStorage();
     if (storedAuth.token) {
-      dispatch(loginSuccess(storedAuth)); // Automatically log in if a valid token is found
+      setAuthorizationToken(storedAuth.token);
+      dispatch(loginSuccess(storedAuth)); 
     }
   } catch (error: any) {
     console.error("Error initializing auth:", error);
@@ -87,6 +90,8 @@ export const loginAPI = (credentials: { email: string; password: string }) => as
       let isOkay = response.data.isOkay
       let userToken = response.data.access_token
       let parsedResult = jwtDecodeUtil(userToken)
+
+      setAuthorizationToken(userToken);
       storage(userToken)
 
       dispatch(messageHandle({ type: response.data.isOkay ? "success" : "error", message: response.data.message }));
@@ -111,6 +116,9 @@ export const signupAPI = (data) => async (dispatch: any): Promise<any> => {
         const userToken = response.data.access_token;
 
         const parsedResult = jwtDecodeUtil(userToken);
+
+        setAuthorizationToken(userToken)
+
         storage(userToken);
 
         dispatch(messageHandle({ type: "success", message: response.data.message }));
