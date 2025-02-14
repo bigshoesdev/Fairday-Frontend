@@ -6,6 +6,7 @@ interface CheckboxWithLabelProps {
   onChange: () => void;
   labelClass?: string;
   inputClass?: string;
+  spanClass?: string;
 }
 
 const CheckboxLable: React.FC<CheckboxWithLabelProps> = ({
@@ -14,6 +15,7 @@ const CheckboxLable: React.FC<CheckboxWithLabelProps> = ({
   onChange,
   labelClass = '',
   inputClass = '',
+  spanClass='',
 }) => {
   return (
     <label className={`flex items-center space-x-4 ${labelClass}`}>
@@ -23,7 +25,7 @@ const CheckboxLable: React.FC<CheckboxWithLabelProps> = ({
         checked={checked}
         onChange={onChange}
       />
-      <span className="text-[20px] text-[#4A4A4A]">{label}</span>
+      <span className={`text-[20px] text-[#4A4A4A] ${spanClass}`}>{label}</span>
     </label>
   );
 };
