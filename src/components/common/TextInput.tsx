@@ -1,4 +1,3 @@
-import React from 'react';
 import TextField from '@mui/material/TextField';
 
 interface Props {
@@ -6,9 +5,10 @@ interface Props {
     value: string;
     type: string;
     name?: string;
-    style: string;
+    style?: string;
     rows?: number;
     multiline?: boolean;
+    disabled?: boolean; 
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -20,6 +20,7 @@ const TextInput = ({
     name,
     rows = 1,
     multiline = false,
+    disabled = false, 
     onChange,
 }: Props) => {
     return (
@@ -32,6 +33,7 @@ const TextInput = ({
             multiline={multiline}
             onChange={onChange}
             className={style}
+            disabled={disabled} 
         />
     );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 
 interface ButtonProps {
   text: string;
-  disable: boolean;
+  disable?: boolean;
   onClick: () => void;
   className?: string; 
 }

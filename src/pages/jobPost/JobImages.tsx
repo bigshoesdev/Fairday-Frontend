@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import { FaCamera } from "react-icons/fa";
-import { SlPicture } from "react-icons/sl";
-import Button from 'src/components/common/Button';
+import { TiDelete } from "react-icons/ti";
 
 interface JobImagesProps {
   selectedImages: File[];
@@ -66,12 +64,11 @@ const JobImages: React.FC<JobImagesProps> = ({ selectedImages, setSelectedImages
                 alt={`Preview ${index}`}
                 className="w-full h-full object-cover rounded-md"
               />
-              <button
+              <TiDelete 
                 onClick={() => handleRemoveImage(index)}
-                className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full text-xs"
+                className="absolute top-0 right-0 text-[30px] text-red-500"
               >
-                ✕
-              </button>
+              </TiDelete >
             </div>
           ))}
         </div>

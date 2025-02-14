@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from 'src/store';
 import JobDetail from 'src/pages/jobPost/JobDetail';
@@ -27,29 +27,69 @@ import AdditionalJobDetail from 'src/pages/jobPost/AdditionalJobDetail';
 import PaymentArea from 'src/pages/jobPost/PaymentArea';
 
 import Button from 'src/components/common/Button';
-import { postJob } from 'src/store/user/jobSlice';
+import DraggableModal from 'src/components/common/DraggableModal'
+import { postJob, viewJob } from 'src/store/user/jobSlice';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { getJobConstManage } from 'src/store/user/jobSlice';
 
 
 const PostJob = () => {
 
   const dispatch = useDispatch<AppDispatch>();
+  
+
+  useEffect(() => {
+    dispatch(getJobConstManage());
+  }, [dispatch]);
 
   const [open, setOpen] = useState(false);
 
-  //JobDetail component variables
-  const [jobTitle, setJobTitle] = useState('');
-  const [jobDescription, setJobDescription] = useState('');
-  const [employer, setEmploye] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [emailConfirm, setEmailConfirm] = useState(false);
+  // const [modalOpen, setModalOpen] = useState(false);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [jobValue, setJobValue] = useState({
+    jobTitle: "",
+    jobDescription: "",
+    employer: "",
+    name: "",
+    email: "",
+    emailConfirm: "",
+    city: "",
+    street: "",
+    country: "",
+    checkboxStates: {},
+    selectedCategory: "",
+    otherCategory: "",
+    categoryConfirm: "",
+    detailJobDescription: "",
+    selectedJobType: "",
+    jobPayRate: "",
+    selectedYearOption: "",
+    businessName: "",
+    userStreet: "",
+    userCity: "",
+    userCountry: "",
+    addressConfirm: "",
+    instagram: "",
+    telephone: "",
+    facebook: "",
+    linkedin: "",
+    skype: "",
+    whatsApp: "",
+    contactOther: "",
+    contactEmail: "",
+    logoImage: "",
+    boolean: ["emailConfirm", "categoryConfirm", "addressConfirm"],
+  })
 
   //JobLocation component Variables
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
+
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   //Other Category component Variables
   const [otherCategory, setOtherCategory] = useState('');
@@ -67,108 +107,107 @@ const PostJob = () => {
   //Name  component Variable
   const [businessName, setBusinessName] = useState('');
 
-  //Contact Component Variables
-  const [selectedOption, setSelectedOption] = useState<string>('');
-  const [telephone, setTelephone] = useState('');
-  const [facebook, setFacebook] = useState('');
-  const [instagram, setInstagram] = useState('');
-  const [linkedin, setLinkedIn] = useState('');
-  const [skype, setSkype] = useState('');
-  const [whatsApp, setWhatsApp] = useState('');
-  const [contactOther, setContactOther] = useState('');
-  const [contactEmail, setContactEmail] = useState('');
+  const [contactPreferences, setContactPreferences] = useState({
+    privateStatus: false,
+    publicStatus: false,
+    telephoneStatus: false,
+    telephone: '',
+    emailStatus: false,
+    email: '',
+    facebookStatus: false,
+    facebook: '',
+    instagramStatus: false,
+    instagram: '',
+    linkedinStatus: false,
+    linkedin: '',
+    skypeStatus: false,
+    skype: '',
+    whatsappStatus: false,
+    whatsapp: '',
+    otherStatus: false,
+    other: ''
+  });
 
-  //Address Component Variables
   const [userStreet, setUserStreet] = useState('');
   const [userCity, setUsercity] = useState('');
   const [userCountry, setUserCountry] = useState('');
   const [addressConfirm, setAddressConfirm] = useState(false);
 
-  //Years Experience Component Variable
   const [selectedYearOption, setSelectedYearOption] = useState<string>('');
 
-  //Job Type Component Variable
   const [selectedJobType, setSelectedJobType] = useState<string | null>(null);
 
-  //Job Image component Variable
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
 
-  //Logo Image component Variables
   const [selectedLogo, setSelectedLogo] = useState<File | null>(null);
 
-  //Advanced Employer Descriptoin Component Variable
   const [selectedAdvancedEmployer, setSelectedAdvancedEmployer] = useState<string | null>(null);
 
-  //Advanced Business Years Experience Component Variable
   const [selectedBusinessYears, setSelectedBusinessYears] = useState<string>('');
 
-  //Insurance Coverage  Component Variable
   const [selectedInsurance, setSelectedInsurance] = useState<string | null>(null);
 
-  //Applicant Verifications  Component Variable
   const [selectedAdvancedApplicant, setSelectedAdvancedApplicant] = useState<string | null>(null);
 
-  //Currency Type  Component Variable
   const [selectedCurrency, setSelectedCurrency] = useState<string | null>(null);
 
-  //Applicant Requirements Componet
   const [appRequirements, setAppRequirements] = useState<{ [key: string]: string }>({});
   const [selectedAppRequirement, setSelectedAppRequirement] = useState<string | null>(null);
 
-  //Payment Method  Component Variable
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
 
-  //Employment Payment Component
   const [selectedEmployPayment, setSelectedEmployPayment] = useState<string | null>(null);
 
-  //Additional Special Job Details Component
   const [specification, setSpecification] = useState<string | null>(null);
   const [schedules, setSchedules] = useState<string | null>(null);
   const [agreements, setAgreements] = useState<string | null>(null);
   const [note, setNote] = useState<string | null>(null);
 
-  //payment area component
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('mastercard');
 
   const [isChecked, setIsChecked] = useState(false);
 
 
   //button click event
-  const publishJob = () => {
-    const formData:any = new FormData();
-    formData.append("jobTitle", jobTitle);
-    formData.append("jobDescription", jobDescription);
-    formData.append("employer", employer);
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("emailConfirm", emailConfirm);
-    formData.append("city", city);
-    formData.append("street", street);
-    formData.append("country", country);
-    formData.append("otherCategory", otherCategory);
-    formData.append("categoryConfirm", categoryConfirm);
-    formData.append("detailJobDescription", detailJobDescription);
-    formData.append("jobPayRate", jobPayRate);
-    formData.append("businessName", businessName);
-    formData.append("userStreet", userStreet);
-    formData.append("userCity", userCity);
-    formData.append("userCountry", userCountry);
-    formData.append("addressConfirm", addressConfirm);
-    formData.append("selectedOption", selectedOption);
-    formData.append("instagram", instagram);
-    formData.append("telephone", telephone);
-    formData.append("facebook", facebook);
-    formData.append("linkedin", linkedin);
-    formData.append("skype", skype);
-    formData.append("whatsApp", whatsApp);
-    formData.append("contactOther", contactOther);
-    formData.append("contactEmail", contactEmail);
-    formData.append("selectedYearOption", selectedYearOption);
-    formData.append("selectedJobType", selectedJobType || "");
-    formData.append("logoImage", selectedLogo);
+  const viewJobButton = () => {
 
+    const formData: any = new FormData();
+
+    // Object.keys(jobValue).map((key: string) => {
+    //   formData.append(key, jobValue[key]);
+    // })
+
+    // formData.append("jobTitle", jobTitle);
+    // formData.append("jobDescription", jobDescription);
+    // formData.append("employer", employer);
+    // formData.append("name", name);
+    // formData.append("email", email);
+    // formData.append("emailConfirm", emailConfirm);
+    // formData.append("city", city);
+    // formData.append("street", street);
+    // formData.append("country", country);
+    // formData.append("selectedCategory", selectedCategory);
+    // formData.append("otherCategory", otherCategory);
+    // formData.append("categoryConfirm", categoryConfirm);
+    // formData.append("detailJobDescription", detailJobDescription);
+    // formData.append("selectedJobType", selectedJobType || "");
+    // formData.append("jobPayRate", jobPayRate);
+    // formData.append("selectedYearOption", selectedYearOption);
+    // formData.append("businessName", businessName);
+    // formData.append("userStreet", userStreet);
+    // formData.append("userCity", userCity);
+    // formData.append("userCountry", userCountry);
+    // formData.append("addressConfirm", addressConfirm);
+    // formData.append("instagram", contactPreferences['instagram']);
+    // formData.append("telephone", contactPreferences['telephone']);
+    // formData.append("facebook", contactPreferences['facebook']);
+    // formData.append("linkedin", contactPreferences['linkedin']);
+    // formData.append("skype", contactPreferences['skype']);
+    // formData.append("whatsApp", contactPreferences['whatsApp']);
+    // formData.append("contactOther", contactPreferences['other']);
+    // formData.append("contactEmail", contactPreferences['email']);
+    // formData.append("logoImage", selectedLogo);
     formData.append("boolean", ["emailConfirm", "categoryConfirm", "addressConfirm"]);
-
 
     const applicantType = Object.keys(checkboxStates).filter(key => checkboxStates[key]);
     applicantType.forEach(type => formData.append("applicantType", type));
@@ -176,8 +215,9 @@ const PostJob = () => {
     selectedImages.forEach((file) => {
       formData.append("images", file);
     });
-    
-    dispatch(postJob(formData))
+
+    dispatch(viewJob(jobValue))
+    setIsModalOpen(true)
 
   };
 
@@ -189,64 +229,58 @@ const PostJob = () => {
       <div className='bg-[#FAFAFA] flex flex-col container items-center justify-center max-w-[950px] gap-y-10 '>
         <div className='mt-[-150px] w-full'>
           <JobDetail
-            jobTitle={jobTitle}
-            jobDescription={jobDescription}
-            employer={employer}
-            name={name}
-            email={email}
-            emailConfirm={emailConfirm}
-            setJobTitle={setJobTitle}
-            setJobDescription={setJobDescription}
-            setEmploye={setEmploye}
-            setName={setName}
-            setEmail={setEmail}
-            setEmailConfirm={setEmailConfirm}
+            jobValue={jobValue}
+            bufferSetJobValue={(value: any) => setJobValue(value)}
           />
         </div>
+
         <JobLocation
-          street={street}
-          setStreet={setStreet}
-          city={city}
-          setCity={setCity}
-          country={country}
-          setCountry={setCountry}
+          jobValue={jobValue}
+          bufferSetJobValue={(value: any) => setJobValue(value)}
         />
-        <JobCategory />
+        <JobCategory
+          jobValue={jobValue}
+          bufferSetJobValue={(value: any) => setJobValue(value)}
+        />
         <OhterCategory
-          otherCategory={otherCategory}
-          setOtherCategory={setOtherCategory}
-          categoryConfirm={categoryConfirm}
-          setCategoryConfirm={setCategoryConfirm}
+          jobValue={jobValue}
+          bufferSetJobValue={(value: any) => setJobValue(value)}
         />
         <JobDescription
-          detailJobDescription={detailJobDescription}
-          setDetailJobDescription={setDetailJobDescription}
+          jobValue={jobValue}
+          bufferSetJobValue={(value: any) => setJobValue(value)}
         />
         <JobType
-          selectedJobType={selectedJobType}
-          setSelectedJobType={setSelectedJobType}
+          jobValue={jobValue}
+          bufferSetJobValue={(value: any) => setJobValue(value)}
         />
         <JobPay
-          jobPayRate={jobPayRate}
-          setJobPayRate={setJobPayRate}
+          jobValue={jobValue}
+          bufferSetJobValue={(value: any) => setJobValue(value)}
         />
-        <ApplicantType
-          checkboxStates={checkboxStates}
-          setCheckboxStates={setCheckboxStates}
+         <ApplicantType
+          jobValue={jobValue}
+          bufferSetJobValue={(value: any) => setJobValue(value)}
         />
-        <YearsExperience
+        {/* <YearsExperience
           selectedYearOption={selectedYearOption}
           setSelectedYearOption={setSelectedYearOption}
+          jobValue={jobValue}
+          bufferSetJobValue={(value: any) => setJobValue(value)}
         />
         <JobImages
           selectedImages={selectedImages}
           setSelectedImages={setSelectedImages}
+          jobValue={jobValue}
+          bufferSetJobValue={(value: any) => setJobValue(value)}
         />
-
         <NameSection
           businessName={businessName}
           setBusinessName={setBusinessName}
+          jobValue={jobValue}
+          bufferSetJobValue={(value: any) => setJobValue(value)}
         />
+
         <Address
           userStreet={userStreet}
           userCity={userCity}
@@ -256,32 +290,25 @@ const PostJob = () => {
           setUsercity={setUsercity}
           setUserCountry={setUserCountry}
           setAddressConfirm={setAddressConfirm}
+          street={street}
+          city={city}
+          country={country}
+          jobValue={jobValue}
+          bufferSetJobValue={(value: any) => setJobValue(value)}
         />
+
         <LogoImage
           selectedLogo={selectedLogo}
           setSelectedLogo={setSelectedLogo}
+          jobValue={jobValue}
+          bufferSetJobValue={(value: any) => setJobValue(value)}
         />
         <Contact
-          selectedOption={selectedOption}
-          setSelectedOption={setSelectedOption}
-          telephone={telephone}
-          setTelephone={setTelephone}
-          facebook={facebook}
-          setFacebook={setFacebook}
-          instagram={instagram}
-          setInstagram={setInstagram}
-          linkedin={linkedin}
-          setLinkedIn={setLinkedIn}
-          skype={skype}
-          setSkype={setSkype}
-          whatsApp={whatsApp}
-          setWhatsApp={setWhatsApp}
-          contactOther={contactOther}
-          setContactOther={setContactOther}
-          contactEmail={contactEmail}
-          setContactEmail={setContactEmail}
-        />
-
+          contactPreferences={contactPreferences}
+          setContactPreferences={setContactPreferences}
+          jobValue={jobValue}
+          bufferSetJobValue={(value: any) => setJobValue(value)}
+        /> */}
         <div className="relative w-full">
           <div className="bg-primaryBlue text-blue p-6 rounded-xl shadow-md z-10 cursor-pointer relative flex justify-between items-start" onClick={() => setOpen(!open)}>
             <div className='text-white text-[26px] font-bold'>
@@ -293,22 +320,28 @@ const PostJob = () => {
             </p>
           </div>
           <div
-            className={`left-0 w-full transition-all duration-500 ease-in-out overflow-hidden ${open ? "max-h-[5000px]" : "max-h-0"}`}
+            className={`left-0 w-full transition-all duration-500 ease-in-out overflow-hidden ${open ? "max-h-[50000px]" : "max-h-0"}`}
           >
             <div className="bg-gray py-10 flex flex-col gap-y-10 ">
-              <AdvancedEmployer
+              {/* <AdvancedEmployer
                 selectedAdvancedEmployer={selectedAdvancedEmployer}
                 setSelectedAdvancedEmployer={setSelectedAdvancedEmployer}
+                jobValue={jobValue}
+                bufferSetJobValue={(value: any) => setJobValue(value)}
               />
 
               <AdvancedYears
                 selectedBusinessYears={selectedBusinessYears}
                 setSelectedBusinessYears={setSelectedBusinessYears}
+                jobValue={jobValue}
+                bufferSetJobValue={(value: any) => setJobValue(value)}
               />
 
               <AdvancedInsurance
                 selectedInsurance={selectedInsurance}
                 setSelectedInsurance={setSelectedInsurance}
+                jobValue={jobValue}
+                bufferSetJobValue={(value: any) => setJobValue(value)}
               />
 
               <AdvancedAppRequirements
@@ -316,26 +349,36 @@ const PostJob = () => {
                 setAppRequirements={setAppRequirements}
                 selectedAppRequirement={selectedAppRequirement}
                 setSelectedAppRequirement={setSelectedAppRequirement}
+                jobValue={jobValue}
+                bufferSetJobValue={(value: any) => setJobValue(value)}
               />
 
               <AdvacnedAplicant
                 selectedAdvancedApplicant={selectedAdvancedApplicant}
                 setSelectedAdvancedApplicant={setSelectedAdvancedApplicant}
+                jobValue={jobValue}
+                bufferSetJobValue={(value: any) => setJobValue(value)}
               />
 
               <AdvancedEmployPayment
                 selectedEmployPayment={selectedEmployPayment}
                 setSelectedEmployPayment={setSelectedEmployPayment}
+                jobValue={jobValue}
+                bufferSetJobValue={(value: any) => setJobValue(value)}
               />
 
               <AdvancedCurrency
                 selectedCurrency={selectedCurrency}
                 setSelectedCurrency={setSelectedCurrency}
+                jobValue={jobValue}
+                bufferSetJobValue={(value: any) => setJobValue(value)}
               />
 
               <AdvancedPayment
                 selectedPayment={selectedPayment}
                 setSelectedPayment={setSelectedPayment}
+                jobValue={jobValue}
+                bufferSetJobValue={(value: any) => setJobValue(value)}
               />
 
               <AdditionalJobDetail
@@ -347,12 +390,16 @@ const PostJob = () => {
                 setAgreements={setAgreements}
                 note={note}
                 setNote={setNote}
+                jobValue={jobValue}
+                bufferSetJobValue={(value: any) => setJobValue(value)}
               />
 
               <PaymentArea
                 selectedPaymentMethod={selectedPaymentMethod}
                 setSelectedPaymentMethod={setSelectedPaymentMethod}
-              />
+                jobValue={jobValue}
+                bufferSetJobValue={(value: any) => setJobValue(value)}
+              /> */}
 
             </div>
           </div>
@@ -374,14 +421,15 @@ const PostJob = () => {
         <div className='flex flex-col gap-4 w-full'>
           <Button
             text="VIEW JOB POST"
-            onClick={publishJob}
+            onClick={viewJobButton}
             className="bg-primaryBlue text-white py-6 text-[20px] font-bold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-xl"
           />
           <Button
             text="PUBLISH JOB AD"
-            onClick={publishJob}
+            onClick={viewJobButton}
             className="bg-[#d7b135] text-white py-6 text-[20px] font-bold hover:bg-yellow-300 transition-all cursor-pointer hover:border-yellow-300 focus:outline-none rounded-xl"
           />
+          {isModalOpen && <DraggableModal onClose={() => setIsModalOpen(false)} />}
         </div>
       </div>
     </div>

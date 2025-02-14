@@ -1,17 +1,8 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from 'src/store';
+import { useSelector } from 'react-redux';
 import DropPanel from 'src/components/common/DropPanel';
 import CheckboxLable from 'src/components/common/CheckboxLable';
-import { getJobConstManage } from 'src/store/user/jobSlice';
 
 const ApplicantType = ({checkboxStates, setCheckboxStates}) => {
-
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    dispatch(getJobConstManage());
-  }, [dispatch]);
 
   const { jobConfig } = useSelector((state: any) => state);
   const GroupData = jobConfig.jobConstManage;

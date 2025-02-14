@@ -98,7 +98,6 @@ export const getJobsByQuery = (data: any) => async (dispatch: any): Promise<any>
   }
 };
 
-
 export const postJob = (data: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
@@ -113,6 +112,9 @@ export const postJob = (data: any) => async (dispatch: any): Promise<any> => {
   } catch (error: any) {
     dispatch(messageHandle({ type: "error", message: "Failed to fetch data" }));
   }
+};
+export const viewJob = (data: any) => async (dispatch: any): Promise<any> => {
+      dispatch(constJobDetailsRead(data));
 };
 
 export const getJobCategoryByAlpha = (data: any) => async (dispatch: any): Promise<any> => {
