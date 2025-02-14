@@ -1,20 +1,11 @@
-import React, { useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 import Button from 'src/components/common/Button';
 
-const JobDetail = ({ jobTitle,
-  jobDescription,
-  employer,
-  name,
-  email,
-  emailConfirm,
-  setJobTitle,
-  setJobDescription,
-  setEmploye,
-  setName,
-  setEmail,
-  setEmailConfirm }) => {
+const JobDetail = ({
+  jobValue,
+  bufferSetJobValue,
+}) => {
 
   const buttonClick = () => {
     console.log('this is button clicked');
@@ -27,19 +18,19 @@ const JobDetail = ({ jobTitle,
           type="email"
           name="jobTitle"
           label="Job title*"
-          value={jobTitle}
-          onChange={(e) => setJobTitle(e.target.value)}
+          value={jobValue.jobTitle}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           style="w-full"
         />
 
         <TextInput
           name="jobDescription"
-          type="email"
+          type="text"
           label="Brief Job Description of Slogan*"
-          value={jobDescription}
+          value={jobValue.jobDescription}
           rows={3}
           multiline={true}
-          onChange={(e) => setJobDescription(e.target.value)}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           style="w-full"
         />
 
@@ -47,12 +38,12 @@ const JobDetail = ({ jobTitle,
           name="employer"
           type="email"
           label="Enter Employer Name*"
-          value={employer}
-          onChange={(e) => setEmploye(e.target.value)}
+          value={jobValue.employer}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           style="w-full"
         />
 
-        <div className='flex justify-end'>
+        <div className='flex justify-end hidden'>
           <Button
             text="UPLOAD IMAGE"
             onClick={buttonClick}
@@ -64,8 +55,8 @@ const JobDetail = ({ jobTitle,
           name="name"
           type="email"
           label="Enter Your Name (if different from above)*"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={jobValue.name}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           style="w-full"
         />
 
@@ -73,17 +64,18 @@ const JobDetail = ({ jobTitle,
           name="email"
           type="email"
           label="Enter Email*"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={jobValue.email}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           style="w-full"
         />
 
         <label className="flex items-center space-x-3">
           <input
+            name="emailConfirm"
             type="checkbox"
             className="w-[25px] h-[25px] form-checkbox text-blue-600"
-            checked={emailConfirm}
-            onChange={() => setEmailConfirm((prev) => !prev)}
+            checked={jobValue.emailConfirm}
+            onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: !jobValue[e.target.name] })}
           />
           <span className="font-bold text-[20px] text-[#33495E]">
             Email Confirmation Required for posting all jobs</span>

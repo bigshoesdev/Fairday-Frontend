@@ -5,7 +5,7 @@ import { AppDispatch } from "src/store";
 import Button from 'src/components/common/Button';
 import { getJobCategoryByAlpha } from "src/store/user/jobSlice";
 
-const JobCategory = ({ selectedCategory, setSelectedCategory }) => {
+const JobCategory = ({ jobValue, bufferSetJobValue}) => {
   const dispatch = useDispatch<AppDispatch>();
   const [selectedCategoryName, setSelectedCategoryName] = useState<string>("");
 
@@ -17,7 +17,7 @@ const JobCategory = ({ selectedCategory, setSelectedCategory }) => {
   const groupedData = jobConfig.jobCategoryList;
 
   const handleItemClick = (itemId: string, itemName: string) => {
-    setSelectedCategory(itemId);
+    bufferSetJobValue({ ...jobValue, selectedCategory: itemId })
     setSelectedCategoryName(itemName);
   };
 
@@ -49,9 +49,8 @@ const JobCategory = ({ selectedCategory, setSelectedCategory }) => {
                   <li
                     key={item.id}
                     onClick={() => handleItemClick(item.id, item.name)}
-                    className={`cursor-pointer ${
-                      selectedCategory === item.id ? 'text-blue-500 font-bold' : 'text-gray-700'
-                    } hover:text-blue-500`}
+                    className={`cursor-pointer ${jobValue.selectedCategory === item.id ? 'text-blue-500 font-bold' : 'text-gray-700'
+                      } hover:text-blue-500`}
                   >
                     {item.name}
                   </li>

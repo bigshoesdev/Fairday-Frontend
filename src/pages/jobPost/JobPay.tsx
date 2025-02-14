@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const JobPay = ({jobPayRate, setJobPayRate}) => {
+const JobPay = ({ jobValue, bufferSetJobValue}) => {
 
 
   return (
@@ -13,12 +13,13 @@ const JobPay = ({jobPayRate, setJobPayRate}) => {
           JOB Payment Rate / Income Amount</span>
 
         <TextInput
+        name="jobPayRate"
           type="email"
           label="Type Here..."
-          value={jobPayRate}
+          value={jobValue.jobPayRate}
           rows={4}
           multiline={true}
-          onChange={(e) => setJobPayRate(e.target.value)}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           style="w-full"
         />
       </Panel>

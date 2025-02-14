@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const JobDescription = ({detailJobDescription, setDetailJobDescription }) => {
+const JobDescription = ({ jobValue, bufferSetJobValue }) => {
 
   return (
     <div className='w-full'>
@@ -12,12 +11,13 @@ const JobDescription = ({detailJobDescription, setDetailJobDescription }) => {
           Job Description Details*</span>
 
         <TextInput
+          name='detailJobDescription'
           type="email"
           label="Type Here..."
-          value={detailJobDescription}
+          value={jobValue.detailJobDescription}
           rows={4}
           multiline={true}
-          onChange={(e) => setDetailJobDescription(e.target.value)}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           style="w-full"
         />
       </Panel>

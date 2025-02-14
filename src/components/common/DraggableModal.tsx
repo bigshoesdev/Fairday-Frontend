@@ -10,8 +10,13 @@ import StarRating from "src/components/common/StarRating";
 
 const DraggableModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const { jobConfig } = useSelector((state: any) => state);
-  const { jobDetails } = jobConfig;
-  console.log('jobDetailsjobDetails', jobDetails.result);
+  const { jobDetails, jobConstManage } = jobConfig;
+
+
+
+  const jobTypes = jobConstManage.filter(item => item.category === 'jobtype');
+console.log('jobDetails', jobDetails);
+
 
   const modalRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -75,29 +80,31 @@ const DraggableModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
         <div className="bg-white rounded-lg py-5 px-8 flex flex-col">
           <div className="flex flex-col">
-            <span className="font-bold text-[18px]">{jobDetails.result.jobTitle}</span>
+            <span className="font-bold text-[18px]">{jobDetails?.result?.jobTitle || ''}</span>
             <span className="text-[15px]">Requirements: Certification FAA</span>
           </div>
 
           <div className="mt-4 flex flex-row gap-4">
             <img src="src/assets/images/job_location.png" className="w-16 h-16"></img>
             <div className="flex flex-col">
-              <span className="text-blue-400 font-bold">{jobDetails.result.employer}</span>
-              <span className="text-black font-bold">{jobDetails.result.street}</span>
+              <span className="text-blue-400 font-bold">{jobDetails?.result?.employer || ''}</span>
+              <span className="text-black font-bold">{jobDetails?.result?.street || ''}</span>
               <span className="text-gray-500">Commerical Employer</span>
             </div>
           </div>
 
           <div className="flex flex-row justify-between mt-3 font-bold">
             <span>Job Description</span>
-            <span>Full time <span className="ml-2">85.00/Hr</span></span>
+
+
+            <span>{jobTypes.find((each) => each._id === jobDetails?.result?.selectedJobType)?.string || ''}<span className="ml-2">85.00/Hr</span></span>
           </div>
 
           <div className="flex justify-between items-end mt-3">
             <span className="text-[15px] text-gray-500">
-              {jobDetails.result.jobDescription.length > 250
-                ? `${jobDetails.result.jobDescription.slice(0, 250)}...`
-                : jobDetails.result.jobDescription}
+              {jobDetails?.result?.jobDescription.length > 250
+                ? `${jobDetails?.result?.jobDescription.slice(0, 250)}...`
+                : jobDetails?.result?.jobDescription}
             </span>
             <div className="flex flex-row ml-6">
               <MdOutlineVerifiedUser className="text-blue-500 text-[20px]" />
@@ -111,7 +118,7 @@ const DraggableModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
               <StarRating rating={rating} />
               <span className="font-semibold text-[15px]">{rating} starts</span>
             </div>
-            <span className="text-gray-500 text-[15px] font-medium">{dayjs(jobDetails.result.createdAt).fromNow()}</span>
+            <span className="text-gray-500 text-[15px] font-medium">{dayjs(jobDetails?.result?.createdAt).fromNow() || ''}</span>
           </div>
 
           <span className="mt-1 text-[13px] text-gray-500">(3 Reviews)</span>

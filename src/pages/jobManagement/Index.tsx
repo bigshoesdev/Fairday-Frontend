@@ -6,7 +6,7 @@ import ShortlistedApplicants from 'src/pages/jobManagement/ShortlistedApplicants
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from 'src/store';
-import { getAllJobs } from 'src/store/user/jobSlice';
+// import { getAllJobs } from 'src/store/user/jobSlice';
 import { getJobConstManage } from 'src/store/user/jobSlice';
 
 const JobManagement = () => {
@@ -19,7 +19,7 @@ const JobManagement = () => {
 
   useEffect(() => {
     dispatch(getJobConstManage());
-    dispatch(getAllJobs());
+    // dispatch(getAllJobs());
   }, [dispatch]);
 
   //button click event

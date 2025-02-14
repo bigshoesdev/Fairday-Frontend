@@ -2,14 +2,16 @@ import React from 'react';
 
 interface CheckboxWithLabelProps {
   label: string;
+  name: string | undefined;
   checked: boolean;
-  onChange: () => void;
+  onChange: (any) => any;
   labelClass?: string;
   inputClass?: string;
   spanClass?: string;
 }
 
 const RadioLabel: React.FC<CheckboxWithLabelProps> = ({
+  name = 'radio',
   label,
   checked,
   onChange,
@@ -21,9 +23,10 @@ const RadioLabel: React.FC<CheckboxWithLabelProps> = ({
     <label className={`flex items-center space-x-4 ${labelClass}`}>
       <input
         type="radio"
+        name={name}
         className={`w-[15px] h-[15px] form-checkbox text-blue-600 ${inputClass}`}
         checked={checked}
-        onChange={onChange}
+        onChange={e=>onChange(e)}
       />
       <span className={`text-[20px] text-[#4A4A4A] ${spanClass}`}>{label}</span>
     </label>

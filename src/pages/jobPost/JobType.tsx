@@ -2,13 +2,16 @@ import { useSelector } from 'react-redux';
 import DropPanel from 'src/components/common/DropPanel';
 import RadioLabel from 'src/components/common/RadioLabel';
 
-const JobType = ({ selectedJobType, setSelectedJobType }) => {
+const JobType = ({ jobValue, bufferSetJobValue }) => {
 
   const { jobConfig } = useSelector((state: any) => state);
   const GroupData = jobConfig.jobConstManage;
   const jobTypeData = GroupData.filter(item => item.category === 'jobtype');
 
-  const selectedItem = jobTypeData.find(item => item._id === selectedJobType);
+  console.log('GroupData', GroupData);
+  
+
+  const selectedItem = jobTypeData.find(item => item._id === jobValue.selectedJobType);
 
   return (
     <div className='w-full'>
@@ -27,10 +30,11 @@ const JobType = ({ selectedJobType, setSelectedJobType }) => {
         <div className='flex flex-col gap-4'>
           {jobTypeData.map((item) => (
             <RadioLabel
+              name="selectedJobType"
               key={item._id}
               label={item.string.trim()}
-              checked={selectedJobType === item._id}
-              onChange={() => setSelectedJobType(item._id)}
+              checked={jobValue.selectedJobType === item._id}
+              onChange={(e:any) => bufferSetJobValue({ ...jobValue, [e.target.name]: item._id })}
             />
           ))}
         </div>

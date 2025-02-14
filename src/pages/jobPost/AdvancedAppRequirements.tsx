@@ -2,12 +2,21 @@ import { useSelector } from 'react-redux';
 import DropPanel from 'src/components/common/DropPanel';
 import RadioLabel from 'src/components/common/RadioLabel';
 import TextInput from 'src/components/common/TextInput';
-import { useState } from 'react';
 
 const AdvancedAppRequirements = ({ selectedAppRequirement, setSelectedAppRequirement, appRequirements, setAppRequirements }) => {
   const { jobConfig } = useSelector((state: any) => state);
   const GroupData = jobConfig.jobConstManage;
   const jobTypeData = GroupData.filter(item => item.category === 'applicantRequirements');
+
+  // Handle radio button selection
+  const handleSelectionChange = (id) => {
+    setSelectedAppRequirement(id);
+
+    // Clear other fields, keeping only the selected one
+    setAppRequirements(prev => ({
+      [id]: prev[id] || "" // Preserve the text of the newly selected item, reset others
+    }));
+  };
 
   return (
     <div className='w-full'>
@@ -25,17 +34,21 @@ const AdvancedAppRequirements = ({ selectedAppRequirement, setSelectedAppRequire
               <RadioLabel
                 label={item.string.trim()}
                 checked={selectedAppRequirement === item._id}
-                onChange={() => setSelectedAppRequirement(item._id)}
+                onChange={() => handleSelectionChange(item._id)}
               />
               <div className='pt-5 px-7'>
                 <TextInput
                   type="text"
                   label="Description text"
-                  value={appRequirements[item._id] || ""} // Retrieve specific value
+                  value={appRequirements[item._id] || ""}
                   rows={2}
                   multiline={true}
+                  disabled={selectedAppRequirement !== item._id} // Disable unless selected
                   onChange={(e) =>
-                    setAppRequirements(prev => ({ ...prev, [item._id]: e.target.value })) // Update specific item
+                    setAppRequirements(prev => ({
+                      ...prev,
+                      [item._id]: e.target.value
+                    }))
                   }
                   style="w-full"
                 />
