@@ -1,7 +1,7 @@
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const JobDescription = ({ jobValue, bufferSetJobValue }) => {
+const JobDescription = ({ jobValue, bufferSetJobValue, errorDetailJobDescription }) => {
 
   return (
     <div className='w-full'>
@@ -19,6 +19,7 @@ const JobDescription = ({ jobValue, bufferSetJobValue }) => {
           multiline={true}
           onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           style="w-full"
+          error={errorDetailJobDescription}
         />
       </Panel>
     </div>

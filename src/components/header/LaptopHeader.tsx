@@ -11,7 +11,7 @@ const LaptopHeader = () => {
 
     const navigate = useNavigate()
 
-    const { authSliceConfig } = useSelector((state: any) => state);
+    const authSliceConfig = useSelector((state: any) => state.authSliceConfig);
     const user = authSliceConfig.user;
 
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);

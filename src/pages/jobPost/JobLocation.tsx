@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const JobLocation = ({ jobValue, bufferSetJobValue }) => {
+const JobLocation = ({ jobValue, bufferSetJobValue, errorStreet, errorCity, errorCountrt }) => {
 
   const { street, city, country } = jobValue
   const mapContainerRef = useRef(null);
@@ -63,6 +63,7 @@ const JobLocation = ({ jobValue, bufferSetJobValue }) => {
           label="Street Name*"
           value={jobValue.street}
           onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
+          error={errorStreet}
           style="w-full"
         />
 
@@ -72,6 +73,7 @@ const JobLocation = ({ jobValue, bufferSetJobValue }) => {
           label="City Zip*"
           value={jobValue.city}
           onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
+          error={errorCity}
           style="w-full"
         />
         <TextInput
@@ -80,6 +82,7 @@ const JobLocation = ({ jobValue, bufferSetJobValue }) => {
           label="Country*"
           value={jobValue.country}
           onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
+          error={errorCountrt}
           style="w-full"
         />
 

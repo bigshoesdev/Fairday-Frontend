@@ -2,43 +2,38 @@ import { useEffect } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const Address = ({
-  userStreet,
-  userCity,
-  userCountry,
-  addressConfirm,
-  setUserStreet,
-  setUsercity,
-  setUserCountry,
-  setAddressConfirm,
-  street,
-  city,
-  country,
-}) => {
-  
+const Address = ({ jobValue, bufferSetJobValue, errorUserStreet, errorUserCity, errorUserCountry }) => {
+
   useEffect(() => {
-    if (addressConfirm) {
-      setUserStreet(street);
-      setUsercity(city);
-      setUserCountry(country);
+    if (jobValue.addressConfirm) {
+      bufferSetJobValue({
+        ...jobValue,
+        userStreet: jobValue.street,
+        userCity: jobValue.city,
+        userCountry: jobValue.country
+      });
     } else {
-      setUserStreet('');
-      setUsercity('');
-      setUserCountry('');
+      bufferSetJobValue({
+        ...jobValue,
+        userStreet: '',
+        userCity: '',
+        userCountry: ''
+      });
     }
-  }, [addressConfirm, street, city, country]);
+  }, [jobValue.addressConfirm, jobValue.street, jobValue.city, jobValue.country]);
 
   return (
     <div className='w-full'>
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow'}>
         <span className="font-bold text-[26px] text-[#33495E]">Your Address / Location *</span>
-        
+
         <label className="flex items-center space-x-3">
           <input
+            name='addressConfirm'
             type="checkbox"
             className="w-[25px] h-[25px] form-checkbox text-blue-600"
-            checked={addressConfirm}
-            onChange={() => setAddressConfirm((prev) => !prev)}
+            checked={jobValue.addressConfirm}
+            onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: !jobValue[e.target.name] })}
           />
           <span className="font-bold text-[20px] text-[#33495E]">
             Same address as Job Location listed above
@@ -48,30 +43,36 @@ const Address = ({
         <span className="font-bold text-[26px] text-[#33495E]">OR</span>
 
         <TextInput
+          name='userStreet'
           type="text"
           label="Street Name*"
-          value={userStreet}
-          onChange={(e) => setUserStreet(e.target.value)}
+          value={jobValue.userStreet}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           style="w-full"
-          disabled={addressConfirm} // Disable input when checkbox is checked
+          disabled={jobValue.addressConfirm} 
+          error={errorUserStreet}
         />
 
         <TextInput
+          name='userCity'
           type="text"
           label="City Zip*"
-          value={userCity}
-          onChange={(e) => setUsercity(e.target.value)}
+          value={jobValue.userCity}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           style="w-full"
-          disabled={addressConfirm}
+          error={errorUserCity}
+          disabled={jobValue.addressConfirm}
         />
 
         <TextInput
+          name='userCountry'
           type="text"
           label="Country*"
-          value={userCountry}
-          onChange={(e) => setUserCountry(e.target.value)}
+          value={jobValue.userCountry}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           style="w-full"
-          disabled={addressConfirm}
+          error={errorUserCountry}
+          disabled={jobValue.addressConfirm}
         />
       </Panel>
     </div>

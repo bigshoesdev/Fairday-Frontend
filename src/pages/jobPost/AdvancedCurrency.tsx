@@ -2,13 +2,11 @@ import { useSelector } from 'react-redux';
 import DropPanel from 'src/components/common/DropPanel';
 import RadioLabel from 'src/components/common/RadioLabel';
 
-const AdvancedCurrency = ({ selectedCurrency, setSelectedCurrency }) => {
-  const { jobConfig } = useSelector((state: any) => state);
+const AdvancedCurrency = ({ jobValue, bufferSetJobValue }) => {
+  const jobConfig = useSelector((state: any) => state.jobConfig);
   const GroupData = jobConfig.jobConstManage;
   const jobTypeData = GroupData.filter(item => item.category === 'currencytype');
-
-  // Get the selected currency object
-  const selectedCurrencyItem = jobTypeData.find(item => item._id === selectedCurrency);
+  const selectedCurrencyItem = jobTypeData.find(item => item._id === jobValue.selectedCurrency);
 
   return (
     <div className='w-full'>
@@ -27,10 +25,11 @@ const AdvancedCurrency = ({ selectedCurrency, setSelectedCurrency }) => {
         <div className='flex flex-col gap-4'>
           {jobTypeData.map((item) => (
             <RadioLabel
+              name='selectedCurrency'
               key={item._id} // Ensure a unique key is provided for each element
               label={item.string.trim()} // Use the 'string' value from the data
-              checked={selectedCurrency === item._id}
-              onChange={() => setSelectedCurrency(item._id)}
+              checked={jobValue.selectedCurrency === item._id}
+              onChange={(e: any) => bufferSetJobValue({ ...jobValue, [e.target.name]: item._id })}
             />
           ))}
         </div>

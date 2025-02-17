@@ -3,19 +3,19 @@ import DropPanel from 'src/components/common/DropPanel';
 import RadioLabel from 'src/components/common/RadioLabel';
 import TextInput from 'src/components/common/TextInput';
 
-const AdvancedAppRequirements = ({ selectedAppRequirement, setSelectedAppRequirement, appRequirements, setAppRequirements }) => {
-  const { jobConfig } = useSelector((state: any) => state);
+const AdvancedAppRequirements = ({ jobValue, bufferSetJobValue }) => {
+  const jobConfig = useSelector((state: any) => state.jobConfig);
   const GroupData = jobConfig.jobConstManage;
   const jobTypeData = GroupData.filter(item => item.category === 'applicantRequirements');
 
-  // Handle radio button selection
   const handleSelectionChange = (id) => {
-    setSelectedAppRequirement(id);
-
-    // Clear other fields, keeping only the selected one
-    setAppRequirements(prev => ({
-      [id]: prev[id] || "" // Preserve the text of the newly selected item, reset others
-    }));
+    bufferSetJobValue({
+      ...jobValue,
+      selectedAppRequirement: id,
+      appRequirements: {
+        [id]: jobValue.appRequirements?.[id] || "" // Preserve existing text if available
+      }
+    });
   };
 
   return (
@@ -32,23 +32,28 @@ const AdvancedAppRequirements = ({ selectedAppRequirement, setSelectedAppRequire
           {jobTypeData.map((item) => (
             <div key={item._id}>
               <RadioLabel
+                name='selectedAppRequirement'
                 label={item.string.trim()}
-                checked={selectedAppRequirement === item._id}
+                checked={jobValue.selectedAppRequirement === item._id}
                 onChange={() => handleSelectionChange(item._id)}
               />
               <div className='pt-5 px-7'>
                 <TextInput
+                  name={`appRequirements-${item._id}`}
                   type="text"
                   label="Description text"
-                  value={appRequirements[item._id] || ""}
+                  value={jobValue.appRequirements?.[item._id] || ""}
                   rows={2}
                   multiline={true}
-                  disabled={selectedAppRequirement !== item._id} // Disable unless selected
+                  disabled={jobValue.selectedAppRequirement !== item._id}
                   onChange={(e) =>
-                    setAppRequirements(prev => ({
-                      ...prev,
-                      [item._id]: e.target.value
-                    }))
+                    bufferSetJobValue({
+                      ...jobValue,
+                      appRequirements: {
+                        ...jobValue.appRequirements,
+                        [item._id]: e.target.value
+                      }
+                    })
                   }
                   style="w-full"
                 />

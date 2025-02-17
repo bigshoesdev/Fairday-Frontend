@@ -5,6 +5,12 @@ import Button from 'src/components/common/Button';
 const JobDetail = ({
   jobValue,
   bufferSetJobValue,
+  errorJobTitle,
+  errorJobDescription,
+  errorEmployer,
+  errorName,
+  errorEmail,
+
 }) => {
 
   const buttonClick = () => {
@@ -19,8 +25,9 @@ const JobDetail = ({
           name="jobTitle"
           label="Job title*"
           value={jobValue.jobTitle}
-          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           style="w-full"
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
+          error={errorJobTitle}
         />
 
         <TextInput
@@ -32,6 +39,7 @@ const JobDetail = ({
           multiline={true}
           onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           style="w-full"
+          error={errorJobDescription}
         />
 
         <TextInput
@@ -40,6 +48,7 @@ const JobDetail = ({
           label="Enter Employer Name*"
           value={jobValue.employer}
           onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
+          error={errorEmployer}
           style="w-full"
         />
 
@@ -57,6 +66,7 @@ const JobDetail = ({
           label="Enter Your Name (if different from above)*"
           value={jobValue.name}
           onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
+          error={errorName}
           style="w-full"
         />
 
@@ -66,6 +76,7 @@ const JobDetail = ({
           label="Enter Email*"
           value={jobValue.email}
           onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
+          error={errorEmail}
           style="w-full"
         />
 

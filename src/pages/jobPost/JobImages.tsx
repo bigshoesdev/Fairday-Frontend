@@ -2,32 +2,26 @@ import Panel from 'src/components/common/Panel';
 import { FaCamera } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
 
-interface JobImagesProps {
-  selectedImages: File[];
-  setSelectedImages: React.Dispatch<React.SetStateAction<File[]>>;
-}
-
-const JobImages: React.FC<JobImagesProps> = ({ selectedImages, setSelectedImages }) => {
+const JobImages: React.FC<any> = ({ jobValue, bufferSetJobValue }) => {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files) {
       const fileArray = Array.from(files);
 
-      // Prevent duplicates
-      const uniqueFiles = fileArray.filter(file => !selectedImages.some(img => img.name === file.name));
+      const uniqueFiles = fileArray.filter(file => !jobValue.selectedImages.some(img => img.name === file.name));
 
-      if (selectedImages.length + uniqueFiles.length > 12) {
+      if (jobValue.selectedImages.length + uniqueFiles.length > 12) {
         alert('You can upload a maximum of 12 images.');
         return;
       }
 
-      setSelectedImages([...selectedImages, ...uniqueFiles]); // Append new images
+      bufferSetJobValue({...jobValue, selectedImages: [...jobValue.selectedImages, ...uniqueFiles] })
     }
   };
 
   const handleRemoveImage = (index: number) => {
-    setSelectedImages(selectedImages.filter((_, i) => i !== index));
+    bufferSetJobValue({...jobValue, selectedImages: jobValue.selectedImages.filter((_, i) => i !== index) })
   };
 
   return (
@@ -39,7 +33,7 @@ const JobImages: React.FC<JobImagesProps> = ({ selectedImages, setSelectedImages
 
         <div className='border border-[#e5e7eb] w-full h-[200px] rounded-xl flex justify-center items-center flex-col relative'>
           <FaCamera className='w-[50px] h-[50px] text-gray-300' />
-          <span>{selectedImages.length > 0 ? `${selectedImages.length} Files Selected` : "No File Chosen"}</span>
+          <span>{jobValue.selectedImages.length > 0 ? `${jobValue.selectedImages.length} Files Selected` : "No File Chosen"}</span>
           <input
             type="file"
             id="multipleFileInput"
@@ -57,7 +51,7 @@ const JobImages: React.FC<JobImagesProps> = ({ selectedImages, setSelectedImages
         </div>
 
         <div className="flex mt-2 space-x-5 flex-wrap">
-          {selectedImages.map((image, index) => (
+          {jobValue.selectedImages.map((image, index) => (
             <div key={index} className="relative w-24 h-24 border border-gray-200 rounded-xl flex justify-center items-center bg-[#fafafa]">
               <img
                 src={URL.createObjectURL(image)}

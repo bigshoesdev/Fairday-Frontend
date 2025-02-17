@@ -1,6 +1,6 @@
 import Panel from 'src/components/common/Panel';
 
-const PaymentArea = ({selectedPaymentMethod, setSelectedPaymentMethod }) => {
+const PaymentArea = ({ jobValue, bufferSetJobValue }) => {
 
   return (
     <div className='w-full'>
@@ -13,10 +13,10 @@ const PaymentArea = ({selectedPaymentMethod, setSelectedPaymentMethod }) => {
           <label className='flex items-center gap-2 cursor-pointer'>
             <input
               type="radio"
-              name="payment"
+              name="selectedPaymentMethod"
               value="mastercard"
-              checked={selectedPaymentMethod === 'mastercard'}
-              onChange={() => setSelectedPaymentMethod('mastercard')}
+              checked={jobValue.selectedPaymentMethod === 'mastercard'}
+              onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
               className="w-[15px] h-[15px] form-checkbox text-blue-600"
             />
             <img className='w-[80px]' src="src/assets/images/master-card.png" alt="MasterCard" />
@@ -25,10 +25,10 @@ const PaymentArea = ({selectedPaymentMethod, setSelectedPaymentMethod }) => {
           <label className='flex items-center gap-2 cursor-pointer'>
             <input
               type="radio"
-              name="payment"
+              name="selectedPaymentMethod"
               value="visa"
-              checked={selectedPaymentMethod === 'visa'}
-              onChange={() => setSelectedPaymentMethod('visa')}
+              checked={jobValue.selectedPaymentMethod === 'visa'}
+              onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
               className="w-[15px] h-[15px] form-checkbox text-blue-600"
             />
             <img className='w-[80px]' src="src/assets/images/visa.png" alt="Visa" />

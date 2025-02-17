@@ -13,7 +13,7 @@ const ApplicantType = ({ jobValue, bufferSetJobValue }) => {
     dispatch(getJobConstManage());
   }, [dispatch]);
 
-  const { jobConfig } = useSelector((state: any) => state);
+  const jobConfig = useSelector((state: any) => state.jobConfig);
   const GroupData = jobConfig.jobConstManage;
   const applicantTypeData = GroupData.filter(item => item.category === 'applicanttype');
 

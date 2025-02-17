@@ -9,7 +9,7 @@ const DesktopHeader: React.FC = () => {
 
   const navigate = useNavigate()
 
-  const { authSliceConfig } = useSelector((state: any) => state);
+  const authSliceConfig = useSelector((state: any) => state.authSliceConfig);
   const user = authSliceConfig.user;
 
   const [activeModal, setActiveModal] = useState<'login' | 'register' | null>(null);

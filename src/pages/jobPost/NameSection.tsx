@@ -1,23 +1,24 @@
-import { useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const NameSection = ({businessName, setBusinessName}) => {
+const NameSection = ({ jobValue, bufferSetJobValue, errorBusinessName }) => {
 
   return (
     <div className='w-full'>
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow'}>
 
         <span className="font-bold text-[26px] text-[#33495E]">
-        Your Name or Business Name *</span>
+          Your Name or Business Name *</span>
 
         <TextInput
+          name='businessName'
           type="email"
           label="Type Here..."
-          value={businessName}
+          value={jobValue.businessName}
           rows={4}
           multiline={true}
-          onChange={(e) => setBusinessName(e.target.value)}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
+          error={errorBusinessName}
           style="w-full"
         />
       </Panel>
