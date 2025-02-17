@@ -2,14 +2,11 @@ import { useSelector } from 'react-redux';
 import DropPanel from 'src/components/common/DropPanel';
 import RadioLabel from 'src/components/common/RadioLabel';
 
-const JobType = ({ jobValue, bufferSetJobValue }) => {
+const JobType = ({ jobValue, bufferSetJobValue, errorSelectedJobType }) => {
 
-  const { jobConfig } = useSelector((state: any) => state);
+  const jobConfig  = useSelector((state: any) => state.jobConfig);
   const GroupData = jobConfig.jobConstManage;
   const jobTypeData = GroupData.filter(item => item.category === 'jobtype');
-
-  console.log('GroupData', GroupData);
-  
 
   const selectedItem = jobTypeData.find(item => item._id === jobValue.selectedJobType);
 
@@ -24,6 +21,9 @@ const JobType = ({ jobValue, bufferSetJobValue }) => {
             ) : (
               <span className='text-gray-500 text-[22px] italic'></span>
             )}
+            <span className='text-red-500'>
+              {errorSelectedJobType ? errorSelectedJobType : ''}
+            </span>
           </div>
         }
       >

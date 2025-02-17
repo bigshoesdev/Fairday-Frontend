@@ -8,8 +8,11 @@ interface Props {
     style?: string;
     rows?: number;
     multiline?: boolean;
-    disabled?: boolean; 
+    disabled?: boolean;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    error?: boolean | string;
+    helperText?: string;
+    onErrorClear?: () => void;
 }
 
 const TextInput = ({
@@ -20,9 +23,19 @@ const TextInput = ({
     name,
     rows = 1,
     multiline = false,
-    disabled = false, 
+    disabled = false,
     onChange,
+    error = false,
+    onErrorClear,
 }: Props) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (onErrorClear) {
+            onErrorClear();
+        }
+
+        onChange(event);
+    };
+
     return (
         <TextField
             label={label}
@@ -31,11 +44,14 @@ const TextInput = ({
             name={name}
             rows={rows}
             multiline={multiline}
-            onChange={onChange}
+            onChange={handleChange}
             className={style}
-            disabled={disabled} 
+            disabled={disabled}
+            error={error? true: false}
+            helperText={error}
         />
     );
 };
 
 export default TextInput;
+

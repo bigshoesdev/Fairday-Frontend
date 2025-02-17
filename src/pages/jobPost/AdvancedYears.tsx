@@ -2,16 +2,11 @@ import { useSelector } from 'react-redux';
 import DropPanel from 'src/components/common/DropPanel';
 import RadioLabel from 'src/components/common/RadioLabel';
 
-const AdvancedYears = ({ selectedBusinessYears, setSelectedBusinessYears }) => {
-  const { jobConfig } = useSelector((state: any) => state);
+const AdvancedYears = ({ jobValue, bufferSetJobValue }) => {
+  const jobConfig = useSelector((state: any) => state.jobConfig);
   const GroupData = jobConfig.jobConstManage;
   const experienceYearsData = GroupData.filter(item => item.category === 'busniessyears');
-
-  const selectedItem = experienceYearsData.find(item => item._id === selectedBusinessYears);
-
-  const handleOptionChange = (option: string) => {
-    setSelectedBusinessYears(option);
-  };
+  const selectedItem = experienceYearsData.find(item => item._id === jobValue.selectedBusinessYears);
 
   return (
     <div className="w-full">
@@ -30,10 +25,11 @@ const AdvancedYears = ({ selectedBusinessYears, setSelectedBusinessYears }) => {
         <div className="flex flex-col gap-4">
           {experienceYearsData.map((item) => (
             <RadioLabel
+              name='selectedBusinessYears'
               key={item._id}
               label={item.string.trim()}
-              checked={selectedBusinessYears === item._id}
-              onChange={() => handleOptionChange(item._id)}
+              checked={jobValue.selectedBusinessYears === item._id}
+              onChange={(e: any) => bufferSetJobValue({ ...jobValue, [e.target.name]: item._id })}
             />
           ))}
         </div>

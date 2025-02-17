@@ -27,7 +27,7 @@ const JobSearch = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [searchParams] = useSearchParams();
 
-  const { jobConfig } = useSelector((state: any) => state);
+  const jobConfig = useSelector((state: any) => state.jobConfig);
   const { keyword, category, radius, jobType }: any = jobConfig
 
 

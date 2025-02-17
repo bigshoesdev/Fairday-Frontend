@@ -11,12 +11,9 @@ import StarRating from "src/components/common/StarRating";
 const DraggableModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const { jobConfig } = useSelector((state: any) => state);
   const { jobDetails, jobConstManage } = jobConfig;
-
-
-
   const jobTypes = jobConstManage.filter(item => item.category === 'jobtype');
-console.log('jobDetails', jobDetails);
 
+  const imagesPath = Array.isArray(jobDetails?.result?.images) ? jobDetails.result.images : [];
 
   const modalRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -126,11 +123,10 @@ console.log('jobDetails', jobDetails);
           <hr className="border-[1px] mt-6"></hr>
 
           <div className="mt-4 flex flex-row gap-4 overflow-x-auto ">
-            <img src="src/assets/images/banner1.png" className="w-20 h-20 rounded-lg"></img>
-            <img src="src/assets/images/banner2.png" className="w-20 h-20 rounded-lg"></img>
-            <img src="src/assets/images/banner4.png" className="w-20 h-20 rounded-lg"></img>
-
-          </div>
+            {imagesPath.map((imagePath, index) => (
+               <img src={`http://localhost:8000${imagePath}`} className="w-20 h-20 rounded-lg"></img>
+            ))}
+            </div>
         </div>
 
       </div>

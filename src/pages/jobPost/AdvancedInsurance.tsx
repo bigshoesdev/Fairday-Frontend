@@ -2,13 +2,13 @@ import { useSelector } from 'react-redux';
 import DropPanel from 'src/components/common/DropPanel';
 import RadioLabel from 'src/components/common/RadioLabel';
 
-const AdvancedInsurance = ({ selectedInsurance, setSelectedInsurance }) => {
+const AdvancedInsurance = ({ jobValue, bufferSetJobValue }) => {
 
-  const { jobConfig } = useSelector((state: any) => state);
+  const jobConfig = useSelector((state: any) => state.jobConfig);
   const GroupData = jobConfig.jobConstManage;
   const jobTypeData = GroupData.filter(item => item.category === 'insurancecoverage');
 
-  const selectedItem = jobTypeData.find(item => item._id === selectedInsurance);
+  const selectedItem = jobTypeData.find(item => item._id === jobValue.selectedInsurance);
 
   return (
     <div className='w-full'>
@@ -27,10 +27,11 @@ const AdvancedInsurance = ({ selectedInsurance, setSelectedInsurance }) => {
         <div className='flex flex-col gap-4'>
           {jobTypeData.map((item) => (
             <RadioLabel
+              name='selectedInsurance'
               key={item._id} // Ensure a unique key is provided for each element
               label={item.string.trim()} // Use the 'string' value from the data
-              checked={selectedInsurance === item._id}
-              onChange={() => setSelectedInsurance(item._id)}
+              checked={jobValue.selectedInsurance === item._id}
+              onChange={(e: any) => bufferSetJobValue({ ...jobValue, [e.target.name]: item._id })}
             />
           ))}
         </div>

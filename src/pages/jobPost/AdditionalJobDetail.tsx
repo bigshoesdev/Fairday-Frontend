@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const AdditionalJobDetail = ({ specification, setSpecification, schedules, setSchedules, agreements, setAgreements, note, setNote }) => {
-
+const AdditionalJobDetail = ({ jobValue, bufferSetJobValue }) => {
 
   return (
     <div className='w-full'>
@@ -16,12 +14,12 @@ const AdditionalJobDetail = ({ specification, setSpecification, schedules, setSc
             <span className='semi-bold'>Specification</span>
             <TextInput
               type="email"
-              name="email"
+              name="specification"
               label="text here"
-              value={specification}
+              value={jobValue.specification}
               rows={4}
               multiline={true}
-              onChange={(e) => setSpecification(e.target.value)}
+              onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
               style="w-full"
             />
           </div>
@@ -29,13 +27,13 @@ const AdditionalJobDetail = ({ specification, setSpecification, schedules, setSc
           <div>
             <span className='semi-bold'>Schedules</span>
             <TextInput
-              name="email"
+              name="schedules"
               type="email"
               label="text here"
-              value={schedules}
+              value={jobValue.schedules}
               rows={4}
               multiline={true}
-              onChange={(e) => setSchedules(e.target.value)}
+              onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
               style="w-full"
             />
           </div>
@@ -43,13 +41,13 @@ const AdditionalJobDetail = ({ specification, setSpecification, schedules, setSc
           <div>
             <span className='semi-bold'>Legal Agreements Requiring Authorization</span>
             <TextInput
-              name="email"
+              name="agreements"
               type="email"
               label="text here"
-              value={agreements}
+              value={jobValue.agreements}
               rows={4}
               multiline={true}
-              onChange={(e) => setAgreements(e.target.value)}
+              onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
               style="w-full"
             />
           </div>
@@ -57,13 +55,13 @@ const AdditionalJobDetail = ({ specification, setSpecification, schedules, setSc
           <div>
             <span className='semi-bold'>Add Notes</span>
             <TextInput
-              name="email"
+              name="note"
               type="email"
               label="text here"
-              value={note}
+              value={jobValue.note}
               rows={4}
               multiline={true}
-              onChange={(e) => setNote(e.target.value)}
+              onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
               style="w-full"
             />
           </div>

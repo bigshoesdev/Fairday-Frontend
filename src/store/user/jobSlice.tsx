@@ -3,7 +3,6 @@ import { messageHandle } from "src/store/systemSetting/commonSlice";
 import axios from "axios";
 
 interface JobConfigState {
-
   keyword: string;
   category: string;
   location: string;
@@ -17,12 +16,10 @@ interface JobConfigState {
   jobCategoryList: object[];
   loading: boolean;
   error: any;
-
   categoryCountList: number[];
 }
 
 const initialState: JobConfigState = {
-
   keyword: '',
   category: '',
   location: '',
@@ -31,13 +28,11 @@ const initialState: JobConfigState = {
   applicantType: '',
   experienceYearsType: '',
   suggestions: [],
-
   jobDetails: [],
   jobConstManage: [],
   jobCategoryList: [],
   loading: false,
   error: null,
-
   categoryCountList: []
 };
 
@@ -106,6 +101,7 @@ export const postJob = (data: any) => async (dispatch: any): Promise<any> => {
       dispatch(constJobDetailsRead(response.data));
       dispatch(messageHandle({ type: "success", message: response.data.message }));
     } else {
+      dispatch(configError(response.data.error))
       dispatch(messageHandle({ type: "error", message: response.data.message }));
     }
 
@@ -114,7 +110,7 @@ export const postJob = (data: any) => async (dispatch: any): Promise<any> => {
   }
 };
 export const viewJob = (data: any) => async (dispatch: any): Promise<any> => {
-      dispatch(constJobDetailsRead(data));
+  dispatch(constJobDetailsRead(data));
 };
 
 export const getJobCategoryByAlpha = (data: any) => async (dispatch: any): Promise<any> => {

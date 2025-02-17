@@ -38,7 +38,7 @@ const Login: React.FC<LoginProps> = ({ switchToRegister, closeModal }) => {
 
   return (
     <div>
-      <Panel classStyle={'flex flex-col py-12 px-6 gap-y-7'}>
+      <Panel classStyle={'flex flex-col py-12 px-6 gap-y-7 z-[1000]'}>
         <div className="flex justify-center">
           <img src="src/assets/images/logo_symbol.png" className="w-12" />
           <span className="ml-4 text-black font-bold text-[22px]">

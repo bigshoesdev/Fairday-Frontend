@@ -3,21 +3,16 @@ import { FaCamera } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
 import { SlPicture } from "react-icons/sl";
 
-interface LogoImageProps {
-  selectedLogo: File | null;
-  setSelectedLogo: (file: File | null) => void;
-}
-
-const LogoImage: React.FC<LogoImageProps> = ({ selectedLogo, setSelectedLogo }) => {
+const LogoImage: React.FC<any> = ({ jobValue, bufferSetJobValue }) => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      setSelectedLogo(file);
+      bufferSetJobValue({...jobValue, selectedLogo: file })
     }
   };
 
   const handleRemoveFile = () => {
-    setSelectedLogo(null);
+      bufferSetJobValue({...jobValue, selectedLogo: null })
   };
 
   return (
@@ -28,7 +23,7 @@ const LogoImage: React.FC<LogoImageProps> = ({ selectedLogo, setSelectedLogo }) 
         </span>
         <div className='border border-[#e5e7eb] w-full h-[200px] rounded-xl flex justify-center items-center flex-col relative'>
           <FaCamera className='w-[50px] h-[50px] text-gray-300' />
-          <span>{selectedLogo ? selectedLogo.name : "No File Chosen"}</span>
+          <span>{jobValue.selectedLogo ? jobValue.selectedLogo.name : "No File Chosen"}</span>
           <input
             type="file"
             id="singleFileInput"
@@ -46,10 +41,10 @@ const LogoImage: React.FC<LogoImageProps> = ({ selectedLogo, setSelectedLogo }) 
 
         <div className="flex mt-2">
           <div className="w-24 h-24 border border-gray-200 rounded-xl flex justify-center items-center bg-[#fafafa] relative">
-            {selectedLogo ? (
+            {jobValue.selectedLogo ? (
               <>
                 <img
-                  src={URL.createObjectURL(selectedLogo)}
+                  src={URL.createObjectURL(jobValue.selectedLogo)}
                   alt="Preview"
                   className="w-full h-full object-cover rounded-md"
                 />

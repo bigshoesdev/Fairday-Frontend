@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { notification } from 'antd';
 import { messageHandle } from "src/store/systemSetting/commonSlice";
 import type { NotificationArgsProps } from 'antd';
@@ -13,7 +13,7 @@ const Notification: React.FC = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   const [api, contextHolder] = notification.useNotification();
-  const { commonSliceConfig } = useSelector((state: any) => state);
+  const commonSliceConfig = useSelector((state: any) => state.commonSliceConfig);
 
   useEffect(() => {
     if (

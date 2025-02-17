@@ -2,13 +2,12 @@ import { useSelector } from 'react-redux';
 import DropPanel from 'src/components/common/DropPanel';
 import RadioLabel from 'src/components/common/RadioLabel';
 
-const AdvacnedAplicant = ({ selectedAdvancedApplicant, setSelectedAdvancedApplicant }) => {
+const AdvacnedAplicant = ({ jobValue, bufferSetJobValue }) => {
 
-  const { jobConfig } = useSelector((state: any) => state);
+  const jobConfig = useSelector((state: any) => state.jobConfig);
   const GroupData = jobConfig.jobConstManage;
   const jobTypeData = GroupData.filter(item => item.category === 'applicantverification');
-
-  const selectedItem = jobTypeData.find(item => item._id === selectedAdvancedApplicant);
+  const selectedItem = jobTypeData.find(item => item._id === jobValue.selectedAdvancedApplicant);
 
   return (
     <div className='w-full'>
@@ -27,10 +26,11 @@ const AdvacnedAplicant = ({ selectedAdvancedApplicant, setSelectedAdvancedApplic
         <div className='flex flex-col gap-4'>
           {jobTypeData.map((item) => (
             <RadioLabel
+              name='selectedAdvancedApplicant'
               key={item._id} // Ensure a unique key is provided for each element
               label={item.string.trim()} // Use the 'string' value from the data
-              checked={selectedAdvancedApplicant === item._id}
-              onChange={() => setSelectedAdvancedApplicant(item._id)}
+              checked={jobValue.selectedAdvancedApplicant === item._id}
+              onChange={(e: any) => bufferSetJobValue({ ...jobValue, [e.target.name]: item._id })}
             />
           ))}
         </div>
