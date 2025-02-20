@@ -78,7 +78,6 @@ export const initializeAuth = () => async (dispatch: any) => {
   }
 };
 
-
 export const loginAPI = (credentials: { email: string; password: string }) => async (dispatch: any) => {
   try {
     dispatch(authLoading());

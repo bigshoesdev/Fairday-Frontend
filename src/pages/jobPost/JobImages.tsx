@@ -44,7 +44,7 @@ const JobImages: React.FC<any> = ({ jobValue, bufferSetJobValue }) => {
           />
           <label
             htmlFor="multipleFileInput"
-            className="bg-primaryBlue text-white py-4 px-6 text-[15px] font-semibold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-[6px] absolute bottom-5 right-5"
+            className="bg -primaryBlue text-white py-4 px-6 text-[15px] font-semibold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-[6px] absolute bottom-5 right-5"
           >
             Choose Files
           </label>

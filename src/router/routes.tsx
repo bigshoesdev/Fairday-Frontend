@@ -12,7 +12,7 @@ const EmployerDetail = lazy(() => import("src/pages//employerDetail"));
 const ContactUs = lazy(() => import("src/pages/contactUs"));
 const UserProfile = lazy(() => import("src/pages/userProfile"));
 const Terms = lazy(() => import("src/pages/Terms"));
-const Policy =lazy(() => import("src/pages/policy"));
+const Policy =lazy(() => import("src/pages/Policy"));
 const PublishAd =lazy(() => import("src/pages/publishAd"));
 const AdverBusiness =lazy(() => import("src/pages/advertiseBusiness/Index"));
 const AdvertiseCheckout =lazy(() => import("src/pages/advertiseCheckout/Index"));

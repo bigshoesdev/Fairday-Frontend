@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from 'src/store';
 import { getJobConstManage } from 'src/store/user/jobSlice';
 import Button from 'src/components/common/Button';
 
 import RegisterSection from 'src/pages/jobProfileRegister/RegisterSection'
+import CategorySelect from 'src/pages/jobProfileRegister/CategorySelect'
 import OtherSection from 'src/pages/jobProfileRegister/OtherSection'
 import CertificationsSection from 'src/pages/jobProfileRegister/CertificationsSection'
 import NameLocation from 'src/pages/jobProfileRegister/NameLocation'
@@ -27,45 +28,51 @@ const JobProfileRegister = () => {
   }, [dispatch]);
 
 
-  //Register Section component variables
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [reciveConfirm, setReciveConfirm] = useState(false);
+  const userConfig = useSelector((state: any) => state.authSliceConfig);
+  const { user } = userConfig;
+  const userId = user?.sub;
 
-  //Other Section component Variables
-  const [otherTitle, setOtherTitle] = useState('');
-  const [skillDetails, setSkillDetails] = useState('');
+  const [appProfileValue, setAppProfileValue] = useState({
+    userId: userId,
+    email: "",
+    firstName: "",
+    lastName: "",
+    reciveConfirm: false,
+    otherTitle: "",
+    skillDetails: "",
+    certificate: "",
+  training: "",
+    license: "",
+    street: "",
+    city: "",
+    country: "",
+    selectedIdPic: "",
+    selectedLocationYears: "",
+    selectedExperienceLevel: "",
+    selectedResume: "",
+    selectedReferrial: "",
+    educationDetail: "",
+    workHistoryDetail: "",
+    verifyRequiredConfirm: false,
+    resumeReviewConfirm: false,
+    referProfileConfirm: false,
+    selectedPayment: 'mastercard'
 
-  //Certification Section component Variables
-  const [certificate, setCertificate] = useState('');
-  const [training, setTraining] = useState('');
-  const [license, setLicense] = useState('');
-
-  //Name and Location component variables
-  const [street, setStreet] = useState('');
-  const [city, setCity] = useState('');
-  const [country, setCountry] = useState('');
+  })
 
   //ID Images Component
-  const [selectedImages, setSelectedImages] = useState<File[]>([]);
-  const [selectedFile, setSelectedFile] = useState<File>();
-
-  const [referralFile, setReferralFile] = useState<File>();
 
   const [hideEmployerConfirm, setHideEmployerConfirm] = useState(false);
   const [agreeConfirm, setAgreeConfirm] = useState(false);
   const [autoSaveContrim, setAutoSaveContrim] = useState(false);
 
-  const [selectedPayment, setSelectedPayment] = useState('mastercard');
-
   const [checkboxStates, setCheckboxStates] = useState<{ [key: string]: boolean }>({});
   const [link, setLink] = useState('');
 
-
   //button click event
   const buttonClick = () => {
-  
+    console.log('this is button click', appProfileValue);
+
   };
 
   const onClick = () => {
@@ -89,70 +96,71 @@ const JobProfileRegister = () => {
               <Button
                 text="VIEW PROFILE"
                 onClick={onClick}
-                className='sm:text-[20px] md:text-[24px] rounded-xl bg-white text-blue-500 w-full hover:bg-gray-200 transition-all cursor-pointer hover:border-gray-400 focus:outline-none'
+                className='sm:text-[20px] md:text-[24px] py-[16px] rounded-xl bg-white text-blue-500 w-full hover:bg-gray-200 transition-all cursor-pointer hover:border-gray-400 focus:outline-none'
               />
             </a>
           </div>
         </div>
 
         <RegisterSection
-          firstName={firstName}
-          setFirstName={setFirstName}
-          lastName={lastName}
-          email={email}
-          setEmail={setEmail}
-          setLastName={setLastName}
-          reciveConfirm={reciveConfirm}
-          setReciveConfirm={setReciveConfirm}
+          appProfileValue={appProfileValue}
+          bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
         />
+
+        <CategorySelect
+          appProfileValue={appProfileValue}
+          bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+        />
+
 
         <OtherSection
-          otherTitle={otherTitle}
-          setOtherTitle={setOtherTitle}
-          skillDetails={skillDetails}
-          setSkillDetails={setSkillDetails}
-
+          appProfileValue={appProfileValue}
+          bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
         />
 
-        <ExperienceLevel />
+        <ExperienceLevel
+          appProfileValue={appProfileValue}
+          bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+        />
 
         <CertificationsSection
-          certificate={certificate}
-          setCertificate={setCertificate}
-          setTraining={setTraining}
-          training={training}
-          license={license}
-          setLicense={setLicense}
+          appProfileValue={appProfileValue}
+          bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
         />
 
         <PicIdImage
-          selectedImages={selectedImages}
-          setSelectedImages={setSelectedImages}
+          appProfileValue={appProfileValue}
+          bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
         />
 
         <NameLocation
-          street={street}
-          setStreet={setStreet}
-          city={city}
-          setCity={setCity}
-          country={country}
-          setCountry={setCountry}
+          appProfileValue={appProfileValue}
+          bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
         />
 
         <UploadResume
-          selectedFile={selectedFile}
-          setSelectedFile={setSelectedFile}
+          appProfileValue={appProfileValue}
+          bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
         />
 
-        <EducationDetail />
-        <WorkHistofyDetail />
+        <EducationDetail
+          appProfileValue={appProfileValue}
+          bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+        />
+        <WorkHistofyDetail
+          appProfileValue={appProfileValue}
+          bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+        />
 
         <UploadReferrials
-          setReferralFile={setReferralFile}
-          referralFile={referralFile}
+          appProfileValue={appProfileValue}
+          bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
         />
 
-        <VerifyRequire />
+        <VerifyRequire
+          appProfileValue={appProfileValue}
+          bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+        />
 
         <ReportsLinks
           checkboxStates={checkboxStates}
@@ -171,8 +179,8 @@ const JobProfileRegister = () => {
         />
 
         <PaymentArea
-          selectedPayment={selectedPayment}
-          setSelectedPayment={setSelectedPayment}
+          appProfileValue={appProfileValue}
+          bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
         />
 
         <label className="flex items-center space-x-5 ">

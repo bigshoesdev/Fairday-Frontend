@@ -1,7 +1,6 @@
 import Panel from 'src/components/common/Panel';
 
-const PaymentArea = ({selectedPayment, setSelectedPayment }) => {
-  // const [selectedPayment, setSelectedPayment] = useState('mastercard');
+const PaymentArea = ({appProfileValue, bufferSetAppProfileValue }) => {
 
   return (
     <div className='w-full'>
@@ -14,10 +13,10 @@ const PaymentArea = ({selectedPayment, setSelectedPayment }) => {
           <label className='flex items-center gap-2 cursor-pointer'>
             <input
               type="radio"
-              name="payment"
+              name="selectedPayment"
               value="mastercard"
-              checked={selectedPayment === 'mastercard'}
-              onChange={() => setSelectedPayment('mastercard')}
+              checked={appProfileValue.selectedPayment === 'mastercard'}
+              onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: e.target.value })}
               className="w-[15px] h-[15px] form-checkbox text-blue-600"
             />
             <img className='w-[80px]' src="src/assets/images/master-card.png" alt="MasterCard" />
@@ -26,10 +25,10 @@ const PaymentArea = ({selectedPayment, setSelectedPayment }) => {
           <label className='flex items-center gap-2 cursor-pointer'>
             <input
               type="radio"
-              name="payment"
+              name="selectedPayment"
               value="visa"
-              checked={selectedPayment === 'visa'}
-              onChange={() => setSelectedPayment('visa')}
+              checked={appProfileValue.selectedPayment === 'visa'}
+              onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: e.target.value })}
               className="w-[15px] h-[15px] form-checkbox text-blue-600"
             />
             <img className='w-[80px]' src="src/assets/images/visa.png" alt="Visa" />

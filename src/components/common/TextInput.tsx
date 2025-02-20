@@ -1,7 +1,7 @@
 import TextField from '@mui/material/TextField';
 
 interface Props {
-    label: string;
+    label?: string;
     value: string;
     type: string;
     name?: string;

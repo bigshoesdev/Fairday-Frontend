@@ -4,15 +4,16 @@ import { TiDelete } from "react-icons/ti";
 import { SlPicture } from "react-icons/sl";
 
 const LogoImage: React.FC<any> = ({ jobValue, bufferSetJobValue }) => {
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      bufferSetJobValue({...jobValue, selectedLogo: file })
+      bufferSetJobValue({ ...jobValue, selectedLogo: file })
     }
   };
 
   const handleRemoveFile = () => {
-      bufferSetJobValue({...jobValue, selectedLogo: null })
+    bufferSetJobValue({ ...jobValue, selectedLogo: null })
   };
 
   return (
