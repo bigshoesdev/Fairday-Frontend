@@ -2,10 +2,8 @@ import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
 const OtherSection = ({
-  otherTitle,
-  setOtherTitle,
-  skillDetails,
-  setSkillDetails
+  appProfileValue,
+  bufferSetAppProfileValue,
 }) => {
 
   return (
@@ -17,10 +15,10 @@ const OtherSection = ({
             type="email"
             name="otherTitle"
             label=""
-            value={otherTitle}
+            value={appProfileValue.otherTitle}
             rows={2}
             multiline={true}
-            onChange={(e) => setOtherTitle(e.target.value)}
+            onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
         </div>
@@ -31,10 +29,10 @@ const OtherSection = ({
             type="email"
             name="skillDetails"
             label=""
-            value={skillDetails}
+            value={appProfileValue.skillDetails}
             rows={3}
             multiline={true}
-            onChange={(e) => setSkillDetails(e.target.value)}
+            onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
         </div>

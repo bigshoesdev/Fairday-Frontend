@@ -5,7 +5,9 @@ import TextInput from 'src/components/common/TextInput';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const NameLocation = ({ street, setStreet, city, setCity, country, setCountry }) => {
+const NameLocation = ({ appProfileValue, bufferSetAppProfileValue }) => {
+
+  const { street, city, country } = appProfileValue
   const mapContainerRef = useRef(null);
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null); // Track the marker
@@ -14,15 +16,15 @@ const NameLocation = ({ street, setStreet, city, setCity, country, setCountry })
 
   const [selected, setSelected] = useState(null);
 
-  const handleSelection = (index) => {
-    setSelected(index);
-  };
-
   const { jobConfig } = useSelector((state: any) => state);
   const GroupData = jobConfig.jobConstManage;
   const locationYears = GroupData.filter(item => item.category === 'locationYears');
+  // const selectedItem = locationYears.find(item => item._id === appProfileValue.selectedLocationYears);
 
-
+  const handleSelection = (index) => {
+    const selectedOption = locationYears[index];
+    bufferSetAppProfileValue({ ...appProfileValue, selectedLocationYears: selectedOption._id });
+  };
 
   useEffect(() => {
     if (mapContainerRef.current && !map) {
@@ -73,25 +75,28 @@ const NameLocation = ({ street, setStreet, city, setCity, country, setCountry })
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow-lg'}>
         <span className="text-[20px] font-bold text-[#33495E]">Address / Location</span>
         <TextInput
+          name="street"
           type="text"
           label="Street Name*"
-          value={street}
-          onChange={(e) => setStreet(e.target.value)}
+          value={appProfileValue.street}
+          onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: e.target.value })}
           style="w-full"
         />
 
         <TextInput
+          name="city"
           type="text"
           label="City Zip*"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
+          value={appProfileValue.city}
+          onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: e.target.value })}
           style="w-full"
         />
         <TextInput
+          name='country'
           type="text"
           label="Country*"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
+          value={appProfileValue.country}
+          onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: e.target.value })}
           style="w-full"
         />
         <span className='font-bold'>Pinpoint Map Location( optional )</span>
@@ -118,7 +123,7 @@ const NameLocation = ({ street, setStreet, city, setCity, country, setCountry })
               {locationYears.map((option, index) => (
                 <div
                   key={index}
-                  className={`text-center rounded-lg p-4 cursor-pointer ${selected === index ? 'bg-primaryBlue text-white' : 'bg-white text-primaryBlue'
+                  className={`text-center rounded-lg p-4 cursor-pointer ${appProfileValue.selectedLocationYears === option._id ? 'bg-primaryBlue text-white' : 'bg-white text-primaryBlue'
                     }`}
                   onClick={() => handleSelection(index)}
                 >

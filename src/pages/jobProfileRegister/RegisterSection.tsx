@@ -1,15 +1,7 @@
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const RegisterSection = ({
-  firstName,
-  setFirstName,
-  lastName,
-  setLastName,
-  email,
-  setEmail,
-  reciveConfirm,
-  setReciveConfirm }) => {
+const RegisterSection = ({ appProfileValue, bufferSetAppProfileValue }) => {
 
   return (
     <div className='w-full'>
@@ -20,8 +12,8 @@ const RegisterSection = ({
             type="email"
             name="email"
             label=""
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={appProfileValue.email}
+            onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
         </div>
@@ -33,16 +25,16 @@ const RegisterSection = ({
               name="firstName"
               type="email"
               label="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={appProfileValue.firstName}
+              onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: e.target.value })}
               style="w-full"
             />
             <TextInput
               name="lastName"
               type="email"
               label="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              value={appProfileValue.lastName}
+              onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: e.target.value })}
               style="w-full"
             />
           </div>
@@ -50,10 +42,11 @@ const RegisterSection = ({
 
         <label className="flex items-center space-x-5 mt-2">
           <input
+            name="reciveConfirm"
             type="checkbox"
             className="w-[20px] h-[20px] form-checkbox text-blue-600"
-            checked={reciveConfirm}
-            onChange={() => setReciveConfirm((prev) => !prev)}
+            checked={appProfileValue.reciveConfirm}
+            onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: !appProfileValue[e.target.name] })}
           />
           <span className="font-bold text-[18px] text-[#33495E]">
             Recieve Updated Jobs Opportunities and New Job Leads</span>

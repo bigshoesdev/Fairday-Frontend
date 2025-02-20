@@ -122,7 +122,6 @@ const PostJob = () => {
     dispatch(postJob(formData))
   }
 
-
   const viewJobButton = () => {
     const formData: any = new FormData();
     Object.keys(jobValue).map((key: string) => {
@@ -137,9 +136,6 @@ const PostJob = () => {
     });
 
     dispatch(postJob(formData))
-    // if (isOkay) {
-    //   setIsModalOpen(true)
-    // }
   }
 
   useEffect(() => {
@@ -177,8 +173,8 @@ const PostJob = () => {
           jobValue={jobValue}
           bufferSetJobValue={(value: any) => setJobValue(value)}
           errorSelectedCategory={error && error.selectedCategory}
-
         />
+          
         <OhterCategory
           jobValue={jobValue}
           bufferSetJobValue={(value: any) => setJobValue(value)}
@@ -205,12 +201,13 @@ const PostJob = () => {
           jobValue={jobValue}
           bufferSetJobValue={(value: any) => setJobValue(value)}
           errorSelectedYearOption={error && error.selectedYearOption}
-
         />
+
         <JobImages
           jobValue={jobValue}
           bufferSetJobValue={(value: any) => setJobValue(value)}
         />
+        
         <NameSection
           jobValue={jobValue}
           bufferSetJobValue={(value: any) => setJobValue(value)}

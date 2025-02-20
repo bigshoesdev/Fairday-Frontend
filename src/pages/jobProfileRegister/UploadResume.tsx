@@ -1,21 +1,18 @@
+import { useState } from 'react'
 import Panel from 'src/components/common/Panel';
 import { LuUpload } from "react-icons/lu";
 
-interface UploadResumeProps {
-  selectedFile: File | null;
-  setSelectedFile: React.Dispatch<React.SetStateAction<File | null>>;
-}
+const UploadResume: React.FC<any> = ({ appProfileValue, bufferSetAppProfileValue }) => {
 
-const UploadResume: React.FC<UploadResumeProps> = ({ selectedFile, setSelectedFile }) => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (files && files[0]) {
-      setSelectedFile(files[0]); // Replace the current file with the new one
+    const file = event.target.files?.[0];
+    if (file) {
+      bufferSetAppProfileValue({ ...appProfileValue, selectedResume: file })
     }
   };
 
   const handleRemoveFile = () => {
-    setSelectedFile(null); // Clear the file
+    bufferSetAppProfileValue({ ...appProfileValue, selectedResume: null })
   };
 
   return (
@@ -27,24 +24,25 @@ const UploadResume: React.FC<UploadResumeProps> = ({ selectedFile, setSelectedFi
 
         <div className="border border-[#e5e7eb] w-full h-[200px] rounded-xl flex justify-center items-center flex-col relative">
           <LuUpload className="w-[50px] h-[50px] text-gray-300" />
-          <span className='mt-2'>{selectedFile ? selectedFile.name : "Upload Resume"}</span>
+          <span className='mt-2'>{appProfileValue.selectedResume ? appProfileValue.selectedResume.name : "Upload Resume"}</span>
           <input
             type="file"
-            id="singleFileInput"
+            id="resumeFileInput"
+            accept=".pdf,.doc,.docx"
             onChange={handleFileChange}
             className="hidden"
           />
           <label
-            htmlFor="singleFileInput"
+            htmlFor="resumeFileInput"
             className="bg-primaryBlue text-white py-4 px-6 text-[15px] font-semibold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-[6px] absolute bottom-5 right-5"
           >
             Choose File
           </label>
         </div>
 
-        {selectedFile && (
+        {appProfileValue.selectedResume && (
           <div className="mt-2 relative flex justify-between items-center">
-            <span className="text-gray-700">{selectedFile.name}</span>
+            <span className="text-gray-700">{appProfileValue.selectedResume.name}</span>
             <button
               onClick={handleRemoveFile}
               className="bg-red-500 text-white px-2 py-1 rounded text-xs"
@@ -56,10 +54,10 @@ const UploadResume: React.FC<UploadResumeProps> = ({ selectedFile, setSelectedFi
 
         <label className="flex items-center space-x-5 ">
           <input
+            name="resumeReviewConfirm"
             type="checkbox"
             className="w-[24px] h-[24px] form-checkbox text-blue-600"
-            // checked={autoSaveContrim}
-            // onChange={() => setAutoSaveContrim((prev) => !prev)}
+            onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: !appProfileValue[e.target.name] })}
           />
           <span className="font-bold text-[16px] text-gray-600">
             Post Resume to Employer Review Listings <span className='ml-6 font-bold text-black'>$5</span>
@@ -68,10 +66,10 @@ const UploadResume: React.FC<UploadResumeProps> = ({ selectedFile, setSelectedFi
 
         <label className="flex items-center space-x-5 ">
           <input
+            name="referProfileConfirm"
             type="checkbox"
+            onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: !appProfileValue[e.target.name] })}
             className="w-[24px] h-[24px] form-checkbox text-blue-600"
-            // checked={autoSaveContrim}
-            // onChange={() => setAutoSaveContrim((prev) => !prev)}
           />
           <span className="font-bold text-[16px] text-gray-600">
             Allow Employment & Staffing Agents to Refer Your Profile <span className='ml-6'>(no fee)</span>
@@ -83,3 +81,4 @@ const UploadResume: React.FC<UploadResumeProps> = ({ selectedFile, setSelectedFi
 };
 
 export default UploadResume;
+

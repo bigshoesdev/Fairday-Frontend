@@ -1,14 +1,7 @@
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const CertificationsSection = ({
-  certificate,
-  setCertificate,
-  setTraining,
-  training,
-  license,
-  setLicense
-}) => {
+const CertificationsSection = ({ appProfileValue, bufferSetAppProfileValue }) => {
 
   return (
     <div className='w-full'>
@@ -17,10 +10,11 @@ const CertificationsSection = ({
           <span className='font-bold mb-3'>Certifications</span>
           <TextInput
             type="email"
-            name="Certificate"
+            name="certificate"
             label="Certificate"
-            value={certificate}
-            onChange={(e) => setCertificate(e.target.value)}
+            value={appProfileValue.certificate}
+            onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: e.target.value })}
+
             style="w-full"
           />
         </div>
@@ -29,10 +23,10 @@ const CertificationsSection = ({
           <span className='font-bold mb-3'>Training</span>
           <TextInput
             type="email"
-            name="Training"
+            name="training"
             label="Training"
-            value={training}
-            onChange={(e) => setTraining(e.target.value)}
+            value={appProfileValue.training}
+            onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
         </div>
@@ -41,10 +35,10 @@ const CertificationsSection = ({
           <span className='font-bold mb-3'>Professional Licenses</span>
           <TextInput
             type="email"
-            name="License"
+            name="license"
             label="License"
-            value={license}
-            onChange={(e) => setLicense(e.target.value)}
+            value={appProfileValue.license}
+            onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
         </div>
