@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import DropPanel from 'src/components/common/DropPanel';
 import { AppDispatch } from "src/store";
@@ -7,7 +7,6 @@ import { getJobCategoryByAlpha } from "src/store/user/jobSlice";
 
 const CategorySelect = ({ appProfileValue, bufferSetAppProfileValue }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   useEffect(() => {
     dispatch(getJobCategoryByAlpha({ category: "jobcategory" }));
@@ -17,22 +16,28 @@ const CategorySelect = ({ appProfileValue, bufferSetAppProfileValue }) => {
   const groupedData = jobConfig?.jobCategoryList ?? {};
 
   const handleItemClick = (itemId: string, itemName: string) => {
+    const selectedCategories = appProfileValue.selectedCategories || [];
+
     if (selectedCategories.includes(itemId)) {
-      setSelectedCategories(selectedCategories.filter(id => id !== itemId));
-      bufferSetAppProfileValue({ ...appProfileValue, selectedCategory: selectedCategories.filter(id => id !== itemId) });
+      bufferSetAppProfileValue({
+        ...appProfileValue,
+        selectedCategories: selectedCategories.filter(id => id !== itemId),
+      });
     } else {
       if (selectedCategories.length < 5) {
-        const updatedCategories = [...selectedCategories, itemId];
-        setSelectedCategories(updatedCategories);
-        bufferSetAppProfileValue({ ...appProfileValue, selectedCategory: updatedCategories });
+        bufferSetAppProfileValue({
+          ...appProfileValue,
+          selectedCategories: [...selectedCategories, itemId],
+        });
       }
     }
   };
 
   const handleRemoveCategory = (itemId: string) => {
-    const updatedCategories = selectedCategories.filter(id => id !== itemId);
-    setSelectedCategories(updatedCategories);
-    bufferSetAppProfileValue({ ...appProfileValue, selectedCategory: updatedCategories });
+    bufferSetAppProfileValue({
+      ...appProfileValue,
+      selectedCategories: appProfileValue.selectedCategories.filter(id => id !== itemId),
+    });
   };
 
   return (
@@ -41,9 +46,11 @@ const CategorySelect = ({ appProfileValue, bufferSetAppProfileValue }) => {
         header={
           <div className='flex flex-col gap-2'>
             <span className='text-[#1880F1] text-[22px] font-bold'>Select Occupation or Services Offered *</span>
-            <span className='text-black text-[17px] font-bold'>From Our Category list  <span className='text-[#1880F1]'>(up to 5 categories)</span></span>
+            <span className='text-black text-[17px] font-bold'>
+              From Our Category list <span className='text-[#1880F1]'>(up to 5 categories)</span>
+            </span>
             <div className="flex flex-wrap gap-2 mb-4">
-              {selectedCategories.map((categoryId) => {
+              {appProfileValue.selectedCategories?.map((categoryId) => {
                 const categoryName = Object.values(groupedData)
                   .flat()
                   .find((item) => item.id === categoryId)?.name;
@@ -63,9 +70,6 @@ const CategorySelect = ({ appProfileValue, bufferSetAppProfileValue }) => {
           </div>
         }
       >
-        {/* Render buttons for each selected category */}
-
-
         <div className="columns-1 sm:columns-2 gap-6">
           {Object.keys(groupedData).sort().map((letter) => (
             <div key={letter} className="break-inside-avoid mb-4">
@@ -75,7 +79,7 @@ const CategorySelect = ({ appProfileValue, bufferSetAppProfileValue }) => {
                   <li
                     key={item.id}
                     onClick={() => handleItemClick(item.id, item.name)}
-                    className={`cursor-pointer ${selectedCategories.includes(item.id) ? 'text-blue-500 font-bold' : 'text-gray-700'
+                    className={`cursor-pointer ${appProfileValue.selectedCategories?.includes(item.id) ? 'text-blue-500 font-bold' : 'text-gray-700'
                       } hover:text-blue-500`}
                   >
                     {item.name}
@@ -91,4 +95,3 @@ const CategorySelect = ({ appProfileValue, bufferSetAppProfileValue }) => {
 };
 
 export default CategorySelect;
-

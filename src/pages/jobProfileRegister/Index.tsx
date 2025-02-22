@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from 'src/store';
 import { getJobConstManage } from 'src/store/user/jobSlice';
 import Button from 'src/components/common/Button';
-
 import RegisterSection from 'src/pages/jobProfileRegister/RegisterSection'
 import CategorySelect from 'src/pages/jobProfileRegister/CategorySelect'
 import OtherSection from 'src/pages/jobProfileRegister/OtherSection'
@@ -19,6 +18,7 @@ import ExperienceLevel from 'src/pages/jobProfileRegister/ExperienceLevel';
 import EducationDetail from 'src/pages/jobProfileRegister/EducationDetail';
 import WorkHistofyDetail from 'src/pages/jobProfileRegister/WorkHistofyDetail';
 import ReportsLinks from 'src/pages/jobProfileRegister/ReportsLinks';
+import { registerAppProfile } from 'src/store/user/appProfileSlice';
 
 const JobProfileRegister = () => {
 
@@ -31,17 +31,19 @@ const JobProfileRegister = () => {
   const userConfig = useSelector((state: any) => state.authSliceConfig);
   const { user } = userConfig;
   const userId = user?.sub;
+  const userEmail = user?.email;
 
   const [appProfileValue, setAppProfileValue] = useState({
     userId: userId,
-    email: "",
+    email: userEmail,
     firstName: "",
     lastName: "",
     reciveConfirm: false,
+    selectedCategories: [],
     otherTitle: "",
     skillDetails: "",
     certificate: "",
-  training: "",
+    training: "",
     license: "",
     street: "",
     city: "",
@@ -56,22 +58,22 @@ const JobProfileRegister = () => {
     verifyRequiredConfirm: false,
     resumeReviewConfirm: false,
     referProfileConfirm: false,
-    selectedPayment: 'mastercard'
+    selectedPayment: 'mastercard',
+    preScreeningReports: []
 
   })
-
-  //ID Images Component
 
   const [hideEmployerConfirm, setHideEmployerConfirm] = useState(false);
   const [agreeConfirm, setAgreeConfirm] = useState(false);
   const [autoSaveContrim, setAutoSaveContrim] = useState(false);
 
-  const [checkboxStates, setCheckboxStates] = useState<{ [key: string]: boolean }>({});
-  const [link, setLink] = useState('');
-
-  //button click event
   const buttonClick = () => {
-    console.log('this is button click', appProfileValue);
+    const formData: any = new FormData();
+    Object.keys(appProfileValue).map((key: string) => {
+      formData.append(key, appProfileValue[key]);
+    })
+
+    dispatch(registerAppProfile(formData))
 
   };
 
@@ -163,10 +165,8 @@ const JobProfileRegister = () => {
         />
 
         <ReportsLinks
-          checkboxStates={checkboxStates}
-          setCheckboxStates={setCheckboxStates}
-          link={link}
-          setLink={setLink}
+          appProfileValue={appProfileValue}
+          bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
         />
 
         <OverallRating

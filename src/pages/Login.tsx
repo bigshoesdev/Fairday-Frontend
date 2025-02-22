@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Panel from 'src/components/common/Panel';
 import Button from 'src/components/common/Button';
@@ -19,6 +19,7 @@ const Login: React.FC<LoginProps> = ({ switchToRegister, closeModal }) => {
 
   const { authSliceConfig } = useSelector((state: any) => state);
   const user = authSliceConfig.user;
+  const { isAuthenticate } = authSliceConfig;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,10 +32,13 @@ const Login: React.FC<LoginProps> = ({ switchToRegister, closeModal }) => {
     }
 
     dispatch(loginAPI(data))
-    if (authSliceConfig.isAuthenticate) {
-      closeModal()
-    }
   };
+
+  useEffect(() => {
+    if(isAuthenticate) {
+      closeModal();
+    }
+  }, [isAuthenticate, closeModal])
 
   return (
     <div>

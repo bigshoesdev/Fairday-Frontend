@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
 const JobCategory = () => {
-    const { jobConfig } = useSelector((state: any) => state);
+    const jobConfig = useSelector((state: any) => state.jobConfig);
     const groupedData = jobConfig.jobCategoryList;
 
     return (

@@ -124,12 +124,8 @@ const routes = [
     path: "/business-applicant-profile-registration",
     element: <BusinessProfileRegister />,
   },
-
-
-
-
   {
-    path: "/verify-email-address",
+    path: "/verify-email-address/:token",
     element: <VerifyEmail />,
   },
   {
