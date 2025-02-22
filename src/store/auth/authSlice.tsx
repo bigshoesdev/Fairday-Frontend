@@ -13,11 +13,13 @@ interface AuthState {
   loading: boolean;
   error: string | null;
   isAuthenticate: boolean;
+  bufferLink: string | null;
 }
 
 const initialState: AuthState = {
   user: null,
   token: null,
+  bufferLink: null,
   loading: false,
   error: null,
   isAuthenticate: false
@@ -39,7 +41,7 @@ const authSlice = createSlice({
     authLoading(state) {
       state.loading = true;
     },
-    loginSuccess(state, { payload }: PayloadAction<{ user: object; token: string; isAuthenticate: boolean }>) {
+       loginSuccess(state, { payload }: PayloadAction<{ user: object; token: string; isAuthenticate: boolean }>) {
       state.isAuthenticate = payload.isAuthenticate;
       state.user = payload.user;
       state.token = payload.token;
@@ -59,6 +61,9 @@ const authSlice = createSlice({
     authError(state, { payload }: PayloadAction<string>) {
       state.error = payload;
       state.loading = false;
+    },
+    setBufferLink(state, { payload }: PayloadAction<any>) {
+      state.bufferLink = payload;
     },
     updateUser(state, { payload }: PayloadAction<object>) {
       state.user = payload;
@@ -112,21 +117,20 @@ export const signupAPI = (data) => async (dispatch: any): Promise<any> => {
       const response = await axios.post("http://localhost:8000/api/v1/auth/signup", data);
 
       if (response.data.isOkay) {
-        const userToken = response.data.access_token;
+        dispatch(setBufferLink(response.data.bufferLink))
+        // dispatch(messageHandle({ type: "success", message: response.data.message }));
+        // const userToken = response.data.access_token;
 
-        const parsedResult = jwtDecodeUtil(userToken);
+        // const parsedResult = jwtDecodeUtil(userToken);
 
-        setAuthorizationToken(userToken)
+        // setAuthorizationToken(userToken)
+        // storage(userToken);
 
-        storage(userToken);
+        // dispatch(signupSuccess({ user: parsedResult, token: userToken, isAuthenticate: true }));
 
-        dispatch(messageHandle({ type: "success", message: response.data.message }));
-        dispatch(signupSuccess({ user: parsedResult, token: userToken, isAuthenticate: true }));
-
-        resolve({ user: parsedResult, token: userToken }); // Resolve the promise with the parsed result and token
+        // resolve({ user: parsedResult, token: userToken }); // Resolve the promise with the parsed result and token
       } else {
         dispatch(messageHandle({ type: "error", message: response.data.message }));
-
       }
 
     } catch (error: any) {
@@ -156,6 +160,6 @@ export const updateUserAPI = (userData: object) => async (dispatch: any) => {
   }
 };
 
-export const { loginSuccess, signupSuccess, logoutSuccess, authLoading, authError, updateUser } = authSlice.actions;
+export const { loginSuccess, signupSuccess, logoutSuccess, authLoading, authError, updateUser, setBufferLink } = authSlice.actions;
 
 export default authSlice.reducer;

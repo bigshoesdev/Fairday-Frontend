@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Panel from 'src/components/common/Panel';
 import Button from 'src/components/common/Button';
@@ -7,6 +7,7 @@ import TextInput from 'src/components/common/TextInput';
 import { signupAPI } from 'src/store/auth/authSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from 'src/store';
+import { useNavigate } from "react-router-dom";
 
 interface SignUpProps {
     switchToLogin: () => void;
@@ -16,10 +17,18 @@ interface SignUpProps {
 const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
 
     const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
 
     const { authSliceConfig } = useSelector((state: any) => state);
     const user = authSliceConfig.user;
+    const bufferLink = authSliceConfig?.bufferLink;
 
+    useEffect(() => {
+        if(bufferLink) {
+            navigate(bufferLink)
+        }
+    }, [bufferLink])
+    
     const [email, setEmail] = useState('');
     const [name, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -61,6 +70,8 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
             localDiscount: discountShopper,
             avaialble: ["name", "email", "password", "password1"]
         }
+        console.log('this is auth status', authSliceConfig.isAuthenticate);
+        
         dispatch(signupAPI(data))
         if (authSliceConfig.isAuthenticate) {
             closeModal()

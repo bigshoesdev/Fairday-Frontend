@@ -1,6 +1,10 @@
 import Button from "src/components/common/Button";
+import { useNavigate } from "react-router-dom";
 
-const VerifySpace = () => {
+const VerifySpace = ({ token, bufferName, bufferEmail }) => {
+
+  const navigate = useNavigate();
+
   return (
     <div className="bg-white rounded-lg p-6 w-full">
       <div className="flex justify-center">
@@ -40,37 +44,62 @@ const VerifySpace = () => {
           </svg>
         </div>
       </div>
+      {token ? (
+        <div className="flex flex-col items-center">
+          <h2 className="text-center title mt-4">
+            Verified your <span className="text-blue-600">email address</span>
+          </h2>
 
-      <h2 className="text-center title mt-4">
-        Verify your <span className="text-blue-600">email address</span>
-      </h2>
+          <p className="text-center mt-4 text-gray-700 subtitle3">
+            Welcome <strong>FAIRDAY JOBSEEKER</strong>,
+          </p>
+          <p className="text-center mt-4 text-gray-700 subtitle3">
+          You're all set! Your email is verified, and you're now part of our community. Log in to access exclusive features!
+          </p>
+        </div>
+      ) : (
+        <div>
+          <h2 className="text-center title mt-4">
+            Verify your <span className="text-blue-600">email address</span>
+          </h2>
 
-      <p className="text-center mt-4 text-gray-700 subtitle3">
-        Welcome <strong>FAIRDAY JOBSEEKER</strong>,
-      </p>
-      <p className="text-center mt-1 text-gray-700 text-contentText">
-        We have received a query you sent for job listings in your area. Please
-        verify your email ID.
-      </p>
-      <p className="text-center mt-4 text-gray-500 text-contentText">
-        Please confirm your email address by clicking the button below
-      </p>
-      <div className="flex justify-center mt-6">
+          <p className="text-center mt-4 text-gray-700 subtitle3">
+            Welcome <strong>FAIRDAY JOBSEEKER</strong>,
+          </p>
+
+          <div className="flex flex-col">
+            <span className="text-center mt-10 text-black text-[40px]">
+              Almost there, {bufferName ?? "User"}.
+            </span>
+            <span className="text-center mt-2 text-black text-[30px]">
+              Check your email to verify your account.
+            </span>
+            <span className="text-center mt-4 text-[20px]">
+              {bufferEmail ?? "No email provided"}
+            </span>
+          </div>
+        </div>
+      )}
+
+
+
+
+      {/* <div className="flex justify-center mt-6">
         <Button
           text="VERIFY EMAIL ADDRESS & SET PASSWORD"
           className="bg-primaryBlue text-white px-6 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
           onClick={() => console.log()}
         />
-      </div>
-      <p className="text-center mt-6 text-gray-500 text-contentText">
+      </div> */}
+      {/* <p className="text-center mt-6 text-gray-500 text-contentText">
         Or, paste this link into your browser:
       </p>
       <a
-        href="https://www.fairdayjobs.com/account_verification?code=examplecode"
+        href="http://localhost:5173/verify-email-address/${token}"
         className="text-blue-600 text-center block mt-1 break-all"
       >
-        https://www.fairdayjobs.com/account_verification?code=MjAyOTUyNTE1
-      </a>
+        http://localhost:5173/verify-email-address/${token}
+      </a> */}
       <div className="text-center mt-6 text-gray-600 text-[16px] font-semibold">
         <p>THANKS & REGARDS,</p>
         <p>

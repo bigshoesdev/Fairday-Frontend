@@ -49,7 +49,7 @@ export default function SearchBar() {
     dispatch(getJobsByQuery(paramsObject))
   }, [])
 
-  const { jobConfig } = useSelector((state: RootState) => state);
+  const jobConfig  = useSelector((state: RootState) => state.jobConfig);
   const { keyword, category, location, radius, suggestions, jobType, applicantType, experienceYearsType }: any = jobConfig
 
   const groupedData = jobConfig?.jobCategoryList || {};
