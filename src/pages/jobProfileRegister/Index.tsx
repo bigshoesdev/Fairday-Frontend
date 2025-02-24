@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from 'src/store';
+import { useNavigate } from 'react-router-dom';
 import { getJobConstManage } from 'src/store/user/jobSlice';
 import Button from 'src/components/common/Button';
 import RegisterSection from 'src/pages/jobProfileRegister/RegisterSection'
@@ -21,6 +22,8 @@ import ReportsLinks from 'src/pages/jobProfileRegister/ReportsLinks';
 import { registerAppProfile } from 'src/store/user/appProfileSlice';
 
 const JobProfileRegister = () => {
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
@@ -67,18 +70,25 @@ const JobProfileRegister = () => {
   const [agreeConfirm, setAgreeConfirm] = useState(false);
   const [autoSaveContrim, setAutoSaveContrim] = useState(false);
 
-  const buttonClick = () => {
+  const registerButton = () => {
     const formData: any = new FormData();
-    Object.keys(appProfileValue).map((key: string) => {
-      formData.append(key, appProfileValue[key]);
-    })
 
-    dispatch(registerAppProfile(formData))
+    Object.keys(appProfileValue).forEach((key: string) => {
 
+      if (key === 'selectedCategories') {
+        appProfileValue.selectedCategories.forEach((categoryId: string) => {
+          formData.append('selectedCategories[]', categoryId);
+        });
+      } else {
+        formData.append(key, appProfileValue[key]);
+      }
+    });
+
+    dispatch(registerAppProfile(formData));
   };
 
-  const onClick = () => {
-
+  const viewProfileButton = () => {
+    navigate('/user/userProfile')
   }
 
   return (
@@ -97,7 +107,7 @@ const JobProfileRegister = () => {
             <a href="#" className='w-full flex justify-center'>
               <Button
                 text="VIEW PROFILE"
-                onClick={onClick}
+                onClick={viewProfileButton}
                 className='sm:text-[20px] md:text-[24px] py-[16px] rounded-xl bg-white text-blue-500 w-full hover:bg-gray-200 transition-all cursor-pointer hover:border-gray-400 focus:outline-none'
               />
             </a>
@@ -198,7 +208,7 @@ const JobProfileRegister = () => {
         <div className='flex flex-col gap-4 w-full'>
           <Button
             text="REGISTER PROFILE"
-            onClick={() => buttonClick()}
+            onClick={() => registerButton()}
             className="bg-primaryBlue text-white py-6 text-[20px] font-bold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-xl"
           />
           <div className='text-[15px] text-black font-bold px-60 flex justify-center justify-between mt-5'>

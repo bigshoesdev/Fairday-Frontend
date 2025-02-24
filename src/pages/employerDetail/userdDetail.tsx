@@ -7,40 +7,14 @@ import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
 import LinearProgress from "@mui/material/LinearProgress";
+import { useSelector } from "react-redux";
 
-interface JobDetailProps {
-  avatar: string;
-  jobTitle: string;
-  jobType: string;
-  jobApplications: string;
-  jobDate: string;
-  userAvatar: string;
-  userName: string;
-  userEmail: string;
-  jobIndustry: string;
-  jobSeniority: string;
-  jobPosision: string;
-  company: string;
-}
+const UserDetail = ({ item, userprofile }) => {
+  const { jobConfig } = useSelector((state: any) => state);
+  const { jobConstManage } = jobConfig;
 
-const UserDetail: React.FC<{ item: JobDetailProps; userprofile: Boolean }> = ({
-  item,
-  userprofile,
-}) => {
-  const {
-    avatar,
-    jobTitle,
-    jobType,
-    jobApplications,
-    jobDate,
-    userAvatar,
-    userName,
-    userEmail,
-    jobIndustry,
-    jobSeniority,
-    jobPosision,
-    company,
-  } = item;
+  const locationYearsTypes = jobConstManage.filter(item => item.category === 'locationYears');
+
   return (
     <div className="w-full flex flex-col bg-white relative items-center shadow-lg rounded-[10px] p-6">
       {userprofile === true ? (
@@ -66,11 +40,11 @@ const UserDetail: React.FC<{ item: JobDetailProps; userprofile: Boolean }> = ({
           alt="User Avatar"
         />
         <div className="white bg-blue-500 !text-[20px] w-10 h-10 items-center rounded-[50px] text-white absolute top-2 right-2 justify-center flex">
-          <CameraAltOutlinedIcon  className="items-center"/>
+          <CameraAltOutlinedIcon className="items-center" />
         </div>
       </div>
-      <span className="font-semibold">{userName}</span>
-      <span className="text-[16px]">UI/UX Designer at Tecorts technolgies</span>
+      <span className="font-semibold mt-3 text-[25px]">{item[0]?.firstName} {item[0]?.lastName}</span>
+      <span className="text-[16px]">{item[0]?.otherTitle}</span>
       <Button
         text="HIRE"
         className="bg-darkBlue items-center text-white mt-3 mb-5 text-[16px] px-10 py-3 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
@@ -79,7 +53,7 @@ const UserDetail: React.FC<{ item: JobDetailProps; userprofile: Boolean }> = ({
       <div className="w-full text-left items-center">
         <p className="text-[16px] mb-2">
           <LocationOnOutlinedIcon className="text-blue-500 mr-4 !text-[18px]" />{" "}
-          8-52 ear Kortlis Mosptal, Noide spc 63
+          {item[0]?.street} {item[0]?.city} {item[0]?.country}
         </p>
         <p className="text-[16px] mb-2">
           <BusinessCenterOutlinedIcon className="text-blue-500 mr-4 !text-[18px]" />{" "}
@@ -87,15 +61,15 @@ const UserDetail: React.FC<{ item: JobDetailProps; userprofile: Boolean }> = ({
         </p>
         <p className="text-[16px] mb-2">
           <WorkHistoryOutlinedIcon className="text-blue-500 mr-4 !text-[18px]" />{" "}
-          INR2 lakh(s) 20 Thoushand
+          {locationYearsTypes.find((each) => each._id === item[0]?.selectedLocationYears)?.string || ''}
         </p>
         <p className="text-[16px] mb-2">
           <LocalPhoneOutlinedIcon className="text-blue-500 mr-4 !text-[18px]" />{" "}
-          991096776
+          {item[0]?.phoneNumber || '- -'}
         </p>
         <p className="text-[16px] mb-2 w-full ">
           <EmailOutlinedIcon className="text-blue-500 mr-4 !text-[18px]" />{" "}
-          rohit.aharam@jacob.com
+          {item[0]?.email}
           <span className="text-right text-blue-500 float-right">
             VERIFY <SecurityIcon className=" !text-[18px]" />
           </span>

@@ -50,9 +50,24 @@ export const registerAppProfile = (data: any) => async (dispatch: any): Promise<
   }
 };
 
-// export const viewJob = (data: any) => async (dispatch: any): Promise<any> => {
-//   dispatch(constJobDetailsRead(data));
-// };
+
+
+export const viewAppProfile = (userId: any) => async (dispatch: any): Promise<any> => {
+  try {
+    dispatch(configLoading());
+    const response = await axios.post("http://localhost:8000/api/v1/user/appProfile/view-profile", userId);
+    if (response.data.isOkay) {
+      dispatch(constAppProfileDetailsRead(response.data.result));
+    } else {
+      dispatch(configError(response.data.error))
+      dispatch(messageHandle({ type: "error", message: response.data.message }));
+    }
+
+  } catch (error: any) {
+    dispatch(messageHandle({ type: "error", message: "Failed to fetch data" }));
+  }
+};
+
 
 export const {
   configLoading,

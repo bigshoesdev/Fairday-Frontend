@@ -1,9 +1,39 @@
 import Button from "src/components/common/Button";
+import { useSelector } from "react-redux";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
-const UserHistory : React.FC<{userprofile: Boolean }> = ({userprofile}) => {
+const UserHistory = ({ item, userprofile }) => {
+
+  const { jobConfig } = useSelector((state: any) => state);
+  const { jobConstManage } = jobConfig;
+
+  const experienceLevelTypes = jobConstManage.filter(item => item.category === 'experienceLevel');
+  const locationYearsTypes = jobConstManage.filter(item => item.category === 'locationYears');
+
+  const jobCategoryTypes = jobConstManage.filter(item => item.category === 'jobcategory');
+
+  const selectedCategories = item[0]?.selectedCategories;
+  const CategoriesStrings = jobCategoryTypes
+    .filter(job => selectedCategories.includes(job._id))
+    .map(job => job.string);
+
+  const fileExtension = item[0]?.selectedResume.split('.').pop();
+
+  const createdAt = item[0]?.createdAt;
+  const formattedDate = new Date(createdAt).toLocaleDateString("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
+
+  const resume = item[0]?.selectedResume || ""; 
+
+  const formattedPath = resume.startsWith("./") ? resume.slice(1) : resume;
+  const fileURL = `http://localhost:8000${formattedPath}`;
+
+
   return (
     <div className="w-full flex flex-col gap-3 relative">
-        <div className="w-0 h-0 border-l-[15px] top-[-25px] left-[-200px] absolute border-l-transparent border-r-[15px] border-r-transparent border-b-[15px] border-b-blue-100"></div>
+      <div className="w-0 h-0 border-l-[15px] top-[-25px] left-[-200px] absolute border-l-transparent border-r-[15px] border-r-transparent border-b-[15px] border-b-blue-100"></div>
 
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
         <p className="text-[18px] font-bold mb-1">
@@ -14,42 +44,29 @@ const UserHistory : React.FC<{userprofile: Boolean }> = ({userprofile}) => {
           <span className="text-blue-500">(Up to 5 Categories)</span>
         </p>
         <div className="flex flex-wrap gap-2">
-          <span className="text-[14px] border border-black bg-blue-200 text-black px-4 py-2 rounded-[7px]">
-            UI Engineering
-          </span>
-          <span className="text-[14px] border border-black bg-blue-200 text-black px-4 py-2 rounded-[7px]">
-            Front End Programming
-          </span>
-          <span className="text-[14px] border border-black bg-blue-200 text-black px-4 py-2 rounded-[7px]">
-            Web Design
-          </span>
-          <span className="text-[14px] border border-black bg-blue-200 text-black px-4 py-2 rounded-[7px]">
-            HTML.CSS3
-          </span>
-          <span className="text-[14px] border border-black bg-blue-200 text-black px-4 py-2 rounded-[7px]">
-            UI/UX
-          </span>
+          {CategoriesStrings.map((category, index) => (
+            <span
+              key={index}
+              className="text-[14px] border border-black bg-blue-200 text-black px-4 py-2 rounded-[7px]"
+            >
+              {category}
+            </span>
+          ))}
         </div>
+
       </div>
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
         <p className="text-[18px] font-bold mb-1">Skill Set Discription</p>
         <p className="text-[14px]">
-          I’m a highly skilled Full Stack Developer with a strong foundation in
-          both frontend and backend technologies. My passion lies in creating
-          dynamic, user-friendly applications, ensuring seamless functionality
-          and a polished user experience. I thrive on solving complex problems
-          and enjoy working across the entire tech stack, from crafting sleek
-          interfaces to optimizing backend performance. Confident in my ability
-          to deliver high-quality solutions, I’m always looking for creative
-          challenges that push the boundaries of what’s possible in web
-          development.
+          {item[0]?.skillDetails}
         </p>
       </div>
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
         <p className="text-[18px] font-bold mb-1">
           <span className="">Experience Level</span>
           <Button
-            text="5 Months"
+            text={experienceLevelTypes.find((each) => each._id === item[0].selectedExperienceLevel)?.string || ''}
+
             className="bg-darkBlue items-center text-white mt-3 float-right text-[14px] px-6 py-1 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
             onClick={() => console.log()}
           />
@@ -57,12 +74,12 @@ const UserHistory : React.FC<{userprofile: Boolean }> = ({userprofile}) => {
       </div>
       <div className="w-full flex bg-white shadow-lg rounded-[10px] p-3 px-5 gap-2">
         <div className="flex-[6] flex flex-col">
-          <p className="text-[18px] font-bold mb-1">Rohit Sharma</p>
+          <p className="text-[18px] font-bold mb-1">{item[0]?.firstName} {item[0]?.lastName}</p>
           <p className="text-[14px] mb-1">
-            8-52 ear Kortlis Mosptal, Noide spc 63 201301
+            {item[0]?.street} {item[0]?.city}
           </p>
-          <p className="text-[14px] mb-1 text-blue-500">more</p>
-          <p className="text-[14px] mb-1">1 Years at this location</p>
+          <p className="text-[14px] mb-1 text-blue-500">{item[0]?.country}</p>
+          <p className="text-[14px] mb-1">{locationYearsTypes.find((each) => each._id === item[0].selectedLocationYears)?.string || ''} at this location</p>
         </div>
         <div className="flex-[6] flex flex-col">
           <img
@@ -106,59 +123,32 @@ const UserHistory : React.FC<{userprofile: Boolean }> = ({userprofile}) => {
         </div>
         <p className="text-[18px] font-bold mb-0">Attach resume</p>
         <p className="text-[14px] mb-1">
-          I’m a highly skilled Full Stack Developer with a strong foundation in
-          both frontend and backend technologies.
+          Resume is the most important document recruiters look for. Recruiters generally do not look at profiles without resumes.
         </p>
-        <div className="w-full flex flex-col justify-center items-center py-5 border border-black pb-1">
+        <p className="text-[14px] font-bold mt-3">
+          {item[0]?.firstName}_{item[0]?.lastName}.{fileExtension} -<span className="font-normal"> Uploaded on {formattedDate}</span>
+        </p>
+        <div className="w-full flex flex-col justify-center items-center py-5 border border-black pb-1 mt-10">
           <Button
-            text="Upload"
-            className="bg-darkBlue text-white text-[14px] px-6 py-1 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-            onClick={() => console.log()}
+            text="VIEW RESUME"
+            className="bg-darkBlue text-white text-[14px] px-10 py-3 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+            onClick={() => window.open(fileURL, "_blank", "noopener,noreferrer")}
           />
           <p className="text-[14px] mt-1">
-            I’m a highly skilled Full Stack Developer
+            Supported Formats: doc, pdf, upto 2MB
           </p>
         </div>
       </div>
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
         <p className="text-[18px] font-bold mb-3">Education Details</p>
         <p className="text-[14px] font-bold mb-1">
-          bachelor in graphic and web page design
-        </p>
-        <p className="text-[14px]">
-          Aptech india
-          <br />
-          June 2013 Full Time
-          <br />
-          Avaible to join in 15 Days or less
-          <br />
-          I’m a highly skilled Full Stack Developer with a strong foundation in
-          both frontend and backend technologies.
+          {item[0]?.educationDetail}
         </p>
       </div>
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
         <p className="text-[18px] font-bold mb-1">Work History Details</p>
-        <p className="text-[14px] font-bold mb-1 mt-2">UI UX Designer</p>
         <p className="text-[14px]">
-          V Resorts
-          <br />
-          June 2013 to PResnet(1 year 9 monts)
-          <br />
-          Avaible to join in 15 Days or less
-          <br />
-          I’m a highly skilled Full Stack Developer with a strong foundation in
-          both frontend and backend technologies.
-        </p>
-        <p className="text-[14px] font-bold mb-1 mt-2">UI UX Designer</p>
-        <p className="text-[14px]">
-          Appsquadr V Resorts
-          <br />
-          June 2013 to PResnet(1 year 9 monts)
-          <br />
-          Avaible to join in 15 Days or less
-          <br />
-          I’m a highly skilled Full Stack Developer with a strong foundation in
-          both frontend and backend technologies.
+          {item[0]?.workHistoryDetail}
         </p>
       </div>
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
@@ -230,11 +220,11 @@ const UserHistory : React.FC<{userprofile: Boolean }> = ({userprofile}) => {
         </div>
       </div>
 
-      {userprofile?<Button
-      text="Attach profile to Referral"
-      className="bg-darkBlue items-center text-white mt-3 mb-0 float-right text-[18px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-      onClick={() => console.log()}
-    />:<></>}
+      {userprofile ? <Button
+        text="Attach profile to Referral"
+        className="bg-darkBlue items-center text-white mt-3 mb-0 float-right text-[18px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+        onClick={() => console.log()}
+      /> : <></>}
       <Button
         text="Save to Shortlist"
         className="bg-darkBlue items-center text-white mt0 mb-0 float-right text-[18px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"

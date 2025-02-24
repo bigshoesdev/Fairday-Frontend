@@ -111,9 +111,13 @@ const PostJob = () => {
       Object.keys(jobValue).map((key: string) => {
         formData.append(key, jobValue[key]);
       })
-
+      
+      console.log('applicantType', jobValue.checkboxStates);
       const applicantType = Object.keys(jobValue.checkboxStates).filter(key => jobValue.checkboxStates[key]);
       applicantType.forEach(type => formData.append("applicantType", type));
+
+    
+      
 
       jobValue.selectedImages.forEach((file) => {
         formData.append("images", file);
@@ -129,6 +133,7 @@ const PostJob = () => {
     })
 
     const applicantType = Object.keys(jobValue.checkboxStates).filter(key => jobValue.checkboxStates[key]);
+    
     applicantType.forEach(type => formData.append("applicantType", type));
 
     jobValue.selectedImages.forEach((file) => {
@@ -145,7 +150,7 @@ const PostJob = () => {
   }, [isOkay]);
 
   return (
-    <div className='flex flex-col w-full justify-center items-center bg-[#FAFAFA] pb-20 '>
+    <div className='flex flex-col w-full justify-center items-center bg-[#FAFAFA] pb-20 border border-red-500'>
       <div className='text-center font-bold text-[40px] text-white bg-[#526876] h-[355px] w-full pt-[100px]'>
         Create Job Post
       </div>
