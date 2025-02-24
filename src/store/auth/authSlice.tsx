@@ -118,7 +118,7 @@ export const signupAPI = (data) => async (dispatch: any): Promise<any> => {
 
       if (response.data.isOkay) {
         dispatch(setBufferLink(response.data.bufferLink))
-        // dispatch(messageHandle({ type: "success", message: response.data.message }));
+        dispatch(messageHandle({ type: "success", message: response.data.message }));
         // const userToken = response.data.access_token;
 
         // const parsedResult = jwtDecodeUtil(userToken);
