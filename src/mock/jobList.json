@@ -1,7 +1,7 @@
 {  
     "read": [
         {
-            "link": "http://localhost:8000/api/v1/user/job/get-all-jobs",
+            "link": "https://fairdayjobs.com/api/v1/user/job/get-all-jobs",
             "dbName": "job",
             "value": "null",
             "action": "read",

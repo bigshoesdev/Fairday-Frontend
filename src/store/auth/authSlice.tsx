@@ -85,7 +85,7 @@ export const initializeAuth = () => async (dispatch: any) => {
 export const loginAPI = (credentials: { email: string; password: string }) => async (dispatch: any) => {
   try {
     dispatch(authLoading());
-    const response = await axios.post("http://localhost:8000/api/v1/auth/login", credentials);
+    const response = await axios.post("https://fairdayjobs.com/api/v1/auth/login", credentials);
 
     console.log('This is login response data', response.data);
 
@@ -113,7 +113,7 @@ export const signupAPI = (data) => async (dispatch: any): Promise<any> => {
     try {
       dispatch(authLoading());
 
-      const response = await axios.post("http://localhost:8000/api/v1/auth/signup", data);
+      const response = await axios.post("https://fairdayjobs.com/api/v1/auth/signup", data);
 
       if (response.data.isOkay) {
         dispatch(setBufferLink(response.data.bufferLink))

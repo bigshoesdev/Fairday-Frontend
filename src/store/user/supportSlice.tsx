@@ -47,7 +47,7 @@ export const supportCreate = (data: any) => async (dispatch: any): Promise<any> 
   try {
     
     dispatch(loading(true));
-    const response = await axios.post("http://localhost:8000/api/v1/admin/support/create", data);
+    const response = await axios.post("https://fairdayjobs.com/api/v1/admin/support/create", data);
     dispatch(messageHandle({ type: response.data.isOkay ? "success" : "error", message: response.data.message }));
     
     if(response.data.isOkay){

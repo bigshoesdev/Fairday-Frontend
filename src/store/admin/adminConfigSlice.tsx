@@ -79,7 +79,7 @@ export const fetchConstMangeAPI = (data: any) => async (dispatch: any): Promise<
 export const createConstMangeAPI = (data: object) => async (dispatch: any) => {
   try {
     dispatch(adminConfigLoading());
-    const response = await axios.post("http://localhost:8000/api/v1/admin/constmanagement/create", data);
+    const response = await axios.post("https://fairdayjobs.com/api/v1/admin/constmanagement/create", data);
     dispatch(constMangeCreate(response.data));
   } catch (error: any) {
     dispatch(adminConfigError(error.message || "Failed to create item"));
@@ -89,7 +89,7 @@ export const createConstMangeAPI = (data: object) => async (dispatch: any) => {
 export const updateConstMangeAPI = (id: string, updatedData: object) => async (dispatch: any) => {
   try {
     dispatch(adminConfigLoading());
-    const response = await axios.put(`http://localhost:8000/api/v1/adminConfig/${id}`, updatedData);
+    const response = await axios.put(`https://fairdayjobs.com/api/v1/adminConfig/${id}`, updatedData);
     dispatch(constMangeUpdate({ id, updatedData: response.data }));
   } catch (error: any) {
     dispatch(adminConfigError(error.message || "Failed to update item"));
@@ -109,7 +109,7 @@ export const deleteConstMangeAPI = (data: any) => async (dispatch: any) => {
 export const getSortedGroup = () => async (dispatch: any): Promise<any> => {
   try {
     dispatch(adminConfigLoading());
-    const response = await axios.get("http://localhost:8000/api/v1/admin/constmanagement/sorted-grouped");
+    const response = await axios.get("https://fairdayjobs.com/api/v1/admin/constmanagement/sorted-grouped");
     dispatch(constMangeRead(response.data));
   } catch (error: any) {
     dispatch(adminConfigError(error.message || "Failed to fetch data"));
@@ -119,7 +119,7 @@ export const getSortedGroup = () => async (dispatch: any): Promise<any> => {
 export const supportListRead = () => async (dispatch: any): Promise<any> => {
   try {
     dispatch(adminConfigLoading());
-    const response = await axios.post("http://localhost:8000/api/v1/admin/support/read");
+    const response = await axios.post("https://fairdayjobs.com/api/v1/admin/support/read");
     dispatch(supportRead(response.data));
   } catch (error: any) {
     dispatch(adminConfigError(error.message || "Failed to fetch data"));

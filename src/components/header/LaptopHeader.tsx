@@ -111,7 +111,7 @@ const LaptopHeader = () => {
                 <img src="src/assets/images/logo.png" alt="Logo" className="w-[160px] xs:w-[210px] xs:h-[36px]  cursor-pointer" />
                 {authSliceConfig.isAuthenticate ?
                     <>
-                        <img src="http://localhost:5173/src/assets/images/user1.png" className='px-5 cursor-pointer' onClick={() => navigate('/user/userprofile')} />
+                        <img src="https://fairdayjobs.com/src/assets/images/user1.png" className='px-5 cursor-pointer' onClick={() => navigate('/user/userprofile')} />
 
                         <p className='text-white mb-0 px-5 cursor-pointer'>
                             {user?.email}

@@ -35,7 +35,7 @@ const UserDetail = ({ item, userprofile }) => {
       )}
       <div className="items-center relative">
         <img
-          src="http://localhost:5173/src/assets/images/user1.png"
+          src="https://fairdayjobs.com/src/assets/images/user1.png"
           className="w-40 h-40 mt-3"
           alt="User Avatar"
         />
