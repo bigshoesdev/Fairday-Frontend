@@ -1,7 +1,7 @@
 {
     "read": [
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "jobcategory",
             "value": "jobcategory",
             "action": "read",
@@ -11,7 +11,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "jobtype",
             "value": "jobtype",
             "action": "read",
@@ -21,7 +21,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "applicanttype",
             "value": "applicanttype",
             "action": "read",
@@ -31,7 +31,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "salary",
             "value": "salary",
             "action": "read",
@@ -41,7 +41,7 @@
             "registerType": 3
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "experienceyears",
             "value": "experienceyears",
             "action": "read",
@@ -51,7 +51,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "employerDescriptoin",
             "value": "employerDescriptoin",
             "action": "read",
@@ -61,7 +61,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "busniessyears",
             "value": "busniessyears",
             "action": "read",
@@ -71,7 +71,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "insurancecoverage",
             "value": "insurancecoverage",
             "action": "read",
@@ -81,7 +81,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "applicantverification",
             "value": "applicantverification",
             "action": "read",
@@ -91,7 +91,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "currencytype",
             "value": "currencytype",
             "action": "read",
@@ -101,7 +101,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "applicantRequirements",
             "value": "applicantRequirements",
             "action": "read",
@@ -111,7 +111,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "paymentMethod",
             "value": "paymentMethod",
             "action": "read",
@@ -121,7 +121,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "employmentPayment",
             "value": "employmentPayment",
             "action": "read",
@@ -131,7 +131,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "advertiseSize",
             "value": "advertiseSize",
             "action": "read",
@@ -141,7 +141,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "advertiseRadius",
             "value": "advertiseRadius",
             "action": "read",
@@ -151,7 +151,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "advertiseDuration",
             "value": "advertiseDuration",
             "action": "read",
@@ -161,7 +161,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "userBusinessPlan",
             "value": "userBusinessPlan",
             "action": "read",
@@ -171,7 +171,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "locationYears",
             "value": "locationYears",
             "action": "read",
@@ -181,7 +181,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "experienceLevel",
             "value": "experienceLevel",
             "action": "read",
@@ -191,7 +191,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "reportsLink",
             "value": "reportsLink",
             "action": "read",
@@ -201,7 +201,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "businessYears",
             "value": "businessYears",
             "action": "read",
@@ -211,7 +211,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "certificateReports",
             "value": "certificateReports",
             "action": "read",
@@ -221,7 +221,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/read",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/read",
             "dbName": "radius",
             "value": "radius",
             "action": "read",
@@ -238,7 +238,7 @@
 
     "create": [
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/create",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/create",
             "dbName": "jobcategory",
             "value": "jobcategory",
             "action": "create",
@@ -250,7 +250,7 @@
     ],
     "delete": [
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/delete",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/delete",
             "dbName": "jobcategory",
             "value": "jobcategory",
             "action": "delete",
@@ -260,7 +260,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/delete",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/delete",
             "dbName": "jobtype",
             "value": "jobtype",
             "action": "delete",
@@ -270,7 +270,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/delete",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/delete",
             "dbName": "applicanttype",
             "value": "applicanttype",
             "action": "delete",
@@ -280,7 +280,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/delete",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/delete",
             "dbName": "salary",
             "value": "salary",
             "action": "delete",
@@ -290,7 +290,7 @@
             "registerType": 1
         },
         {
-            "link": "https://fairdayjobs.com/api/v1/admin/constmanagement/delete",
+            "link": "https://api.fairdayjobs.com/api/v1/admin/constmanagement/delete",
             "dbName": "experienceyears",
             "value": "experienceyears",
             "action": "delete",

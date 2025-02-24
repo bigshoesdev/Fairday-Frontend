@@ -1,7 +1,7 @@
 {  
     "read": [
         {
-            "link": "https://fairdayjobs.com/api/v1/user/job/get-all-jobs",
+            "link": "https://api.fairdayjobs.com/api/v1/user/job/get-all-jobs",
             "dbName": "job",
             "value": "null",
             "action": "read",
