@@ -1,11 +1,13 @@
 import { useSearchParams, useParams } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { jwtDecodeUtil } from "src/utlies/jwt.decode";
 import JobPreviews from "./jobPreview";
 import { AppDispatch } from 'src/store';
+import { storage } from "src/utlies/localStorage";
 import VerifySpace from "./verifySpace";
 import { signupSuccess } from "src/store/auth/authSlice";
+import { setAuthorizationToken } from "src/utlies/axiosInstance";
 
 const VerifyEmail = () => {
 
@@ -22,9 +24,9 @@ const VerifyEmail = () => {
   useEffect(() => {
     if (token) {
       const decodedUser = jwtDecodeUtil(token);
-      console.log("decodedUser", decodedUser);
-
       if (decodedUser) {
+        storage(token)
+        setAuthorizationToken(token)
         dispatch(signupSuccess({ user: decodedUser, token: token, isAuthenticate: true }));
       }
     }

@@ -78,8 +78,6 @@ const Admin: React.FC = () => {
   const [selectedKey, setSelectedKey] = useState('21');
 
   const onOpenChange: MenuProps['onOpenChange'] = (openKeys) => {
-    console.log("openKeys", openKeys);
-    
     const currentOpenKey = openKeys.find((key) => stateOpenKeys.indexOf(key) === -1);
     if (currentOpenKey !== undefined) {
       const repeatIndex = openKeys
@@ -105,7 +103,7 @@ const Admin: React.FC = () => {
       <div className='w-[256px]'>
         <Menu
           mode="inline"
-          defaultSelectedKeys={['231']}
+          defaultSelectedKeys={['21']}
           openKeys={stateOpenKeys}
           onOpenChange={onOpenChange}
           onClick={handleMenuClick}

@@ -29,8 +29,9 @@ const ConstManager: React.FC = () => {
 
   const [searchhint, setSearchhint] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [constCategory, setConstCategory] = useState('');
+  const [constCategory, setConstCategory] = useState('jobcategory');
   const { adminConfig } = useSelector((state: any) => state);
+
   const [dumpData, setDumpData] = useState<DumpData | undefined>(undefined);
 
   useEffect(() => {
