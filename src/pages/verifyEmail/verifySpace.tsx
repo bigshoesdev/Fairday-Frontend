@@ -95,10 +95,10 @@ const VerifySpace = ({ token, bufferName, bufferEmail }) => {
         Or, paste this link into your browser:
       </p>
       <a
-        href="http://localhost:5173/verify-email-address/${token}"
+        href="https://fairdayjobs.com/verify-email-address/${token}"
         className="text-blue-600 text-center block mt-1 break-all"
       >
-        http://localhost:5173/verify-email-address/${token}
+        https://fairdayjobs.com/verify-email-address/${token}
       </a> */}
       <div className="text-center mt-6 text-gray-600 text-[16px] font-semibold">
         <p>THANKS & REGARDS,</p>

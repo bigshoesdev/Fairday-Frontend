@@ -55,7 +55,6 @@ const UserDetail = ({ item, userprofile }) => {
           alt="User Avatar"
         />
 
-
         {/* <div className="white bg-blue-500 !text-[20px] w-10 h-10 items-center rounded-[50px] text-white absolute top-2 right-2 justify-center flex">
           <CameraAltOutlinedIcon className="items-center" />
         </div> */}

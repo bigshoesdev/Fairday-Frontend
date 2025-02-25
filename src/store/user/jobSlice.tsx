@@ -71,7 +71,7 @@ const jobConfigSlice = createSlice({
 export const getCategoryCount = () => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.get("http://localhost:8000/api/v1/user/job/get-category-count");
+    const response = await axios.get("https://api.fairdayjobs.com/api/v1/user/job/get-category-count");
     dispatch(categoryNumber(response.data[0].employmentTypeCounts));
   } catch (error: any) {
     dispatch(configError("Failed to fetch data"));
@@ -86,7 +86,7 @@ export const getJobsByQuery = (data: any) => async (dispatch: any): Promise<any>
     let keyResult = Object.keys(data).map((key) => key)
     keyResult.forEach(key => dispatch(updateSearchValue({  key: [key], value: data[key] })) );
     
-    const response = await axios.post(`http://localhost:8000/api/v1/user/job/get-job-by-query?${data.toString()}`);
+    const response = await axios.post(`https://api.fairdayjobs.com/api/v1/user/job/get-job-by-query?${data.toString()}`);
     dispatch(constJobDetailsRead(response.data));
   } catch (error: any) {
     dispatch(configError("Failed to fetch data"));
@@ -96,7 +96,7 @@ export const getJobsByQuery = (data: any) => async (dispatch: any): Promise<any>
 export const postJob = (data: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.post("http://localhost:8000/api/v1/user/job/post-job", data);
+    const response = await axios.post("https://api.fairdayjobs.com/api/v1/user/job/post-job", data);
     if (response.data.isOkay) {
       dispatch(constJobDetailsRead(response.data));
       dispatch(messageHandle({ type: "success", message: response.data.message }));
@@ -116,7 +116,7 @@ export const viewJob = (data: any) => async (dispatch: any): Promise<any> => {
 export const getJobCategoryByAlpha = (data: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.post("http://localhost:8000/api/v1/user/job/get-category-list-by-alpha", data);
+    const response = await axios.post("https://api.fairdayjobs.com/api/v1/user/job/get-category-list-by-alpha", data);
     dispatch(constCategoryRead(response.data));
   } catch (error: any) {
     dispatch(configError("Failed to fetch data"));
@@ -126,7 +126,7 @@ export const getJobCategoryByAlpha = (data: any) => async (dispatch: any): Promi
 export const getJobConstManage = () => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.get("http://localhost:8000/api/v1/user/job/get-const-list");
+    const response = await axios.get("https://api.fairdayjobs.com/api/v1/user/job/get-const-list");
     dispatch(constManageRead(response.data));
   } catch (error: any) {
     dispatch(configError("Failed to fetch data"));

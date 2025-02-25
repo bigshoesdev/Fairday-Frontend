@@ -112,7 +112,7 @@ export const signupAPI = (data) => async (dispatch: any): Promise<any> => {
     try {
       dispatch(authLoading());
 
-      const response = await axios.post("http://localhost:8000/api/v1/auth/signup", data);
+      const response = await axios.post("https://api.fairdayjobs.com/api/v1/auth/signup", data);
 
       if (response.data.isOkay) {
         dispatch(setBufferLink(response.data.bufferLink))

@@ -9,7 +9,7 @@ const HeroSection = () => {
     }
 
     return (
-        <div className='w-full flex flex-col items-center py-10 md:px-2 lg:px-10 bg-[url("http://localhost:5173/src/assets/images/hero.png")] bg-contain bg-center bg-no-repeat container'>
+        <div className='w-full flex flex-col items-center py-10 md:px-2 lg:px-10 bg-[url("https://fairdayjobs.com/src/assets/images/hero.png")] bg-contain bg-center bg-no-repeat container'>
             <p className='text-black sm:text-[30px] md:text-[40px] font-bold text-center'>
                 FAIRDAY JOBS MARKETPLACE
             </p>
@@ -21,14 +21,14 @@ const HeroSection = () => {
                 <span>• TRADE JOBS</span>
             </div>
             <div className='mt-[85px] p-[5px] flex flex-row bg-[#172733] items-center rounded-[10px] '>
-                <a href="http://localhost:5173/post-job ">
+                <a href="https://fairdayjobs.com/post-job ">
                     <Button
                         text="Post All Jobs Here!"
                         onClick={onClick}
                         className='px-[20px] sm:text-[20px] md:text-[24px] font-bold bg-[#172733] text-white px-8  transition-all cursor-pointer border-[#172733] hover:border-[#172733] focus:outline-none'
                     />
                 </a>
-                <a href="http://localhost:5173/job-search">
+                <a href="https://fairdayjobs.com/job-search">
                     <Button
                         text="Search Jobs Earn $"
                         onClick={onClick}

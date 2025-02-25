@@ -97,7 +97,7 @@ const UserHistory = ({ item }) => {
         </div>
         <div className="flex-[6] flex flex-col">
           <img
-            src="http://localhost:5173/src/assets/images/pin_map.png"
+            src="https://fairdayjobs.com/src/assets/images/pin_map.png"
             className="h-full
             "
           />
@@ -117,7 +117,7 @@ const UserHistory = ({ item }) => {
         </div>
         <div className="flex-[5] flex flex-col  border border-gray-300 rounded-lg">
           <img
-            src="http://localhost:5173/src/assets/images/userprofile_refer.png"
+            src="https://fairdayjobs.com/src/assets/images/userprofile_refer.png"
             className="h-full rounded-lg
             "
           />
@@ -199,7 +199,7 @@ const UserHistory = ({ item }) => {
         <div className="flex items-start gap-3 w-full pb-4">
           <div className="!w-10 flex-shrink-0">
             <img
-              src="http://localhost:5173/src/assets/images/user1.png"
+              src="https://fairdayjobs.com/src/assets/images/user1.png"
               alt="User"
               className="w-10 h-10 rounded-full"
             />
