@@ -90,7 +90,7 @@ const ActiveJobCard = (props: any) => {
                             <Button
                                 text="END JOB"
                                 onClick={buttonClick}
-                                className="font-bold bg-blue-50 border border-red-500 text-red-500 px-6  rounded-[3px] hover:bg-gray-100 transition-all cursor-pointer hover:border-gray-500 focus:outline-none"
+                                className="font-bold bg-blue-50 text-red-500 px-6  rounded-[3px] hover:bg-gray-100 transition-all cursor-pointer hover:border-gray-500 focus:outline-none"
                             />
                         </div>
                     </div>

@@ -4,8 +4,14 @@ import { AppDispatch } from 'src/store';
 import CandidateDetail from "src/pages/userProfile/candidateDetail";
 import { viewAppProfile } from 'src/store/user/appProfileSlice';
 import { getJobConstManage } from 'src/store/user/jobSlice';
+import Button from 'src/components/common/Button';
+import Tabs from "src/components/common/Tab";
 
 const UserProfile = () => {
+
+  const viewProfileButton = () => {
+
+  }
 
   const userConfig = useSelector((state: any) => state.authSliceConfig);
   const { user } = userConfig;
@@ -22,8 +28,9 @@ const UserProfile = () => {
   const { appProfileDetails } = applicantProfileConfig;
 
   return (
-    <div className="items-center flex flex-col w-full bg-blue-100">
-      <div className="w-full max-w-[1400px] bg-blue-100 p-5">
+    <div className="items-center flex flex-col w-full bg-[#FAFAFA] ">
+      <Tabs />
+      <div className="w-full max-w-[1400px] bg-[#FAFAFA] p-5 ">
         <CandidateDetail item={appProfileDetails} />
       </div>
     </div>

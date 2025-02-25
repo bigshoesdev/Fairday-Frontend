@@ -20,6 +20,7 @@ import EducationDetail from 'src/pages/jobProfileRegister/EducationDetail';
 import WorkHistofyDetail from 'src/pages/jobProfileRegister/WorkHistofyDetail';
 import ReportsLinks from 'src/pages/jobProfileRegister/ReportsLinks';
 import { registerAppProfile } from 'src/store/user/appProfileSlice';
+import { viewAppProfile } from 'src/store/user/appProfileSlice';
 
 const JobProfileRegister = () => {
 
@@ -30,15 +31,21 @@ const JobProfileRegister = () => {
     dispatch(getJobConstManage());
   }, [dispatch]);
 
-
   const userConfig = useSelector((state: any) => state.authSliceConfig);
   const { user } = userConfig;
   const userId = user?.sub;
   const userEmail = user?.email;
 
+  useEffect(() => {
+    dispatch(viewAppProfile({ userId: userId }));
+  }, [dispatch]);
+
+  const applicantProfileConfig = useSelector((state: any) => state.appProfileConfig);
+  const { appProfileDetails } = applicantProfileConfig;
+
   const [appProfileValue, setAppProfileValue] = useState({
-    userId: userId,
-    email: userEmail,
+    userId: userId || "",
+    email: userEmail || "",
     firstName: "",
     lastName: "",
     reciveConfirm: false,
@@ -61,10 +68,19 @@ const JobProfileRegister = () => {
     verifyRequiredConfirm: false,
     resumeReviewConfirm: false,
     referProfileConfirm: false,
-    selectedPayment: 'mastercard',
-    preScreeningReports: []
+    selectedPayment: "mastercard",
+    preScreeningReports: [],
+    
+  });
 
-  })
+  useEffect(() => {
+    if (appProfileDetails && appProfileDetails.length > 0) {
+      setAppProfileValue((prevState) => ({
+        ...prevState, 
+        ...appProfileDetails[0], 
+      }));
+    }
+  }, []);
 
   const [hideEmployerConfirm, setHideEmployerConfirm] = useState(false);
   const [agreeConfirm, setAgreeConfirm] = useState(false);
@@ -74,7 +90,6 @@ const JobProfileRegister = () => {
     const formData: any = new FormData();
 
     Object.keys(appProfileValue).forEach((key: string) => {
-
       if (key === 'selectedCategories') {
         appProfileValue.selectedCategories.forEach((categoryId: string) => {
           formData.append('selectedCategories[]', categoryId);

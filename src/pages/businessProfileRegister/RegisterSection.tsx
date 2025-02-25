@@ -2,32 +2,7 @@ import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 import { FaCamera } from "react-icons/fa";
 
-interface RegisterProps {
-  businessPhoto: File[];
-  setBusinessPhoto: React.Dispatch<React.SetStateAction<File[]>>;
-  email: any;
-  setEmail: any;
-  reciveConfirm: any;
-  setReciveConfirm: any;
-  name: any;
-  setName: any;
-  businessName: any;
-  setBusinessName: any;
-}
-
-
-const RegisterSection: React.FC<RegisterProps> = ({
-  email,
-  setEmail,
-  reciveConfirm,
-  setReciveConfirm,
-  businessPhoto,
-  name,
-  setName,
-  businessName,
-  setBusinessName,
-  setBusinessPhoto }) => {
-
+const RegisterSection = ({ businessProfileValue, bufferSetBusinessProfileValue }) => {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -35,19 +10,19 @@ const RegisterSection: React.FC<RegisterProps> = ({
       const fileArray = Array.from(files);
 
       // Prevent duplicates
-      const uniqueFiles = fileArray.filter(file => !businessPhoto.some(img => img.name === file.name));
+      const uniqueFiles = fileArray.filter(file => !businessProfileValue.businessPhoto.some(img => img.name === file.name));
 
-      if (businessPhoto.length + uniqueFiles.length > 3) {
+      if (businessProfileValue.businessPhoto.length + uniqueFiles.length > 3) {
         alert('You can upload a maximum of 12 images.');
         return;
       }
 
-      setBusinessPhoto([...businessPhoto, ...uniqueFiles]); // Append new images
+      bufferSetBusinessProfileValue({ ...businessProfileValue, businessPhoto: [...businessProfileValue.businessPhoto, ...uniqueFiles] })
     }
   };
 
   const handleRemoveImage = (index: number) => {
-    setBusinessPhoto(businessPhoto.filter((_, i) => i !== index));
+    bufferSetBusinessProfileValue({ ...businessProfileValue, businessPhoto: businessProfileValue.businessPhoto.filter((_, i) => i !== index) })
   };
 
   return (
@@ -59,8 +34,8 @@ const RegisterSection: React.FC<RegisterProps> = ({
             type="email"
             name="businessName"
             label="Name"
-            value={businessName}
-            onChange={(e) => setBusinessName(e.target.value)}
+            value={businessProfileValue.businessName}
+            onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
 
@@ -69,8 +44,8 @@ const RegisterSection: React.FC<RegisterProps> = ({
             type="email"
             name="name"
             label="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={businessProfileValue.name}
+            onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
 
@@ -79,8 +54,8 @@ const RegisterSection: React.FC<RegisterProps> = ({
             type="email"
             name="email"
             label="Add Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={businessProfileValue.email}
+            onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
         </div>
@@ -88,10 +63,11 @@ const RegisterSection: React.FC<RegisterProps> = ({
 
         <label className="flex items-center space-x-5 mt-2">
           <input
+            name="reciveConfirm"
             type="checkbox"
             className="w-[20px] h-[20px] form-checkbox text-blue-600"
-            checked={reciveConfirm}
-            onChange={() => setReciveConfirm((prev) => !prev)}
+            checked={businessProfileValue.reciveConfirm}
+            onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: !businessProfileValue[e.target.name] })}
           />
           <span className="font-bold text-[18px] text-[#33495E]">
             Recieve Updated Jobs Opportunities & New Job Leads</span>
@@ -104,7 +80,7 @@ const RegisterSection: React.FC<RegisterProps> = ({
 
           <div className='border border-[#e5e7eb] w-full h-[200px] rounded-xl flex justify-center items-center flex-col relative mt-5'>
             <FaCamera className='w-[50px] h-[50px] text-gray-300' />
-            <span>{businessPhoto.length > 0 ? `${businessPhoto.length} Files Selected` : "No File Chosen"}</span>
+            <span>{businessProfileValue.businessPhoto.length > 0 ? `${businessProfileValue.businessPhoto.length} Files Selected` : "No File Chosen"}</span>
             <input
               type="file"
               id="multipleFileInput"
@@ -122,7 +98,7 @@ const RegisterSection: React.FC<RegisterProps> = ({
           </div>
 
           <div className="flex mt-2 space-x-5 flex-wrap">
-            {businessPhoto.map((image, index) => (
+            {businessProfileValue.businessPhoto.map((image, index) => (
               <div key={index} className="relative w-24 h-24 border border-gray-200 rounded-xl flex justify-center items-center bg-[#fafafa]">
                 <img
                   src={URL.createObjectURL(image)}

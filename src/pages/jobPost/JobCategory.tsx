@@ -22,7 +22,6 @@ const JobCategory = ({ jobValue, bufferSetJobValue, errorSelectedCategory }) => 
   };
 
   const buttonClick = () => {
-    console.log(`Selected category: ${selectedCategoryName || "None"}`);
   };
 
   return (

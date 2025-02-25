@@ -8,7 +8,6 @@ const BusinessPlan = () => {
   const { jobConfig } = useSelector((state: any) => state);
   const GroupData = jobConfig.jobConstManage;
   const businessPlans = GroupData.filter(item => item.category === 'userBusinessPlan');
-  console.log('jobConfig', businessPlans);
 
   const [selectedBusinessPlan, setSelectedBusinessPlan] = useState(null);
 

@@ -113,7 +113,6 @@ const PostJob = () => {
 			avaialble: ["jobTitle", "jobDescription", "employer", "name", "email", "emailConfirm", "city", "street", "country", "otherCategory", "categoryConfirm", "detailJobDescription", "jobPayRate", "businessName", "userStreet", "userCity", "userCountry", "addressConfirm", "selectedOption", "instagram", "telephone", "facebook", "linkedin", "skype", "whatsApp", "contactOther", "contactEmail", "selectedYearOption", "selectedJobType", "applicantType"],
     }
 
-    console.log('data', data);
     dispatch(postJob(data))
 
   };

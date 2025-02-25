@@ -1,16 +1,18 @@
 import UserDetail from "../employerDetail/userdDetail";
 import UserHistory from "../employerDetail/userHistory";
+import Button from "src/components/common/Button";
 
-const CandidateDetail = ({item}) => {
-  console.log('item', item);
-  
+const CandidateDetail = ({ item }) => {
+  const viewProfileButton = () => {
+  }
+
   return (
-    <div className="bg-blue-100 w-full px-5 py-3 rounded-b-[10px] flex gap-3">
-      <div className="flex-[5]">
-        <UserDetail item={item} userprofile={true}/>
+    <div className="bg-[#FAFAFA]  w-full px-5 py-3 rounded-b-[10px] flex gap-3">
+      <div className="flex-[5] flex-col">
+        <UserDetail item={item} userprofile={true} />
       </div>
       <div className="flex-[7]">
-        <UserHistory item={item} userprofile={true}/>
+        <UserHistory item={item} />
       </div>
     </div>
   );

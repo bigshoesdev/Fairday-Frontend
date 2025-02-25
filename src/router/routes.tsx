@@ -12,16 +12,16 @@ const EmployerDetail = lazy(() => import("src/pages//employerDetail"));
 const ContactUs = lazy(() => import("src/pages/contactUs"));
 const UserProfile = lazy(() => import("src/pages/userProfile"));
 const Terms = lazy(() => import("src/pages/Terms"));
-const Policy =lazy(() => import("src/pages/Policy"));
-const PublishAd =lazy(() => import("src/pages/publishAd"));
-const AdverBusiness =lazy(() => import("src/pages/advertiseBusiness/Index"));
-const AdvertiseCheckout =lazy(() => import("src/pages/advertiseCheckout/Index"));
-const AdverConfirmation =lazy(() => import("src/pages/advertiseConfirmation/Index"));
-const SearchLocal =lazy(() => import("src/pages/searchLocal/index"));
-const BusinessToolBox =lazy(() => import("src/pages/businessToolbox/index"));
-const ProfileRegister =lazy(() => import("src/pages/profileRegister/Index"));
-const Register =lazy(() => import("src/pages/Register"));
-const Staff =lazy(() => import("src/pages/staff/index"));
+const Policy = lazy(() => import("src/pages/Policy"));
+const PublishAd = lazy(() => import("src/pages/publishAd"));
+const AdverBusiness = lazy(() => import("src/pages/advertiseBusiness/Index"));
+const AdvertiseCheckout = lazy(() => import("src/pages/advertiseCheckout/Index"));
+const AdverConfirmation = lazy(() => import("src/pages/advertiseConfirmation/Index"));
+const SearchLocal = lazy(() => import("src/pages/searchLocal/index"));
+const BusinessToolBox = lazy(() => import("src/pages/businessToolbox/index"));
+const ProfileRegister = lazy(() => import("src/pages/profileRegister/Index"));
+const Register = lazy(() => import("src/pages/Register"));
+const Staff = lazy(() => import("src/pages/staff/index"));
 const BusinessRegisterEmail = lazy(() => import("src/pages/businessRegisterEmail"));
 const JobRegisterEmail = lazy(() => import("src/pages/jobRegisterEmail"));
 const JobPerformance = lazy(() => import("src/pages/jobPerformance/index"));
@@ -35,15 +35,16 @@ const PublishAdEmail = lazy(() => import("src/pages/publishAdEmail/index"));
 const JobManagement = lazy(() => import("src/pages/jobManagement/Index"));
 const JobProfileRegister = lazy(() => import("src/pages/jobProfileRegister/Index"));
 const BusinessProfileRegister = lazy(() => import("src/pages/businessProfileRegister/Index"));
+const BusinessProfile = lazy(() => import("src/pages/businessProfile/index"));
 
 
 
 const routes = [
-  
+
   {
     path: "/admin",
     element: <Admin />,
-  },  
+  },
   {
     path: "/",
     element: <Home />,
@@ -54,11 +55,11 @@ const routes = [
   },
   {
     path: "/terms",
-    element: <Terms/>, 
+    element: <Terms />,
   },
   {
     path: "/policy",
-    element: <Policy/>,
+    element: <Policy />,
   },
   {
     path: "/user/userprofile",
@@ -66,7 +67,7 @@ const routes = [
   },
   {
     path: "/publish_Ad",
-    element: <PublishAd/>
+    element: <PublishAd />
   },
   {
     path: "/employer-detail",
@@ -163,6 +164,10 @@ const routes = [
   {
     path: "/employer-submitted-email",
     element: <EmployerSubmittedEmail />,
+  },
+  {
+    path: "/business-profile",
+    element: <BusinessProfile />,
   },
   {
     path: "/staff",

@@ -14,8 +14,6 @@ const NameLocation = ({ appProfileValue, bufferSetAppProfileValue }) => {
 
   const [open, setOpen] = useState(false);
 
-  const [selected, setSelected] = useState(null);
-
   const { jobConfig } = useSelector((state: any) => state);
   const GroupData = jobConfig.jobConstManage;
   const locationYears = GroupData.filter(item => item.category === 'locationYears');

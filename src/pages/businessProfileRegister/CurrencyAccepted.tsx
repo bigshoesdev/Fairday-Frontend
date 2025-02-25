@@ -1,7 +1,7 @@
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const CurrencyAccepted = ({ currencyAccepted, setCurrencyAccepted }) => {
+const CurrencyAccepted = ({ businessProfileValue, bufferSetBusinessProfileValue }) => {
 
   return (
     <div className='w-full'>
@@ -12,8 +12,8 @@ const CurrencyAccepted = ({ currencyAccepted, setCurrencyAccepted }) => {
             type="email"
             name="currencyAccepted"
             label="Currency"
-            value={currencyAccepted}
-            onChange={(e) => setCurrencyAccepted(e.target.value)}
+            value={businessProfileValue.currencyAccepted}
+            onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
         </div>

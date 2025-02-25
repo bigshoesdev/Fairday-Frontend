@@ -76,6 +76,7 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
         if (authSliceConfig.isAuthenticate) {
             closeModal()
         }
+        closeModal()
     };
 
     return (

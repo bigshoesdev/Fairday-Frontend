@@ -85,9 +85,8 @@ export const initializeAuth = () => async (dispatch: any) => {
 export const loginAPI = (credentials: { email: string; password: string }) => async (dispatch: any) => {
   try {
     dispatch(authLoading());
-    const response = await axios.post("https://api.fairdayjobs.com/api/v1/auth/login", credentials);
-
-    console.log('This is login response data', response.data);
+    
+    const response = await axios.post("http://localhost:8000/api/v1/auth/login", credentials);
 
     if (response.data.isOkay) {
       let isOkay = response.data.isOkay

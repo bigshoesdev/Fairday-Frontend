@@ -9,7 +9,6 @@ const advertisementConfigSlice = createSlice({
   initialState: initialState,
   reducers: {
     setAdvertisementList(state, { payload }) {
-      console.log("setAdvertisementList");
     }
   },
 });

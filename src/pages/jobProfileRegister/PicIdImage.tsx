@@ -7,12 +7,12 @@ const PicIdImage: React.FC<any> = ({ appProfileValue, bufferSetAppProfileValue }
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      bufferSetAppProfileValue({...appProfileValue, selectedIdPic: file })
+      bufferSetAppProfileValue({ ...appProfileValue, selectedIdPic: file })
     }
   };
 
   const handleRemoveFile = () => {
-      bufferSetAppProfileValue({...appProfileValue, selectedIdPic: null })
+    bufferSetAppProfileValue({ ...appProfileValue, selectedIdPic: null })
   };
 
   return (
@@ -41,7 +41,7 @@ const PicIdImage: React.FC<any> = ({ appProfileValue, bufferSetAppProfileValue }
 
         <div className="flex mt-2">
           <div className="w-24 h-24 border border-gray-200 rounded-xl flex justify-center items-center bg-[#fafafa] relative">
-            {appProfileValue.selectedIdPic ? (
+            {appProfileValue.selectedIdPic && appProfileValue.selectedIdPic instanceof File ? (
               <>
                 <img
                   src={URL.createObjectURL(appProfileValue.selectedIdPic)}
@@ -49,14 +49,14 @@ const PicIdImage: React.FC<any> = ({ appProfileValue, bufferSetAppProfileValue }
                   className="w-full h-full object-cover rounded-md"
                 />
                 <TiDelete
-                  onClick={() => handleRemoveFile()}
+                  onClick={handleRemoveFile}
                   className="absolute top-0 right-0 text-[30px] text-red-500"
-                >
-                </TiDelete >
+                />
               </>
             ) : (
               <div className="text-gray-500 text-3xl"><SlPicture /></div>
             )}
+
           </div>
         </div>
       </Panel>

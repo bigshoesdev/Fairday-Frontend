@@ -9,7 +9,6 @@ const homeConfigSlice = createSlice({
   initialState: initialState,
   reducers: {
     setHomeList(state, { payload }) {
-      console.log("setHomeList");
     }
   },
 });

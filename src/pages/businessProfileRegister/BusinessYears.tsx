@@ -4,19 +4,18 @@ import { useSelector } from 'react-redux';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const BusinessYears = () => {
-
-  const [selected, setSelected] = useState(null);
+const BusinessYears = ({ businessProfileValue, bufferSetBusinessProfileValue }) => {
 
   const handleSelection = (index) => {
-    setSelected(index);
+    const selectedOption = businessYears[index];
+    bufferSetBusinessProfileValue({ ...businessProfileValue, selectedBusinessYears: selectedOption._id });
   };
 
   const [open, setOpen] = useState(true);
 
   const { jobConfig } = useSelector((state: any) => state);
   const GroupData = jobConfig.jobConstManage;
-  const locationYears = GroupData.filter(item => item.category === 'businessYears');
+  const businessYears = GroupData.filter(item => item.category === 'businessYears');
 
   return (
     <div className="w-full">
@@ -35,10 +34,10 @@ const BusinessYears = () => {
             className={`bg-gray-100 left-0 w-full transition-all duration-500 ease-in-out overflow-hidden ${open ? "max-h-[2000px]" : "max-h-0"}`}
           >
             <div className="p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-              {locationYears.map((option, index) => (
+              {businessYears.map((option, index) => (
                 <div
                   key={index}
-                  className={`text-center rounded-lg p-4 cursor-pointer ${selected === index ? 'bg-primaryBlue text-white' : 'bg-white text-primaryBlue'
+                  className={`text-center rounded-lg p-4 cursor-pointer ${businessProfileValue.selectedBusinessYears === option._id ? 'bg-primaryBlue text-white' : 'bg-white text-primaryBlue'
                     }`}
                   onClick={() => handleSelection(index)}
                 >
