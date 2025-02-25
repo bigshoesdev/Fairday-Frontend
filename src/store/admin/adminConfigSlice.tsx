@@ -37,7 +37,6 @@ const adminConfigSlice = createSlice({
       state.loading = false;
     },
     constMangeCreate(state, { payload }: PayloadAction<object>) {
-      console.log('This is create action! Current state:', JSON.parse(JSON.stringify(state.constMange)));
     },
     constMangeUpdate(state, { payload }: PayloadAction<{ id: string; updatedData: object }>) {
       const index = state.constMange.findIndex((item: any) => item.id === payload.id);
@@ -47,10 +46,8 @@ const adminConfigSlice = createSlice({
       state.loading = false;
     },
      constMangeDelete(state, { payload }: PayloadAction<any>) {
-      console.log('Before filter:', JSON.parse(JSON.stringify(state.constMange)));
       const newState = state.constMange.filter((item: any) => item.id !== payload._id);
       state.constMange = [...newState];
-      console.log('After filter:', JSON.parse(JSON.stringify(state.constMange)));
       state.loading = false;
     },
     adminConfigError(state, { payload }: PayloadAction<string>) {

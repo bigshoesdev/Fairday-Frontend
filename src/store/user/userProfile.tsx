@@ -9,7 +9,6 @@ const userProfileConfigSlice = createSlice({
   initialState: initialState,
   reducers: {
     setUserProfileList(state, { payload }) {
-      console.log("setUserProfileList");
     }
   },
 });

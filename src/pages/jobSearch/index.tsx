@@ -100,7 +100,7 @@ const JobSearch = () => {
       <div className="w-full flex">
         <MapContent />
       </div>
-      <div className='w-full bg-primaryBlue flex justify-center sticky top-0 z-50 shadow-2xl'>
+      <div className='w-full bg-primaryBlue flex justify-center sticky top-0 shadow-2xl'>
         <SearchBar />
       </div>
       <div className="w-full px-2 py-[25px] mx-auto">

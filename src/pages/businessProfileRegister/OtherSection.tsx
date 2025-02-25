@@ -2,10 +2,7 @@ import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
 const OtherSection = ({
-  otherTitle,
-  setOtherTitle,
-  skillDetails,
-  setSkillDetails
+  businessProfileValue, bufferSetBusinessProfileValue
 }) => {
 
   return (
@@ -17,11 +14,11 @@ const OtherSection = ({
             type="email"
             name="otherTitle"
             label="Write Here..."
-            value={otherTitle}
+            value={businessProfileValue.otherTitle}
             rows={2}
             multiline={true}
-            onChange={(e) => setOtherTitle(e.target.value)}
-            style="w-full"
+            onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
+               style="w-full"
           />
         </div>
 
@@ -29,12 +26,12 @@ const OtherSection = ({
           <span className='font-bold mb-3'>Services Description*</span>
           <TextInput
             type="email"
-            name="skillDetails"
+            name="serviceDescription"
             label="Write Here..."
-            value={skillDetails}
+            value={businessProfileValue.serviceDescription}
             rows={3}
             multiline={true}
-            onChange={(e) => setSkillDetails(e.target.value)}
+            onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
         </div>

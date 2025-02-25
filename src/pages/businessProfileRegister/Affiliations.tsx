@@ -1,7 +1,7 @@
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const Affiliations = ({ affiliations, setAffiliations }) => {
+const Affiliations = ({ businessProfileValue, bufferSetBusinessProfileValue }) => {
 
   return (
     <div className='w-full'>
@@ -12,8 +12,8 @@ const Affiliations = ({ affiliations, setAffiliations }) => {
             type="email"
             name="affiliations"
             label="Affiliations"
-            value={affiliations}
-            onChange={(e) => setAffiliations(e.target.value)}
+            value={businessProfileValue.affiliations}
+            onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
         </div>

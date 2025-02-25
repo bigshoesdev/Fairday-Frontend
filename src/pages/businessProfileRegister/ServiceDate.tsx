@@ -1,7 +1,7 @@
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const ServiceDate = ({ coupon, setCoupon, expirationDate, setExpirationDate }) => {
+const ServiceDate = ({ businessProfileValue, bufferSetBusinessProfileValue }) => {
 
   return (
     <div className='w-full'>
@@ -12,8 +12,8 @@ const ServiceDate = ({ coupon, setCoupon, expirationDate, setExpirationDate }) =
             type="email"
             name="coupon"
             label="Coupon"
-            value={coupon}
-            onChange={(e) => setCoupon(e.target.value)}
+            value={businessProfileValue.coupon}
+            onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
         </div>
@@ -23,9 +23,10 @@ const ServiceDate = ({ coupon, setCoupon, expirationDate, setExpirationDate }) =
           <TextInput
             type="email"
             name="expirationDate"
+            placeholder="ex: 04-09-2024"
             label="MM-DD-YYYY"
-            value={expirationDate}
-            onChange={(e) => setExpirationDate(e.target.value)}
+            value={businessProfileValue.expirationDate}
+            onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
         </div>

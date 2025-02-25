@@ -2,6 +2,7 @@ import TextField from '@mui/material/TextField';
 
 interface Props {
     label?: string;
+    placeholder?: string;
     value: string;
     type: string;
     name?: string;
@@ -21,6 +22,7 @@ const TextInput = ({
     type,
     style,
     name,
+    placeholder,
     rows = 1,
     multiline = false,
     disabled = false,
@@ -43,6 +45,7 @@ const TextInput = ({
             type={type}
             name={name}
             rows={rows}
+            placeholder={placeholder}
             multiline={multiline}
             onChange={handleChange}
             className={style}

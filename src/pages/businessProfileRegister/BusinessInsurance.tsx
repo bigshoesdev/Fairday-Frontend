@@ -1,18 +1,7 @@
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const BusinessInsurance = ({
-  businessInsuranceYes,
-  setBusinessInsuranceYes,
-  businessInsuranceNo,
-  setBusinessInsuranceNo,
-  workmansInsuranceYes,
-  setWorkmansInsuranceYes,
-  workmansInsuranceNo,
-  setWorkmansInsuranceNo,
-  insurance,
-  setInsurance
-}) => {
+const BusinessInsurance = ({ businessProfileValue, bufferSetBusinessProfileValue }) => {
 
   return (
     <div className='w-full'>
@@ -21,10 +10,11 @@ const BusinessInsurance = ({
         <div className='flex flex-row gap-8'>
           <label className="flex items-center space-x-5 ">
             <input
+              name="businessInsuranceYes"
               type="checkbox"
               className="w-[24px] h-[24px] form-checkbox text-blue-600"
-              checked={businessInsuranceYes}
-              onChange={() => setBusinessInsuranceYes((prev) => !prev)}
+              checked={businessProfileValue.businessInsuranceYes}
+              onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: !businessProfileValue[e.target.name] })}
             />
             <span className="font-bold text-[18px] text-gray-600 flex flex-row items-center">
               Yes
@@ -33,10 +23,11 @@ const BusinessInsurance = ({
 
           <label className="flex items-center space-x-5 ">
             <input
+              name="businessInsuranceNo"
               type="checkbox"
               className="w-[24px] h-[24px] form-checkbox text-blue-600"
-              checked={businessInsuranceNo}
-              onChange={() => setBusinessInsuranceNo((prev) => !prev)}
+              checked={businessProfileValue.businessInsuranceNo}
+              onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: !businessProfileValue[e.target.name] })}
             />
             <span className="font-bold text-[18px] text-gray-600 flex flex-row items-center">
               No
@@ -48,10 +39,11 @@ const BusinessInsurance = ({
         <div className='flex flex-row gap-8'>
           <label className="flex items-center space-x-5 ">
             <input
+              name="workmansInsuranceYes"
               type="checkbox"
               className="w-[24px] h-[24px] form-checkbox text-blue-600"
-              checked={workmansInsuranceYes}
-              onChange={() => setWorkmansInsuranceYes((prev) => !prev)}
+              checked={businessProfileValue.workmansInsuranceYes}
+              onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: !businessProfileValue[e.target.name] })}
             />
             <span className="font-bold text-[18px] text-gray-600 flex flex-row items-center">
               Yes
@@ -60,10 +52,11 @@ const BusinessInsurance = ({
 
           <label className="flex items-center space-x-5 ">
             <input
+              name="workmansInsuranceNo"
               type="checkbox"
               className="w-[24px] h-[24px] form-checkbox text-blue-600"
-              checked={workmansInsuranceNo}
-              onChange={() => setWorkmansInsuranceNo((prev) => !prev)}
+              checked={businessProfileValue.workmansInsuranceNo}
+              onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: !businessProfileValue[e.target.name] })}
             />
             <span className="font-bold text-[18px] text-gray-600 flex flex-row items-center">
               No
@@ -77,10 +70,10 @@ const BusinessInsurance = ({
             type="email"
             name="insurance"
             label="Write Here..."
-            value={insurance}
+            value={businessProfileValue.insurance}
             rows={3}
             multiline={true}
-            onChange={(e) => setInsurance(e.target.value)}
+            onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
         </div>

@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from 'src/store';
 import { getJobConstManage } from 'src/store/user/jobSlice';
 import Button from 'src/components/common/Button';
+import { useNavigate } from 'react-router-dom';
 
 import RegisterSection from 'src/pages/businessProfileRegister/RegisterSection'
+import CategorySelect from 'src/pages/businessProfileRegister/CategorySelect';
 import OtherSection from 'src/pages/businessProfileRegister/OtherSection'
 import Affiliations from 'src/pages/businessProfileRegister/Affiliations'
 import NameLocation from 'src/pages/businessProfileRegister/NameLocation'
 import UploadReferences from 'src/pages/businessProfileRegister/UploadReferences';
 import OverallRating from 'src/pages/businessProfileRegister/OverallRating';
 import VerifyRequire from 'src/pages/businessProfileRegister/VerifyRequire';
-import PaymentArea from 'src/components/common/PaymentArea'
+import PaymentArea from 'src/pages/businessProfileRegister/PaymentArea'
 import BusinessYears from 'src/pages/businessProfileRegister/BusinessYears';
 import Reports from 'src/pages/businessProfileRegister/Reports';
 import WebsiteLink from 'src/pages/businessProfileRegister/WebsiteLink';
@@ -20,83 +22,162 @@ import BarterConfrim from 'src/pages/businessProfileRegister/BarterConfrim';
 import ServiceDate from 'src/pages/businessProfileRegister/ServiceDate';
 import Contact from 'src/pages/businessProfileRegister/Contact';
 import BusinessInsurance from 'src/pages/businessProfileRegister/BusinessInsurance';
+import { registerBusinessProfile } from 'src/store/user/businessProfileSlice';
+import { viewBusinessProfile } from 'src/store/user/businessProfileSlice';
+import { messageHandle } from "src/store/systemSetting/commonSlice";
 
-
-
-CurrencyAccepted
 const BusinessProfileRegister = () => {
 
+  const navigate = useNavigate();
+
   const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    dispatch(getJobConstManage());
-  }, [dispatch]);
+
+  const userConfig = useSelector((state: any) => state.authSliceConfig);
+  const { user } = userConfig;
+  const userId = user?.sub;
+  const userEmail = user?.email;
 
 
-  //Register Section component variables
-  const [email, setEmail] = useState('');
-  const [businessName, setBusinessName] = useState('');
-  const [name, setName] = useState('');
-  const [reciveConfirm, setReciveConfirm] = useState(false);
-  const [businessPhoto, setBusinessPhoto] = useState<File[]>([]);
 
-  //Other Section component Variables
-  const [otherTitle, setOtherTitle] = useState('');
-  const [skillDetails, setSkillDetails] = useState('');
-
-  //Name and Location component variables
-  const [street, setStreet] = useState('');
-  const [city, setCity] = useState('');
-  const [country, setCountry] = useState('');
-
-  const [affiliations, setAffiliations] = useState('');
-
-  const [websiteLink, setWebsiteLink] = useState('');
-  const [referenceFile, setReferenceFile] = useState<File>();
-
-  const [currencyAccepted, setCurrencyAccepted] = useState('');
-
-  const [barterConfirm, setBarterConfirm] = useState(false);
-  const [referProfileConfirm, setreferProfileConfirm] = useState(false);
-
-  const [businessInsuranceYes, setBusinessInsuranceYes] = useState(false);
-  const [businessInsuranceNo, setBusinessInsuranceNo] = useState(false);
-  const [workmansInsuranceYes, setWorkmansInsuranceYes] = useState(false);
-  const [workmansInsuranceNo, setWorkmansInsuranceNo] = useState(false);
+  const BusinessProfileConfig = useSelector((state: any) => state.BusinessProfileConfig);
+  const { businessProfileDetails } = BusinessProfileConfig;
+  const businessDetails = businessProfileDetails[0] || {};
 
 
-  const [coupon, setCoupon] = useState('');
-  const [expirationDate, setExpirationDate] = useState('');
+  const {
+    businessName,
+    name,
+    reciveConfirm,
+    businessPhoto,
+    selectedCategories,
+    street,
+    city,
+    country,
+    selectedLocationYears,
+    otherTitle,
+    serviceDescription,
+    selectedBusinessYears,
+    verifyRequireConfirm,
+    preScreeningReports,
+    affiliations,
+    websiteLink,
+    referProfileConfirm,
+    businessInsuranceYes,
+    businessInsuranceNo,
+    workmansInsuranceYes,
+    workmansInsuranceNo,
+    insurance,
+    currencyAccepted,
+    barterConfirm,
+    coupon,
+    expirationDate,
+    contactPreferences,
+    selectedReference,
+    instagram,
+    telephone,
+    facebook,
+    linkedin,
+    contactEmail,
+    skype,
+    whatsApp,
+    contactOther,
+    selectedPayment
+  } = businessDetails
 
-  const [selectedOption, setSelectedOption] = useState<string>('');
-  const [telephone, setTelephone] = useState('');
-  const [facebook, setFacebook] = useState('');
-  const [instagram, setInstagram] = useState('');
-  const [linkedin, setLinkedIn] = useState('');
-  const [skype, setSkype] = useState('');
-  const [whatsApp, setWhatsApp] = useState('');
-  const [contactOther, setContactOther] = useState('');
-  const [contactEmail, setContactEmail] = useState('');
+  console.log("businessName", businessName);
 
-  const [insurance, setInsurance] = useState('');
+
+  const [businessProfileValue, setBusinessProfileValue] = useState({
+    userId: userId || "",
+    email: userEmail || "",
+    businessName: businessName,
+    name: "",
+    reciveConfirm: false,
+    businessPhoto: [],
+    selectedCategories: [],
+    street: "",
+    city: "",
+    country: "",
+    selectedLocationYears: "",
+    otherTitle: "",
+    serviceDescription: "",
+    selectedBusinessYears: "",
+    verifyRequireConfirm: false,
+    preScreeningReports: [],
+    affiliations: "",
+    websiteLink: "",
+    referProfileConfirm: false,
+    businessInsuranceYes: false,
+    businessInsuranceNo: false,
+    workmansInsuranceYes: false,
+    workmansInsuranceNo: false,
+    insurance: "",
+    currencyAccepted: "",
+    barterConfirm: false,
+    coupon: "",
+    expirationDate: "",
+    contactPreferences: {},
+    selectedReference: "",
+    instagram: "",
+    telephone: "",
+    facebook: "",
+    linkedin: "",
+    contactEmail: "",
+    skype: "",
+    whatsApp: "",
+    contactOther: "",
+    selectedPayment: "mastercard",
+  })
+
 
   const [hideEmployerConfirm, setHideEmployerConfirm] = useState(false);
   const [agreeConfirm, setAgreeConfirm] = useState(false);
   const [autoSaveContrim, setAutoSaveContrim] = useState(false);
 
-  const [selectedPayment, setSelectedPayment] = useState('mastercard');
+  useEffect(() => {
+    dispatch(getJobConstManage());
+    dispatch(viewBusinessProfile({ userId: userId }));
+  }, [dispatch]);
 
-  const [checkboxStates, setCheckboxStates] = useState<{ [key: string]: boolean }>({});
-  const [link, setLink] = useState('');
+  useEffect(() => {
 
+    if(Object.keys(businessDetails).length > 0){
+      setBusinessProfileValue(businessDetails)
+    }
 
-  //button click event
-  const buttonClick = () => {
+  }, [businessDetails])
 
+  const registerButton = async () => {
+    const formData: any = new FormData();
+
+    Object.keys(businessProfileValue).forEach((key: string) => {
+      if (key === 'selectedCategories') {
+        businessProfileValue.selectedCategories.forEach((categoryId: string) => {
+          formData.append('selectedCategories[]', categoryId);
+        });
+      } else if (key === 'businessPhoto') {
+        businessProfileValue.businessPhoto.forEach((file) => {
+          formData.append("images", file);
+        });
+      } else {
+        formData.append(key, businessProfileValue[key]);
+      }
+    });
+
+    const response = await dispatch(registerBusinessProfile(formData));
+
+    if (response?.isOkay) {
+      navigate('/business-profile');
+    }
   };
 
-  const onClick = () => {
-
-  }
+  const viewProfileButton = () => {
+    if (businessProfileDetails?.length > 0) {
+      navigate('/business-profile');
+    } else {
+      dispatch(messageHandle({ type: "error", message: "Please complete your profile!" }));
+    }
+  };
 
   return (
     <div className='flex flex-col w-full justify-center items-center bg-[#FAFAFA] pb-20 '>
@@ -113,7 +194,7 @@ const BusinessProfileRegister = () => {
             <a href="#" className='w-full flex justify-center'>
               <Button
                 text="PROFILE VIEW"
-                onClick={onClick}
+                onClick={viewProfileButton}
                 className='sm:text-[20px] md:text-[24px] rounded-xl bg-white text-blue-500 w-full hover:bg-gray-200 transition-all cursor-pointer hover:border-gray-400 focus:outline-none'
               />
             </a>
@@ -121,75 +202,63 @@ const BusinessProfileRegister = () => {
         </div>
 
         <RegisterSection
-          setBusinessPhoto={setBusinessPhoto}
-          businessPhoto={businessPhoto}
-          email={email}
-          setEmail={setEmail}
-          name={name}
-          setName={setName}
-          businessName={businessName}
-          setBusinessName={setBusinessName}
-          reciveConfirm={reciveConfirm}
-          setReciveConfirm={setReciveConfirm}
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
         />
 
         <NameLocation
-          street={street}
-          setStreet={setStreet}
-          city={city}
-          setCity={setCity}
-          country={country}
-          setCountry={setCountry}
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
+        />
+
+        <CategorySelect
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
         />
 
         <OtherSection
-          otherTitle={otherTitle}
-          setOtherTitle={setOtherTitle}
-          skillDetails={skillDetails}
-          setSkillDetails={setSkillDetails}
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
         />
 
-        <BusinessYears />
+        <BusinessYears
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
+        />
 
         <Reports
-          checkboxStates={checkboxStates}
-          setCheckboxStates={setCheckboxStates}
-          link={link}
-          setLink={setLink}
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
         />
 
         <Affiliations
-          affiliations={affiliations}
-          setAffiliations={setAffiliations}
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
         />
 
-        <VerifyRequire />
+        <VerifyRequire
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
+        />
 
         <WebsiteLink
-          websiteLink={websiteLink}
-          setWebsiteLink={setWebsiteLink}
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
         />
 
         <BusinessInsurance
-          businessInsuranceYes={businessInsuranceYes}
-          setBusinessInsuranceYes={setBusinessInsuranceYes}
-          businessInsuranceNo={businessInsuranceNo}
-          setBusinessInsuranceNo={setBusinessInsuranceNo}
-          workmansInsuranceYes={workmansInsuranceYes}
-          setWorkmansInsuranceYes={setWorkmansInsuranceYes}
-          workmansInsuranceNo={workmansInsuranceNo}
-          setWorkmansInsuranceNo={setWorkmansInsuranceNo}
-          insurance={insurance}
-          setInsurance={setInsurance}
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
         />
 
         <div className='w-full'>
           <label className="flex items-center space-x-5 ">
             <input
+              name="referProfileConfirm"
               type="checkbox"
               className="w-[24px] h-[24px] form-checkbox text-blue-600"
-              checked={referProfileConfirm}
-              onChange={() => setreferProfileConfirm((prev) => !prev)}
+              onChange={(e) => setBusinessProfileValue({ ...businessProfileValue, [e.target.name]: !businessProfileValue[e.target.name] })}
+              checked={businessProfileValue.referProfileConfirm}
             />
             <span className="font-bold text-[18px] text-gray-600 flex flex-row items-center">
               Allow Job Agents and Employers to Refer Your Business Profile
@@ -198,45 +267,27 @@ const BusinessProfileRegister = () => {
         </div>
 
         <UploadReferences
-          referenceFile={referenceFile}
-          setReferenceFile={setReferenceFile}
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
         />
 
         <CurrencyAccepted
-          currencyAccepted={currencyAccepted}
-          setCurrencyAccepted={setCurrencyAccepted}
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
         />
         <BarterConfrim
-          barterConfirm={barterConfirm}
-          setBarterConfirm={setBarterConfirm}
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
         />
 
         <ServiceDate
-          coupon={coupon}
-          setCoupon={setCoupon}
-          expirationDate={expirationDate}
-          setExpirationDate={setExpirationDate}
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
         />
 
         <Contact
-          selectedOption={selectedOption}
-          setSelectedOption={setSelectedOption}
-          telephone={telephone}
-          setTelephone={setTelephone}
-          facebook={facebook}
-          setFacebook={setFacebook}
-          instagram={instagram}
-          setInstagram={setInstagram}
-          linkedin={linkedin}
-          setLinkedIn={setLinkedIn}
-          skype={skype}
-          setSkype={setSkype}
-          whatsApp={whatsApp}
-          setWhatsApp={setWhatsApp}
-          contactOther={contactOther}
-          setContactOther={setContactOther}
-          contactEmail={contactEmail}
-          setContactEmail={setContactEmail}
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
         />
 
         <OverallRating
@@ -249,8 +300,8 @@ const BusinessProfileRegister = () => {
         />
 
         <PaymentArea
-          selectedPayment={selectedPayment}
-          setSelectedPayment={setSelectedPayment}
+          businessProfileValue={businessProfileValue}
+          bufferSetBusinessProfileValue={(value: any) => setBusinessProfileValue(value)}
         />
 
         <span className="font-bold text-[16px] text-gray-600">
@@ -261,7 +312,7 @@ const BusinessProfileRegister = () => {
         <div className='flex flex-col gap-4 w-full'>
           <Button
             text="REGISTER"
-            onClick={() => buttonClick()}
+            onClick={() => registerButton()}
             className="bg-primaryBlue text-white py-6 text-[20px] font-bold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-xl"
           />
         </div>
