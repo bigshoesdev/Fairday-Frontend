@@ -28,9 +28,9 @@ const HeroSection = () => {
 
     return (
         <div className='w-full flex flex-col items-center py-10 md:px-2 lg:px-10 bg-[url("https://fairdayjobs.com/src/assets/images/hero.png")] bg-contain bg-center bg-no-repeat container'>
-            <p className='text-black sm:text-[30px] md:text-[40px] font-bold text-center'>
+            <h1 className='text-black sm:text-[30px] md:text-[40px] font-bold text-center'>
                 FAIRDAY JOBS MARKETPLACE
-            </p>
+            </h1>
             <div className='text-black sm:text-[26px] md:text-[37px] font-bold flex gap-4'>
                 <span>LIST JOBS</span>
                 <span className=''></span>

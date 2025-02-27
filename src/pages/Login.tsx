@@ -45,9 +45,9 @@ const Login: React.FC<LoginProps> = ({ switchToRegister, closeModal }) => {
       <Panel classStyle={'flex flex-col py-12 px-1 sm:px-6 gap-y-3 sm:gap-y-7 z-[1000]'}>
         <div className="flex justify-center items-center">
           <img src="src/assets/images/logo_symbol.png" className="w-10 h-10 sm:w-12" />
-          <span className="ml-4 text-black font-bold text-[16px] sm:text-[22px] text-center">
+          <h1 className="ml-4 text-black font-bold text-[16px] sm:text-[22px] text-center">
             Welcome to Fairday
-          </span>
+          </h1>
         </div>
         <hr className="border-gray-300" />
         <div>
