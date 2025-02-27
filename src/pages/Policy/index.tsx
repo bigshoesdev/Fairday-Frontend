@@ -9,12 +9,12 @@ const Policy = () => {
           Privacy is very important to us. We need your personal information for
           personalization and to comply with the law. In particular, we must
           collect, use, disclose, and safeguard your information when you visit
-          our website <a href="index.html">www.FairdayJobs.com.</a> Furthermore,
+          our website <a href="index.html">Fairdayjobs.</a> Furthermore,
           we pay attention to any other media form, media channel, mobile
           website, or mobile application related or connected to Fairday Jobs
           (collectively, the “Site”). We would like to inform you here about our
           data collection and data usage. This is the privacy policy for the
-          website currently located at www.FairdayJobs.com. Please carefully
+          website currently located at Fairdayjobs. Please carefully
           review this Policy to learn about how we collect, use, and protect any
           personal information and non-personal information you provide us with
           on or through this site and your choices for managing your personal
@@ -295,8 +295,8 @@ const Policy = () => {
             http://www.google.com/analytics/terms/
           </a>{" "}
           or{" "}
-          <a href="https://www.google.com/intl/en/policies/">
-            https://www.google.com/intl/en/policies/
+          <a href="http://www.google.com/intl/en/policies/">
+            http://www.google.com/intl/en/policies/
           </a>
           .
         </p>
@@ -347,8 +347,8 @@ const Policy = () => {
             http://tools.google.com/dlpage/gaoptout?hl=en.
           </a>{" "}
           For more information about Terms of Use and Privacy, please visit:
-          <a href="https://support.google.com/analytics/answer/3450482?hl=en&ref_topic=3413645&rd=1">
-            https://support.google.com/analytics/answer/3450482?hl=en&ref_topic=3413645&rd=1
+          <a href="http://support.google.com/analytics/answer/3450482?hl=en&ref_topic=3413645&rd=1">
+            http://support.google.com/analytics/answer/3450482?hl=en&ref_topic=3413645&rd=1
           </a>{" "}
           or
           <a href="http://www.google.com/intl/en/policies/privacy.">
@@ -399,8 +399,8 @@ const Policy = () => {
           The deviating data protection regulations of the company Google apply
           to this data. For more information about Google's privacy policy,
           please visit:{" "}
-          <a href="https://policies.google.com/privacy">
-            https://policies.google.com/privacy
+          <a href="http://policies.google.com/privacy">
+            http://policies.google.com/privacy
           </a>
           .<br />
           <br />
@@ -434,8 +434,8 @@ const Policy = () => {
           <br />
           The privacy policy of Google applies to this data, which you can find
           at:
-          <a href="https://policies.google.com/privacy?hl=en">
-            https://policies.google.com/privacy?hl=en
+          <a href="http://policies.google.com/privacy?hl=en">
+            http://policies.google.com/privacy?hl=en
           </a>
           .
         </p>

@@ -34,7 +34,7 @@ const UserHistory = ({ item }) => {
   const resume = item[0]?.selectedResume || "";
 
   const formattedPath = resume.startsWith("./") ? resume.slice(1) : resume;
-  const fileURL = `http://localhost:8000${formattedPath}`;
+  const fileURL = `https://api.fairdayjobs.com${formattedPath}`;
 
 
   return (

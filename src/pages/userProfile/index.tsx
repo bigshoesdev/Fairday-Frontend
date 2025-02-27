@@ -15,7 +15,7 @@ const UserProfile = () => {
 
   const userConfig = useSelector((state: any) => state.authSliceConfig);
   const { user } = userConfig;
-  const userId = user?.sub;
+  const userId = user?.sub || null;
 
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
@@ -28,9 +28,9 @@ const UserProfile = () => {
   const { appProfileDetails } = applicantProfileConfig;
 
   return (
-    <div className="items-center flex flex-col w-full bg-[#FAFAFA] ">
+    <div className="items-center flex flex-col w-full bg-[#FAFAFA] container">
       <Tabs />
-      <div className="w-full max-w-[1400px] bg-[#FAFAFA] p-5 ">
+      <div className="w-full max-w-[1400px] bg-[#FAFAFA] py-5 ">
         <CandidateDetail item={appProfileDetails} />
       </div>
     </div>

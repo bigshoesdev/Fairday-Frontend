@@ -21,11 +21,11 @@ const CheckboxLable: React.FC<CheckboxWithLabelProps> = ({
     <label className={`flex items-center space-x-4 ${labelClass}`}>
       <input
         type="checkbox"
-        className={`w-[18px] h-[18px] form-checkbox text-blue-600 ${inputClass}`}
+        className={`w-[15px] h-[15px] sm:w-[18px] sm:h-[18px] form-checkbox text-blue-600 ${inputClass}`}
         checked={checked}
         onChange={onChange}
       />
-      <span className={`text-[20px] text-[#4A4A4A] ${spanClass}`}>{label}</span>
+      <span className={`text-[14px] sm:text-[20px] text-[#4A4A4A] ${spanClass}`}>{label}</span>
     </label>
   );
 };

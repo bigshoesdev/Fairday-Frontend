@@ -18,7 +18,7 @@ const UploadResume: React.FC<any> = ({ appProfileValue, bufferSetAppProfileValue
   return (
     <div className="w-full">
       <Panel classStyle="flex flex-col p-7 bg-white rounded-2xl gap-5 shadow-xl">
-        <span className="font-bold text-[26px] text-[#33495E]">
+        <span className="font-bold sm:text-[26px] text-[20px] text-[#33495E]">
           Upload Resume <span className='font-normal text-[20px'>(Optional)</span>
         </span>
 
@@ -34,7 +34,7 @@ const UploadResume: React.FC<any> = ({ appProfileValue, bufferSetAppProfileValue
           />
           <label
             htmlFor="resumeFileInput"
-            className="bg-primaryBlue text-white py-4 px-6 text-[15px] font-semibold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-[6px] absolute bottom-5 right-5"
+            className="bg-primaryBlue text-white sm:py-4 sm:px-6 py-2 px-2 text-[15px] font-semibold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-[6px] absolute sm:bottom-5 sm:right-5 bottom-2 right-2"
           >
             Choose File
           </label>
@@ -56,7 +56,7 @@ const UploadResume: React.FC<any> = ({ appProfileValue, bufferSetAppProfileValue
           <input
             name="resumeReviewConfirm"
             type="checkbox"
-            className="w-[24px] h-[24px] form-checkbox text-blue-600"
+            className="sm:w-[24px] sm:h-[24px] w-[18px] h-[18px] form-checkbox text-blue-600"
             onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: !appProfileValue[e.target.name] })}
           />
           <span className="font-bold text-[16px] text-gray-600">

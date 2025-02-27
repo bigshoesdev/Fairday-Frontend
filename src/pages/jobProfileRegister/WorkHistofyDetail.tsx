@@ -10,7 +10,7 @@ const WorkHistofyDetail = ({
     <div className='w-full'>
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow'}>
         <div className='flex flex-col'>
-          <span className='font-bold  text-[20px] mb-2'>Work history detail </span>
+          <span className='font-bold text-[18px] sm:text-[20px] mb-2'>Work history detail </span>
           <TextInput
             type="email"
             name="workHistoryDetail"

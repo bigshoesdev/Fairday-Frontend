@@ -7,7 +7,7 @@ const CandidateDetail = ({ item }) => {
   }
 
   return (
-    <div className="bg-[#FAFAFA]  w-full px-5 py-3 rounded-b-[10px] flex gap-3">
+    <div className="bg-[#FAFAFA] flex-col sm:flex-row  w-full  py-3 rounded-b-[10px] flex gap-3">
       <div className="flex-[5] flex-col">
         <UserDetail item={item} userprofile={true} />
       </div>

@@ -32,6 +32,11 @@ const VerifyEmail = () => {
     }
   }, [token])
 
+console.log(
+  'token', token
+);
+
+
   return (
     <div className="w-full items-center flex-col bg-[#f7fbff]">
       <VerifySpace

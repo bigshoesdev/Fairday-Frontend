@@ -86,7 +86,7 @@ export const loginAPI = (credentials: { email: string; password: string }) => as
   try {
     dispatch(authLoading());
     
-    const response = await axios.post("http://localhost:8000/api/v1/auth/login", credentials);
+    const response = await axios.post("https://api.fairdayjobs.com/api/v1/auth/login", credentials);
 
     if (response.data.isOkay) {
       let isOkay = response.data.isOkay
@@ -115,8 +115,8 @@ export const signupAPI = (data) => async (dispatch: any): Promise<any> => {
       const response = await axios.post("https://api.fairdayjobs.com/api/v1/auth/signup", data);
 
       if (response.data.isOkay) {
+        console.log('response.data', response.data);
         dispatch(setBufferLink(response.data.bufferLink))
-        dispatch(messageHandle({ type: "success", message: response.data.message }));
         // const userToken = response.data.access_token;
 
         // const parsedResult = jwtDecodeUtil(userToken);

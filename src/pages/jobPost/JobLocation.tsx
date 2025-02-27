@@ -55,7 +55,7 @@ const JobLocation = ({ jobValue, bufferSetJobValue, errorStreet, errorCity, erro
   return (
     <div className="w-full">
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow-lg'}>
-        <span className="text-[26px] font-bold text-[#33495E]">Job Location*</span>
+        <span className="sm:text-[26px] text-[20px] font-bold text-[#33495E]">Job Location*</span>
 
         <TextInput
           name="street"
@@ -86,7 +86,7 @@ const JobLocation = ({ jobValue, bufferSetJobValue, errorStreet, errorCity, erro
           style="w-full"
         />
 
-        <span className="text-[26px] font-bold text-[#33495E]">Pinpoint Map Location (Optional)</span>
+        <span className="sm:text-[26px] text-[20px font-bold text-[#33495E]">Pinpoint Map Location (Optional)</span>
         <div
           ref={mapContainerRef}
           style={{ width: '100%', height: '400px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}

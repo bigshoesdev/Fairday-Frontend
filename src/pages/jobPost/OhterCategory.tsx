@@ -10,11 +10,11 @@ const OhterCategory = ({ jobValue, bufferSetJobValue }) => {
           <input
             name='categoryConfirm'
             type="checkbox"
-            className="w-[25px] h-[25px] form-checkbox text-blue-600"
+            className="sm:w-[25px] sm:h-[25px] w-[18px] h-[18px] form-checkbox text-blue-600"
             checked={jobValue.categoryConfirm}
           onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: !jobValue[e.target.name]})}
           />
-          <span className="font-bold text-[26px] text-[#33495E]">
+          <span className="font-bold sm:text-[26px] text-[20px] text-[#33495E]">
             Other Category <span className='text-blue-500 font-normal'>(Optional)</span></span>
         </label>
 

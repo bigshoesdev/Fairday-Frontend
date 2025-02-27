@@ -84,11 +84,11 @@ const JobDetail = ({
           <input
             name="emailConfirm"
             type="checkbox"
-            className="w-[25px] h-[25px] form-checkbox text-blue-600"
+            className="w-[18px] h-[18px] sm:w-[25px] sm:h-[25px] form-checkbox text-blue-600"
             checked={jobValue.emailConfirm}
             onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: !jobValue[e.target.name] })}
           />
-          <span className="font-bold text-[20px] text-[#33495E]">
+          <span className="font-bold text-[15px] sm:text-[20px] text-[#33495E]">
             Email Confirmation Required for posting all jobs</span>
         </label>
 

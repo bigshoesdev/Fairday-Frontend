@@ -50,8 +50,19 @@ const TextInput = ({
             onChange={handleChange}
             className={style}
             disabled={disabled}
-            error={error? true: false}
+            error={error ? true : false}
             helperText={error}
+            sx={{
+                '& .MuiInputBase-input': {
+                    fontSize: { xs: '12px', sm: '18px' }, // 12px on xs, 18px on sm and up
+                },
+                '& .MuiInputLabel-root': {
+                    fontSize: { xs: '12px', sm: '18px' }, // Adjust label size as well
+                },
+                '& .MuiFormHelperText-root': {
+                    fontSize: { xs: '12px', sm: '18px' } // Helper text size
+                }
+            }}
         />
     );
 };

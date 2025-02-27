@@ -31,31 +31,36 @@ import { postJob, viewJob } from 'src/store/user/jobSlice';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { getJobConstManage } from 'src/store/user/jobSlice';
+import { useNavigate } from 'react-router-dom';
 
 const PostJob = () => {
+  const navigate = useNavigate();
 
   const dispatch = useDispatch<AppDispatch>();
   const jobConfig = useSelector((state: any) => state.jobConfig);
 
-  const { jobDetails, error } = jobConfig
+  const { jobDetails, error, bufferLink } = jobConfig;
+  const userConfig = useSelector((state: any) => state.authSliceConfig);
+  const { user } = userConfig;
+  const userId = user?.sub;
+  const userEmail = user?.email;
 
   const isOkay = jobDetails && jobDetails.isOkay;
   const jobId = jobDetails.result?._id;
-
-  useEffect(() => {
-    dispatch(getJobConstManage());
-  }, [dispatch]);
 
   const [open, setOpen] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+
+
   const [jobValue, setJobValue] = useState({
+    userId: userId,
     jobTitle: "",
     jobDescription: "",
     employer: "",
     name: "",
-    email: "",
+    email: userEmail,
     emailConfirm: false,
     city: "",
     street: "",
@@ -91,9 +96,20 @@ const PostJob = () => {
   })
 
   useEffect(() => {
+    dispatch(getJobConstManage());
+    if (bufferLink) {
+      const formattedBufferLink = bufferLink.startsWith('/')
+        ? bufferLink
+        : `/${bufferLink}`;
+
+      navigate(formattedBufferLink);
+    }
+    if (isOkay) {
+      setIsModalOpen(true);
+    }
     if (jobValue.status === 1) {
     }
-  }, [jobValue.status]);
+  }, [jobValue.status, isOkay, dispatch, jobDetails, bufferLink]);
 
   const publishJobButton = () => {
     const formData: any = new FormData();
@@ -101,20 +117,24 @@ const PostJob = () => {
     if (jobId) {
       formData.append("jobId", jobId);
       formData.append("status", 1);
-      console.log('jobId', jobId);
+      Object.keys(jobValue).map((key: string) => {
+        formData.append(key, jobValue[key]);
+      })
 
+      const applicantType = Object.keys(jobValue.checkboxStates).filter(key => jobValue.checkboxStates[key]);
+      applicantType.forEach(type => formData.append("applicantType", type));
 
+      jobValue.selectedImages.forEach((file) => {
+        formData.append("images", file);
+      });
     } else {
       jobValue.status = 1;
       Object.keys(jobValue).map((key: string) => {
         formData.append(key, jobValue[key]);
       })
-      
+
       const applicantType = Object.keys(jobValue.checkboxStates).filter(key => jobValue.checkboxStates[key]);
       applicantType.forEach(type => formData.append("applicantType", type));
-
-    
-      
 
       jobValue.selectedImages.forEach((file) => {
         formData.append("images", file);
@@ -130,7 +150,7 @@ const PostJob = () => {
     })
 
     const applicantType = Object.keys(jobValue.checkboxStates).filter(key => jobValue.checkboxStates[key]);
-    
+
     applicantType.forEach(type => formData.append("applicantType", type));
 
     jobValue.selectedImages.forEach((file) => {
@@ -140,15 +160,9 @@ const PostJob = () => {
     dispatch(postJob(formData))
   }
 
-  useEffect(() => {
-    if (isOkay) {
-      setIsModalOpen(true);
-    }
-  }, [isOkay]);
-
   return (
     <div className='flex flex-col w-full justify-center items-center bg-[#FAFAFA] pb-20'>
-      <div className='text-center font-bold text-[40px] text-white bg-[#526876] h-[355px] w-full pt-[100px]'>
+      <div className='text-center font-bold text-[34px] sm:text-[40px] text-white bg-[#526876] h-[355px] w-full pt-[100px]'>
         Create Job Post
       </div>
       <div className='bg-[#FAFAFA] flex flex-col container items-center justify-center max-w-[950px] gap-y-10 '>
@@ -176,7 +190,7 @@ const PostJob = () => {
           bufferSetJobValue={(value: any) => setJobValue(value)}
           errorSelectedCategory={error && error.selectedCategory}
         />
-          
+
         <OhterCategory
           jobValue={jobValue}
           bufferSetJobValue={(value: any) => setJobValue(value)}
@@ -209,7 +223,7 @@ const PostJob = () => {
           jobValue={jobValue}
           bufferSetJobValue={(value: any) => setJobValue(value)}
         />
-        
+
         <NameSection
           jobValue={jobValue}
           bufferSetJobValue={(value: any) => setJobValue(value)}
@@ -234,7 +248,7 @@ const PostJob = () => {
         />
         <div className="relative w-full">
           <div className="bg-primaryBlue text-blue p-6 rounded-xl shadow-md z-10 cursor-pointer relative flex justify-between items-start" onClick={() => setOpen(!open)}>
-            <div className='text-white text-[26px] font-bold'>
+            <div className='text-white sm:text-[26px] text-[20px] font-bold'>
               <span>Create Advanced Job Post</span>
               <span className='ml-5 text-white text-[18px] font-normal'> (optional Sections)</span>
             </div>

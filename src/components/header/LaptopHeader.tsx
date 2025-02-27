@@ -1,21 +1,43 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Button from 'src/components/common/Button';
 import layoutMenuList from 'src/mock/layoutMenuList.json';
 import Login from 'src/pages/Login';
 import SignUp from 'src/pages/SignUp';
+import { AppDispatch } from 'src/store';
+import { viewAppProfile } from 'src/store/user/appProfileSlice';
+import { clearToken } from 'src/utlies/localStorage';
+import { logoutSuccess } from 'src/store/auth/authSlice';
+import { viewBusinessProfile } from 'src/store/user/businessProfileSlice';
+
 
 const LaptopHeader = () => {
 
-
-    const navigate = useNavigate()
-
+    const navigate = useNavigate();
     const authSliceConfig = useSelector((state: any) => state.authSliceConfig);
     const user = authSliceConfig.user;
+    const userId = user?.sub;
+    const jobSeeker = user?.jobSeeker;
+    const business = user?.business
+    const dispatch = useDispatch<AppDispatch>();
 
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    useEffect(() => {
+        dispatch(viewAppProfile({ userId: userId }));
+        dispatch(viewBusinessProfile({ userId: userId }));
+    }, [dispatch, authSliceConfig.isAuthenticate]);
+
+    const applicantProfileConfig = useSelector((state: any) => state.appProfileConfig);
+    const { appProfileDetails } = applicantProfileConfig;
+
+    const BusinessProfileConfig = useSelector((state: any) => state.BusinessProfileConfig);
+    const { businessProfileDetails } = BusinessProfileConfig;
+
     const [activeModal, setActiveModal] = useState<'login' | 'register' | null>(null);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const bufferLink = authSliceConfig?.bufferLink;
 
     const drawerRef = useRef(null);
 
@@ -30,18 +52,32 @@ const LaptopHeader = () => {
     };
 
     useEffect(() => {
+        if (bufferLink) {
+            const formattedBufferLink = bufferLink.startsWith('/')
+                ? bufferLink
+                : `/${bufferLink}`;
+
+            navigate(formattedBufferLink);
+        }
+    }, [bufferLink])
+
+    useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
 
-    const handleOpenModal = () => {
-        setActiveModal('login');
+    const handleOpenModal = (modalType: 'login' | 'register') => {
+        setActiveModal(modalType);
     };
 
     const closeModal = () => {
         setActiveModal(null);
+    };
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen((prev) => !prev);
     };
 
     const switchToRegister = () => {
@@ -57,6 +93,52 @@ const LaptopHeader = () => {
             closeModal();
         }
     };
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    const profileClick = () => {
+
+        if (jobSeeker && business) {
+            if (appProfileDetails[0]) {
+                navigate('/user/userProfile')
+            } else {
+                navigate('/job-applicant-profile-registration')
+            }
+        } else if (jobSeeker) {
+            if (appProfileDetails[0]) {
+                navigate('/user/userProfile')
+            } else {
+                navigate('/job-applicant-profile-registration')
+            }
+        } else {
+            if (businessProfileDetails[0]) {
+                navigate('/business-profile')
+            } else {
+                navigate('/business-applicant-profile-registration')
+            }
+        }
+    }
+
+    const signOutButton = () => {
+        clearToken();
+        dispatch(logoutSuccess());
+        setIsDropdownOpen(false);
+        navigate('/')
+        setTimeout(() => {
+            window.location.reload();
+        }, 10);
+    }
 
     return (
         <div className="block header_change:hidden">
@@ -100,7 +182,7 @@ const LaptopHeader = () => {
                     <div className="py-4 overflow-y-auto">
                         <ul className="space-y-2 font-medium">
                             {layoutMenuList.header.map((item, index) => (
-                                <p key={index} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group cursor-pointer">
+                                <p onClick={() => navigate(item.link)} key={index} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group cursor-pointer">
                                     <span className="ms-3">{item.menu}</span>
                                 </p>
                             ))}
@@ -109,36 +191,51 @@ const LaptopHeader = () => {
                 </div>
 
                 <img src="src/assets/images/logo.png" alt="Logo" className="w-[160px] xs:w-[210px] xs:h-[36px]  cursor-pointer" />
-                {authSliceConfig.isAuthenticate ?
+                {authSliceConfig.isAuthenticate ? (
+                    <div className="relative" ref={dropdownRef}>
+                        <div className="flex items-center cursor-pointer" onClick={toggleDropdown}>
+                            <img
+                                src="https://fairdayjobs.com/src/assets/images/user1.png"
+                                className="pl-5 pr-4 cursor-pointer"
+                            />
+                        </div>
+
+                        {isDropdownOpen && (
+                            <div className="absolute right-0 mt-2 w-48 bg-white text-white rounded-lg shadow-lg py-2 transition-all duration-300 animate-fade-in z-[50]">
+                                <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={profileClick}>
+                                    Profile
+                                </a>
+                                <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => navigate('/jobs')}>
+                                    Jobs
+                                </a>
+                                <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => navigate('/alerts')}>
+                                    Alerts
+                                </a>
+                                <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => navigate('/settings')}>
+                                    Settings
+                                </a>
+                                <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={signOutButton}>
+                                    Sign Out
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                ) : (
                     <>
-                        <img src="https://fairdayjobs.com/src/assets/images/user1.png" className='px-5 cursor-pointer' onClick={() => navigate('/user/userprofile')} />
-
-                        <p className='text-white mb-0 px-5 cursor-pointer'>
-                            {user?.email}
-                        </p>
+                        < Button
+                            text="LOGIN"
+                            onClick={() => handleOpenModal('login')}
+                            className="bg-primaryBlue text-white px-2 xs:px-4 md:px-6 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+                        />
                     </>
+                )}
 
-                    :
-                    < Button
-                        text="LOGIN"
-                        onClick={handleOpenModal}
-                        className="bg-primaryBlue text-white px-2 xs:px-4 md:px-6 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-                    />}
-
-
-                {/* < Button
-                    text="LOGIN"
-                onClick={handleOpenModal}
-                className="bg-primaryBlue text-white px-6 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-                /> */}
             </div>
-
-            {/* Modal */}
             {activeModal && (
                 <div onClick={handleBackgroundClick} className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-[20px] shadow-md w-[600px]">
+                    <div className="bg-white p-6 rounded-[20px] shadow-md w-3/4">
                         {activeModal === 'login' && <Login closeModal={closeModal} switchToRegister={switchToRegister} />}
-                        {activeModal === 'register' && <SignUp switchToLogin={switchToLogin} />}
+                        {activeModal === 'register' && <SignUp closeModal={closeModal} switchToLogin={switchToLogin} />}
 
                     </div>
                 </div>

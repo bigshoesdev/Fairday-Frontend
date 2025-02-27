@@ -37,12 +37,23 @@ const BusinessProfileRegister = () => {
   const userId = user?.sub;
   const userEmail = user?.email;
 
-
-
   const BusinessProfileConfig = useSelector((state: any) => state.BusinessProfileConfig);
   const { businessProfileDetails } = BusinessProfileConfig;
   const businessDetails = businessProfileDetails[0] || {};
 
+
+  const bufferLink = BusinessProfileConfig?.bufferLink;
+
+  useEffect(() => {
+    dispatch(getJobConstManage());
+    if (bufferLink) {
+      const formattedBufferLink = bufferLink.startsWith('/')
+        ? bufferLink
+        : `/${bufferLink}`;
+
+      navigate(formattedBufferLink);
+    }
+  }, [dispatch, bufferLink]);
 
   const {
     businessName,
@@ -84,7 +95,6 @@ const BusinessProfileRegister = () => {
     selectedPayment
   } = businessDetails
 
-  console.log("businessName", businessName);
 
 
   const [businessProfileValue, setBusinessProfileValue] = useState({
@@ -135,17 +145,9 @@ const BusinessProfileRegister = () => {
   const [autoSaveContrim, setAutoSaveContrim] = useState(false);
 
   useEffect(() => {
-    dispatch(getJobConstManage());
     dispatch(viewBusinessProfile({ userId: userId }));
   }, [dispatch]);
 
-  useEffect(() => {
-
-    if(Object.keys(businessDetails).length > 0){
-      setBusinessProfileValue(businessDetails)
-    }
-
-  }, [businessDetails])
 
   const registerButton = async () => {
     const formData: any = new FormData();
@@ -164,11 +166,8 @@ const BusinessProfileRegister = () => {
       }
     });
 
-    const response = await dispatch(registerBusinessProfile(formData));
+     dispatch(registerBusinessProfile(formData));
 
-    if (response?.isOkay) {
-      navigate('/business-profile');
-    }
   };
 
   const viewProfileButton = () => {
@@ -181,21 +180,21 @@ const BusinessProfileRegister = () => {
 
   return (
     <div className='flex flex-col w-full justify-center items-center bg-[#FAFAFA] pb-20 '>
-      <div className='flex flex-col text-center font-bold text-[40px] text-white bg-[#526876] h-[355px] w-full pt-[100px]'>
+      <div className='flex flex-col text-center font-bold  text-[28px] sm:text-[40px] text-white bg-[#526876] h-[355px] w-full pt-[100px]'>
 
         <span>Business Applicant Profile Registration </span>
       </div>
       <div className='bg-[#FAFAFA] flex flex-col container items-center justify-center max-w-[950px] gap-y-10'>
-        <div className='mt-[-70px] w-full'>
-          <div className='p-[15px] flex flex-row bg-blue-500 items-center rounded-xl'>
+        <div className='mt-[-50px] sm:mt-[-70px] w-full'>
+          <div className='p-[8px] sm:p-[15px] flex flex-row bg-blue-500 items-center rounded-xl'>
             <a href="#" className='w-full flex justify-center'>
-              <span className='sm:text-[20px] md:text-[24px] text-gray-200 content-center cursor-pointer'>REGISTRATION</span>
+              <span className='text-[18px] sm:text-[20px] md:text-[24px] text-gray-200 content-center cursor-pointer'>REGISTRATION</span>
             </a>
             <a href="#" className='w-full flex justify-center'>
               <Button
                 text="PROFILE VIEW"
                 onClick={viewProfileButton}
-                className='sm:text-[20px] md:text-[24px] rounded-xl bg-white text-blue-500 w-full hover:bg-gray-200 transition-all cursor-pointer hover:border-gray-400 focus:outline-none'
+                className='text-[18px] sm:text-[20px] md:text-[24px] rounded-xl bg-white text-blue-500 w-full hover:bg-gray-200 transition-all cursor-pointer hover:border-gray-400 focus:outline-none'
               />
             </a>
           </div>

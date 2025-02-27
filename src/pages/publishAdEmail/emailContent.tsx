@@ -1,7 +1,15 @@
 import Button from "src/components/common/Button";
 import { IoHomeOutline } from "react-icons/io5";
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-const EmailContent = () => {
+const EmailContent = ({bufferEmail}) => {
+
+  const jobConfig = useSelector((state: any) => state.jobConfig);
+  const decodedToken = jobConfig.decodedToken;
+  const navigate = useNavigate();
+
+
   return (
     <div className="bg-white rounded-lg p-6 max-w-[950px] flex  items-center flex-col">
       <div className="flex justify-center flex-col items-center">
@@ -43,52 +51,56 @@ const EmailContent = () => {
         </div>
       </div>
 
-      <h2 className="text-center title mt-4">
-        Published Ad Confirmation
-      </h2>
+      {
+        decodedToken.employer ? (<>
+          <h2 className="text-center title mt-4">
+            Published Job Confirmation
+          </h2>
 
-      <span className="text-center subtitle3 mt-5">
-        Congratulations Employer XYZ, Your <span className="font-bold text-primaryBlue">Job Ad</span> is ready for Publish with Fariday Jobs.
-      </span>
-      <span className="subtitle3  text-center">Please review your post and make any corrections as needed.</span>
+          <span className="text-center subtitle3 mt-5">
+            Congratulations Employer {decodedToken.employer}, Your <span className="font-bold text-primaryBlue">{decodedToken.jobTitle}</span> is ready for Publish with Fariday Jobs.
+          </span>
+          <span className="subtitle3  text-center">Please review your post and make any corrections as needed.</span>
 
-      <Button
-        text="PUBLISH JOB"
-        className="w-full sm:w-auto py-4 mt-10 bg-primaryBlue text-white px-28 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-        onClick={() => console.log()}
-      />
-
-      <div className="w-full flex-col sm:flex-row flex gap-3 mt-10 justify-center">
-        <div className=" flex flex-col items-center gap-4 w-full">
           <Button
-            text="VIEW JOB"
-            className="bg-primaryBlue py-4 w-full text-white hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+            text="PUBLISH JOB"
+            className="w-full sm:w-auto py-4 mt-10 bg-primaryBlue text-white px-28 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
             onClick={() => console.log()}
           />
-        </div>
-        <div className=" flex flex-col items-center gap-4 w-full">
-          <Button
-            text="EDIT JOB"
-            className="bg-primaryBlue py-4 w-full text-white hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-            onClick={() => console.log()}
-          />
-        </div>
-        <div className=" flex flex-col items-center gap-4 w-full">
-          <Button
-            text="REMOVE JOB POST"
-            className="bg-primaryBlue py-4 text-white w-full hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-            onClick={() => console.log()}
-          />
-          <span className="font-bold">ARCHIVE TO REGISTRANT</span>
-        </div>
-      </div>
 
-
+          <div className="w-full flex-col sm:flex-row flex gap-3 mt-10 justify-center">
+            <div className=" flex flex-col items-center gap-4 w-full">
+              <Button
+                text="VIEW JOB"
+                className="bg-primaryBlue py-4 w-full text-white hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+                onClick={() => console.log()}
+              />
+            </div>
+            <div className=" flex flex-col items-center gap-4 w-full">
+              <Button
+                text="EDIT JOB"
+                className="bg-primaryBlue py-4 w-full text-white hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+                onClick={() => console.log()}
+              />
+            </div>
+            <div className=" flex flex-col items-center gap-4 w-full">
+              <Button
+                text="REMOVE JOB POST"
+                className="bg-primaryBlue py-4 text-white w-full hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+                onClick={() => console.log()}
+              />
+              <span className="font-bold">ARCHIVE TO REGISTRANT</span>
+            </div>
+          </div>
+        </>) : (<>
+          <h2 className="text-center title mt-4">
+            Please verify your email {bufferEmail} to publish your job in Fariday Jobs service. Check your       inbox for a verification link
+          </h2>
+        </>)
+      }
 
       <div className="flex justify-center mt-6 flex-col gap-y-10">
-
-
-        <div className="flex flex-row gap-2 justify-center text-primaryBlue cursor-pointer">
+        <div className="flex flex-row gap-2 justify-center text-primaryBlue cursor-pointer" onClick={() => navigate('/')}>
           <IoHomeOutline className="text-[20px]" />
           <span>Go Back to Home</span>
         </div>
@@ -99,10 +111,10 @@ const EmailContent = () => {
         <p>THANKS & REGARDS,</p>
         <p>
           <a
-            href="https://www.fairdayjobs.com"
+            href="https://fairdayjobs.com"
             className="font-semibold text-primaryBlue"
           >
-            FairDayJobs.com
+            Fairdayjobs
           </a>{" "}
           Team
         </p>

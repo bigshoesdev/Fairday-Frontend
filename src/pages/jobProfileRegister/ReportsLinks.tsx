@@ -97,8 +97,8 @@ const ReportsLinks = ({ appProfileValue, bufferSetAppProfileValue }) => {
     bufferSetAppProfileValue({
       ...appProfileValue,
       preScreeningReports: exists
-        ? updatedReports.filter(report => report.itemId !== itemId) // Remove if exists
-        : [...updatedReports, { itemId, itemName: '', link: '' }] // Add if not exists
+        ? updatedReports.filter(report => report.itemId !== itemId)
+        : [...updatedReports, { itemId, itemName: '', link: '' }] 
     });
   };
 
@@ -111,7 +111,7 @@ const ReportsLinks = ({ appProfileValue, bufferSetAppProfileValue }) => {
       bufferSetAppProfileValue({
         ...appProfileValue,
         preScreeningReports: updatedReports,
-        link: '' // Reset input field
+        link: '' 
       });
     }
   };
@@ -119,7 +119,7 @@ const ReportsLinks = ({ appProfileValue, bufferSetAppProfileValue }) => {
   return (
     <div className='w-full'>
       <Panel classStyle="flex flex-col px-10 py-10 bg-white rounded-2xl gap-5 shadow-xl justify-between">
-        <div className='font-bold text-[18px]'>Pre-Screening Reports Links (Optional)</div>
+        <div className='font-bold text-[18px] sm:text-[20px]'>Pre-Screening Reports Links (Optional)</div>
         <div className='flex flex-col gap-4'>
           {applicantTypeData.map((item) => {
             const isChecked = (appProfileValue.preScreeningReports || []).some(report => report.itemId === item._id);
@@ -136,7 +136,7 @@ const ReportsLinks = ({ appProfileValue, bufferSetAppProfileValue }) => {
                   <Button
                     text={uploadedItem?.link ? "UPLOADED" : "UPLOAD"}
                     onClick={() => handleUpload(item._id, item.string)}
-                    className={`text-white text-[16px] font-medium hover:bg-blue-400 transition-all cursor-pointer focus:outline-none rounded-xl ${isChecked ? 'bg-primaryBlue hover:bg-blue-400' : 'bg-gray-300 cursor-not-allowed'} ${uploadedItem?.link ? 'bg-red-500' : ''}`}
+                    className={`text-white text-[12px] sm:text-[16px] font-medium hover:bg-blue-400 transition-all cursor-pointer focus:outline-none rounded-lg ${isChecked ? 'bg-primaryBlue hover:bg-blue-400' : 'bg-gray-300 cursor-not-allowed'} ${uploadedItem?.link ? 'bg-red-500' : ''}`}
                     disable={!isChecked || !appProfileValue.link}
                   />
                   <BsThreeDotsVertical />

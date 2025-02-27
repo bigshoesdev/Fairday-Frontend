@@ -25,22 +25,22 @@ const Address = ({ jobValue, bufferSetJobValue, errorUserStreet, errorUserCity, 
   return (
     <div className='w-full'>
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow'}>
-        <span className="font-bold text-[26px] text-[#33495E]">Your Address / Location *</span>
+        <span className="font-bold sm:text-[26px] text-[20px] text-[#33495E]">Your Address / Location *</span>
 
         <label className="flex items-center space-x-3">
           <input
             name='addressConfirm'
             type="checkbox"
-            className="w-[25px] h-[25px] form-checkbox text-blue-600"
+            className="sm:w-[25px] sm:h-[25px] w-[20px] h-[20px] form-checkbox text-blue-600"
             checked={jobValue.addressConfirm}
             onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: !jobValue[e.target.name] })}
           />
-          <span className="font-bold text-[20px] text-[#33495E]">
+          <span className="font-bold sm:text-[20px] text-[18px] text-[#33495E]">
             Same address as Job Location listed above
           </span>
         </label>
 
-        <span className="font-bold text-[26px] text-[#33495E]">OR</span>
+        <span className="font-bold sm:text-[26px] text-[20px] text-[#33495E]">OR</span>
 
         <TextInput
           name='userStreet'

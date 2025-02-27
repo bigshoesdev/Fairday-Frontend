@@ -17,8 +17,8 @@ const UploadReferrials: React.FC<any> = ({ appProfileValue, bufferSetAppProfileV
   return (
     <div className="w-full">
       <Panel classStyle="flex flex-col p-7 bg-white rounded-2xl gap-5 shadow-xl">
-        <span className="font-bold text-[26px] text-[#33495E]">
-          Upload referrals from past employers <span className='font-normal text-[20px'>(Optional)</span>
+        <span className="font-bold text-[18px] sm:text-[20px] text-[#33495E]">
+          Upload referrals from past employers <span className='font-normal text-[18px] sm:text-[20px]'>(Optional)</span>
         </span>
 
         <div className="border border-[#e5e7eb] w-full h-[200px] rounded-xl flex justify-center items-center flex-col relative">
@@ -33,7 +33,7 @@ const UploadReferrials: React.FC<any> = ({ appProfileValue, bufferSetAppProfileV
           />
           <label
             htmlFor="referrialFileInput"
-            className="bg-primaryBlue text-white py-4 px-6 text-[15px] font-semibold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-[6px] absolute bottom-5 right-5"
+            className="bg-primaryBlue text-white sm:py-4 sm:px-6 py-2 px-2 text-[15px] font-semibold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-[6px] absolute sm:bottom-5 sm:right-5 bottom-2 right-2"
           >
             Choose File
           </label>

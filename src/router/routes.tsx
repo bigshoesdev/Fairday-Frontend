@@ -138,15 +138,15 @@ const routes = [
     element: <ApplicantToolBox />,
   },
   {
-    path: "/publish-ad-email",
+    path: "/publish-job-email/:token",
     element: <PublishAdEmail />,
   },
   {
-    path: "/business-register-email",
+    path: "/business-register-email/:token",
     element: <BusinessRegisterEmail />,
   },
   {
-    path: "/job-register-email",
+    path: "/job-register-email/:token",
     element: <JobRegisterEmail />,
   },
   {

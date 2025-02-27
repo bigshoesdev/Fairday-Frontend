@@ -28,10 +28,10 @@ const Contact = ({ jobValue, bufferSetJobValue }) => {
       <DropPanel
         header={
           <div className="flex flex-col gap-2">
-            <span className="text-[#1880F1] text-[22px] font-bold">
+            <span className="text-[#1880F1] sm:text-[26px] text-[20px] font-bold">
               Employer Preferred Method of Contact
             </span>
-            <span className="text-black text-[22px]">
+            <span className="text-black sm:text-[22px] text-[18px]">
               Keep Contact info Private (Verified and Rated Applicants only)
             </span>
           </div>
@@ -61,7 +61,7 @@ const Contact = ({ jobValue, bufferSetJobValue }) => {
             { label: 'WhatsApp', key: 'whatsapp', valueKey: 'whatsappValue' },
             { label: 'Other', key: 'other', valueKey: 'otherValue' },
           ].map(({ label, key, valueKey }) => (
-            <div className="flex flex-row gap-4" key={key}>
+            <div className="flex flex-row gap-1 sm:gap-4" key={key}>
               <CheckboxLable
                 label={label}
                 checked={jobValue.contactPreferences[key]}

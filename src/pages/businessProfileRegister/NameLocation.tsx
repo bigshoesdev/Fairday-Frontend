@@ -10,7 +10,7 @@ const NameLocation = ({ businessProfileValue, bufferSetBusinessProfileValue }) =
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null); // Track the marker
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const [selected, setSelected] = useState(null);
 
@@ -107,7 +107,7 @@ const NameLocation = ({ businessProfileValue, bufferSetBusinessProfileValue }) =
         </div>
 
         <div className="relative w-full border border-gray-200 rounded-[10px]">
-          <div className='items-center border-b border-gray-200 rounded-t-[10px] bg-white text-[#33495E] text-[26px] px-10 py-4 z-10 cursor-pointer relative flex justify-between items-start' onClick={() => setOpen(!open)}>
+          <div className='items-center border-b border-gray-200 rounded-t-[10px] bg-white text-[#33495E] text-[18px] sm:text-[26px] px-10 py-4 z-10 cursor-pointer relative flex justify-between items-start' onClick={() => setOpen(!open)}>
             <div>
               Years at this location (optional)
             </div>

@@ -15,7 +15,7 @@ const EndedJobCard = (props: any) => {
             <div className="flex items-start">
                 <div className="w-[55px] h-[55px] bg-gray-200 rounded-full flex-shrink-0">
                     <img
-                        src={`http://localhost:8000${job.logoImage}`}
+                        src={`https://api.fairdayjobs.com${job.logoImage}`}
                         className="w-[50px] h-[55px]"
                         alt="Company Avatar"
                     />
