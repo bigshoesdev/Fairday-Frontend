@@ -126,17 +126,15 @@ const BusinessProfile = () => {
                 <span className='font-bold text-[20px]'>Business Licenses & Certifications</span>
                 <div className='flex flex-row mt-4'>
                     <div className='flex flex-col w-full'>
-                        <span>Local Business License:</span>
-                        <span>Local Business License:</span>
-                        <span>Local Business License:</span>
-                        <span>Local Business License:</span>
+                        <span>Business:</span>
+                        <span>Industrial:</span>
+                        <span>Construction:</span>
                     </div>
 
                     <div className='flex flex-col w-full text-blue-500 underline'>
-                        <span>http://www.localbusiness/license</span>
-                        <span>http://www.localbusiness/license</span>
-                        <span>http://www.localbusiness/license</span>
-                        <span>http://www.localbusiness/license</span>
+                        <span>www.Business.com</span>
+                        <span>www.Industrial.com</span>
+                        <span>www.Construction.com</span>
                     </div>
                 </div>
                 <hr className='bg-gray-500 mt-4'></hr>
@@ -218,7 +216,7 @@ const BusinessProfile = () => {
             <div className='flex flex-col sm:flex-row sm:justify-between w-full max-w-[950px] gap-8'>
                 <div className='flex flex-col bg-white w-full shadow-lg container py-5 rounded-xl'>
                     <span className='font-bold text-gray-600 text-[18px] sm:text-[20px] flex items-center w-full'>Public record purchase</span>
-                    <p className='mt-4'>Lorem inpusem</p>
+                    <p className='mt-4'>Gain access to comprehensive public records with ease! Our platform allows you to purchase verified public records directly, from background checks to professional licensing information, and more. </p>
                 </div>
 
                 <div className='flex flex-col bg-white w-full shadow-lg container py-5 rounded-xl'>
@@ -245,7 +243,7 @@ const BusinessProfile = () => {
 
                 </div>
 
-                <div className='flex flex-col sm:flex-row bg-white w-full shadow-lg container py-5 rounded-xl'>
+                <div className='flex flex-col  bg-white w-full shadow-lg container py-5 rounded-xl'>
                     <span className='font-bold text-gray-600 sm:text-[20px] text-[18px] flex items-center w-full'>Method of Contact</span>
                     <p className='flex flex-row mt-4 items-center'>
                         <FaPhoneAlt className='text-[25px] text-blue-500' />
