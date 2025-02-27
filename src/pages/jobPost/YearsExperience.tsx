@@ -14,7 +14,7 @@ const YearsExperience = ({ jobValue, bufferSetJobValue, errorSelectedYearOption 
       <DropPanel
         header={
           <div className="flex flex-col gap-2">
-            <span className="text-[#1880F1] text-[22px] font-bold">Years of Experience Preferred*</span>
+            <span className="text-[#1880F1] sm:text-[26px] text-[20px] font-bold">Years of Experience Preferred*</span>
             {selectedItem ? (
               <span className='text-black text-[22px]'>{selectedItem.string.trim()}</span>
             ) : (

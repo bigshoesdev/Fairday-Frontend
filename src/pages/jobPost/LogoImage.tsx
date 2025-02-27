@@ -19,7 +19,7 @@ const LogoImage: React.FC<any> = ({ jobValue, bufferSetJobValue }) => {
   return (
     <div className='w-full'>
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow'}>
-        <span className="font-bold text-[26px] text-[#33495E]">
+        <span className="font-bold sm:text-[26px] text-[20px] text-[#33495E]">
           Upload Employer Logo or Job Location Photo (Optional)
         </span>
         <div className='border border-[#e5e7eb] w-full h-[200px] rounded-xl flex justify-center items-center flex-col relative'>
@@ -34,7 +34,7 @@ const LogoImage: React.FC<any> = ({ jobValue, bufferSetJobValue }) => {
           />
           <label
             htmlFor="singleFileInput"
-            className="bg-primaryBlue text-white py-4 px-6 text-[15px] font-semibold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-[6px] absolute bottom-5 right-5"
+            className="bg-primaryBlue text-white sm:py-4 sm:px-6 p-2 text-[15px] font-semibold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-[6px] absolute bottom-2 right-2 sm:bottom-5 sm:right-5 "
           >
             Choose File
           </label>

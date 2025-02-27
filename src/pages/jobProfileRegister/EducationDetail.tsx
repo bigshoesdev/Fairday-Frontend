@@ -10,7 +10,7 @@ const EducationDetail = ({
     <div className='w-full'>
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow'}>
         <div className='flex flex-col'>
-          <span className='font-bold  text-[20px] mb-2'>Educational detail <span className='text-[18px] font-normal'> (Optional)</span></span>
+          <span className='font-bold text-[18px] sm:text-[20px] mb-2'>Educational detail <span className='text-[18px] font-normal'> (Optional)</span></span>
           <TextInput
             type="email"
             name="educationDetail"

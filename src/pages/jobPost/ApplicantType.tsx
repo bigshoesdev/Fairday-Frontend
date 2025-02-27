@@ -31,7 +31,7 @@ const ApplicantType = ({ jobValue, bufferSetJobValue }) => {
       <DropPanel
         header={
           <div className='flex flex-col gap-2'>
-            <span className='text-[#1880F1] text-[22px] font-bold'>Applicant Type* <span className='text-black font-normal'>(Select all as applicable)</span></span>
+            <span className='text-[#1880F1] sm:text-[26px] text-[20px] font-bold'>Applicant Type* <span className='text-black font-normal'>(Select all as applicable)</span></span>
 
           </div>
         }

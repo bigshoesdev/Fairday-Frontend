@@ -21,15 +21,14 @@ import WorkHistofyDetail from 'src/pages/jobProfileRegister/WorkHistofyDetail';
 import ReportsLinks from 'src/pages/jobProfileRegister/ReportsLinks';
 import { registerAppProfile } from 'src/store/user/appProfileSlice';
 import { viewAppProfile } from 'src/store/user/appProfileSlice';
+import { messageHandle } from "src/store/systemSetting/commonSlice";
 
 const JobProfileRegister = () => {
 
   const navigate = useNavigate();
 
   const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    dispatch(getJobConstManage());
-  }, [dispatch]);
+
 
   const userConfig = useSelector((state: any) => state.authSliceConfig);
   const { user } = userConfig;
@@ -42,6 +41,19 @@ const JobProfileRegister = () => {
 
   const applicantProfileConfig = useSelector((state: any) => state.appProfileConfig);
   const { appProfileDetails } = applicantProfileConfig;
+  const bufferLink = applicantProfileConfig?.bufferLink;
+
+  useEffect(() => {
+    dispatch(getJobConstManage());
+    if (bufferLink) {
+      const formattedBufferLink = bufferLink.startsWith('/')
+        ? bufferLink
+        : `/${bufferLink}`;
+
+      navigate(formattedBufferLink);
+    }
+  }, [dispatch, bufferLink]);
+
 
   const [appProfileValue, setAppProfileValue] = useState({
     userId: userId || "",
@@ -70,14 +82,14 @@ const JobProfileRegister = () => {
     referProfileConfirm: false,
     selectedPayment: "mastercard",
     preScreeningReports: [],
-    
+
   });
 
   useEffect(() => {
     if (appProfileDetails && appProfileDetails.length > 0) {
       setAppProfileValue((prevState) => ({
-        ...prevState, 
-        ...appProfileDetails[0], 
+        ...prevState,
+        ...appProfileDetails[0],
       }));
     }
   }, []);
@@ -103,27 +115,32 @@ const JobProfileRegister = () => {
   };
 
   const viewProfileButton = () => {
-    navigate('/user/userProfile')
-  }
+    if (appProfileDetails?.length > 0) {
+      navigate('/user/userProfile');
+    } else {
+      dispatch(messageHandle({ type: "error", message: "Please complete your profile!" }));
+    }
+  };
+
 
   return (
     <div className='flex flex-col w-full justify-center items-center bg-[#FAFAFA] pb-20 '>
-      <div className='flex flex-col text-center font-bold text-[40px] text-white bg-[#526876] h-[355px] w-full pt-[100px]'>
+      <div className='flex flex-col text-center font-bold text-[30px] sm:text-[40px] text-white bg-[#526876] h-[355px] w-full pt-[100px] px-4'>
 
         <span>Job Applicant Profile Registration </span>
         <span className='text-[20px] mt-5'>Apply, Interview & Get Hired in a few clicks!</span>
       </div>
       <div className='bg-[#FAFAFA] flex flex-col container items-center justify-center max-w-[950px] gap-y-10'>
-        <div className='mt-[-70px] w-full'>
-          <div className='p-[15px] flex flex-row bg-blue-500 items-center rounded-xl'>
+        <div className='mt-[-50px] sm:mt-[-70px] w-full'>
+          <div className='p-[8px] sm:p-[15px] flex flex-row bg-blue-500 items-center rounded-xl'>
             <a href="#" className='w-full flex justify-center'>
-              <span className='sm:text-[20px] md:text-[24px] text-gray-200 content-center cursor-pointer'>PROFILE REGISTRATION</span>
+              <span className='text-[18px] sm:text-[20px] md:text-[24px] text-gray-200 content-center cursor-pointer text-center'>PROFILE REGISTRATION</span>
             </a>
             <a href="#" className='w-full flex justify-center'>
               <Button
                 text="VIEW PROFILE"
                 onClick={viewProfileButton}
-                className='sm:text-[20px] md:text-[24px] py-[16px] rounded-xl bg-white text-blue-500 w-full hover:bg-gray-200 transition-all cursor-pointer hover:border-gray-400 focus:outline-none'
+                className='text-[18px] sm:text-[20px] md:text-[24px] py-[16px] rounded-xl bg-white text-blue-500 w-full hover:bg-gray-200 transition-all cursor-pointer hover:border-gray-400 focus:outline-none'
               />
             </a>
           </div>
@@ -226,7 +243,7 @@ const JobProfileRegister = () => {
             onClick={() => registerButton()}
             className="bg-primaryBlue text-white py-6 text-[20px] font-bold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-xl"
           />
-          <div className='text-[15px] text-black font-bold px-60 flex justify-center justify-between mt-5'>
+          <div className='text-[15px] text-black font-bold px-10 sm:px-60 flex justify-center justify-between mt-5'>
             <span>Site Security / Privacy</span>
             <span>Verified</span>
             <span>Copyright</span>

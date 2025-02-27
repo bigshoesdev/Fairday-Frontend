@@ -52,7 +52,7 @@ const BusinessProfile = () => {
     }
 
     return (
-        <div className="flex flex-col w-full justify-cenver items-center bg-[#FAFAFA] gap-y-8 py-4">
+        <div className="flex flex-col w-full justify-cenver items-center bg-[#FAFAFA] gap-y-8 container">
 
             <Tabs />
 
@@ -70,10 +70,10 @@ const BusinessProfile = () => {
                 </div>
                 <hr className='mt-8 bg-gray-600'></hr>
                 <div className='flex flex-row justify-between pt-5 pb-3'>
-                    <span className='font-bold text-gray-600 text-[22px]'>Business Address</span>
-                    <span className='font-bold text-gray-600 text-[22px]'>Years at this location</span>
+                    <span className='font-bold text-gray-600 text-[18px] sm:text-[22px]'>Business Address</span>
+                    <span className='font-bold text-gray-600 text-[18px] sm:text-[22px]'>Years at this location</span>
                 </div>
-                <div className='flex flex-row justify-between font-semibold'>
+                <div className='flex flex-row justify-between font-semibold text-[16px] sm:text-[18px]'>
                     <div className='flex flex-col'>
                         <span>{businessProfileDetails[0]?.street}</span>
                         <span>{businessProfileDetails[0]?.country}</span>
@@ -84,10 +84,10 @@ const BusinessProfile = () => {
             </div>
 
 
-            <div className='flex justify-between w-full max-w-[950px]  gap-x-8'>
+            <div className='flex flex-col sm:flex-row sm:justify-between w-full max-w-[950px]  gap-x-8'>
                 <div className='flex flex-col bg-white w-full shadow-lg container py-5 rounded-xl'>
-                    <span className='font-bold text-gray-600 text-[20px] flex items-center w-full'>Services Offered</span>
-                    <span className='mt-5 text-[15px] font-bold text-gray-500'>From Our Category List <span className='text-blue-500'>(Up to 5 Categories)</span></span>
+                    <span className='font-bold text-gray-600 text-[18px] sm:text-[20px] flex items-center w-full'>Services Offered</span>
+                    <span className='mt-5 sm:text-[15px] text-[13px] font-bold text-gray-500'>From Our Category List <span className='text-blue-500'>(Up to 5 Categories)</span></span>
                     <div className="flex flex-wrap gap-2 mt-5">
                         {CategoriesStrings.map((category, index) => (
                             <span
@@ -101,14 +101,14 @@ const BusinessProfile = () => {
                 </div>
 
                 <div className='flex flex-col bg-white w-full shadow-lg container py-5 rounded-xl'>
-                    <span className='font-bold text-gray-600 text-[20px] flex items-center w-full'>Service Details</span>
+                    <span className='font-bold text-gray-600 text-[18px] sm:text-[20px] flex items-center w-full'>Service Details</span>
                     <div className='mt-5 y-20'>{businessProfileDetails[0]?.serviceDescription}</div>
                 </div>
             </div>
 
 
             <div className='flex justify-between bg-white container max-w-[950px] shadow-lg py-6 rounded-xl'>
-                <span className='font-bold text-gray-600 text-[20px]'>Years in Business</span>
+                <span className='font-bold text-gray-600 text-[18px] sm:text-[20px]'>Years in Business</span>
                 <Button
                     text={
                         businessProfileDetails?.[0]?.selectedBusinessYears
@@ -133,10 +133,10 @@ const BusinessProfile = () => {
                     </div>
 
                     <div className='flex flex-col w-full text-blue-500 underline'>
-                        <span>https://www.localbusiness/license</span>
-                        <span>https://www.localbusiness/license</span>
-                        <span>https://www.localbusiness/license</span>
-                        <span>https://www.localbusiness/license</span>
+                        <span>http://www.localbusiness/license</span>
+                        <span>http://www.localbusiness/license</span>
+                        <span>http://www.localbusiness/license</span>
+                        <span>http://www.localbusiness/license</span>
                     </div>
                 </div>
                 <hr className='bg-gray-500 mt-4'></hr>
@@ -145,7 +145,7 @@ const BusinessProfile = () => {
             </div>
 
 
-            <div className='flex justify-between w-full max-w-[950px] -lg gap-x-8'>
+            <div className='flex flex-col sm:flex-row sm:justify-between w-full max-w-[950px]  gap-8'>
                 <div className='flex flex-col bg-white w-full shadow-lg container py-5 rounded-xl'>
                     <span className='font-bold text-gray-600 text-[20px] flex items-center w-full'>Verification</span>
                     {businessProfileDetails[0]?.verifyRequireConfirm ?
@@ -171,7 +171,7 @@ const BusinessProfile = () => {
             <div className='flex flex-col bg-white container max-w-[950px] shadow-lg py-6 rounded-xl'>
                 <div className='flex flex-row'>
                     <div className='flex flex-col w-full'>
-                        <span className='text-[20px] font-bold text-gray-600'>Business insurance</span>
+                        <span className='text-[18px] sm:text-[20px] font-bold text-gray-600'>Business insurance</span>
                         <Button
                             text="Yes"
                             onClick={onClick}
@@ -179,7 +179,7 @@ const BusinessProfile = () => {
                         />
                     </div>
                     <div className='flex flex-col w-full'>
-                        <span className='text-[20px] font-bold text-gray-600'>Workmans insurance</span>
+                        <span className='text-[18px] sm:text-[20px] font-bold text-gray-600'>Workmans insurance</span>
                         <Button
                             text="Yes"
                             onClick={onClick}
@@ -188,14 +188,14 @@ const BusinessProfile = () => {
                     </div>
                 </div>
                 <hr className='bg-gray-600 my-7'></hr>
-                <span className='text-[20px] font-bold text-gray-600'>Other insurance</span>
+                <span className='text-[18px] sm:text-[20px] font-bold text-gray-600'>Other insurance</span>
                 <p className='mt-4'>{businessProfileDetails[0]?.insurance}</p>
             </div>
 
 
             <div className="w-full flex bg-white shadow-lg rounded-[10px] p-3 px-5 gap-2 max-w-[950px]">
                 <div className="flex-[7] flex flex-col">
-                    <p className="text-[20px] font-bold mb-1 text-gray-600">
+                    <p className="text-[18px] sm:text-[20px] font-bold mb-1 text-gray-600">
                         Referrals from past Employers
                     </p>
                     <p className="mb-1">
@@ -207,7 +207,7 @@ const BusinessProfile = () => {
                 </div>
                 <div className="flex-[5] flex flex-col  border border-gray-300 rounded-lg">
                     <img
-                        src="http://localhost:5173/src/assets/images/userprofile_refer.png"
+                        src="https://fairdayjobs.com/src/assets/images/userprofile_refer.png"
                         className="h-full rounded-lg
             "
                     />
@@ -215,14 +215,14 @@ const BusinessProfile = () => {
             </div>
 
 
-            <div className='flex justify-between w-full max-w-[950px] -lg gap-x-8'>
+            <div className='flex flex-col sm:flex-row sm:justify-between w-full max-w-[950px] gap-8'>
                 <div className='flex flex-col bg-white w-full shadow-lg container py-5 rounded-xl'>
-                    <span className='font-bold text-gray-600 text-[20px] flex items-center w-full'>Public record purchase</span>
+                    <span className='font-bold text-gray-600 text-[18px] sm:text-[20px] flex items-center w-full'>Public record purchase</span>
                     <p className='mt-4'>Lorem inpusem</p>
                 </div>
 
                 <div className='flex flex-col bg-white w-full shadow-lg container py-5 rounded-xl'>
-                    <span className='font-bold text-gray-600 text-[20px] flex items-center w-full'>Currency accepted</span>
+                    <span className='font-bold text-gray-600 text-[18px] sm:text-[20px] flex items-center w-full'>Currency accepted</span>
                     <span className='font-bold mt-4 '>{businessProfileDetails[0]?.currencyAccepted}</span>
                 </div>
             </div>
@@ -230,23 +230,23 @@ const BusinessProfile = () => {
             {businessProfileDetails[0]?.barterConfirm ?
                 <div className='flex flex-row bg-white container max-w-[950px] shadow-lg py-6 rounded-xl items-center'>
                     <BsFillCheckSquareFill className='text-[30px] text-green-500' />
-                    <span className='ml-3 text-[20px] font-bold text-gray-600'>Barter or Trade Accepted</span>
+                    <span className='ml-3 text-[18px] sm:text-[20px] font-bold text-gray-600'>Barter or Trade Accepted</span>
                 </div> : ""
             }
 
 
 
-            <div className='flex justify-between w-full max-w-[950px] -lg gap-x-8'>
+            <div className='flex flex-col sm:flex-row sm:justify-between w-full max-w-[950px]  gap-8'>
                 <div className='flex flex-col bg-white w-full shadow-lg container py-5 rounded-xl'>
-                    <span className='font-bold text-gray-600 text-[20px] flex items-center w-full'>Current Service Promotion</span>
+                    <span className='font-bold text-gray-600 text-[18px] sm:text-[20px] flex items-center w-full'>Current Service Promotion</span>
                     <p className='mt-2'>Coupon <span className='text-blue-500'>#4564</span></p>
-                    <span className='font-bold text-black text-[20px] flex items-center w-full'> Expiration Date</span>
+                    <span className='font-bold text-black text-[18px] sm:text-[20px] flex items-center w-full'> Expiration Date</span>
                     <span className='text-gray-700 mt-2'>{businessProfileDetails[0]?.expirationDate}</span>
 
                 </div>
 
-                <div className='flex flex-col bg-white w-full shadow-lg container py-5 rounded-xl'>
-                    <span className='font-bold text-gray-600 text-[20px] flex items-center w-full'>Method of Contact</span>
+                <div className='flex flex-col sm:flex-row bg-white w-full shadow-lg container py-5 rounded-xl'>
+                    <span className='font-bold text-gray-600 sm:text-[20px] text-[18px] flex items-center w-full'>Method of Contact</span>
                     <p className='flex flex-row mt-4 items-center'>
                         <FaPhoneAlt className='text-[25px] text-blue-500' />
                         <span className='ml-4'>+1 0800 453167</span>
@@ -289,7 +289,7 @@ const BusinessProfile = () => {
                 <div className="flex items-start gap-3 w-full pb-4">
                     <div className="!w-10 flex-shrink-0">
                         <img
-                            src="http://localhost:5173/src/assets/images/user1.png"
+                            src="https://fairdayjobs.com/src/assets/images/user1.png"
                             alt="User"
                             className="w-10 h-10 rounded-full"
                         />

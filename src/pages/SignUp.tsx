@@ -24,11 +24,12 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
     const bufferLink = authSliceConfig?.bufferLink;
 
     useEffect(() => {
-        if(bufferLink) {
+    console.log('authSliceConfig', bufferLink);
+
+        if (bufferLink) {
             navigate(bufferLink)
         }
     }, [bufferLink])
-    
     const [email, setEmail] = useState('');
     const [name, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -71,7 +72,7 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
             avaialble: ["name", "email", "password", "password1"]
         }
         console.log('this is auth status', authSliceConfig.isAuthenticate);
-        
+
         dispatch(signupAPI(data))
         if (authSliceConfig.isAuthenticate) {
             closeModal()
@@ -81,16 +82,16 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
 
     return (
         <div>
-            <Panel classStyle={'flex flex-col py-12 px-6'}>
+            <Panel classStyle={'flex flex-col py-4 sm:py-12 px-1 sm:px-6'}>
 
                 <div className='flex flex-col gap-3'>
-                    <div className="flex justify-center">
-                        <img src="src/assets/images/logo_symbol.png" className="w-12" />
-                        <span className="ml-4 text-black font-bold text-[22px]">
+                    <div className="flex justify-center items-center">
+                        <img src="src/assets/images/logo_symbol.png" className="w-10 h-10 sm:w-12" />
+                        <span className="ml-4 text-black font-bold text-[16px] sm:text-[22px]">
                             Welcome to Fairday
                         </span>
                     </div>
-                    <span className="text-center text-black font-bold text-[20px]">
+                    <span className="text-center text-black font-bold text-[15px] sm:text-[20px]">
                         Local Business Marketplace
                     </span>
                     <hr className="border-gray-300" />
@@ -98,10 +99,10 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
 
                 <div className='flex flex-col gap-3 mt-3'>
                     <div className="flex flex-col items-center">
-                        <span className="text-red-500 font-bold text-[20px]">
+                        <span className="text-red-500 font-bold text-[15px] sm:text-[20px]">
                             Get Updates!
                         </span>
-                        <div className="mt-3 text-[20px] text-black flex items-center space-x-4">
+                        <div className="mt-3 text-[12px] sm:text-[20px] text-black flex items-center space-x-4">
                             <label className="flex items-center space-x-2">
                                 <input
                                     type="checkbox"
@@ -109,7 +110,7 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
                                     checked={jobSeeker}
                                     onChange={handleJobSeekerChange}
                                 />
-                                <span className="font-bold">Job Seeker</span>
+                                <span className="font-bold text-center">Job Seeker</span>
                             </label>
                             <label className="flex items-center space-x-2">
                                 <input
@@ -118,7 +119,7 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
                                     checked={business}
                                     onChange={handleBusinessChange}
                                 />
-                                <span className="font-bold">Business</span>
+                                <span className="font-bold text-center">Business</span>
                             </label>
                             <label className="flex items-center space-x-2">
                                 <input
@@ -127,14 +128,14 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
                                     checked={discountShopper}
                                     onChange={handleDiscountShopperChange}
                                 />
-                                <span className="font-bold">Local Discount Shopper</span>
+                                <span className="font-bold text-center">Local Discount Shopper</span>
                             </label>
                         </div>
                     </div>
                     <hr className="border-gray-300" />
                 </div>
 
-                <div className='mt-3 gap-6 flex flex-col'>
+                <div className='mt-3 gap-2 sm:gap-6 flex flex-col'>
                     <TextInput
                         type="email"
                         label="Email Address"
@@ -164,7 +165,7 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
                         style="w-full"
                     />
 
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center text-[12px] sm:text-[18px]">
                         <div className="font-semibold cursor-pointer">FORGOT PASSWORD?</div>
                         <Button
                             text="Next"
@@ -176,10 +177,10 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
 
                 <hr className="mt-3 border-gray-300" />
 
-                <div className="mt-3 flex items-center justify-center">
-                    <p className="text-[18px]">You already have an account? &nbsp;</p>
+                <div className="mt-3 flex items-center justify-center text-[12px] sm:text-[18px]">
+                    <p className="">You already have an account? &nbsp;</p>
                     <p
-                        className="text-[18px] text-primaryBlue cursor-pointer"
+                        className="text-primaryBlue cursor-pointer"
                         onClick={switchToLogin}
                     >
                         Login

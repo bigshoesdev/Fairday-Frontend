@@ -32,7 +32,7 @@ const Contact = ({
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow'}>
         <span className='font-bold text-[18px]'>Method of Contact</span>
 
-        <div className="flex flex-col gap-4 pl-10">
+        <div className="flex flex-col gap-4 pl-2 sm:pl-10">
           {[
             { label: 'Telephone', key: 'telephone', valueKey: 'telephoneValue' },
             { label: 'Email', key: 'contactEmail', valueKey: 'emailValue' },
@@ -43,7 +43,7 @@ const Contact = ({
             { label: 'WhatsApp', key: 'whatsapp', valueKey: 'whatsappValue' },
             { label: 'Other', key: 'other', valueKey: 'otherValue' },
           ].map(({ label, key, valueKey }) => (
-            <div className="flex flex-row gap-4" key={key}>
+            <div className="flex flex-row gap-2 sm:gap-4" key={key}>
               <CheckboxLable
                 label={label}
                 checked={businessProfileValue.contactPreferences[key]}

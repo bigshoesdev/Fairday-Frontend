@@ -15,7 +15,7 @@ const ExperienceLevel = ({ appProfileValue, bufferSetAppProfileValue }) => {
   return (
     <div className="w-full">
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-2 shadow-lg'}>
-        <p className='font-bold text-[20px]'>Select Experience Level</p>
+        <p className='font-bold text-[18px] sm:text-[20px]'>Select Experience Level</p>
         <div className="px-6 grid grid-cols-1 xs:grid-cols-2 md:grid-cols-5 gap-4">
           {experienceYears.map((option, index) => (
             <div

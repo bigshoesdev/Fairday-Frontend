@@ -1,8 +1,12 @@
 import { jobs } from "src/mock/jobList.json";
 import JobDetail from "./JobDetail";
 import Button from "src/components/common/Button";
+import { useNavigate } from "react-router-dom";
 
 const JobPreviews = () => {
+
+  const navigate = useNavigate()
+
   return (
     <div className="w-full bg-[#fafafa]">
       <h2 className="text-blue-500 text-center text-2xl font-semibold pt-4">
@@ -24,7 +28,7 @@ const JobPreviews = () => {
         <Button
           text="SEE ALL JOBS"
           className="bg-primaryBlue text-white px-12 hover:bg-blue-400 transition-all cursor-pointer mb-8 hover:border-blue-400 focus:outline-none"
-          onClick={() => console.log()}
+          onClick={() => navigate('/job-search')}
         />
       </div>
     </div>

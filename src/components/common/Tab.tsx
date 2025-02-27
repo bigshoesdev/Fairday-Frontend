@@ -46,13 +46,13 @@ const Tabs = () => {
       {/* Tab Headers */}
       <div className="flex text-white flex-row gap-x-2">
         <button
-          className={`w-1/2 py-3 text-center text-lg font-semibold transition border-b-2 bg-blue-500`}
+          className={`w-1/2 sm:py-3 py-2  text-center text-[16px] sm:text-lg font-semibold transition border-b-2 bg-blue-500`}
           onClick={applicantViewButton}
         >
           Job Applicant Profile
         </button>
         <button
-          className={`w-1/2 py-3 text-center text-lg font-semibold transition border-b-2 bg-blue-500`}
+          className={`w-1/2 sm:py-3 py-2 text-center text-[16px] sm:text-lg font-semibold transition border-b-2 bg-blue-500`}
           onClick={businessViewButton}
         >
           Business Profile

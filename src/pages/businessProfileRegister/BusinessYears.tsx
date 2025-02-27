@@ -22,7 +22,7 @@ const BusinessYears = ({ businessProfileValue, bufferSetBusinessProfileValue }) 
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-2 shadow-lg'}>
         <p className='font-bold text-[20px]'>Years in Business  ( Optional )</p>
         <div className="relative w-full border border-gray-200 rounded-[10px]">
-          <div className='items-center border-b border-gray-200 rounded-t-[10px] bg-white text-[#33495E] text-[26px] px-10 py-4 z-10 cursor-pointer relative flex justify-between items-start' onClick={() => setOpen(!open)}>
+          <div className='items-center border-b border-gray-200 rounded-t-[10px] bg-white text-[#33495E] text-[16px] m:text-[26px] px-10 py-4 z-10 cursor-pointer relative flex justify-between items-start' onClick={() => setOpen(!open)}>
             <div>
               Select One
             </div>

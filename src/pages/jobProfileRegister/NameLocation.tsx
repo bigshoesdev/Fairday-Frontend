@@ -12,7 +12,7 @@ const NameLocation = ({ appProfileValue, bufferSetAppProfileValue }) => {
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null); // Track the marker
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const { jobConfig } = useSelector((state: any) => state);
   const GroupData = jobConfig.jobConstManage;
@@ -71,7 +71,7 @@ const NameLocation = ({ appProfileValue, bufferSetAppProfileValue }) => {
   return (
     <div className="w-full">
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow-lg'}>
-        <span className="text-[20px] font-bold text-[#33495E]">Address / Location</span>
+        <span className="text-[18px] sm:text-[20px] font-bold text-[#33495E]">Address / Location</span>
         <TextInput
           name="street"
           type="text"
@@ -106,7 +106,7 @@ const NameLocation = ({ appProfileValue, bufferSetAppProfileValue }) => {
         </div>
 
         <div className="relative w-full border border-gray-200 rounded-[10px]">
-          <div className='items-center border-b border-gray-200 rounded-t-[10px] bg-white text-[#33495E] text-[26px] px-10 py-4 z-10 cursor-pointer relative flex justify-between items-start' onClick={() => setOpen(!open)}>
+          <div className='items-center border-b border-gray-200 rounded-t-[10px] bg-white text-[#33495E] sm:text-[26px] text-[20px] px-10 py-4 z-10 cursor-pointer relative flex justify-between items-start' onClick={() => setOpen(!open)}>
             <div>
               Years at this location (optional)
             </div>

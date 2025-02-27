@@ -15,11 +15,11 @@ const JobType = ({ jobValue, bufferSetJobValue, errorSelectedJobType }) => {
       <DropPanel
         header={
           <div className='flex flex-col gap-2'>
-            <span className='text-[#1880F1] text-[22px] font-bold'>Job Type* <span className='text-black font-normal'>(Select as applicable - one required)</span></span>
+            <span className='text-[#1880F1] sm:text-[26px] text-[20px] font-bold'>Job Type* <span className='text-black font-normal'>(Select as applicable - one required)</span></span>
             {selectedItem ? (
-              <span className='text-black text-[22px]'>{selectedItem.string.trim()}</span>
+              <span className='text-black sm:text-[26px] text-[20px]'>{selectedItem.string.trim()}</span>
             ) : (
-              <span className='text-gray-500 text-[22px] italic'></span>
+              <span className='text-gray-500 sm:text-[26px] text-[18px] italic'></span>
             )}
             <span className='text-red-500'>
               {errorSelectedJobType ? errorSelectedJobType : ''}

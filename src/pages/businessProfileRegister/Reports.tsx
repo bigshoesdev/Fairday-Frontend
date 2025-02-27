@@ -56,7 +56,7 @@ const Reports = ({ businessProfileValue, bufferSetBusinessProfileValue }) => {
                   <Button
                     text={uploadedItem?.link ? "UPLOADED" : "UPLOAD"}
                     onClick={() => handleUpload(item._id, item.string)}
-                    className={`text-white text-[16px] font-medium hover:bg-blue-400 transition-all cursor-pointer focus:outline-none rounded-xl ${isChecked ? 'bg-primaryBlue hover:bg-blue-400' : 'bg-gray-300 cursor-not-allowed'} ${uploadedItem?.link ? 'bg-red-500' : ''}`}
+                    className={`text-white text-[12px] sm:text-[16px] font-medium hover:bg-blue-400 transition-all cursor-pointer focus:outline-none rounded-lg ${isChecked ? 'bg-primaryBlue hover:bg-blue-400' : 'bg-gray-300 cursor-not-allowed'} ${uploadedItem?.link ? 'bg-red-500' : ''}`}
                     disable={!isChecked || !businessProfileValue.link}
                   />
                   <BsThreeDotsVertical />

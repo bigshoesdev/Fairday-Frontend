@@ -12,7 +12,7 @@ const Footer = () => {
                 <MobileFooter />
             </div>
             <div className='text-center text-darkgray bg-[#223949] py-2'>
-                © Copyright: 2024 FairdayJobs.com
+                © Copyright: 2024 Fairdayjobs
             </div>
         </footer>
     )

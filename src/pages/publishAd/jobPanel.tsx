@@ -25,7 +25,7 @@ const JobPanel = ({ApplyClicked }: any) => {
             </div>
             <div>
               <img
-                src="https://via.placeholder.com/50"
+                src="http://via.placeholder.com/50"
                 alt="Map Icon"
                 className="w-12 h-12 object-cover rounded-full"
               />
@@ -76,17 +76,17 @@ const JobPanel = ({ApplyClicked }: any) => {
         {/* Image Carousel */}
         <div className="px-5 mt-4 flex gap-2">
           <img
-            src="https://via.placeholder.com/100"
+            src="http://via.placeholder.com/100"
             alt="Job Image 1"
             className="w-[100px] h-auto rounded-md"
           />
           <img
-            src="https://via.placeholder.com/100"
+            src="http://via.placeholder.com/100"
             alt="Job Image 2"
             className="w-[100px] h-auto rounded-md"
           />
           <img
-            src="https://via.placeholder.com/100"
+            src="http://via.placeholder.com/100"
             alt="Job Image 3"
             className="w-[100px] h-auto rounded-md"
           />

@@ -95,7 +95,7 @@ export default function SearchBar() {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${query}`
+        `http://nominatim.openstreetmap.org/search?format=json&q=${query}`
       );
       const data = await response.json();
       const locationResults = data.map((item: any) => item.display_name);

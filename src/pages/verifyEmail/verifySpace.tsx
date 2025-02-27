@@ -1,9 +1,12 @@
 import Button from "src/components/common/Button";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const VerifySpace = ({ token, bufferName, bufferEmail }) => {
 
   const navigate = useNavigate();
+  const authSliceConfig = useSelector((state: any) => state.authSliceConfig);
+  const name = authSliceConfig?.user?.name;
 
   return (
     <div className="bg-white rounded-lg p-6 w-full">
@@ -50,11 +53,11 @@ const VerifySpace = ({ token, bufferName, bufferEmail }) => {
             Verified your <span className="text-blue-600">email address</span>
           </h2>
 
-          <p className="text-center mt-4 text-gray-700 subtitle3">
-            Welcome <strong>FAIRDAY JOBSEEKER</strong>,
+          <p className="text-center mt-4 text-gray-700 text-[25px] sm:text-[40px]">
+            Welcome <strong>{name}</strong>,
           </p>
-          <p className="text-center mt-4 text-gray-700 subtitle3">
-          You're all set! Your email is verified, and you're now part of our community. Log in to access exclusive features!
+          <p className="text-center mt-4 text-gray-700 text-[18px] sm:text-[30px]">
+          You're all set! Your email is verified, and you're now part of our community. Let's start exclusiving features!
           </p>
         </div>
       ) : (
@@ -64,50 +67,31 @@ const VerifySpace = ({ token, bufferName, bufferEmail }) => {
           </h2>
 
           <p className="text-center mt-4 text-gray-700 subtitle3">
-            Welcome <strong>FAIRDAY JOBSEEKER</strong>,
+            Welcome <strong>{bufferName}</strong>,
           </p>
 
           <div className="flex flex-col">
-            <span className="text-center mt-10 text-black text-[40px]">
+            <span className="text-center mt-10 text-black text-[25px] sm:text-[40px]">
               Almost there, {bufferName ?? "User"}.
             </span>
-            <span className="text-center mt-2 text-black text-[30px]">
+            <span className="text-center mt-2 text-black text-[18px] sm:text-[30px]">
               Check your email to verify your account.
             </span>
-            <span className="text-center mt-4 text-[20px]">
+            <span className="text-center mt-4 text-[16px] sm:text-[20px]">
               {bufferEmail ?? "No email provided"}
             </span>
           </div>
         </div>
       )}
-
-
-
-
-      {/* <div className="flex justify-center mt-6">
-        <Button
-          text="VERIFY EMAIL ADDRESS & SET PASSWORD"
-          className="bg-primaryBlue text-white px-6 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-          onClick={() => console.log()}
-        />
-      </div> */}
-      {/* <p className="text-center mt-6 text-gray-500 text-contentText">
-        Or, paste this link into your browser:
-      </p>
-      <a
-        href="https://fairdayjobs.com/verify-email-address/${token}"
-        className="text-blue-600 text-center block mt-1 break-all"
-      >
-        https://fairdayjobs.com/verify-email-address/${token}
-      </a> */}
+      
       <div className="text-center mt-6 text-gray-600 text-[16px] font-semibold">
         <p>THANKS & REGARDS,</p>
         <p>
           <a
-            href="https://www.fairdayjobs.com"
+            href="https://fairdayjobs.com"
             className="font-semibold text-blue-600"
           >
-            FairDayJobs.com
+            FairdayJobs
           </a>{" "}
           Team
         </p>

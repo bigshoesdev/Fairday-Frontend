@@ -1,7 +1,8 @@
-import React from 'react';
 import Button from 'src/components/common/Button';
+import { useNavigate } from 'react-router-dom';
 
 const EndSection = () => {
+    const nagivate = useNavigate();
 
     const onClick = () => {
         return (
@@ -21,7 +22,7 @@ const EndSection = () => {
             </div>
             <Button
                 text="VIEW MORE"
-                onClick={onClick}
+                onClick={() => nagivate('/job-search')}
                 className='mt-10 bg-primaryBlue text-[21px] text-white px-6 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none'
 
             ></Button>

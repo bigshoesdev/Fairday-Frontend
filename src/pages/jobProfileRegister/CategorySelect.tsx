@@ -45,8 +45,8 @@ const CategorySelect = ({ appProfileValue, bufferSetAppProfileValue }) => {
       <DropPanel
         header={
           <div className='flex flex-col gap-2'>
-            <span className='text-[#1880F1] text-[22px] font-bold'>Select Occupation or Services Offered *</span>
-            <span className='text-black text-[17px] font-bold'>
+            <span className='text-[#1880F1] sm:text-[22px] text-[18px] font-bold'>Select Occupation or Services Offered *</span>
+            <span className='text-black sm:text-[17px] text-[15px] font-bold'>
               From Our Category list <span className='text-[#1880F1]'>(up to 5 categories)</span>
             </span>
             <div className="flex flex-wrap gap-2 mb-4">

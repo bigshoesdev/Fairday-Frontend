@@ -29,8 +29,8 @@ const JobCategory = ({ jobValue, bufferSetJobValue, errorSelectedCategory }) => 
       <DropPanel
         header={
           <div className='flex flex-col gap-2'>
-            <span className='text-[#1880F1] text-[22px] font-bold'>Select A Job Category *</span>
-            <span className='text-black text-[17px] font-bold'>From Our list and <span className='text-[#1880F1]'>(up to 3 sub categories)</span></span>
+            <span className='text-[#1880F1] sm:text-[26px] text-[20px] font-bold'>Select A Job Category *</span>
+            <span className='text-black sm:text-[22px] text-[18px] font-bold'>From Our list and <span className='text-[#1880F1]'>(up to 3 sub categories)</span></span>
             <Button
               text={selectedCategoryName || "Select a job category"}
               onClick={buttonClick}

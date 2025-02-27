@@ -436,7 +436,7 @@ const Terms = () => {
           All notices to you will be effective when we send it to the last email
           or physical address you gave us or posted on our Website. Any notice
           to us will be effective when delivered to us at:
-          Support@fairdayjobs.com Fairday Jobs Box 366 Rte 94 Blooming Grove, NY
+          Support@Fairdayjobs Fairday Jobs Box 366 Rte 94 Blooming Grove, NY
           10914
         </p>
         <h1>20. Copyright Infringement </h1>
@@ -445,7 +445,7 @@ const Terms = () => {
           without your permission, please notify us at:
           <br />
           <br />
-          Support@fairdayjobs.com
+          Support@Fairdayjobs
           <br />
           Fairday Jobs
           <br />

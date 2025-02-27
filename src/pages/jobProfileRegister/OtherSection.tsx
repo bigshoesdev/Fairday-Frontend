@@ -10,7 +10,7 @@ const OtherSection = ({
     <div className='w-full'>
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow'}>
         <div className='flex flex-col'>
-          <span className='font-bold mb-3'>Other Occupational Title</span>
+          <span className='font-bold mb-3 text-[18px] sm:text-[20px]'>Other Occupational Title</span>
           <TextInput
             type="email"
             name="otherTitle"
@@ -23,7 +23,7 @@ const OtherSection = ({
           />
         </div>
 
-        <div className='flex flex-col'>
+        <div className='flex flex-col text-[18px] sm:text-[20px]'>
           <span className='font-bold mb-3'>Skillset Description Details</span>
           <TextInput
             type="email"

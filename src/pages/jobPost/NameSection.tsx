@@ -7,7 +7,7 @@ const NameSection = ({ jobValue, bufferSetJobValue, errorBusinessName }) => {
     <div className='w-full'>
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow'}>
 
-        <span className="font-bold text-[26px] text-[#33495E]">
+        <span className="font-bold sm:text-[26px] text-[20px] text-[#33495E]">
           Your Name or Business Name *</span>
 
         <TextInput

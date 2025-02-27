@@ -17,6 +17,9 @@ interface JobConfigState {
   loading: boolean;
   error: any;
   categoryCountList: number[];
+  bufferLink: string | null;
+  decodedToken: any;
+  confirmMail: any;
 }
 
 const initialState: JobConfigState = {
@@ -33,7 +36,10 @@ const initialState: JobConfigState = {
   jobCategoryList: [],
   loading: false,
   error: null,
-  categoryCountList: []
+  categoryCountList: [],
+  bufferLink: null,
+  confirmMail: [],
+  decodedToken: []
 };
 
 const jobConfigSlice = createSlice({
@@ -64,6 +70,16 @@ const jobConfigSlice = createSlice({
     },
     updateSearchValue(state, { payload }: PayloadAction<any>) {
       state[payload.key] = payload.value;
+    },
+    confirmMailRead(state, { payload }: PayloadAction<object[]>) {
+      state.confirmMail = payload;
+      state.loading = false;
+    },
+    setBufferLink(state, { payload }: PayloadAction<any>) {
+      state.bufferLink = payload;
+    },
+    setDecodedToken(state, { payload }: PayloadAction<any>) {
+      state.decodedToken = payload;
     },
   },
 });
@@ -98,8 +114,8 @@ export const postJob = (data: any) => async (dispatch: any): Promise<any> => {
     dispatch(configLoading());
     const response = await axios.post("https://api.fairdayjobs.com/api/v1/user/job/post-job", data);
     if (response.data.isOkay) {
+      dispatch(setBufferLink(response.data.bufferLink))
       dispatch(constJobDetailsRead(response.data));
-      dispatch(messageHandle({ type: "success", message: response.data.message }));
     } else {
       dispatch(configError(response.data.error))
       dispatch(messageHandle({ type: "error", message: response.data.message }));
@@ -109,6 +125,7 @@ export const postJob = (data: any) => async (dispatch: any): Promise<any> => {
     dispatch(messageHandle({ type: "error", message: "Failed to fetch data" }));
   }
 };
+
 export const viewJob = (data: any) => async (dispatch: any): Promise<any> => {
   dispatch(constJobDetailsRead(data));
 };
@@ -137,6 +154,23 @@ export const updateCurrentJobData = (data: any) => async (dispatch: any): Promis
   dispatch(updateSearchValue(data));
 };
 
+export const confirmMail = (data: any) => async (dispatch: any): Promise<any> => {
+  try {
+    dispatch(configLoading());
+    const response = await axios.post("https://api.fairdayjobs.com/api/v1/confirm/verify", data);
+    if (response.data.isOkay) {
+      dispatch(confirmMailRead(response.data));
+    } else {
+      dispatch(configError(response.data.error))
+      dispatch(messageHandle({ type: "error", message: response.data.message }));
+    }
+
+  } catch (error: any) {
+    dispatch(messageHandle({ type: "error", message: "Failed to fetch data" }));
+  }
+};
+
+
 export const {
   configLoading,
   categoryNumber,
@@ -145,6 +179,9 @@ export const {
   constManageRead,
   constJobDetailsRead,
   updateSearchValue,
+  confirmMailRead,
+  setBufferLink,
+  setDecodedToken
 } = jobConfigSlice.actions;
 
 export default jobConfigSlice.reducer;

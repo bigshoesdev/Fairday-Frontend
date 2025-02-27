@@ -102,10 +102,10 @@ const EmailContent = () => {
         <p>THANKS & REGARDS,</p>
         <p>
           <a
-            href="https://www.fairdayjobs.com"
+            href="https://fairdayjobs.com"
             className="font-semibold text-primaryBlue"
           >
-            FairDayJobs.com
+            Fairdayjobs
           </a>{" "}
           Team
         </p>

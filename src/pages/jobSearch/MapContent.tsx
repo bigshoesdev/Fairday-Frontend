@@ -26,7 +26,7 @@ const MapContent: React.FC = () => {
     const results = await Promise.all(
       zipCodes.map(async (zip) => {
         const response = await fetch(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=${zip}&key=AIzaSyAk7Mmrva4v54gtZJ4rORiC6owakIliPDE`
+          `http://maps.googleapis.com/maps/api/geocode/json?address=${zip}&key=AIzaSyAk7Mmrva4v54gtZJ4rORiC6owakIliPDE`
         );
         const data = await response.json();
         if (data.results.length > 0) {

@@ -93,10 +93,10 @@ const OverallRating = ({ hideEmployerConfirm, setHideEmployerConfirm, agreeConfi
                 <Button
                     text=" VIEW PROFILE"
                     onClick={buttonClick}
-                    className="w-max mt-5 bg-primaryBlue text-white px-8 py-4 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none font-normal"
+                    className="w-max mt-5 bg-primaryBlue text-white px-8 sm:py-4 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none font-normal"
                 />
             </div>
-            <div className="flex justify-center flex-col items-center">
+            <div className="flex justify-center flex-col items-center mt-5">
                 <label className="flex items-center space-x-5 ">
                     <input
                         type="checkbox"

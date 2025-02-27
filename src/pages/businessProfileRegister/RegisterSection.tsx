@@ -9,7 +9,6 @@ const RegisterSection = ({ businessProfileValue, bufferSetBusinessProfileValue }
     if (files) {
       const fileArray = Array.from(files);
 
-      // Prevent duplicates
       const uniqueFiles = fileArray.filter(file => !businessProfileValue.businessPhoto.some(img => img.name === file.name));
 
       if (businessProfileValue.businessPhoto.length + uniqueFiles.length > 3) {
@@ -69,7 +68,7 @@ const RegisterSection = ({ businessProfileValue, bufferSetBusinessProfileValue }
             checked={businessProfileValue.reciveConfirm}
             onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: !businessProfileValue[e.target.name] })}
           />
-          <span className="font-bold text-[18px] text-[#33495E]">
+          <span className="font-bold text-[14px] sm:text-[18px] text-[#33495E]">
             Recieve Updated Jobs Opportunities & New Job Leads</span>
         </label>
 
@@ -91,7 +90,7 @@ const RegisterSection = ({ businessProfileValue, bufferSetBusinessProfileValue }
             />
             <label
               htmlFor="multipleFileInput"
-              className="bg-primaryBlue text-white py-4 px-6 text-[15px] font-semibold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-[6px] absolute bottom-5 right-5"
+              className="bg-primaryBlue text-white py-2 px-2 sm:py-4 sm:px-6 text-[12px] sm:text-[15px] font-semibold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-[6px] absolute bottom-2 right-2 sm:bottom-5 sm:right-5"
             >
               Choose Files
             </label>

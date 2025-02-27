@@ -7,7 +7,7 @@ const CertificationsSection = ({ appProfileValue, bufferSetAppProfileValue }) =>
     <div className='w-full'>
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow'}>
         <div className='flex flex-col'>
-          <span className='font-bold mb-3'>Certifications</span>
+          <span className='font-bold mb-3 text-[18px] sm:text-[20px]'>Certifications</span>
           <TextInput
             type="email"
             name="certificate"
@@ -20,7 +20,7 @@ const CertificationsSection = ({ appProfileValue, bufferSetAppProfileValue }) =>
         </div>
 
         <div className='flex flex-col'>
-          <span className='font-bold mb-3'>Training</span>
+          <span className='font-bold mb-3 text-[18px] sm:text-[20px]'>Training</span>
           <TextInput
             type="email"
             name="training"
@@ -32,7 +32,7 @@ const CertificationsSection = ({ appProfileValue, bufferSetAppProfileValue }) =>
         </div>
 
         <div className='flex flex-col'>
-          <span className='font-bold mb-3'>Professional Licenses</span>
+          <span className='font-bold mb-3 text-[18px] sm:text-[20px]'>Professional Licenses</span>
           <TextInput
             type="email"
             name="license"
