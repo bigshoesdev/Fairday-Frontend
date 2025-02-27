@@ -56,7 +56,6 @@ export const registerAppProfile = (data: any) => async (dispatch: any): Promise<
     if (response.data.isOkay) {
       dispatch(setBufferLink(response.data.bufferLink))
       dispatch(constAppProfileDetailsRead(response.data));
-      dispatch(messageHandle({ type: "success", message: response.data.message }));
     } else {
       dispatch(configError(response.data.error))
       dispatch(messageHandle({ type: "error", message: response.data.message }));

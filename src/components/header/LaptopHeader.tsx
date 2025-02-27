@@ -190,7 +190,7 @@ const LaptopHeader = () => {
                     </div>
                 </div>
 
-                <img src="src/assets/images/logo.png" alt="Logo" className="w-[160px] xs:w-[210px] xs:h-[36px]  cursor-pointer" />
+                <img src="https://fairdayjobs.com/src/assets/images/logo.png" alt="Logo" className="w-[160px] xs:w-[210px] xs:h-[36px]  cursor-pointer" />
                 {authSliceConfig.isAuthenticate ? (
                     <div className="relative" ref={dropdownRef}>
                         <div className="flex items-center cursor-pointer" onClick={toggleDropdown}>
