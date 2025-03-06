@@ -52,7 +52,7 @@ const BusinessProfileSliceConfig = createSlice({
 // export const registerBusinessProfile = (data: any) => async (dispatch: any): Promise<any> => {
 //   try {
 //     dispatch(configLoading());
-//     const response = await axios.post("https://api.fairdayjobs.com/api/v1/user/businessProfile/register-profile", data);
+//     const response = await axios.post("http://localhost:8000/api/v1/user/businessProfile/register-profile", data);
 //     if (response.data.isOkay) {
 //       dispatch(constBusinessProfileDetailsRead(response.data));
 //       dispatch(messageHandle({ type: "success", message: response.data.message }));
@@ -69,7 +69,7 @@ const BusinessProfileSliceConfig = createSlice({
 export const registerBusinessProfile = (data: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.post("https://api.fairdayjobs.com/api/v1/user/businessProfile/register-profile", data);
+    const response = await axios.post("http://localhost:8000/api/v1/user/businessProfile/register-profile", data);
 
     if (response.data.isOkay) {
       dispatch(setBufferLink(response.data.bufferLink))
@@ -90,7 +90,7 @@ export const registerBusinessProfile = (data: any) => async (dispatch: any): Pro
 export const confirmMail = (data: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.post("https://api.fairdayjobs.com/api/v1/confirm/verify", data);
+    const response = await axios.post("http://localhost:8000/api/v1/confirm/verify", data);
     if (response.data.isOkay) {
       dispatch(confirmMailRead(response.data));
     } else {
@@ -107,7 +107,7 @@ export const confirmMail = (data: any) => async (dispatch: any): Promise<any> =>
 export const viewBusinessProfile = (userId: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.post("https://api.fairdayjobs.com/api/v1/user/businessProfile/view-profile", userId);
+    const response = await axios.post("http://localhost:8000/api/v1/user/businessProfile/view-profile", userId);
     if (response.data.isOkay) {
 
       dispatch(constBusinessProfileDetailsRead(response.data.result));

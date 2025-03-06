@@ -42,7 +42,7 @@ const JobDetail = ({ jobTitle,
         />
 
         <TextInput
-          type="email"
+          type="text"
           label="Enter Employer Name*"
           value={employer}
           onChange={(e) => setEmploye(e.target.value)}

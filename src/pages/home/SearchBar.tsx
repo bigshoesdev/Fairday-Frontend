@@ -112,6 +112,7 @@ export default function SearchBar() {
     <div className="w-full py-3 bg-primaryBlue border-b border-darkBlue border-b-[1px] shadow-xl">
       <div className="container grid gap-2 xl:gap-8 lg:gap-6 grid-cols-12">
 
+
         <div className="col-span-12 xl:col-span-2 lg:col-span-6">
           <TextField
             fullWidth

@@ -111,7 +111,7 @@ const EmailContent = ({bufferEmail}) => {
         <p>THANKS & REGARDS,</p>
         <p>
           <a
-            href="https://fairdayjobs.com"
+            href="http://localhost:5173"
             className="font-semibold text-primaryBlue"
           >
             Fairdayjobs
