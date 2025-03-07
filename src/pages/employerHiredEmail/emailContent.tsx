@@ -102,7 +102,7 @@ const EmailContent = () => {
         <p>THANKS & REGARDS,</p>
         <p>
           <a
-            href="http://localhost:5173"
+            href="https://fairdayjobs.com"
             className="font-semibold text-primaryBlue"
           >
             Fairdayjobs

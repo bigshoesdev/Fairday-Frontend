@@ -6,12 +6,15 @@ import Header from 'src/layouts/Header';
 import Foother from 'src/layouts/Footer';
 import { initializeAuth } from 'src/store/auth/authSlice';
 import { AppDispatch } from 'src/store';
+import { getessageBox } from 'src/store/systemSetting/messageBoxSlice';
 
 const DefaultLayout = ({ children }: PropsWithChildren) => {
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
         dispatch(initializeAuth()); 
+        dispatch(getessageBox("message")); 
+
       }, [dispatch]);
 
     return (

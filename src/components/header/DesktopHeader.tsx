@@ -9,6 +9,16 @@ import { viewAppProfile } from 'src/store/user/appProfileSlice';
 import { clearToken } from 'src/utlies/localStorage';
 import { logoutSuccess } from 'src/store/auth/authSlice';
 import { viewBusinessProfile } from 'src/store/user/businessProfileSlice';
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
+import Box from '@mui/material/Box';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import { IoCloseCircleOutline } from "react-icons/io5";
+import { removeMessageBox } from 'src/store/systemSetting/messageBoxSlice';
+import { MdMarkEmailUnread } from "react-icons/md";
 
 const DesktopHeader: React.FC = () => {
   const navigate = useNavigate();
@@ -26,6 +36,9 @@ const DesktopHeader: React.FC = () => {
   }, [dispatch, authSliceConfig.isAuthenticate]);
 
   const applicantProfileConfig = useSelector((state: any) => state.appProfileConfig);
+  const messageBoxConfig = useSelector((state: any) => state.messageBoxSliceConfig);
+  const messageList = messageBoxConfig?.messageList
+
   const { appProfileDetails } = applicantProfileConfig;
 
   const BusinessProfileConfig = useSelector((state: any) => state.BusinessProfileConfig);
@@ -35,6 +48,19 @@ const DesktopHeader: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const bufferLink = authSliceConfig?.bufferLink;
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const removeMessageClick = (index) => {
+    dispatch(removeMessageBox("message", index))
+  }
 
   useEffect(() => {
     if (bufferLink) {
@@ -121,9 +147,9 @@ const DesktopHeader: React.FC = () => {
   return (
     <div className="hidden header_change:block w-full container">
       <div className="flex justify-between items-center">
-        <a href="http://localhost:5173/">
+        <a href="https://fairdayjobs.com/">
           <img
-            src="http://localhost:5173/src/assets/images/logo.png"
+            src="https://fairdayjobs.com/src/assets/images/logo.png"
             className="w-[210px] h-[36px] cursor-pointer"
           />
         </a>
@@ -143,7 +169,7 @@ const DesktopHeader: React.FC = () => {
             <div className="relative" ref={dropdownRef}>
               <div className="flex items-center cursor-pointer" onClick={toggleDropdown}>
                 <img
-                  src="http://localhost:5173/src/assets/images/user1.png"
+                  src="https://fairdayjobs.com/src/assets/images/user1.png"
                   className="pl-5 pr-4 cursor-pointer"
                 />
                 <p className="text-white mb-0 px-1">{user?.name}</p>
@@ -180,22 +206,101 @@ const DesktopHeader: React.FC = () => {
             </>
           )}
 
+          <div className="ml-5">
+            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+              <Tooltip title="Messages">
+                <IconButton
+                  onClick={handleClick}
+                  size="small"
+                  sx={{
+                    outline: "none",
+                    border: "none",
+                    boxShadow: "none",
+                    "&:focus": { outline: "none", border: "none", boxShadow: "none" },
+                  }}
+                  aria-controls={open ? 'account-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                >
+                  <Badge badgeContent={messageList.length} color="primary">
+                    <MailIcon className='text-white cursor-pointer' />
+                  </Badge>
+                </IconButton>
+              </Tooltip>
+            </Box>
+            {messageList.length > 0 &&
+              <Menu
+                anchorEl={anchorEl}
+                id="account-menu"
+                open={open}
+                onClose={handleClose}
+                onClick={handleClose}
+                slotProps={{
+                  paper: {
+                    elevation: 0,
+                    sx: {
+                      width: 280,
+                      overflow: 'visible',
+                      filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                      // mt: 1.5,
+                      '& .MuiAvatar-root': {
+                        width: 32,
+                        height: 32,
+                        ml: -0.5,
+                        mr: 1,
+                      },
+                      '&::before': {
+                        content: '""',
+                        display: 'block',
+                        position: 'absolute',
+                        top: 0,
+                        right: 14,
+                        width: 10,
+                        height: 10,
+                        bgcolor: 'background.paper',
+                        transform: 'translateY(-50%) rotate(45deg)',
+                        zIndex: 0,
+                      },
+                    },
+                  },
+                }}
+                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+              >
 
+                {messageList.map((item, index) =>
+                  <MenuItem key={index}>
+                    <div className='w-full flex  justify-between items-center '>
+                      <div className='flex flex-row gap-2 items-center'>
+                        {
+                          Object.keys(item)?.[0] === "auth" ? (
+                            <MdMarkEmailUnread className="text-[18px]" />
+                          ) : null
+                        }
+                        <p className='mb-0'>{Object.values(item)?.[0].length > 25 ? `${Object.values(item)?.[0].slice(0, 25)}...` : Object.values(item)?.[0]}</p>
+                      </div>
+                      <IoCloseCircleOutline onClick={() => removeMessageClick(index)} className='text-[20px]' />
+                    </div>
+                  </MenuItem>
+                )}
+              </Menu>
+            }
 
+          </div>
           <img
-            src="http://localhost:5173/src/assets/images/fb_header.png"
+            src="https://fairdayjobs.com/src/assets/images/fb_header.png"
             className="ml-10 opacity-50 hover:opacity-100 cursor-pointer transition-all"
           />
           <img
-            src="http://localhost:5173/src/assets/images/ig_header.png"
+            src="https://fairdayjobs.com/src/assets/images/ig_header.png"
             className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"
           />
           <img
-            src="http://localhost:5173/src/assets/images/x_header.png"
+            src="https://fairdayjobs.com/src/assets/images/x_header.png"
             className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"
           />
           <img
-            src="http://localhost:5173/src/assets/images/linkedin.png"
+            src="https://fairdayjobs.com/src/assets/images/linkedin.png"
             className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"
           />
         </div>

@@ -5,6 +5,8 @@ import { storage } from "src/utlies/localStorage";
 import { messageHandle } from "src/store/systemSetting/commonSlice";
 import { getToken } from "src/utlies/localStorage";
 import { setAuthorizationToken } from "src/utlies/axiosInstance";
+import { messageBoxHandle } from "src/store/systemSetting/messageBoxSlice";
+import { getMessage, setMessage, removeMessage } from 'src/utlies/localstorageManage'
 
 interface AuthState {
   user: object | null;
@@ -37,10 +39,10 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    authLoading(state) {
-      state.loading = true;
+    authLoading(state, { payload }: PayloadAction<any>) {
+      state.loading = payload;
     },
-       loginSuccess(state, { payload }: PayloadAction<{ user: object; token: string; isAuthenticate: boolean }>) {
+    loginSuccess(state, { payload }: PayloadAction<{ user: object; token: string; isAuthenticate: boolean }>) {
       state.isAuthenticate = payload.isAuthenticate;
       state.user = payload.user;
       state.token = payload.token;
@@ -75,7 +77,7 @@ export const initializeAuth = () => async (dispatch: any) => {
     const storedAuth = await loadAuthStateFromStorage();
     if (storedAuth.token) {
       setAuthorizationToken(storedAuth.token);
-      dispatch(loginSuccess(storedAuth)); 
+      dispatch(loginSuccess(storedAuth));
     }
   } catch (error: any) {
     console.error("Error initializing auth:", error);
@@ -84,9 +86,9 @@ export const initializeAuth = () => async (dispatch: any) => {
 
 export const loginAPI = (credentials: { email: string; password: string }) => async (dispatch: any) => {
   try {
-    dispatch(authLoading());
-    
-    const response = await axios.post("http://localhost:8000/api/v1/auth/login", credentials);
+    dispatch(authLoading(true));
+
+    const response = await axios.post("https://api.fairdayjobs.com/api/v1/auth/login", credentials);
 
     if (response.data.isOkay) {
       let isOkay = response.data.isOkay
@@ -110,13 +112,18 @@ export const loginAPI = (credentials: { email: string; password: string }) => as
 export const signupAPI = (data) => async (dispatch: any): Promise<any> => {
   return new Promise(async (resolve, reject) => {
     try {
-      dispatch(authLoading());
+      dispatch(authLoading(true));
 
-      const response = await axios.post("http://localhost:8000/api/v1/auth/signup", data);
+      const response = await axios.post("https://api.fairdayjobs.com/api/v1/auth/signup", data);
 
       if (response.data.isOkay) {
-        console.log('response.data', response.data);
+        
         dispatch(setBufferLink(response.data.bufferLink))
+        let currentMessage = setMessage('messageList', 'auth', response.data.message)
+        dispatch(messageBoxHandle(currentMessage))
+        
+        dispatch(authLoading(false));
+
         // const userToken = response.data.access_token;
 
         // const parsedResult = jwtDecodeUtil(userToken);
@@ -127,6 +134,7 @@ export const signupAPI = (data) => async (dispatch: any): Promise<any> => {
         // dispatch(signupSuccess({ user: parsedResult, token: userToken, isAuthenticate: true }));
 
         // resolve({ user: parsedResult, token: userToken }); // Resolve the promise with the parsed result and token
+        resolve(true)
       } else {
         dispatch(messageHandle({ type: "error", message: response.data.message }));
       }
@@ -141,7 +149,7 @@ export const signupAPI = (data) => async (dispatch: any): Promise<any> => {
 
 export const logoutAPI = () => async (dispatch: any) => {
   try {
-    dispatch(authLoading());
+    dispatch(authLoading(true));
     dispatch(logoutSuccess());
   } catch (error: any) {
     dispatch(authError(error.message || "Logout failed"));
@@ -150,9 +158,11 @@ export const logoutAPI = () => async (dispatch: any) => {
 
 export const updateUserAPI = (userData: object) => async (dispatch: any) => {
   try {
-    dispatch(authLoading());
+    dispatch(authLoading(true));
     const response = await axios.put("/api/auth/update", userData);
     dispatch(updateUser(response.data));
+    dispatch(authLoading(false));
+
   } catch (error: any) {
     dispatch(authError(error.message || "Update failed"));
   }

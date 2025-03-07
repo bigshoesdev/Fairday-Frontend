@@ -49,15 +49,16 @@ export default function SearchBar() {
     dispatch(getJobsByQuery(paramsObject))
   }, [])
 
-  const jobConfig  = useSelector((state: RootState) => state.jobConfig);
-  const { keyword, category, location, radius, suggestions, jobType, applicantType, experienceYearsType }: any = jobConfig
+  const jobConfig = useSelector((state: RootState) => state.jobConfig);
+  const { keyword, category, location, radius, suggestions, jobType, applicantType, experienceYearsType, language }: any = jobConfig
 
   const groupedData = jobConfig?.jobCategoryList || {};
 
+  const languageTypeData = jobConfig.jobConstManage.filter(item => item.category === "language");
   const radiusTypeData = jobConfig.jobConstManage.filter(item => item.category === "radius");
   const allCategories = Object.values(groupedData)
     .flat()
-    .sort((a:any, b:any) => a.name.localeCompare(b.name));
+    .sort((a: any, b: any) => a.name.localeCompare(b.name));
 
   const handleSearchValues = (key: string, value: string) => dispatch(updateCurrentJobData({ key: key, value: value }))
 
@@ -107,11 +108,66 @@ export default function SearchBar() {
     }
   };
 
-
   return (
     <div className="w-full py-3 bg-primaryBlue border-b border-darkBlue border-b-[1px] shadow-xl">
       <div className="container grid gap-2 xl:gap-8 lg:gap-6 grid-cols-12">
 
+        <div className="col-span-12 xl:col-span-2 lg:col-span-6">
+          <Box
+            sx={{
+              minWidth: 120,
+              backgroundColor: "#1470ef",
+              borderRadius: "6px",
+              border: "none",
+            }}
+          >
+            <FormControl fullWidth>
+              <InputLabel
+                id="language-select-label"
+                sx={{
+                  color: "white",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+              >
+                <span style={{ color: "white" }}>Language</span>
+              </InputLabel>
+              <Select
+                labelId="language-select-label"
+                value={language}
+                onChange={(e) => handleSearchValues("language", e.target.value)}
+                sx={{
+                  color: "white",
+                  "& fieldset": { border: "none" },
+                  "& .MuiOutlinedInput-notchedOutline": { border: "none" },
+                  "& .MuiSvgIcon-root": { color: "white" },
+                }}
+                renderValue={(selected) => {
+                  const selectedLanguage = languageTypeData.find(
+                    (item) => item._id === selected
+                  );
+                  return selectedLanguage ? selectedLanguage.string : "Select Language";
+                }}
+              >
+                {languageTypeData.length > 0 ? (
+                  languageTypeData.map((item, index) => (
+                    <MenuItem key={index} value={item._id} className="h-[50px]">
+                      <img
+                        src={`https://fairdayjobs.com/src/assets/images/${item.string}.png`}
+                        alt="icon"
+                        style={{ width: 30, height: 20, marginRight: 8 }}
+                      />
+                      {item.string}
+                    </MenuItem>
+                  ))
+                ) : (
+                  <MenuItem disabled>No Language options available</MenuItem>
+                )}
+              </Select>
+            </FormControl>
+          </Box>
+        </div>
 
         <div className="col-span-12 xl:col-span-2 lg:col-span-6">
           <TextField
@@ -150,21 +206,15 @@ export default function SearchBar() {
                   border: "none !important",
                   borderRadius: "8px !important",
                   outline: "none !important",
-                  appearance: "none !important", // Forces browser to ignore default autofill appearance
-                  backgroundClip: "content-box !important", // Ensures full fill
+                  appearance: "none !important", 
+                  backgroundClip: "content-box !important", 
                 },
               },
             }}
           />
         </div>
 
-        {/* <div className="block xl:hidden flex items-center">
-          <div className="flex-1 border-t border-blue-300"></div>
-          <span className="mx-4 text-blue-300 font-bold bg-blue-500 px-2">OR</span>
-          <div className="flex-1 border-t border-blue-300"></div>
-        </div> */}
-
-        <div className="col-span-12 xl:col-span-3 lg:col-span-6">
+        <div className="col-span-12 xl:col-span-2 lg:col-span-6">
           <Box
             sx={{
               flex: 1,
@@ -178,12 +228,12 @@ export default function SearchBar() {
               <InputLabel
                 id="category-select-label"
                 sx={{
-                  color: "white", // Ensures the text is white
+                  color: "white", 
                   display: "flex",
                   alignItems: "center",
-                  gap: 1, // Adds spacing between icon and text
+                  gap: 1, 
                   "&.Mui-focused": {
-                    color: "white", // Keeps the text white when focused
+                    color: "white", 
                   },
                 }}
               >
@@ -191,10 +241,10 @@ export default function SearchBar() {
                   sx={{
                     marginRight: 1,
                     verticalAlign: "middle",
-                    color: category ? "white" : "rgba(255, 255, 255, 0.7)", // Changes color when selected
+                    color: category ? "white" : "rgba(255, 255, 255, 0.7)", 
                   }}
                 />
-                <span style={{ color: "white" }}>Category</span> {/* Ensures Category text is white */}
+                <span style={{ color: "white" }}>Category</span> 
               </InputLabel>
               <Select
                 labelId="category-select-label"
@@ -203,12 +253,12 @@ export default function SearchBar() {
                 sx={{
                   color: "white",
                   border: "none",
-                  "& fieldset": { border: "none" }, // Removes border
-                  "& .MuiSvgIcon-root": { color: "white" }, // Ensures dropdown arrow is white
+                  "& fieldset": { border: "none" },
+                  "& .MuiSvgIcon-root": { color: "white" }, 
                 }}
               >
                 {allCategories.length > 0 ? (
-                  allCategories.map((cat:any, index) => (
+                  allCategories.map((cat: any, index) => (
                     <MenuItem key={index} value={cat.id}>
                       {cat.name}
                     </MenuItem>
@@ -221,7 +271,7 @@ export default function SearchBar() {
           </Box>
         </div>
 
-        <div className="col-span-6 xl:col-span-3 lg:col-span-4">
+        <div className="col-span-6 xl:col-span-2 lg:col-span-6">
           <Autocomplete
             freeSolo
             options={suggestions}
@@ -260,7 +310,7 @@ export default function SearchBar() {
           />
         </div>
 
-        <div className="col-span-6 xl:col-span-2 lg:col-span-4">
+        <div className="col-span-6 xl:col-span-2 lg:col-span-6">
           <Box
             sx={{
               minWidth: 120,
@@ -288,9 +338,9 @@ export default function SearchBar() {
                 onChange={(e) => handleSearchValues("radius", e.target.value)}
                 sx={{
                   color: "white",
-                  "& fieldset": { border: "none" }, // Removes the outlined border
-                  "& .MuiOutlinedInput-notchedOutline": { border: "none" }, // Ensures no visible outline
-                  "& .MuiSvgIcon-root": { color: "white" }, // Keeps the dropdown arrow white
+                  "& fieldset": { border: "none" }, 
+                  "& .MuiOutlinedInput-notchedOutline": { border: "none" },
+                  "& .MuiSvgIcon-root": { color: "white" }, 
                 }}
               >
                 {radiusTypeData.length > 0 ? (
@@ -307,7 +357,7 @@ export default function SearchBar() {
           </Box>
         </div>
 
-        <div className="col-span-12 xl:col-span-2 lg:col-span-4">
+        <div className="col-span-12 xl:col-span-2 lg:col-span-6">
           <Button
             text="FIND JOBS"
             onClick={buttonClick}

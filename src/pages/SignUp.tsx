@@ -21,15 +21,20 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
 
     const { authSliceConfig } = useSelector((state: any) => state);
     const user = authSliceConfig.user;
+    const loading = authSliceConfig.loading;
+
+    console.log('loading', loading);
+
+
     const bufferLink = authSliceConfig?.bufferLink;
 
     useEffect(() => {
-    console.log('authSliceConfig', bufferLink);
 
         if (bufferLink) {
             navigate(bufferLink)
         }
     }, [bufferLink])
+
     const [email, setEmail] = useState('');
     const [name, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -60,7 +65,7 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
         });
     };
 
-    const buttonClick = () => {
+    const buttonClick = async () => {
         const data: any = {
             name: name,
             email: email,
@@ -71,13 +76,11 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
             localDiscount: discountShopper,
             avaialble: ["name", "email", "password", "password1"]
         }
-        console.log('this is auth status', authSliceConfig.isAuthenticate);
 
-        dispatch(signupAPI(data))
-        if (authSliceConfig.isAuthenticate) {
-            closeModal()
+        let result = await dispatch(signupAPI(data))
+        if (result) {
+            closeModal();
         }
-        closeModal()
     };
 
     return (
@@ -168,6 +171,7 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
                     <div className="flex justify-between items-center text-[12px] sm:text-[18px]">
                         <div className="font-semibold cursor-pointer">FORGOT PASSWORD?</div>
                         <Button
+                            loading={loading}
                             text="Next"
                             onClick={buttonClick}
                             className="bg-primaryBlue text-white px-8 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
