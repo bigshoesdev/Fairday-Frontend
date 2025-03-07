@@ -52,7 +52,7 @@ const appProfileSliceConfig = createSlice({
 export const registerAppProfile = (data: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.post("http://localhost:8000/api/v1/user/appProfile/register-profile", data);
+    const response = await axios.post("https://api.fairdayjobs.com/api/v1/user/appProfile/register-profile", data);
     if (response.data.isOkay) {
       dispatch(setBufferLink(response.data.bufferLink))
       dispatch(constAppProfileDetailsRead(response.data));
@@ -71,7 +71,7 @@ export const registerAppProfile = (data: any) => async (dispatch: any): Promise<
 export const viewAppProfile = (userId: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.post("http://localhost:8000/api/v1/user/appProfile/view-profile", userId);
+    const response = await axios.post("https://api.fairdayjobs.com/api/v1/user/appProfile/view-profile", userId);
     if (response.data.isOkay) {
       dispatch(constAppProfileDetailsRead(response.data.result));
     } else {
@@ -88,7 +88,7 @@ export const viewAppProfile = (userId: any) => async (dispatch: any): Promise<an
 export const confirmMail = (data: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.post("http://localhost:8000/api/v1/confirm/verify", data);
+    const response = await axios.post("https://api.fairdayjobs.com/api/v1/confirm/verify", data);
     if (response.data.isOkay) {
       dispatch(confirmMailRead(response.data));
     } else {

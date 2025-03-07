@@ -1,20 +1,28 @@
 import React from 'react';
 
 interface ButtonProps {
-  text: string;
+  loading?: boolean | any;
+  text?: string;
   disable?: boolean;
   onClick: () => void;
-  className?: string; 
+  className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, onClick, className, disable = false }) => {
+const Button: React.FC<ButtonProps> = ({ text, onClick, className, disable = false, loading = false }) => {
+  const bufferClick = () => {
+    if (!loading) {
+      onClick()
+    }
+  }
   return (
+
     <button
-      onClick={onClick}
+
+      onClick={bufferClick}
       className={`btn ${className || ''} ${disable ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : ''}`}
       disabled={disable}
     >
-      {text}
+      {loading ? "Loading..." : text}
     </button>
   );
 }

@@ -42,7 +42,7 @@ const JobSearchBoard = (props: any) => {
 
       <div className="grid grid-cols-12 col-span-12 xl:col-span-3 gap-4 py-5 ">
         {advertisementImagePath.map((imagePath, index) => (
-          <JobBanner key={index} src={`http://localhost:8000${imagePath}`} />
+          <JobBanner key={index} src={`https://api.fairdayjobs.com${imagePath}`} />
         ))}
       </div>
     </div>

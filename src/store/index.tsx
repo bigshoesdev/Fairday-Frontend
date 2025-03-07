@@ -19,13 +19,15 @@ import businessProfileSlice from "src/store/user/businessProfileSlice";
 
 // common
 import commonSlice from "src/store/systemSetting/commonSlice";
+import messageBoxSlice from "src/store/systemSetting/messageBoxSlice";
 
 const rootReducer = combineReducers({
+  commonSliceConfig: commonSlice,
+  messageBoxSliceConfig: messageBoxSlice,
   themeConfig: themeConfigSlice,
   crudAPIModuleConfig: crudAPIModule,
   authSliceConfig: authSlice,
   adminConfig: adminConfigSlice,
-  commonSliceConfig: commonSlice,
   advertisementConfig: advertisementConfigSlice,
   homeConfig: homeConfigSlice,
   jobConfig: jobConfigSlice,

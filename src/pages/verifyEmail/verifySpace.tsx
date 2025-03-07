@@ -88,7 +88,7 @@ const VerifySpace = ({ token, bufferName, bufferEmail }) => {
         <p>THANKS & REGARDS,</p>
         <p>
           <a
-            href="http://localhost:5173"
+            href="https://fairdayjobs.com"
             className="font-semibold text-blue-600"
           >
             FairdayJobs
