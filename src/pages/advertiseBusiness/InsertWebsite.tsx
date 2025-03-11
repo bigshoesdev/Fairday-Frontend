@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 
-const InsertWebsite = ({insertWebsite, setInsertWebsite}) => {
+const InsertWebsite = ({ advertiseValue, bufferSetAdvertiseValue }) => {
 
   return (
     <div className='w-full'>
@@ -12,12 +12,13 @@ const InsertWebsite = ({insertWebsite, setInsertWebsite}) => {
           Insert website</span>
 
         <TextInput
+        name="insertWebsite"
           type="email"
           label="Type Here..."
-          value={insertWebsite}
+          value={advertiseValue.insertWebsite}
           rows={4}
           multiline={true}
-          onChange={(e) => setInsertWebsite(e.target.value)}
+          onChange={(e) => bufferSetAdvertiseValue({ ...advertiseValue, [e.target.name]: e.target.value })}
           style="w-full"
         />
       </Panel>

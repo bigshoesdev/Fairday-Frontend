@@ -8,7 +8,7 @@ const MapRadius = () => {
   return (
     <div className='w-full'>
       <Panel classStyle={'flex flex-col p-7 bg-white rounded-2xl gap-5 shadow'}>
-        <img src="src/assets/images/pin_map.png"></img>
+        <img src="https://fairdayjobs.com/src/assets/images/pin_map.png"></img>
       </Panel>
     </div>
   );

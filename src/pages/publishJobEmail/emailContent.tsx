@@ -5,15 +5,11 @@ import { useNavigate } from 'react-router-dom';
 
 const EmailContent = ({bufferEmail}) => {
 
-  const advertisementConfig = useSelector((state: any) => state.advertisementConfig);
-  const decodedToken = advertisementConfig?.decodedToken;
+  const jobConfig = useSelector((state: any) => state.jobConfig);
+  const decodedToken = jobConfig.decodedToken;
   const navigate = useNavigate();
 
-  console.log('decodedTokendecodedToken', decodedToken);
-  
-
-
-  return (
+    return (
     <div className="bg-white rounded-lg p-6 max-w-[950px] flex  items-center flex-col">
       <div className="flex justify-center flex-col items-center">
         <span className="text-[20px]">Email Receipt:</span>
@@ -55,13 +51,13 @@ const EmailContent = ({bufferEmail}) => {
       </div>
 
       {
-        decodedToken.email ? (<>
+        decodedToken.employer ? (<>
           <h2 className="text-center title mt-4">
-            Published Advertisement Confirmation
+            Published Job Confirmation
           </h2>
 
           <span className="text-center subtitle3 mt-5">
-            Congratulations <span className="text-blue-500 font-bold">{decodedToken.name}</span> , Your <span className="font-bold text-primaryBlue">Advertisement</span> is ready for Publish with Fariday Jobs.
+            Congratulations Employer {decodedToken.employer}, Your <span className="font-bold text-primaryBlue">{decodedToken.jobTitle}</span> is ready for Publish with Fariday Jobs.
           </span>
           <span className="subtitle3  text-center">Please review your post and make any corrections as needed.</span>
 
@@ -74,21 +70,21 @@ const EmailContent = ({bufferEmail}) => {
           <div className="w-full flex-col sm:flex-row flex gap-3 mt-10 justify-center">
             <div className=" flex flex-col items-center gap-4 w-full">
               <Button
-                text="VIEW AD"
+                text="VIEW JOB"
                 className="bg-primaryBlue py-4 w-full text-white hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
                 onClick={() => console.log()}
               />
             </div>
             <div className=" flex flex-col items-center gap-4 w-full">
               <Button
-                text="EDIT AD"
+                text="EDIT JOB"
                 className="bg-primaryBlue py-4 w-full text-white hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
                 onClick={() => console.log()}
               />
             </div>
             <div className=" flex flex-col items-center gap-4 w-full">
               <Button
-                text="REMOVE AD POST"
+                text="REMOVE JOB POST"
                 className="bg-primaryBlue py-4 text-white w-full hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
                 onClick={() => console.log()}
               />
@@ -97,7 +93,7 @@ const EmailContent = ({bufferEmail}) => {
           </div>
         </>) : (<>
           <h2 className="text-center title mt-4">
-            Please verify your email {bufferEmail} to publish your advertisement in Fariday Jobs service. Check your inbox for a verification link
+            Please verify your email {bufferEmail} to publish your job in Fariday Jobs service. Check your       inbox for a verification link
           </h2>
         </>)
       }

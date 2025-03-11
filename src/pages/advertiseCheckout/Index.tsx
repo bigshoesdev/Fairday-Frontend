@@ -1,23 +1,83 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AdvertiseSize from 'src/pages/advertiseCheckout/AdvertiseSize';
 import AdvertiseRadius from 'src/pages/advertiseCheckout/AdvertiseRadius';
 import AdvertiseDuration from 'src/pages/advertiseCheckout/AdvertiseDuration';
 import MapRadius from 'src/pages/advertiseCheckout/MapRadius';
 import PaymentArea from 'src/pages/advertiseCheckout/PaymentArea';
-
+import { useSearchParams, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { jwtDecodeUtil } from "src/utlies/jwt.decode";
+import { AppDispatch } from 'src/store';
+import { setDecodedToken, confirmMail } from "src/store/user/advertisementSlice";
+import { useNavigate } from 'react-router-dom';
 import Button from 'src/components/common/Button';
 
 const AdverBusiness = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+  const [searchParams] = useSearchParams();
+  const { token } = useParams();
 
-  const [selectedAdvertiseSize, setSelectedAdvertiseSize] = useState<string>('');
-  const [selectedAdvertiseRadius, setSelectedAdvertiseRadius] = useState<string>('');
-  const [selectedAdvertiseDuration, setSelectedAdvertiseDuration] = useState<string>('');
+  const email = searchParams.get("bufferEmail");
+  const name = searchParams.get("bufferName");
+
+  const advertisementConfig = useSelector((state: any) => state.advertisementConfig);
+  const decodedToken = advertisementConfig.decodedToken;
+  const confirmMailData = advertisementConfig?.confirmMail;
+
+  useEffect(() => {
+    async function fetchData() {
+      if (token) {
+        const decodedUser = jwtDecodeUtil(token);
+        const data = { token: token, type: 'adPost' };
+
+        if (decodedUser) {
+          dispatch(confirmMail(data));
+        }
+      }
+    }
+    fetchData();
+  }, [token, dispatch]);
+
+  useEffect(() => {
+    if (confirmMailData?.isOkay) {
+      dispatch(setDecodedToken(confirmMailData?.data));
+    }
+  }, [confirmMailData, dispatch]);
+
+
+
+  const [adCheckoutValue, setAdCheckoutValue] = useState({
+    selectedAdvertiseSize: "",
+    selectedAdvertiseRadius: "",
+    selectedAdvertiseDuration: "",
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // const [selectedAdvertiseSize, setSelectedAdvertiseSize] = useState<string>('');
+  // const [selectedAdvertiseRadius, setSelectedAdvertiseRadius] = useState<string>('');
+  // const [selectedAdvertiseDuration, setSelectedAdvertiseDuration] = useState<string>('');
   const [selectedPayment, setSelectedPayment] = useState('mastercard');
 
-  //button click event
   const buttonClick = () => {
     console.log('data');
   };
+
+  if (!decodedToken) {
+    return <div></div>;
+  }
 
   return (
     <div className='flex flex-col w-full justify-center items-center bg-[#FAFAFA] pb-20 '>
@@ -27,26 +87,27 @@ const AdverBusiness = () => {
       <div className='bg-[#FAFAFA] flex flex-col container items-center justify-center max-w-[950px] gap-y-10'>
         <div className='mt-[-150px] w-full'>
           <AdvertiseSize
-            selectedAdvertiseSize={selectedAdvertiseSize}
-            setSelectedAdvertiseSize={setSelectedAdvertiseSize}
+            adCheckoutValue={adCheckoutValue}
+            buffersetAdCheckoutValue={(value: any) => setAdCheckoutValue(value)}
           />
         </div>
 
         <AdvertiseRadius
-          selectedAdvertiseRadius={selectedAdvertiseRadius}
-          setSelectedAdvertiseRadius={setSelectedAdvertiseRadius}
+          adCheckoutValue={adCheckoutValue}
+          buffersetAdCheckoutValue={(value: any) => setAdCheckoutValue(value)}
         />
 
         <MapRadius />
 
         <AdvertiseDuration
-          selectedAdvertiseDuration={selectedAdvertiseDuration}
-          setSelectedAdvertiseDuration={setSelectedAdvertiseDuration}
+          adCheckoutValue={adCheckoutValue}
+          buffersetAdCheckoutValue={(value: any) => setAdCheckoutValue(value)}
         />
         <PaymentArea
           selectedPayment={selectedPayment}
           setSelectedPayment={setSelectedPayment}
         />
+
         <div className='flex flex-col gap-4 w-full'>
           <Button
             text="CONFIRM ORDER"

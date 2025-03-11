@@ -54,7 +54,6 @@ const JobProfileRegister = () => {
     }
   }, [dispatch, bufferLink]);
 
-
   const [appProfileValue, setAppProfileValue] = useState({
     userId: userId || "",
     email: userEmail || "",

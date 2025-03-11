@@ -30,7 +30,6 @@ const JobSearch = () => {
   const jobConfig = useSelector((state: any) => state.jobConfig);
   const { keyword, category, radius, jobType }: any = jobConfig
 
-
   const location = useLocation();
   const [filters, setFilters] = useState<Filters>({
     language: "",

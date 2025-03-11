@@ -1,7 +1,7 @@
 import DropPanel from 'src/components/common/DropPanel';
 import TextInput from 'src/components/common/TextInput';
 
-const RegisterAd = ({businessName, setBusinessName, name, setName, email, setEmail}) => {
+const RegisterAd = ({ advertiseValue, bufferSetAdvertiseValue }) => {
 
   return (
     <div className='w-full'>
@@ -14,26 +14,29 @@ const RegisterAd = ({businessName, setBusinessName, name, setName, email, setEma
       >
         <div className='flex flex-col gap-4 p-6'>
           <TextInput
+            name="businessName"
             type="email"
             label="Business Name"
-            value={businessName}
-            onChange={(e) => setBusinessName(e.target.value)}
+            value={advertiseValue.businessName}
+            onChange={(e) => bufferSetAdvertiseValue({ ...advertiseValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
 
           <TextInput
+            name="name"
             type="email"
             label="Your Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={advertiseValue.name}
+            onChange={(e) => bufferSetAdvertiseValue({ ...advertiseValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
 
           <TextInput
+          name='email'
             type="email"
             label="Your Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={advertiseValue.email}
+            onChange={(e) => bufferSetAdvertiseValue({ ...advertiseValue, [e.target.name]: e.target.value })}
             style="w-full"
           />
         </div>
