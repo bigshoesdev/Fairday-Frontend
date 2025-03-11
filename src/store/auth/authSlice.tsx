@@ -121,7 +121,6 @@ export const signupAPI = (data) => async (dispatch: any): Promise<any> => {
         dispatch(setBufferLink(response.data.bufferLink))
         let currentMessage = setMessage('messageList', 'auth', response.data.message)
         dispatch(messageBoxHandle(currentMessage))
-        
         dispatch(authLoading(false));
 
         // const userToken = response.data.access_token;

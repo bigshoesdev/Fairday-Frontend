@@ -19,6 +19,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { removeMessageBox } from 'src/store/systemSetting/messageBoxSlice';
 import { MdMarkEmailUnread } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
 
 const DesktopHeader: React.FC = () => {
   const navigate = useNavigate();
@@ -40,6 +41,8 @@ const DesktopHeader: React.FC = () => {
   const messageList = messageBoxConfig?.messageList
 
   const { appProfileDetails } = applicantProfileConfig;
+  const avatar = appProfileDetails[0]?.selectedIdPic || "";
+  const avatarPath = avatar.startsWith("./") ? avatar.slice(1) : avatar;
 
   const BusinessProfileConfig = useSelector((state: any) => state.BusinessProfileConfig);
   const { businessProfileDetails } = BusinessProfileConfig;
@@ -168,10 +171,14 @@ const DesktopHeader: React.FC = () => {
           {authSliceConfig.isAuthenticate ? (
             <div className="relative" ref={dropdownRef}>
               <div className="flex items-center cursor-pointer" onClick={toggleDropdown}>
-                <img
-                  src="https://fairdayjobs.com/src/assets/images/user1.png"
-                  className="pl-5 pr-4 cursor-pointer"
-                />
+                {
+                  avatar ? <img
+                  src={`https://api.fairdayjobs.com${avatarPath}`}
+                    className="w-10 h-10 rounded-full object-cover ml-5 mr-4 "
+                  /> : <FaUserCircle className='text-white text-[40px] ml-5 mr-4 cursor-pointer' />
+                }
+
+
                 <p className="text-white mb-0 px-1">{user?.name}</p>
               </div>
 

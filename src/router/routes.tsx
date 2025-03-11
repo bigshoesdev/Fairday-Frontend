@@ -31,6 +31,7 @@ const HiredEmail = lazy(() => import("src/pages/applicantHiredEmail/index"));
 const EmployerHiredEmail = lazy(() => import("src/pages/employerHiredEmail/index"));
 const ApplicantSubmittedEmail = lazy(() => import("src/pages/applicantSubmittedEmail/index"));
 const EmployerSubmittedEmail = lazy(() => import("src/pages/employerSubmittedEmail/index"));
+const PublishJobEmail = lazy(() => import("src/pages/publishJobEmail/index"));
 const PublishAdEmail = lazy(() => import("src/pages/publishAdEmail/index"));
 const JobManagement = lazy(() => import("src/pages/jobManagement/Index"));
 const JobProfileRegister = lazy(() => import("src/pages/jobProfileRegister/Index"));
@@ -82,7 +83,7 @@ const routes = [
     element: <AdverBusiness />,
   },
   {
-    path: "/advertise-checkout",
+    path: "/advertise-checkout/:token",
     element: <AdvertiseCheckout />,
   },
   {
@@ -139,6 +140,10 @@ const routes = [
   },
   {
     path: "/publish-job-email/:token",
+    element: <PublishJobEmail />,
+  },
+  {
+    path: "/publish-ad-email/:token",
     element: <PublishAdEmail />,
   },
   {

@@ -6,7 +6,7 @@ import RadioLabel from 'src/components/common/RadioLabel';
 import { getJobConstManage } from 'src/store/user/jobSlice';
 
 
-const AdvertiseDuration = ({ selectedAdvertiseDuration, setSelectedAdvertiseDuration }) => {
+const AdvertiseDuration = ({ adCheckoutValue, buffersetAdCheckoutValue }) => {
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -18,8 +18,7 @@ const AdvertiseDuration = ({ selectedAdvertiseDuration, setSelectedAdvertiseDura
   const GroupData = jobConfig.jobConstManage;
   const jobTypeData = GroupData.filter(item => item.category === 'advertiseDuration');
 
-  // Get the selected currency object
-  const selectedCurrencyItem = jobTypeData.find(item => item._id === selectedAdvertiseDuration);
+  const selectedCurrencyItem = jobTypeData.find(item => item._id === adCheckoutValue.selectedAdvertiseDuration);
 
   return (
     <div className='w-full'>
@@ -30,7 +29,7 @@ const AdvertiseDuration = ({ selectedAdvertiseDuration, setSelectedAdvertiseDura
             {selectedCurrencyItem ? (
               <span className='text-black text-[22px]'>{selectedCurrencyItem.string.trim()}</span>
             ) : (
-              <span className='text-gray-500 text-[22px] italic'></span> // Placeholder text
+              <span className='text-gray-500 text-[22px] italic'></span>
             )}
           </div>
         }
@@ -38,10 +37,12 @@ const AdvertiseDuration = ({ selectedAdvertiseDuration, setSelectedAdvertiseDura
         <div className='flex flex-col gap-4'>
           {jobTypeData.map((item) => (
             <RadioLabel
-              key={item._id} // Ensure a unique key is provided for each element
-              label={item.string.trim()} // Use the 'string' value from the data
-              checked={selectedAdvertiseDuration === item._id}
-              onChange={() => setSelectedAdvertiseDuration(item._id)}
+              name='selectedAdvertiseDuration'
+              key={item._id}
+              label={item.string.trim()}
+              checked={adCheckoutValue.selectedAdvertiseDuration === item._id}
+              onChange={(e: any) => buffersetAdCheckoutValue({ ...adCheckoutValue, [e.target.name]: item._id })}
+
             />
           ))}
         </div>

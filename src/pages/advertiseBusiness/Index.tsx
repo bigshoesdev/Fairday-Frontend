@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from 'src/store';
 import { useNavigate } from 'react-router-dom';
-
-
 import RegisterAd from 'src/pages/advertiseBusiness/RegisterAd';
 import BusinessCategory from 'src/pages/advertiseBusiness/BusinessCategory';
 import JobLocation from 'src/pages/advertiseBusiness/JobLocation';
@@ -11,67 +9,108 @@ import InsertWebsite from 'src/pages/advertiseBusiness/InsertWebsite';
 import PromotionalDiscount from 'src/pages/advertiseBusiness/PromotionalDiscount';
 import PromotionEndDate from 'src/pages/advertiseBusiness/PromotionEndDate';
 import AdvertisementImages from 'src/pages/advertiseBusiness/AdvertisementImages';
-
 import { publishAdvertise } from 'src/store/user/advertisementSlice';
 import Button from 'src/components/common/Button';
+import PreviewModal from 'src/pages/advertiseBusiness/PreviewModal';
 
 const AdverBusiness = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch<AppDispatch>();
   const { advertisementConfig } = useSelector((state: any) => state);
-  const AdvertiseDetailsInfos = advertisementConfig.advertiseDetails;
+  const { adDetails, bufferLink } = advertisementConfig
+  const userConfig = useSelector((state: any) => state.authSliceConfig);
+  const { user } = userConfig;
+  const userId = user?.sub;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const adId = adDetails.result?._id;
+  console.log('AdvertiseDetailsInfos', adDetails);
 
-  //Register Advertisement component variables
-  const [businessName, setBusinessName] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-
-  //Job Location component variables
-  const [street, setStreet] = useState('');
-  const [city, setCity] = useState('');
-  const [country, setCountry] = useState('');
-
-  //Advertiesment Images Component
-  const [selectedImages, setSelectedImages] = useState<File[]>([]);
-
-
-  //Insert Website component variables
-  const [insertWebsite, setInsertWebsite] = useState('');
-
-  //Promotional Discount component varaibles
-  const [promoDiscount, setPromoDiscount] = useState('');
-
-  //Promotion end Date component variables
-  const [promoEndDate, setPromoEndDate] = useState('');
+  const [advertiseValue, setAdvertiseValue] = useState({
+    userId: userId,
+    businessName: "",
+    name: "",
+    email: "",
+    selectedCategories: [],
+    street: "",
+    city: "",
+    country: "",
+    insertWebsite: "",
+    promoDiscount: "",
+    promoEndDate: "",
+    selectedImages: [],
+    status: 0,
+  })
 
 
-  //button click event
-  const buttonClick = (status: number) => {
+  const viewAdButton = () => {
     const formData = new FormData();
-    formData.append("businessName", businessName);
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("street", street);
-    formData.append("city", city);
-    formData.append("country", country);
-    formData.append("insertWebsite", insertWebsite);
-    formData.append("promoDiscount", promoDiscount);
-    formData.append("promoEndDate", promoEndDate);
-    formData.append("status", status.toString());
-
-    selectedImages.forEach((file) => {
+    Object.keys(advertiseValue).forEach((key: string) => {
+      if (key === 'selectedCategories') {
+        advertiseValue.selectedCategories.forEach((categoryId: string) => {
+          formData.append('selectedCategories[]', categoryId);
+        });
+      } else {
+        formData.append(key, advertiseValue[key]);
+      }
+    });
+    advertiseValue.selectedImages.forEach((file) => {
       formData.append("images", file);
     });
+
+    dispatch(publishAdvertise(formData))
+
+  }
+
+  const publishAdButton = () => {
+    const formData = new FormData();
+
+    if (adId) {
+      formData.append("adId", adId);
+      formData.append("status", 1);
+      Object.keys(advertiseValue).forEach((key: string) => {
+        if (key === 'selectedCategories') {
+          advertiseValue.selectedCategories.forEach((categoryId: string) => {
+            formData.append('selectedCategories[]', categoryId);
+          });
+        } else {
+          formData.append(key, advertiseValue[key]);
+        }
+      });
+      advertiseValue.selectedImages.forEach((file) => {
+        formData.append("images", file);
+      });
+    } else {
+      advertiseValue.status = 1;
+      Object.keys(advertiseValue).forEach((key: string) => {
+        if (key === 'selectedCategories') {
+          advertiseValue.selectedCategories.forEach((categoryId: string) => {
+            formData.append('selectedCategories[]', categoryId);
+          });
+        } else {
+          formData.append(key, advertiseValue[key]);
+        }
+      });
+      advertiseValue.selectedImages.forEach((file) => {
+        formData.append("images", file);
+      });
+    }
 
     dispatch(publishAdvertise(formData))
   };
 
   useEffect(() => {
-    if (AdvertiseDetailsInfos.isOkay) {
-      navigate('/advertise-checkout');
+    if (bufferLink) {
+      const formattedBufferLink = bufferLink.startsWith('/')
+        ? bufferLink
+        : `/${bufferLink}`;
+
+      navigate(formattedBufferLink);
     }
-  }, [AdvertiseDetailsInfos.isOkay, navigate]); 
+    if (adDetails.isOkay) {
+      setIsModalOpen(true);
+    }
+  }, [bufferLink, adDetails]);
 
   return (
     <div className='flex flex-col w-full justify-center items-center bg-[#FAFAFA] pb-20 '>
@@ -81,60 +120,55 @@ const AdverBusiness = () => {
       <div className='bg-[#FAFAFA] flex flex-col container items-center justify-center max-w-[950px] gap-y-10'>
         <div className='mt-[-150px] w-full'>
           <RegisterAd
-            businessName={businessName}
-            setBusinessName={setBusinessName}
-            name={name}
-            setName={setName}
-            email={email}
-            setEmail={setEmail}
+            advertiseValue={advertiseValue}
+            bufferSetAdvertiseValue={(value: any) => setAdvertiseValue(value)}
           />
         </div>
 
-        <BusinessCategory />
+        <BusinessCategory
+          advertiseValue={advertiseValue}
+          bufferSetAdvertiseValue={(value: any) => setAdvertiseValue(value)}
+        />
 
         <JobLocation
-          street={street}
-          setStreet={setStreet}
-          city={city}
-          setCity={setCity}
-          country={country}
-          setCountry={setCountry}
+          advertiseValue={advertiseValue}
+          bufferSetAdvertiseValue={(value: any) => setAdvertiseValue(value)}
         />
 
         <AdvertisementImages
-          selectedImages={selectedImages}
-          setSelectedImages={setSelectedImages}
+          advertiseValue={advertiseValue}
+          bufferSetAdvertiseValue={(value: any) => setAdvertiseValue(value)}
         />
 
         <InsertWebsite
-          insertWebsite={insertWebsite}
-          setInsertWebsite={setInsertWebsite}
+          advertiseValue={advertiseValue}
+          bufferSetAdvertiseValue={(value: any) => setAdvertiseValue(value)}
         />
 
         <PromotionalDiscount
-          promoDiscount={promoDiscount}
-          setPromoDiscount={setPromoDiscount}
+          advertiseValue={advertiseValue}
+          bufferSetAdvertiseValue={(value: any) => setAdvertiseValue(value)}
         />
 
         <PromotionEndDate
-          promoEndDate={promoEndDate}
-          setPromoEndDate={setPromoEndDate}
+          advertiseValue={advertiseValue}
+          bufferSetAdvertiseValue={(value: any) => setAdvertiseValue(value)}
         />
 
 
         <div className='flex flex-col gap-4 w-full'>
           <Button
             text="PREVIEW AD"
-            onClick={() => buttonClick(1)}
+            onClick={viewAdButton}
             className="bg-primaryBlue text-white py-6 text-[20px] font-bold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-xl"
           />
           <Button
             text="PUBLISH AD"
-            onClick={() => buttonClick(2)}
+            onClick={publishAdButton}
             className="bg-primaryBlue text-white py-6 text-[20px] font-bold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-xl"
           />
         </div>
-
+        {isModalOpen && <PreviewModal onClose={() => setIsModalOpen(false)} />}
       </div>
     </div>
   );

@@ -20,6 +20,14 @@ const HeroSection = () => {
         }
     }
 
+    const advertiseClick = () => {
+        if (isAuthenticate) {
+            nagivate('/advertise-business')
+        } else {
+            dispatch(messageHandle({ type: "error", message: "Please login!" }));
+        }
+    }
+    
     const onClick = () => {
         return (
             console.log('this is click')
@@ -89,7 +97,7 @@ const HeroSection = () => {
             <div className='flex flex-col md:flex-row mt-10 gap-[10px] w-full justify-center '>
                 <Button
                     text="Advertise your Business Here"
-                    onClick={onClick}
+                    onClick={advertiseClick}
                     className='text-[22px] bg-[#172733] text-white px-5 hover:bg-primaryBlue transition-all cursor-pointer hover:border-primaryBlue focus:outline-none'
                 />
                 <Button
