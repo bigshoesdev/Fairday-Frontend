@@ -98,7 +98,7 @@ const ReportsLinks = ({ appProfileValue, bufferSetAppProfileValue }) => {
       ...appProfileValue,
       preScreeningReports: exists
         ? updatedReports.filter(report => report.itemId !== itemId)
-        : [...updatedReports, { itemId, itemName: '', link: '' }] 
+        : [...updatedReports, { itemId, itemName: '', link: '' }]
     });
   };
 
@@ -156,7 +156,7 @@ const ReportsLinks = ({ appProfileValue, bufferSetAppProfileValue }) => {
         />
 
         <div className="mt-4">
-          {(appProfileValue.preScreeningReports || []).map((uploadedItem) => (
+          {(appProfileValue.preScreeningReports || []).filter((item: any) => item.itemName !== "").map((uploadedItem) => (
             <div key={uploadedItem.itemId} className="flex justify-between">
               <span>{uploadedItem.itemName}: {uploadedItem.link}</span>
             </div>

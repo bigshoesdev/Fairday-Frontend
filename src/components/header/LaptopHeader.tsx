@@ -8,6 +8,7 @@ import SignUp from 'src/pages/SignUp';
 import { AppDispatch } from 'src/store';
 import { viewAppProfile } from 'src/store/user/appProfileSlice';
 import { clearToken } from 'src/utlies/localStorage';
+import CloseFullscreen from '@mui/icons-material/CloseFullscreen';
 import { logoutSuccess } from 'src/store/auth/authSlice';
 import { viewBusinessProfile } from 'src/store/user/businessProfileSlice';
 
@@ -88,10 +89,8 @@ const LaptopHeader = () => {
         setActiveModal('login');
     };
 
-    const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        if (e.target === e.currentTarget) {
-            closeModal();
-        }
+    const handleBackgroundClick = () => {
+        closeModal();
     };
 
     useEffect(() => {
@@ -232,11 +231,16 @@ const LaptopHeader = () => {
 
             </div>
             {activeModal && (
-                <div onClick={handleBackgroundClick} className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-6 rounded-[20px] shadow-md w-3/4">
+                        <div
+                            className='w-full flex justify-end cursor-pointer'
+                            onClick={handleBackgroundClick}
+                        >
+                            <CloseFullscreen />
+                        </div>
                         {activeModal === 'login' && <Login closeModal={closeModal} switchToRegister={switchToRegister} />}
                         {activeModal === 'register' && <SignUp closeModal={closeModal} switchToLogin={switchToLogin} />}
-
                     </div>
                 </div>
             )}

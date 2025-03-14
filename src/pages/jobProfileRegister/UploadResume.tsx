@@ -52,7 +52,7 @@ const UploadResume: React.FC<any> = ({ appProfileValue, bufferSetAppProfileValue
           </div>
         )}
 
-        <label className="flex items-center space-x-5 ">
+        {/* <label className="flex items-center space-x-5 ">
           <input
             name="resumeReviewConfirm"
             type="checkbox"
@@ -74,7 +74,7 @@ const UploadResume: React.FC<any> = ({ appProfileValue, bufferSetAppProfileValue
           <span className="font-bold text-[16px] text-gray-600">
             Allow Employment & Staffing Agents to Refer Your Profile <span className='ml-6'>(no fee)</span>
           </span>
-        </label>
+        </label> */}
       </Panel>
     </div>
   );

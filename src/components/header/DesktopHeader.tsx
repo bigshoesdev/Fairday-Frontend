@@ -11,6 +11,7 @@ import { logoutSuccess } from 'src/store/auth/authSlice';
 import { viewBusinessProfile } from 'src/store/user/businessProfileSlice';
 import Badge from '@mui/material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
+import CloseFullscreen from '@mui/icons-material/CloseFullscreen';
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -80,6 +81,8 @@ const DesktopHeader: React.FC = () => {
   };
 
   const closeModal = () => {
+    console.log('3');
+
     setActiveModal(null);
   };
 
@@ -95,10 +98,8 @@ const DesktopHeader: React.FC = () => {
     setActiveModal('login');
   };
 
-  const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (e.target === e.currentTarget) {
-      closeModal();
-    }
+  const handleBackgroundClick = () => {
+    closeModal();
   };
 
   useEffect(() => {
@@ -173,7 +174,7 @@ const DesktopHeader: React.FC = () => {
               <div className="flex items-center cursor-pointer" onClick={toggleDropdown}>
                 {
                   avatar ? <img
-                  src={`https://api.fairdayjobs.com${avatarPath}`}
+                    src={`https://api.fairdayjobs.com${avatarPath}`}
                     className="w-10 h-10 rounded-full object-cover ml-5 mr-4 "
                   /> : <FaUserCircle className='text-white text-[40px] ml-5 mr-4 cursor-pointer' />
                 }
@@ -316,10 +317,15 @@ const DesktopHeader: React.FC = () => {
       {/* Modal */}
       {activeModal && (
         <div
-          onClick={handleBackgroundClick}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
         >
           <div className="bg-white p-6 rounded-[20px] shadow-md w-[600px]">
+            <div
+              className='w-full flex justify-end cursor-pointer'
+              onClick={handleBackgroundClick}
+            >
+              <CloseFullscreen />
+            </div>
             {activeModal === 'login' && <Login switchToRegister={switchToRegister} closeModal={closeModal} />}
             {activeModal === 'register' && <SignUp switchToLogin={switchToLogin} closeModal={closeModal} />}
           </div>

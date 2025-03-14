@@ -29,7 +29,6 @@ const JobProfileRegister = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-
   const userConfig = useSelector((state: any) => state.authSliceConfig);
   const { user } = userConfig;
   const userId = user?.sub;
@@ -81,7 +80,6 @@ const JobProfileRegister = () => {
     referProfileConfirm: false,
     selectedPayment: "mastercard",
     preScreeningReports: [],
-
   });
 
   useEffect(() => {
@@ -98,19 +96,30 @@ const JobProfileRegister = () => {
   const [autoSaveContrim, setAutoSaveContrim] = useState(false);
 
   const registerButton = () => {
-    const formData: any = new FormData();
 
-    Object.keys(appProfileValue).forEach((key: string) => {
-      if (key === 'selectedCategories') {
-        appProfileValue.selectedCategories.forEach((categoryId: string) => {
-          formData.append('selectedCategories[]', categoryId);
-        });
-      } else {
-        formData.append(key, appProfileValue[key]);
-      }
-    });
+    console.log("autoSaveContrim", autoSaveContrim);
+    
+    if (autoSaveContrim) {
+      const formData: any = new FormData();
 
-    dispatch(registerAppProfile(formData));
+      Object.keys(appProfileValue).forEach((key: string) => {
+        if (key === 'selectedCategories') {
+          appProfileValue.selectedCategories.forEach((categoryId: string) => {
+            formData.append('selectedCategories[]', categoryId);
+          });
+        } else {
+          formData.append(key, appProfileValue[key]);
+        }
+      });
+
+      dispatch(registerAppProfile(formData));
+    } else {
+
+      console.log("###" );
+      
+      dispatch(messageHandle({ type: "info", message: "Please check Email for Confirmation checkbox for registering your profile" }));
+    }
+
   };
 
   const viewProfileButton = () => {
@@ -171,10 +180,10 @@ const JobProfileRegister = () => {
           bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
         />
 
-        <PicIdImage
+        {/* <PicIdImage
           appProfileValue={appProfileValue}
           bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-        />
+        /> */}
 
         <NameLocation
           appProfileValue={appProfileValue}
@@ -200,36 +209,36 @@ const JobProfileRegister = () => {
           bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
         />
 
-        <VerifyRequire
+        {/* <VerifyRequire
           appProfileValue={appProfileValue}
           bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-        />
+        /> */}
 
         <ReportsLinks
           appProfileValue={appProfileValue}
           bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
         />
 
-        <OverallRating
+        {/* <OverallRating
           hideEmployerConfirm={hideEmployerConfirm}
           setHideEmployerConfirm={setHideEmployerConfirm}
           agreeConfirm={agreeConfirm}
           setAgreeConfirm={setAgreeConfirm}
           setAutoSaveContrim={setAutoSaveContrim}
           autoSaveContrim={autoSaveContrim}
-        />
-
+        /> */}
+        {/* 
         <PaymentArea
           appProfileValue={appProfileValue}
           bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-        />
+        /> */}
 
         <label className="flex items-center space-x-5 ">
           <input
             type="checkbox"
             className="w-[20px] h-[20px] form-checkbox text-blue-600"
-          // checked={autoSaveContrim}
-          // onChange={() => setAutoSaveContrim((prev) => !prev)}
+            checked={autoSaveContrim}
+            onChange={() => setAutoSaveContrim((prev) => !prev)}
           />
           <span className="font-bold text-[16px] text-gray-600">
             Look To Your Email for Confirmation
@@ -240,6 +249,7 @@ const JobProfileRegister = () => {
           <Button
             text="REGISTER PROFILE"
             onClick={() => registerButton()}
+            // disable={!autoSaveContrim}
             className="bg-primaryBlue text-white py-6 text-[20px] font-bold hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none rounded-xl"
           />
           <div className='text-[15px] text-black font-bold px-10 sm:px-60 flex justify-center justify-between mt-5'>

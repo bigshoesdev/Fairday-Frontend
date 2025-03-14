@@ -46,9 +46,9 @@ const JobSearch = () => {
 
   const { jobDetails, jobConstManage, categoryCountList } = jobConfig;
 
-  const jobTypes = jobConstManage.filter(item => item.category === 'jobtype');
-  const applicantTypes = jobConstManage.filter(item => item.category === 'applicanttype');
-  const experienceYearsTypes = jobConstManage.filter(item => item.category === 'experienceyears');
+  const jobTypes = jobConstManage.filter((item: any) => item.category === 'jobtype');
+  const applicantTypes = jobConstManage.filter((item: any) => item.category === 'applicanttype');
+  const experienceYearsTypes = jobConstManage.filter((item: any) => item.category === 'experienceyears');
 
   const searchCategory = [
     {
@@ -71,19 +71,24 @@ const JobSearch = () => {
   searchCategory.push()
 
   useEffect(() => {
-    dispatch(getCategoryCount())
-    const paramsObject = Object.fromEntries(searchParams.entries());
-    const queryParams = new URLSearchParams({
-      ...paramsObject
-    });
 
-    dispatch(getJobsByQuery(queryParams))
-  }, [keyword, category, radius, jobType])
+    if (searchParams) {
+      dispatch(getCategoryCount())
+      const paramsObject = Object.fromEntries(searchParams.entries());
+      const queryParams = new URLSearchParams({
+        ...paramsObject
+      });
+
+      dispatch(getJobsByQuery(queryParams))
+    }
+  }, [keyword, category, radius, jobType, searchParams])
 
   useEffect(() => {
-    dispatch(getJobConstManage());
-    const newFilters = parseQueryParams(location.search);
-    setFilters(newFilters);
+    if (location.search) {
+      dispatch(getJobConstManage());
+      const newFilters = parseQueryParams(location.search);
+      setFilters(newFilters);
+    }
   }, [dispatch, location.search]);
 
 

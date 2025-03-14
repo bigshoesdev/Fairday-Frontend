@@ -41,7 +41,7 @@ const NameLocation = ({ appProfileValue, bufferSetAppProfileValue }) => {
           marker.setMap(null);
           setMarker(null);
         }
-        return; // Stop execution if input fields are empty
+        return; 
       }
 
       const geocoder = new window.google.maps.Geocoder();
@@ -50,19 +50,18 @@ const NameLocation = ({ appProfileValue, bufferSetAppProfileValue }) => {
       geocoder.geocode({ address: address }, (results, status) => {
         if (status === 'OK' && results[0]) {
           const location = results[0].geometry.location;
-          map.setCenter(location); // Set the map center to the geocoded location
+          map.setCenter(location); 
 
           if (marker) {
             marker.setMap(null);
           }
 
-          // Set new marker
           const newMarker = new window.google.maps.Marker({
             position: location,
             map: map,
           });
 
-          setMarker(newMarker); // Store marker in state
+          setMarker(newMarker); 
         }
       });
     }

@@ -4,12 +4,6 @@ import { useNavigate } from 'react-router-dom';
 const EndSection = () => {
     const nagivate = useNavigate();
 
-    const onClick = () => {
-        return (
-            console.log('This is click button!!')
-        )
-    }
-
     return (
         <div className=' w-full bg-darkTealGray flex flex-col justify-center items-center bg-[url("https://fairdayjobs.com/src/assets/images/footer-banner.png")] bg-cover h-[402px]'>
             <div className='container'>

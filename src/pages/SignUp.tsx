@@ -23,9 +23,6 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
     const user = authSliceConfig.user;
     const loading = authSliceConfig.loading;
 
-    console.log('loading', loading);
-
-
     const bufferLink = authSliceConfig?.bufferLink;
 
     useEffect(() => {
@@ -105,8 +102,8 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
                         <span className="text-red-500 font-bold text-[15px] sm:text-[20px]">
                             Get Updates!
                         </span>
-                        <div className="mt-3 text-[12px] sm:text-[20px] text-black flex items-center space-x-4">
-                            <label className="flex items-center space-x-2">
+                        <div className="w-full mt-3 text-[12px] sm:text-[16px] text-black flex justify-start items-center space-x-0 md:space-x-4 flex-wrap md:flex-nowrap">
+                            <label className="w-full sm:inline space-x-1">
                                 <input
                                     type="checkbox"
                                     className="form-checkbox text-blue-600"
@@ -115,7 +112,7 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
                                 />
                                 <span className="font-bold text-center">Job Seeker</span>
                             </label>
-                            <label className="flex items-center space-x-2">
+                            <label className="w-full sm:inline space-x-1">
                                 <input
                                     type="checkbox"
                                     className="form-checkbox text-blue-600"
@@ -124,7 +121,7 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
                                 />
                                 <span className="font-bold text-center">Business</span>
                             </label>
-                            <label className="flex items-center space-x-2">
+                            <label className="w-full sm:inline space-x-1">
                                 <input
                                     type="checkbox"
                                     className="form-checkbox text-blue-600"

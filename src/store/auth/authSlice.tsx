@@ -6,7 +6,7 @@ import { messageHandle } from "src/store/systemSetting/commonSlice";
 import { getToken } from "src/utlies/localStorage";
 import { setAuthorizationToken } from "src/utlies/axiosInstance";
 import { messageBoxHandle } from "src/store/systemSetting/messageBoxSlice";
-import { getMessage, setMessage, removeMessage } from 'src/utlies/localstorageManage'
+import { setMessage } from 'src/utlies/localstorageManage'
 
 interface AuthState {
   user: object | null;

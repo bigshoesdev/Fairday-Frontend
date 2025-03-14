@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { messageHandle } from "src/store/systemSetting/commonSlice";
 import axios from "axios";
-
+import { messageBoxHandle } from "src/store/systemSetting/messageBoxSlice";
+import { setMessage } from 'src/utlies/localstorageManage'
 interface JobConfigState {
   appProfileDetails: object[];
   loading: boolean;
@@ -55,6 +56,8 @@ export const registerAppProfile = (data: any) => async (dispatch: any): Promise<
     const response = await axios.post("https://api.fairdayjobs.com/api/v1/user/appProfile/register-profile", data);
     if (response.data.isOkay) {
       dispatch(setBufferLink(response.data.bufferLink))
+      let currentMessage = setMessage('messageList', 'applicantprofile', response.data.message)
+      dispatch(messageBoxHandle(currentMessage))
       dispatch(constAppProfileDetailsRead(response.data));
     } else {
       dispatch(configError(response.data.error))

@@ -16,7 +16,7 @@ const WorkHistofyDetail = ({
             name="workHistoryDetail"
             label=""
             value={appProfileValue.workHistoryDetail}
-            rows={4}
+            rows={16}
             multiline={true}
             onChange={(e) => bufferSetAppProfileValue({ ...appProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
