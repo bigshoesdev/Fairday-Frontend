@@ -18,13 +18,18 @@ const ApplicantType = ({ jobValue, bufferSetJobValue }) => {
   const applicantTypeData = GroupData.filter(item => item.category === 'applicanttype');
 
   const handleCheckboxChange = (label: string) => {
-
-    bufferSetJobValue({ ...jobValue, checkboxStates: {
-      ...jobValue.checkboxStates,
-      [label]: !jobValue.checkboxStates[label]
-    } })
-
+    bufferSetJobValue({
+      ...jobValue, checkboxStates: {
+        ...jobValue.checkboxStates,
+        [label]: !jobValue.checkboxStates[label]
+      }
+    })
   };
+
+
+  console.log('applicantTypeData', applicantTypeData);  // _id, string
+  console.log('result', jobValue.checkboxStates);       // { [id]: boolean }
+
 
   return (
     <div className='w-full'>
@@ -32,17 +37,28 @@ const ApplicantType = ({ jobValue, bufferSetJobValue }) => {
         header={
           <div className='flex flex-col gap-2'>
             <span className='text-[#1880F1] sm:text-[26px] text-[20px] font-bold'>Applicant Type* <span className='text-black font-normal'>(Select all as applicable)</span></span>
-
+            <div className='flex justify-start items-center flex-wrap'>
+              {
+                Object
+                  .keys({ ...jobValue.checkboxStates })
+                  .filter((key: any) => jobValue.checkboxStates[key] === true)
+                  .map((key: any, order: any) =>
+                    <div key={order} className='px-8 py-2 rounded-[6px] bg-blue-500 text-white mb-1 mr-1'>
+                      {applicantTypeData.find((item: any) => item._id === key)?.string}
+                    </div>
+                  )
+              }
+            </div>
           </div>
         }
       >
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 max-h-80 overflow-y-auto'>
           {applicantTypeData.map((item) => (
             <CheckboxLable
               key={item._id}
-              label={item.string} 
-              checked={jobValue.checkboxStates[item._id] || false} 
-              onChange={() => handleCheckboxChange(item._id)} 
+              label={item.string}
+              checked={jobValue.checkboxStates[item._id] || false}
+              onChange={() => handleCheckboxChange(item._id)}
             />
           ))}
         </div>

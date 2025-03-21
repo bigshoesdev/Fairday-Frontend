@@ -154,7 +154,7 @@ export default function SearchBar() {
                   languageTypeData.map((item, index) => (
                     <MenuItem key={index} value={item._id} className="h-[50px]">
                       <img
-                        src={`https://fairdayjobs.com/src/assets/images/${item.string}.png`}
+                        src={`http://localhost:5173/src/assets/images/${item.string}.png`}
                         alt="icon"
                         style={{ width: 30, height: 20, marginRight: 8 }}
                       />

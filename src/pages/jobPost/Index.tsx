@@ -49,10 +49,7 @@ const PostJob = () => {
   const jobId = jobDetails.result?._id;
 
   const [open, setOpen] = useState(false);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-
 
   const [jobValue, setJobValue] = useState({
     userId: userId,

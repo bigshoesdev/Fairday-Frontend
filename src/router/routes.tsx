@@ -14,6 +14,7 @@ const UserProfile = lazy(() => import("src/pages/userProfile"));
 const Terms = lazy(() => import("src/pages/Terms"));
 const Policy = lazy(() => import("src/pages/Policy"));
 const PublishAd = lazy(() => import("src/pages/publishAd"));
+const JobDetail = lazy(() => import("src/pages/job-detail"));
 const AdverBusiness = lazy(() => import("src/pages/advertiseBusiness/Index"));
 const AdvertiseCheckout = lazy(() => import("src/pages/advertiseCheckout/Index"));
 const AdverConfirmation = lazy(() => import("src/pages/advertiseConfirmation/Index"));
@@ -69,6 +70,10 @@ const routes = [
   {
     path: "/publish_Ad",
     element: <PublishAd />
+  },
+  {
+    path: "/job-detail",
+    element: <JobDetail />
   },
   {
     path: "/employer-detail",

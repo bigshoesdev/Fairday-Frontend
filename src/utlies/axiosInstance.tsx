@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://api.fairdayjobs.com';
+axios.defaults.baseURL = 'http://localhost:8000';
 
 export const setAuthorizationToken = (token: string | null) => {
   if (token) {

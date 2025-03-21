@@ -151,9 +151,9 @@ const DesktopHeader: React.FC = () => {
   return (
     <div className="hidden header_change:block w-full container">
       <div className="flex justify-between items-center">
-        <a href="https://fairdayjobs.com/">
+        <a href="http://localhost:5173/">
           <img
-            src="https://fairdayjobs.com/src/assets/images/logo.png"
+            src="http://localhost:5173/src/assets/images/logo.png"
             className="w-[210px] h-[36px] cursor-pointer"
           />
         </a>
@@ -174,11 +174,10 @@ const DesktopHeader: React.FC = () => {
               <div className="flex items-center cursor-pointer" onClick={toggleDropdown}>
                 {
                   avatar ? <img
-                    src={`https://api.fairdayjobs.com${avatarPath}`}
+                    src={`http://localhost:8000${avatarPath}`}
                     className="w-10 h-10 rounded-full object-cover ml-5 mr-4 "
                   /> : <FaUserCircle className='text-white text-[40px] ml-5 mr-4 cursor-pointer' />
                 }
-
 
                 <p className="text-white mb-0 px-1">{user?.name}</p>
               </div>
@@ -296,19 +295,19 @@ const DesktopHeader: React.FC = () => {
 
           </div>
           <img
-            src="https://fairdayjobs.com/src/assets/images/fb_header.png"
+            src="http://localhost:5173/src/assets/images/fb_header.png"
             className="ml-10 opacity-50 hover:opacity-100 cursor-pointer transition-all"
           />
           <img
-            src="https://fairdayjobs.com/src/assets/images/ig_header.png"
+            src="http://localhost:5173/src/assets/images/ig_header.png"
             className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"
           />
           <img
-            src="https://fairdayjobs.com/src/assets/images/x_header.png"
+            src="http://localhost:5173/src/assets/images/x_header.png"
             className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"
           />
           <img
-            src="https://fairdayjobs.com/src/assets/images/linkedin.png"
+            src="http://localhost:5173/src/assets/images/linkedin.png"
             className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"
           />
         </div>

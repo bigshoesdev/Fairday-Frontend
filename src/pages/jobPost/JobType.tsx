@@ -14,10 +14,10 @@ const JobType = ({ jobValue, bufferSetJobValue, errorSelectedJobType }) => {
     <div className='w-full'>
       <DropPanel
         header={
-          <div className='flex flex-col gap-2'>
-            <span className='text-[#1880F1] sm:text-[26px] text-[20px] font-bold'>Job Type* <span className='text-black font-normal'>(Select as applicable - one required)</span></span>
+          <div className='gap-2'>
+            <div className='text-[#1880F1] sm:text-[26px] text-[20px] font-bold mb-2'>Job Type* <span className='text-black font-normal'>(Select as applicable - one required)</span></div>
             {selectedItem ? (
-              <span className='text-black sm:text-[26px] text-[20px]'>{selectedItem.string.trim()}</span>
+              <span className='px-8 py-2 rounded-[6px] bg-blue-500 text-white'>{selectedItem.string.trim()}</span>
             ) : (
               <span className='text-gray-500 sm:text-[26px] text-[18px] italic'></span>
             )}
@@ -27,7 +27,7 @@ const JobType = ({ jobValue, bufferSetJobValue, errorSelectedJobType }) => {
           </div>
         }
       >
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 max-h-80 overflow-y-auto'>
           {jobTypeData.map((item) => (
             <RadioLabel
               name="selectedJobType"

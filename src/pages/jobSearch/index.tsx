@@ -9,7 +9,6 @@ import { useLocation } from "react-router-dom";
 import { parseQueryParams } from "src/utlies/commonfunctions";
 import { useSearchParams } from "react-router-dom";
 
-
 export interface Filters {
   language: string;
   jobTitle: string;
@@ -46,6 +45,8 @@ const JobSearch = () => {
 
   const { jobDetails, jobConstManage, categoryCountList } = jobConfig;
 
+  console.log("jobDetails", jobDetails);
+
   const jobTypes = jobConstManage.filter((item: any) => item.category === 'jobtype');
   const applicantTypes = jobConstManage.filter((item: any) => item.category === 'applicanttype');
   const experienceYearsTypes = jobConstManage.filter((item: any) => item.category === 'experienceyears');
@@ -71,14 +72,12 @@ const JobSearch = () => {
   searchCategory.push()
 
   useEffect(() => {
-
     if (searchParams) {
       dispatch(getCategoryCount())
       const paramsObject = Object.fromEntries(searchParams.entries());
       const queryParams = new URLSearchParams({
         ...paramsObject
       });
-
       dispatch(getJobsByQuery(queryParams))
     }
   }, [keyword, category, radius, jobType, searchParams])
@@ -90,7 +89,6 @@ const JobSearch = () => {
       setFilters(newFilters);
     }
   }, [dispatch, location.search]);
-
 
   const handleSearchChange = (newFilters: Partial<Filters>) => {
     setFilters((prev) => ({

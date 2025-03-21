@@ -9,7 +9,7 @@ const JobContent = () => {
         async function fetchData() {
             try {
                 const data = {size: 0}
-                const response = await fetch(`https://api.fairdayjobs.com/api/v1/user/job/get-job-by-query?${data.toString()}`, {
+                const response = await fetch(`http://localhost:8000/api/v1/user/job/get-job-by-query?${data.toString()}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({})

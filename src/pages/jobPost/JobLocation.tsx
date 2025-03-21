@@ -62,7 +62,7 @@ const JobLocation = ({ jobValue, bufferSetJobValue, errorStreet, errorCity, erro
           type="text"
           label="Street Name*"
           value={jobValue.street}
-          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value, userStreet: e.target.value })}
           error={errorStreet}
           style="w-full"
         />
@@ -72,7 +72,7 @@ const JobLocation = ({ jobValue, bufferSetJobValue, errorStreet, errorCity, erro
           type="text"
           label="City Zip*"
           value={jobValue.city}
-          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value, userCity: e.target.value })}
           error={errorCity}
           style="w-full"
         />
@@ -81,16 +81,16 @@ const JobLocation = ({ jobValue, bufferSetJobValue, errorStreet, errorCity, erro
           type="text"
           label="Country*"
           value={jobValue.country}
-          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value, userCountry: e.target.value })}
           error={errorCountrt}
           style="w-full"
         />
 
-        <span className="sm:text-[26px] text-[20px font-bold text-[#33495E]">Pinpoint Map Location (Optional)</span>
+        {/* <span className="sm:text-[26px] text-[20px font-bold text-[#33495E]">Pinpoint Map Location (Optional)</span>
         <div
           ref={mapContainerRef}
           style={{ width: '100%', height: '400px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}
-        ></div>
+        ></div> */}
       </Panel>
     </div>
   );

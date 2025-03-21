@@ -5,6 +5,7 @@ import Button from 'src/components/common/Button';
 import layoutMenuList from 'src/mock/layoutMenuList.json';
 import Login from 'src/pages/Login';
 import SignUp from 'src/pages/SignUp';
+import { FaUserCircle } from "react-icons/fa";
 import { AppDispatch } from 'src/store';
 import { viewAppProfile } from 'src/store/user/appProfileSlice';
 import { clearToken } from 'src/utlies/localStorage';
@@ -30,6 +31,8 @@ const LaptopHeader = () => {
 
     const applicantProfileConfig = useSelector((state: any) => state.appProfileConfig);
     const { appProfileDetails } = applicantProfileConfig;
+    const avatar = appProfileDetails[0]?.selectedIdPic || "";
+    const avatarPath = avatar.startsWith("./") ? avatar.slice(1) : avatar;
 
     const BusinessProfileConfig = useSelector((state: any) => state.BusinessProfileConfig);
     const { businessProfileDetails } = BusinessProfileConfig;
@@ -189,14 +192,16 @@ const LaptopHeader = () => {
                     </div>
                 </div>
 
-                <img src="https://fairdayjobs.com/src/assets/images/logo.png" alt="Logo" className="w-[160px] xs:w-[210px] xs:h-[36px]  cursor-pointer" />
+                <img src="http://localhost:5173/src/assets/images/logo.png" alt="Logo" className="w-[160px] xs:w-[210px] xs:h-[36px]  cursor-pointer" />
                 {authSliceConfig.isAuthenticate ? (
                     <div className="relative" ref={dropdownRef}>
                         <div className="flex items-center cursor-pointer" onClick={toggleDropdown}>
-                            <img
-                                src="https://fairdayjobs.com/src/assets/images/user1.png"
-                                className="pl-5 pr-4 cursor-pointer"
-                            />
+                            {
+                                avatar ? <img
+                                    src={`http://localhost:8000${avatarPath}`}
+                                    className="w-10 h-10 rounded-full object-cover ml-5 mr-4 "
+                                /> : <FaUserCircle className='text-white text-[40px] ml-5 mr-4 cursor-pointer' />
+                            }
                         </div>
 
                         {isDropdownOpen && (

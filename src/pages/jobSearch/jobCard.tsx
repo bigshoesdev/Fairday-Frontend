@@ -9,62 +9,63 @@ const JobCard = (props: any) => {
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-3 md:p-6 w-full mt-5 flex flex-col">
-      <div className="flex items-start ">
-        <div className="w-[55px] h-[55px] pt-1 flex-shrink-0">
-          <img
-            src={`https://api.fairdayjobs.com${job.logoImage}`}
-            className="h-[20px]"
-            alt="Company Avatar"
-          />
-        </div>
+      <div className="flex items-start">
+        <div className="w-[55px] h-[55px] pt-1 flex-shrink-0 bg-cover object-cover" style={{ backgroundImage: `url(http://localhost:8000${job.logoImage})` }} />
         <div className="ml-4 text-[15px] w-full">
-          <a href={`/publish_Ad/?id=${job._id}`}>
+          <a href={`/job-detail/?id=${job._id}`}>
             <h2 className="text-[20px] font-semibold text-gray-800">
               {job.jobTitle}
             </h2>
           </a>
           <div className='flex flex-col lg:flex-row'>
-            <div>
-              <span className="font-semibold text-gray-400">Requirements:</span>{" "}
-              <span className="font-bold text-black mr-4">
-                {job.applicantType.map((item) => GroupData.find((each) => each._id === item)?.string)}
-              </span>
-            </div>
+            <div className='flex justify-start items-center flex-wrap'>
+              <p className="font-semibold text-gray-800 mr-2">Requirements:</p>
+              {job.applicantType.map((item: any, index: any) =>
+                <p key={index} className='text-gray-600 font-bold mr-2 underline'>{item.string}</p>
+              )}
+              <div className='flex justify-start items-center flex-wrap'>
+                <span className="font-semibold text-gray-800 mr-2">Employment Type:</span>{" "}
+                <span className="text-gray-600 font-bold text-black mr-1">
+                  {job.selectedJobType.string}
+                </span>
+                <span className="text-gray-600 font-bold text-black mr-4">{job.jobPayRate}</span>
+              </div>
 
-            <div>
-              <span className="font-semibold text-gray-400">Employment Type:</span>{" "}
-              <span className="font-bold text-black mr-4">
-                {GroupData.find((each) => each._id === job.selectedJobType)?.string}
-              </span>
-            </div>
+              {job.jobCurrency &&
+                <div>
+                  <span className="font-semibold text-gray-400">Currency:</span>{" "}
+                  <span className="font-bold text-black mr-4">{job.jobCurrency}</span>
+                </div>
+              }
 
-            <div>
-              <span className="font-semibold text-gray-400">Currency:</span>{" "}
-              <span className="font-bold text-black mr-4">{job.jobCurrency}</span>
             </div>
           </div>
 
           <p className="mt-2">
             <span className="font-semibold text-blue-600">{job.employer}</span>
             <span className="ml-2 mr-2 text-gray-400">|</span>
-            <span className="font-semibold text-black">{job.street}</span>
-            <span className="ml-2 mr-2 text-gray-400">|</span>
-            <span className="font-semibold text-black">
-              Commercial Employer
-            </span>
+            <span className="font-semibold text-black">{job.street}, {job.userCity}, {job.country}</span>
+            {
+              false &&
+              <span className="ml-2 mr-2 text-gray-400">|</span>
+            }
+            {
+              false &&
+              <span className="font-semibold text-black"> Commercial Employer </span>
+            }
           </p>
 
           <div className=" hidden md:block">
             <p className="text-gray-500 text-[16px]">
-              {job.jobDescription.length > 250
-                ? `${job.jobDescription.slice(0, 250)}...`
+              {job.jobDescription.length > 100
+                ? `${job.jobDescription.slice(0, 100)}...`
                 : job.jobDescription}
             </p>
           </div>
 
           <div className="flex items-center justify-between mt-[-10px] hidden md:block">
             <div className="flex items-center">
-              <span className="text-[15px] text-gray-600 mr-2">{job.jobRate}</span>
+              <span className='text-gray-600 mb-0 mr-1 font-bold'>{job.jobRate}</span>
               {[...Array(5)].map((_, index) => (
                 <span
                   key={index}
@@ -83,17 +84,15 @@ const JobCard = (props: any) => {
         </div>
       </div>
 
-      <div className='block md:hidden'>
-        <div className="">
-          <p className="text-gray-500 text-[16px]">
-            {job.jobDescription.length > 250
-              ? `${job.jobDescription.slice(0, 250)}...`
-              : job.jobDescription}
-          </p>
-        </div>
-        <div className="flex items-center justify-between mt-[-10px]">
+      <div className='block px-2 md:hidden'>
+        <p className="text-gray-500 text-[16px]">
+          {job.jobDescription.length > 100
+            ? `${job.jobDescription.slice(0, 100)}...`
+            : job.jobDescription}
+        </p>
+        <div className="flex items-center justify-start mt-[-10px]">
+          <span className='text-gray-600 mb-0 mr-1 font-bold'>{job.jobRate}</span>
           <div className="flex items-center">
-            <span className="text-[15px] text-gray-600 mr-2">{job.jobRate}</span>
             {[...Array(5)].map((_, index) => (
               <span
                 key={index}

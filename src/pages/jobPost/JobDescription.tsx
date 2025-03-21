@@ -15,7 +15,7 @@ const JobDescription = ({ jobValue, bufferSetJobValue, errorDetailJobDescription
           type="email"
           label="Type Here..."
           value={jobValue.detailJobDescription}
-          rows={4}
+          rows={12}
           multiline={true}
           onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           style="w-full"

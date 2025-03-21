@@ -8,17 +8,32 @@ const JobImages: React.FC<any> = ({ jobValue, bufferSetJobValue }) => {
     const files = event.target.files;
     if (files) {
       const fileArray = Array.from(files);
-
-      const uniqueFiles = fileArray.filter(file => !jobValue.selectedImages.some(img => img.name === file.name));
-
+  
+      const uniqueFiles = fileArray.filter(file => {
+        const isUnique = !jobValue.selectedImages.some(img => img.name === file.name);
+        const isUnderSizeLimit = file.size <= 2 * 1024 * 1024; 
+        const isValidImage = file.type.startsWith('image/');
+        return isUnique && isUnderSizeLimit && isValidImage;
+      });
+  
       if (jobValue.selectedImages.length + uniqueFiles.length > 12) {
         alert('You can upload a maximum of 12 images.');
         return;
       }
-
-      bufferSetJobValue({...jobValue, selectedImages: [...jobValue.selectedImages, ...uniqueFiles] })
+  
+      if (fileArray.some(file => file.size > 2 * 1024 * 1024)) {
+        alert('Some of the selected images exceed the 2MB size limit and will not be uploaded.');
+      }
+  
+      if (fileArray.some(file => !file.type.startsWith('image/'))) {
+        alert('Some of the selected files are not valid images and will not be uploaded.');
+      }
+  
+      bufferSetJobValue({ ...jobValue, selectedImages: [...jobValue.selectedImages, ...uniqueFiles] });
     }
   };
+  
+  
 
   const handleRemoveImage = (index: number) => {
     bufferSetJobValue({...jobValue, selectedImages: jobValue.selectedImages.filter((_, i) => i !== index) })
@@ -60,7 +75,7 @@ const JobImages: React.FC<any> = ({ jobValue, bufferSetJobValue }) => {
               />
               <TiDelete 
                 onClick={() => handleRemoveImage(index)}
-                className="absolute top-0 right-0 text-[30px] text-red-500"
+                className="absolute top-0 right-0 text-[30px] text-red-600"
               >
               </TiDelete >
             </div>

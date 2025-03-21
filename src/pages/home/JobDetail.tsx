@@ -82,7 +82,7 @@ const JobDetail: React.FC<{ item: JobDetailProps }> = ({ item }) => {
             <div className='w-full flex flex-col p-5 bg-white border border-gray-200 hover:border-blue-400 rounded-lg shadow-lg gap-4 max-w-[672px] hidden sm:block'>
                 <div className='flex justify-between'>
                     <div className='flex flex-row gap-5'>
-                        <img src={`https://api.fairdayjobs.com${logoImage}`} alt="Company Avatar" className="w-10 h-10 object-cover rounded-full" />
+                        <img src={`http://localhost:8000${logoImage}`} alt="Company Avatar" className="w-10 h-10 object-cover rounded-full" />
                         <div className='flex flex-col'>
                             <span className='text-black font-bold text-[16px]'>{jobTitle}, {selectedCategory && selectedCategory.string}</span>
                             <span className='text-primaryBlue text-[15px]'>{employer} - <span className='text-black'>{country}</span></span>

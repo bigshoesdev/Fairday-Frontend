@@ -52,7 +52,7 @@ const advertisementConfigSlice = createSlice({
 export const publishAdvertise = (data) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.post("https://api.fairdayjobs.com/api/v1/user/advertise/publish-advertise", data);
+    const response = await axios.post("http://localhost:8000/api/v1/user/advertise/publish-advertise", data);
     if (response.data.isOkay) {
       dispatch(setBufferLink(response.data.bufferLink))
       let currentMessage = setMessage('messageList', 'advertisement', response.data.message)
@@ -71,7 +71,7 @@ export const publishAdvertise = (data) => async (dispatch: any): Promise<any> =>
 export const getAllAdvertisements = () => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.post("https://api.fairdayjobs.com/api/v1/user/advertise/get-all-advertisements");
+    const response = await axios.post("http://localhost:8000/api/v1/user/advertise/get-all-advertisements");
     dispatch(constAdvertiseDetailsRead(response.data));
   } catch (error: any) {
     dispatch(configError(error.message || "Failed to fetch data"));
@@ -81,7 +81,7 @@ export const getAllAdvertisements = () => async (dispatch: any): Promise<any> =>
 export const confirmMail = (data: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.post("https://api.fairdayjobs.com/api/v1/confirm/verify", data);
+    const response = await axios.post("http://localhost:8000/api/v1/confirm/verify", data);
     if (response.data.isOkay) {
       dispatch(confirmMailRead(response.data));
     } else {

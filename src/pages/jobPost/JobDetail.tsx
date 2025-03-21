@@ -47,7 +47,7 @@ const JobDetail = ({
           type="email"
           label="Enter Employer Name*"
           value={jobValue.employer}
-          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
+          onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value, name: e.target.value })}
           error={errorEmployer}
           style="w-full"
         />
@@ -81,7 +81,7 @@ const JobDetail = ({
         />
 
         <label className="flex items-center space-x-3">
-          <input
+          <input  
             name="emailConfirm"
             type="checkbox"
             className="w-[18px] h-[18px] sm:w-[25px] sm:h-[25px] form-checkbox text-blue-600"

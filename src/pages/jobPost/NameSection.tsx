@@ -9,13 +9,11 @@ const NameSection = ({ jobValue, bufferSetJobValue, errorBusinessName }) => {
 
         <span className="font-bold sm:text-[26px] text-[20px] text-[#33495E]">
           Your Name or Business Name *</span>
-
         <TextInput
           name='businessName'
           type="email"
           label="Type Here..."
           value={jobValue.businessName}
-          rows={4}
           multiline={true}
           onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value })}
           error={errorBusinessName}
