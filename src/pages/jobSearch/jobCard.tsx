@@ -10,7 +10,7 @@ const JobCard = (props: any) => {
   return (
     <div className="bg-white shadow-lg rounded-lg p-3 md:p-6 w-full mt-5 flex flex-col">
       <div className="flex items-start">
-        <div className="w-[55px] h-[55px] pt-1 flex-shrink-0 bg-cover object-cover" style={{ backgroundImage: `url(http://localhost:8000${job.logoImage})` }} />
+        <div className="w-[55px] h-[55px] pt-1 flex-shrink-0 bg-cover object-cover" style={{ backgroundImage: `url(https://api.fairdayjobs.com${job.logoImage})` }} />
         <div className="ml-4 text-[15px] w-full">
           <a href={`/job-detail/?id=${job._id}`}>
             <h2 className="text-[20px] font-semibold text-gray-800">

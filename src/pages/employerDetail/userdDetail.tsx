@@ -53,7 +53,7 @@ const UserDetail = ({ item, userprofile }) => {
       )}
       <div className="items-center relative">
         <img
-          src={`http://localhost:8000${avatarPath}`}
+          src={`https://api.fairdayjobs.com${avatarPath}`}
           className="w-40 h-40 mt-3 rounded-full object-cover border-4 border-gray-300 shadow-lg"
           alt="User Avatar"
         />

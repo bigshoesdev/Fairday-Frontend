@@ -114,7 +114,7 @@ const PreviewModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
           <div className="mt-4 flex flex-row gap-4 overflow-x-auto ">
             {imagesPath.map((imagePath, index) => (
-               <img src={`http://localhost:8000${imagePath}`} className="w-20 h-20 rounded-lg"></img>
+               <img src={`https://api.fairdayjobs.com${imagePath}`} className="w-20 h-20 rounded-lg"></img>
             ))}
             </div>
         </div>

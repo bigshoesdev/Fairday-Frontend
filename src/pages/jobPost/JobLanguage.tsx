@@ -55,7 +55,7 @@ const JobLanguage = ({ jobValue, bufferSetJobValue, errorSelectedCategory }) => 
                 onClick={() => handleItemClick(item.string, item._id)}
               >
                 <img
-                  src={`http://localhost:5173/src/assets/images/${item.string}.png`}
+                  src={`https://fairdayjobs.com/src/assets/images/${item.string}.png`}
                   alt="icon"
                   style={{ width: 30, height: 20, marginRight: 8 }}
                 />

@@ -44,7 +44,7 @@ const JobCategory = () => {
                                             key={item.id}
                                             className="text-gray-700 cursor-pointer hover:text-blue-500 before:content-['•'] before:mr-2"
                                         >
-                                            <a className='text-gray-700' href={`http://localhost:5173/job-search?id=${Date.now().toString()}&keyword=&category=${item.id}&location=&radius=&jobType=&applicantType=&experienceYearsType=`} target='_blank'>
+                                            <a className='text-gray-700' href={`https://fairdayjobs.com/job-search?id=${Date.now().toString()}&keyword=&category=${item.id}&location=&radius=&jobType=&applicantType=&experienceYearsType=`} target='_blank'>
                                                 {item.name}
                                             </a>
                                         </li>

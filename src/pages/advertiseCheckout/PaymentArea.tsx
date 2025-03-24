@@ -20,7 +20,7 @@ const PaymentArea = ({selectedPayment, setSelectedPayment }) => {
               onChange={() => setSelectedPayment('mastercard')}
               className="w-[15px] h-[15px] form-checkbox text-blue-600"
             />
-            <img className='w-[80px]' src="http://localhost:5173/src/assets/images/master-card.png" alt="MasterCard" />
+            <img className='w-[80px]' src="https://fairdayjobs.com/src/assets/images/master-card.png" alt="MasterCard" />
           </label>
 
           <label className='flex items-center gap-2 cursor-pointer'>
@@ -32,7 +32,7 @@ const PaymentArea = ({selectedPayment, setSelectedPayment }) => {
               onChange={() => setSelectedPayment('visa')}
               className="w-[15px] h-[15px] form-checkbox text-blue-600"
             />
-            <img className='w-[80px]' src="http://localhost:5173/src/assets/images/visa.png" alt="Visa" />
+            <img className='w-[80px]' src="https://fairdayjobs.com/src/assets/images/visa.png" alt="Visa" />
           </label>
         </div>
       </Panel>

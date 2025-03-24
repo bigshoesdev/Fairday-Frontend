@@ -5,7 +5,7 @@ const EndSection = () => {
     const nagivate = useNavigate();
 
     return (
-        <div className=' w-full bg-darkTealGray flex flex-col justify-center items-center bg-[url("http://localhost:5173/src/assets/images/footer-banner.png")] bg-cover h-[402px]'>
+        <div className=' w-full bg-darkTealGray flex flex-col justify-center items-center bg-[url("https://fairdayjobs.com/src/assets/images/footer-banner.png")] bg-cover h-[402px]'>
             <div className='container'>
                 <span className='text-white text-[37px] font-semibold flex text-center justify-center hidden xs:block'>
                     32 million professionals on demand.

@@ -161,9 +161,9 @@ const LaptopHeader = () => {
                     {/* <h5 id="drawer-navigation-label" className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
                         Menu
                     </h5> */}
-                    <a href="http://localhost:5173/" className='flex justify-center '>
+                    <a href="https://fairdayjobs.com/" className='flex justify-center '>
                         <img
-                            src="http://localhost:5173/src/assets/images/logo_symbol.png"
+                            src="https://fairdayjobs.com/src/assets/images/logo_symbol.png"
                             className="w-[128px] h-[102px] cursor-pointer"
                         />
                     </a>
@@ -191,19 +191,19 @@ const LaptopHeader = () => {
                         <ul className="space-y-2 font-medium">
                             <li className='mb-8 mt-4 flex justify-between items-center flex-wrap w-full'>
                                 <img
-                                    src="http://localhost:5173/src/assets/images/fb_header.png"
+                                    src="https://fairdayjobs.com/src/assets/images/fb_header.png"
                                     className="opacity-50 hover:opacity-100 cursor-pointer transition-all"
                                 />
                                 <img
-                                    src="http://localhost:5173/src/assets/images/ig_header.png"
+                                    src="https://fairdayjobs.com/src/assets/images/ig_header.png"
                                     className="opacity-50 hover:opacity-100 cursor-pointer transition-all"
                                 />
                                 <img
-                                    src="http://localhost:5173/src/assets/images/x_header.png"
+                                    src="https://fairdayjobs.com/src/assets/images/x_header.png"
                                     className="opacity-50 hover:opacity-100 cursor-pointer transition-all"
                                 />
                                 <img
-                                    src="http://localhost:5173/src/assets/images/linkedin.png"
+                                    src="https://fairdayjobs.com/src/assets/images/linkedin.png"
                                     className="opacity-50 hover:opacity-100 cursor-pointer transition-all"
                                 />
                             </li>
@@ -220,7 +220,7 @@ const LaptopHeader = () => {
                                         <div className="flex items-center cursor-pointer" onClick={toggleDropdown}>
                                             {
                                                 avatar ? <img
-                                                    src={`http://localhost:8000${avatarPath}`}
+                                                    src={`https://api.fairdayjobs.com${avatarPath}`}
                                                     className="w-10 h-10 rounded-full object-cover mr-4 "
                                                 /> : <FaUserCircle className='text-white text-[40px] mr-4 cursor-pointer' />
                                             }
@@ -266,7 +266,7 @@ const LaptopHeader = () => {
                     </div>
                 </div>
                 <div className='w-full flex justify-center'>
-                    <img src="http://localhost:5173/src/assets/images/logo.png" alt="Logo" className="w-[160px] xs:w-[210px] xs:h-[36px]  cursor-pointer " />
+                    <img src="https://fairdayjobs.com/src/assets/images/logo.png" alt="Logo" className="w-[160px] xs:w-[210px] xs:h-[36px]  cursor-pointer " />
                 </div>
 
             </div>

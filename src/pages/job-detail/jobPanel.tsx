@@ -88,7 +88,7 @@ const JobPanel = ({ ApplyClicked, jobDeatil }: any) => {
         {/* Image Carousel */}
         <div className="px-5 mt-4 flex gap-4 flex-wrap">
           {jobDeatil.images.map((item: any, index: any) =>
-            <div key={index} className="w-[80px] h-[80px] pt-1 flex-shrink-0 bg-cover object-cover rounded-[8px] shadow-lg" style={{ backgroundImage: `url(http://localhost:8000${item})` }} />
+            <div key={index} className="w-[80px] h-[80px] pt-1 flex-shrink-0 bg-cover object-cover rounded-[8px] shadow-lg" style={{ backgroundImage: `url(https://api.fairdayjobs.com${item})` }} />
           )}
         </div>
         {/* Footer Buttons */}

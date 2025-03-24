@@ -50,10 +50,10 @@ const LogoShareComponent = () => {
             </Box>
 
             <div className="flex">
-                <img src="http://localhost:5173/src/assets/images/fb_header.png" className="opacity-50 hover:opacity-100 cursor-pointer transition-all"></img>
-                <img src="http://localhost:5173/src/assets/images/ig_header.png" className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"></img>
-                <img src="http://localhost:5173/src/assets/images/x_header.png" className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"></img>
-                <img src="http://localhost:5173/src/assets/images/linkedin.png" className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"></img>
+                <img src="https://fairdayjobs.com/src/assets/images/fb_header.png" className="opacity-50 hover:opacity-100 cursor-pointer transition-all"></img>
+                <img src="https://fairdayjobs.com/src/assets/images/ig_header.png" className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"></img>
+                <img src="https://fairdayjobs.com/src/assets/images/x_header.png" className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"></img>
+                <img src="https://fairdayjobs.com/src/assets/images/linkedin.png" className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"></img>
             </div>
         </div>
     );
