@@ -57,8 +57,8 @@ const JobCard = (props: any) => {
 
           <div className=" hidden md:block">
             <p className="text-gray-500 text-[16px]">
-              {job.jobDescription.length > 100
-                ? `${job.jobDescription.slice(0, 100)}...`
+              {job.jobDescription.length > 150
+                ? `${job.jobDescription.slice(0, 150)}...`
                 : job.jobDescription}
             </p>
           </div>
@@ -86,8 +86,8 @@ const JobCard = (props: any) => {
 
       <div className='block px-2 md:hidden'>
         <p className="text-gray-500 text-[16px]">
-          {job.jobDescription.length > 100
-            ? `${job.jobDescription.slice(0, 100)}...`
+          {job.jobDescription.length > 150
+            ? `${job.jobDescription.slice(0, 150)}...`
             : job.jobDescription}
         </p>
         <div className="flex items-center justify-start mt-[-10px]">

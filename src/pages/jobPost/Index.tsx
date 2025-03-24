@@ -4,6 +4,7 @@ import { AppDispatch } from 'src/store';
 import JobDetail from 'src/pages/jobPost/JobDetail';
 import JobLocation from 'src/pages/jobPost/JobLocation';
 import JobCategory from 'src/pages/jobPost/JobCategory';
+import JobLanguage from 'src/pages/jobPost/JobLanguage';
 import OhterCategory from 'src/pages/jobPost/OhterCategory';
 import JobDescription from 'src/pages/jobPost/JobDescription';
 import JobType from 'src/pages/jobPost/JobType';
@@ -57,6 +58,7 @@ const PostJob = () => {
     jobDescription: "",
     employer: "",
     name: "",
+    language: "",
     email: userEmail,
     emailConfirm: false,
     city: "",
@@ -182,7 +184,14 @@ const PostJob = () => {
           errorCity={error && error.city}
           errorCountrt={error && error.country}
         />
+        
         <JobCategory
+          jobValue={jobValue}
+          bufferSetJobValue={(value: any) => setJobValue(value)}
+          errorSelectedCategory={error && error.selectedCategory}
+        />
+        
+        <JobLanguage
           jobValue={jobValue}
           bufferSetJobValue={(value: any) => setJobValue(value)}
           errorSelectedCategory={error && error.selectedCategory}

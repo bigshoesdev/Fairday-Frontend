@@ -39,14 +39,14 @@ const JobCount = (props: any) => {
             </div>
 
             {/* Grid View Button */}
-            <div
+            {/* <div
               className={`hidden md:block flex items-center justify-center text-[40px] cursor-pointer ${
                 viewMode === "column" ? "text-blue-500 font-bold" : "text-gray-400"
               }`}
               onClick={() => handleViewModeChange("column")}
             >
               <GridViewRoundedIcon className="text-[20px]"  style={{fontSize:"28px"}}/>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

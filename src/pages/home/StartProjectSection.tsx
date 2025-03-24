@@ -32,7 +32,7 @@ const StartProjectSection = () => {
             <div className='grid sm:grid-cols-1 md:grid-cols-5 justify-center gap-5 my-10'>
                 {startProject.map((item, index) => {
                     return (
-                        <div key={index} className='flex flex-col justify-center items-center text-center opacity-100 hover:opacity-50 cursor-pointer gap-[10px]'>
+                        <div key={index} className='flex flex-col justify-center items-center text-center opacity-100 hover:opacity-70 gap-[10px]'>
                             <img src={item.img} className='w-[120px] h-[120px]' />
                             <span className='text-[18px] font-bold text-white'>{item.title}</span>
                             <span className='text-[16px] text-white'>{item.subTitle}</span>

@@ -2,15 +2,15 @@
     "header":[
         {
             "link": "/",
-            "menu": "HOME"
+            "menu": "Home"
         },
         {
             "link": "/job-search",
-            "menu": "JOBS"
+            "menu": "Job"
         },
         {
-            "link": "/#",
-            "menu": "HIRE NOW"
+            "link": "/advertise-business",
+            "menu": "Advertisement Post"
         }
       
     ],

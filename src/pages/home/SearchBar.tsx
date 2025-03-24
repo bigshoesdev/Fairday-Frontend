@@ -31,6 +31,7 @@ interface RootState {
 }
 
 export default function SearchBar() {
+
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [searchParams]: any = useSearchParams();
@@ -63,7 +64,7 @@ export default function SearchBar() {
   const handleSearchValues = (key: string, value: string) => dispatch(updateCurrentJobData({ key: key, value: value }))
 
   const buttonClick = () => {
-    const timeStamp = Date.now().toString(); // Unique ID for URL
+    const timeStamp = Date.now().toString();
 
     const queryParams = new URLSearchParams({
       id: timeStamp,
@@ -150,6 +151,9 @@ export default function SearchBar() {
                   return selectedLanguage ? selectedLanguage.string : "Select Language";
                 }}
               >
+                <MenuItem value={""} className="h-[50px]">
+                  All Languages
+                </MenuItem>
                 {languageTypeData.length > 0 ? (
                   languageTypeData.map((item, index) => (
                     <MenuItem key={index} value={item._id} className="h-[50px]">
@@ -206,8 +210,8 @@ export default function SearchBar() {
                   border: "none !important",
                   borderRadius: "8px !important",
                   outline: "none !important",
-                  appearance: "none !important", 
-                  backgroundClip: "content-box !important", 
+                  appearance: "none !important",
+                  backgroundClip: "content-box !important",
                 },
               },
             }}
@@ -228,12 +232,12 @@ export default function SearchBar() {
               <InputLabel
                 id="category-select-label"
                 sx={{
-                  color: "white", 
+                  color: "white",
                   display: "flex",
                   alignItems: "center",
-                  gap: 1, 
+                  gap: 1,
                   "&.Mui-focused": {
-                    color: "white", 
+                    color: "white",
                   },
                 }}
               >
@@ -241,10 +245,10 @@ export default function SearchBar() {
                   sx={{
                     marginRight: 1,
                     verticalAlign: "middle",
-                    color: category ? "white" : "rgba(255, 255, 255, 0.7)", 
+                    color: category ? "white" : "rgba(255, 255, 255, 0.7)",
                   }}
                 />
-                <span style={{ color: "white" }}>Category</span> 
+                <span style={{ color: "white" }}>Category</span>
               </InputLabel>
               <Select
                 labelId="category-select-label"
@@ -254,9 +258,12 @@ export default function SearchBar() {
                   color: "white",
                   border: "none",
                   "& fieldset": { border: "none" },
-                  "& .MuiSvgIcon-root": { color: "white" }, 
+                  "& .MuiSvgIcon-root": { color: "white" },
                 }}
               >
+                <MenuItem value={""}>
+                  All Categories
+                </MenuItem>
                 {allCategories.length > 0 ? (
                   allCategories.map((cat: any, index) => (
                     <MenuItem key={index} value={cat.id}>
@@ -338,11 +345,15 @@ export default function SearchBar() {
                 onChange={(e) => handleSearchValues("radius", e.target.value)}
                 sx={{
                   color: "white",
-                  "& fieldset": { border: "none" }, 
+                  "& fieldset": { border: "none" },
                   "& .MuiOutlinedInput-notchedOutline": { border: "none" },
-                  "& .MuiSvgIcon-root": { color: "white" }, 
+                  "& .MuiSvgIcon-root": { color: "white" },
                 }}
               >
+
+                <MenuItem value={""}>
+                  Infinitely Radius
+                </MenuItem>
                 {radiusTypeData.length > 0 ? (
                   radiusTypeData.map((item, index) => (
                     <MenuItem key={index} value={item._id}>

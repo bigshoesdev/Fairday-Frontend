@@ -10,9 +10,9 @@ import SearchBar from 'src/pages/home/SearchBar';
 
 const Home = () => {
     return (
-        <div className='w-full flex justify-center items-center flex-col bg-[#f7fbff]'>
-            <HeaderSection />
-            <div className='w-full bg-primaryBlue flex justify-center  top-0'>
+        <div className='w-full flex justify-center items-center flex-col bg-[#f7fbff] '>
+            {/* <HeaderSection /> */}
+            <div className='w-full bg-primaryBlue flex justify-center  top-0 hidden lg:block'>
                 <SearchBar />
             </div>
             <HeaderImage />
@@ -28,11 +28,10 @@ const Home = () => {
             <div className='w-full bg-[#fafafa] flex justify-center'>
                 <JobContent />
             </div>
-            <div className='max-w-[1419px]'>
+            <div className='w-full'>
                 <JobCategory />
             </div>
             <EndSection />
-
         </div>
     )
 }

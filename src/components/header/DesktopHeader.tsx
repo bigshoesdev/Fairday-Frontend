@@ -17,8 +17,9 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import { IoCloseCircleOutline } from "react-icons/io5";
 import { removeMessageBox } from 'src/store/systemSetting/messageBoxSlice';
+import { IoCloseCircleOutline } from "react-icons/io5";
+import { GiAbstract064 } from "react-icons/gi";
 import { MdMarkEmailUnread } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 
@@ -168,51 +169,6 @@ const DesktopHeader: React.FC = () => {
               {item.menu}
             </p>
           ))}
-
-          {authSliceConfig.isAuthenticate ? (
-            <div className="relative" ref={dropdownRef}>
-              <div className="flex items-center cursor-pointer" onClick={toggleDropdown}>
-                {
-                  avatar ? <img
-                    src={`http://localhost:8000${avatarPath}`}
-                    className="w-10 h-10 rounded-full object-cover ml-5 mr-4 "
-                  /> : <FaUserCircle className='text-white text-[40px] ml-5 mr-4 cursor-pointer' />
-                }
-
-                <p className="text-white mb-0 px-1">{user?.name}</p>
-              </div>
-
-              {isDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white text-white rounded-lg shadow-lg py-2 transition-all duration-300 animate-fade-in">
-                  <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={profileClick}>
-                    Profile
-                  </a>
-                  <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => navigate('/jobs')}>
-                    Jobs
-                  </a>
-                  <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => navigate('/alerts')}>
-                    Alerts
-                  </a>
-                  <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => navigate('/settings')}>
-                    Settings
-                  </a>
-                  <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={signOutButton}>
-                    Sign Out
-                  </a>
-                </div>
-              )}
-            </div>
-          ) : (
-            <>
-              <p onClick={() => handleOpenModal('login')} className="text-[15px] px-5 mb-0 text-white font-bold hover:text-blue-300 border-r-[1px] border-primaryGray cursor-pointer transition-all">
-                Login
-              </p>
-              <p onClick={() => handleOpenModal('register')} className="text-[15px] px-5 mb-0 text-white font-bold hover:text-blue-300 border-r-[1px] border-primaryGray cursor-pointer transition-all">
-                Register
-              </p>
-            </>
-          )}
-
           <div className="ml-5">
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
               <Tooltip title="Messages">
@@ -274,15 +230,19 @@ const DesktopHeader: React.FC = () => {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
               >
-
                 {messageList.map((item, index) =>
                   <MenuItem key={index}>
                     <div className='w-full flex  justify-between items-center '>
                       <div className='flex flex-row gap-2 items-center'>
                         {
-                          Object.keys(item)?.[0] === "auth" ? (
+                          Object.keys(item)?.[0] === "auth" && (
                             <MdMarkEmailUnread className="text-[18px]" />
-                          ) : null
+                          )
+                        }
+                        {
+                          Object.keys(item)?.[0] === "jobpost" && (
+                            <GiAbstract064 className="text-[18px]" />
+                          )
                         }
                         <p className='mb-0'>{Object.values(item)?.[0].length > 25 ? `${Object.values(item)?.[0].slice(0, 25)}...` : Object.values(item)?.[0]}</p>
                       </div>
@@ -294,21 +254,69 @@ const DesktopHeader: React.FC = () => {
             }
 
           </div>
+          {authSliceConfig.isAuthenticate ? (
+            <div className="relative" ref={dropdownRef}>
+              <div className="flex items-center cursor-pointer" onClick={toggleDropdown}>
+                {
+                  avatar ? <img
+                    src={`http://localhost:8000${avatarPath}`}
+                    className="w-10 h-10 rounded-full object-cover ml-5 mr-4 "
+                  /> : <FaUserCircle className='text-white text-[40px] ml-5 mr-4 cursor-pointer' />
+                }
+
+                <p className="text-white mb-0 px-1">{user?.name}</p>
+              </div>
+
+              {isDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white text-white rounded-lg shadow-lg py-2 transition-all duration-300 animate-fade-in">
+                  <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={profileClick}>
+                    Profile
+                  </a>
+                  <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => navigate('/jobs')}>
+                    Jobs
+                  </a>
+                  <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => navigate('/jobs')}>
+                    Advertisement
+                  </a>
+                  <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => navigate('/alerts')}>
+                    Alerts
+                  </a>
+                  <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => navigate('/settings')}>
+                    Settings
+                  </a>
+                  <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={signOutButton}>
+                    Sign Out
+                  </a>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <p onClick={() => handleOpenModal('login')} className="text-[15px] px-5 mb-0 text-white font-bold hover:text-blue-300 border-r-[1px] border-primaryGray cursor-pointer transition-all">
+                Login
+              </p>
+              <p onClick={() => handleOpenModal('register')} className="text-[15px] px-5 mb-0 text-white font-bold hover:text-blue-300 border-r-[1px] border-primaryGray cursor-pointer transition-all">
+                Register
+              </p>
+            </>
+          )}
+
+
           <img
             src="http://localhost:5173/src/assets/images/fb_header.png"
-            className="ml-10 opacity-50 hover:opacity-100 cursor-pointer transition-all"
+            className="ml-10 opacity-50 hover:opacity-100 cursor-pointer transition-all hidden xl:block"
           />
           <img
             src="http://localhost:5173/src/assets/images/ig_header.png"
-            className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"
+            className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all hidden xl:block"
           />
           <img
             src="http://localhost:5173/src/assets/images/x_header.png"
-            className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"
+            className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all hidden xl:block"
           />
           <img
             src="http://localhost:5173/src/assets/images/linkedin.png"
-            className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all"
+            className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all hidden xl:block"
           />
         </div>
       </div>
