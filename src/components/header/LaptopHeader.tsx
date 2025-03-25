@@ -109,15 +109,16 @@ const LaptopHeader = () => {
         };
     }, []);
 
-    const profileClick = () => {
+    const profileClick = (profileType) => {
 
-        if (jobSeeker && business) {
-            if (appProfileDetails[0]) {
-                navigate('/user/userProfile')
-            } else {
-                navigate('/job-applicant-profile-registration')
-            }
-        } else if (jobSeeker) {
+        // if (jobSeeker && business) {
+        //   if (appProfileDetails[0]) {
+        //     navigate('/user/userProfile')
+        //   } else {
+        //     navigate('/job-applicant-profile-registration')
+        //   }
+        // }
+        if (profileType === 0) {
             if (appProfileDetails[0]) {
                 navigate('/user/userProfile')
             } else {
@@ -231,9 +232,21 @@ const LaptopHeader = () => {
 
                                         {isDropdownOpen && (
                                             <div className="absolute right-0 mt-2 w-48 bg-white text-white rounded-lg shadow-lg py-2 transition-all duration-300 animate-fade-in z-[50]">
-                                                <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={profileClick}>
-                                                    Profile
+                                                <a className="block px-4 py-2" >
+                                                    Profiles
                                                 </a>
+                                                <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer ml-4" onClick={() => profileClick(0)}>
+                                                    Job Seeker
+                                                </a>
+
+                                                {
+                                                    business &&
+                                                    <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer ml-4" onClick={() => profileClick(1)}>
+                                                        Business
+                                                    </a>
+                                                }
+
+                                                <hr />
                                                 <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => navigate('/jobs')}>
                                                     Jobs
                                                 </a>

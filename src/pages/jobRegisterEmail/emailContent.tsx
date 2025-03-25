@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 const EmailContent = ({ bufferName, bufferEmail }) => {
   const navigate = useNavigate();
 
-
   const appProfileConfig = useSelector((state: any) => state.appProfileConfig);
   const decodedIdentify = appProfileConfig.decodedIdentify;
 
@@ -62,7 +61,13 @@ const EmailContent = ({ bufferName, bufferEmail }) => {
           </p>
 
           <span className="text-primaryBlue title">IHP # {decodedIdentify}</span>
-          <span className="font-bold text-black">VIEW / EDIT PROFILE</span>
+
+          <div className="flex flex-row my-4 text-[28px]">
+            <span className="font-bold text-black cursor-pointer hover:text-blue-500 transition-all" onClick={() => navigate('/user/userProfile')}>VIEW </span>
+            <span className="px-4">/</span>
+            <span className="font-bold text-black cursor-pointer hover:text-blue-500 transition-all" onClick={() => navigate('/job-applicant-profile-registration')}>EDIT PROFILE</span>
+          </div>
+
 
           <p className="text-center text-contentText mt-5">
             Keep this number safe to use in applying for the good jobs listed in <span className="text-primaryBlue">Fairdayjobs</span>, lorem in volupate velit esse cilum dolore eu fugiat nulia pariatur.

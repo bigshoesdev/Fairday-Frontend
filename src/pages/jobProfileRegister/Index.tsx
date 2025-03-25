@@ -91,6 +91,7 @@ const JobProfileRegister = () => {
     }
   }, []);
 
+  const [tabSelect, setTabSelect] = useState(false);
   const [hideEmployerConfirm, setHideEmployerConfirm] = useState(false);
   const [agreeConfirm, setAgreeConfirm] = useState(false);
   const [autoSaveContrim, setAutoSaveContrim] = useState(false);
@@ -98,7 +99,7 @@ const JobProfileRegister = () => {
   const registerButton = () => {
 
     console.log("autoSaveContrim", autoSaveContrim);
-    
+
     if (autoSaveContrim) {
       const formData: any = new FormData();
 
@@ -115,8 +116,8 @@ const JobProfileRegister = () => {
       dispatch(registerAppProfile(formData));
     } else {
 
-      console.log("###" );
-      
+      console.log("###");
+
       dispatch(messageHandle({ type: "info", message: "Please check Email for Confirmation checkbox for registering your profile" }));
     }
 
@@ -141,16 +142,43 @@ const JobProfileRegister = () => {
       <div className='bg-[#FAFAFA] flex flex-col container items-center justify-center max-w-[950px] gap-y-10'>
         <div className='mt-[-50px] sm:mt-[-70px] w-full'>
           <div className='p-[8px] sm:p-[15px] flex flex-row bg-blue-500 items-center rounded-xl'>
-            <a href="#" className='w-full flex justify-center'>
-              <span className='text-[18px] sm:text-[20px] md:text-[24px] text-gray-200 content-center cursor-pointer text-center'>PROFILE REGISTRATION</span>
-            </a>
-            <a href="#" className='w-full flex justify-center'>
+            <div
+              className='w-full flex justify-center'
+              onClick={() => setTabSelect(true)}
+            >
+              <span
+                className={tabSelect ?
+                  'text-center text-[18px] sm:text-[20px] md:text-[24px] py-[16px] rounded-xl bg-white text-blue-500 w-full hover:bg-gray-200 transition-all cursor-pointer hover:border-gray-400 focus:outline-none' :
+                  'text-center text-[18px] sm:text-[20px] md:text-[24px] py-[16px] text-gray-200 content-center cursor-pointer text-center'
+                }
+              >
+                PROFILE REGISTRATION
+              </span>
+            </div>
+            <div
+              className='w-full flex justify-center'
+              onClick={() => setTabSelect(false)}
+            >
+              <span
+                className={!tabSelect ?
+                  'text-center text-[18px] sm:text-[20px] md:text-[24px] py-[16px] rounded-xl bg-white text-blue-500 w-full hover:bg-gray-200 transition-all cursor-pointer hover:border-gray-400 focus:outline-none' :
+                  'text-center text-[18px] sm:text-[20px] md:text-[24px] py-[16px] text-gray-200 content-center cursor-pointer text-center'
+                }
+              >VIEW PROFILE</span>
+            </div>
+
+            {/* <a href="#" className='w-full flex justify-center'>
               <Button
                 text="VIEW PROFILE"
-                onClick={viewProfileButton}
-                className='text-[18px] sm:text-[20px] md:text-[24px] py-[16px] rounded-xl bg-white text-blue-500 w-full hover:bg-gray-200 transition-all cursor-pointer hover:border-gray-400 focus:outline-none'
+                // onClick={viewProfileButton}
+                className={
+                  false ?
+                    'text-[18px] sm:text-[20px] md:text-[24px] py-[16px] rounded-xl bg-white text-blue-500 w-full hover:bg-gray-200 transition-all cursor-pointer hover:border-gray-400 focus:outline-none'
+                    : 
+                    'text-[18px] sm:text-[20px] md:text-[24px] text-gray-200 content-center cursor-pointer text-center'
+              }
               />
-            </a>
+            </a> */}
           </div>
         </div>
 

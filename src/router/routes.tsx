@@ -156,7 +156,7 @@ const routes = [
     element: <BusinessRegisterEmail />,
   },
   {
-    path: "/job-register-email/:token",
+    path: "/profile-register-email/:token",
     element: <JobRegisterEmail />,
   },
   {
