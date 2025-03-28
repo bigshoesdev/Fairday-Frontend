@@ -70,7 +70,7 @@ const CategorySelect = ({ appProfileValue, bufferSetAppProfileValue }) => {
           </div>
         }
       >
-        <div className="columns-1 sm:columns-2 gap-6">
+        <div className="columns-1 sm:columns-2 gap-6 max-h-80 overflow-y-auto">
           {Object.keys(groupedData).sort().map((letter) => (
             <div key={letter} className="break-inside-avoid mb-4">
               <h2 className="text-lg text-black font-bold mb-2 pb-1">{letter}</h2>

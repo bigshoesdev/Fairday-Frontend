@@ -13,6 +13,8 @@ const HeroSection = () => {
     const isAuthenticate = authSliceConfig.isAuthenticate;
 
     const postJobClick = () => {
+        console.log('$$$$$$$$$$$$');
+        
         if (isAuthenticate) {
             nagivate('/post-job')
         } else {
@@ -49,7 +51,7 @@ const HeroSection = () => {
             <div className='mt-[85px] p-[5px] flex flex-row bg-[#172733] items-center rounded-[10px] '>
                 <Button
                     text="Post All Jobs Here!"
-                    onClick={postJobClick}
+                    onClick={() => postJobClick()}
                     className='px-[20px] sm:text-[20px] md:text-[24px] font-bold bg-[#172733] text-white px-8  transition-all cursor-pointer border-[#172733] hover:border-[#172733] focus:outline-none'
                 />
                 <a href="https://fairdayjobs.com/job-search">

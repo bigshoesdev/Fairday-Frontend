@@ -40,9 +40,9 @@ const UploadResume: React.FC<any> = ({ appProfileValue, bufferSetAppProfileValue
           </label>
         </div>
 
-        {appProfileValue.selectedResume && (
+        {appProfileValue?.selectedResume && (
           <div className="mt-2 relative flex justify-between items-center">
-            <span className="text-gray-700">{appProfileValue.selectedResume.name}</span>
+            <span className="text-gray-700">{appProfileValue?.selectedResume?.name}</span>
             <button
               onClick={handleRemoveFile}
               className="bg-red-500 text-white px-2 py-1 rounded text-xs"
