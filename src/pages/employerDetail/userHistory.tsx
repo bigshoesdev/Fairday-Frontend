@@ -1,6 +1,7 @@
 import Button from "src/components/common/Button";
 import { useSelector } from "react-redux";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import { useState } from "react";
 const UserHistory = ({ item }) => {
 
   const { jobConfig } = useSelector((state: any) => state);
@@ -8,34 +9,26 @@ const UserHistory = ({ item }) => {
 
   const userConfig = useSelector((state: any) => state.authSliceConfig);
   const { user } = userConfig;
-  const userId = user?.sub;
-
+  // const userId = user?.sub;
+  const [readMore, setReadMore] = useState(false);
 
   const experienceLevelTypes = jobConstManage.filter(item => item.category === 'experienceLevel');
   const locationYearsTypes = jobConstManage.filter(item => item.category === 'locationYears');
 
   const jobCategoryTypes = jobConstManage.filter(item => item.category === 'jobcategory');
 
-  const selectedCategories = item[0]?.selectedCategories || [];
+  const selectedCategories = item?.selectedCategories || [];
 
   const CategoriesStrings = jobCategoryTypes
     .filter(job => selectedCategories?.length > 0 && selectedCategories.includes(job._id))
     .map(job => job.string);
 
-  const fileExtension = item[0]?.selectedResume.split('.').pop();
-
-  const createdAt = item[0]?.createdAt;
+  const createdAt = item?.createdAt;
   const formattedDate = new Date(createdAt).toLocaleDateString("en-US", {
     month: "short",
     day: "2-digit",
     year: "numeric",
   });
-
-  const resume = item[0]?.selectedResume || "";
-
-  const formattedPath = resume.startsWith("./") ? resume.slice(1) : resume;
-  const fileURL = `https://api.fairdayjobs.com${formattedPath}`;
-
 
   return (
     <div className="w-full flex flex-col gap-3 relative">
@@ -60,42 +53,55 @@ const UserHistory = ({ item }) => {
 
       </div>
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
-        <p className="text-[20px] font-bold mb-1">Skill Set Discription</p>
+        <p className="text-[20px] font-bold mb-1">Skill Set Discription </p>
         <p className="">
-          {item[0]?.skillDetails}
+          {readMore ?
+            item?.skillDetails
+            : (item?.skillDetails.slice(0, 100) + ' ... ')
+          }
+          <span className="text-blue-500 cursor-pointer" onClick={() => setReadMore(!readMore)}>
+            {
+              readMore ?
+                'Read Less' : 'Read More'
+            }
+
+          </span>
         </p>
       </div>
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
         <p className="text-[20px] font-bold mb-1">
           <span className="">Experience Level</span>
-          <Button
-            text={
-              item?.[0]?.selectedExperienceLevel
-                ? experienceLevelTypes.find((each) => each._id === item[0].selectedExperienceLevel)?.string || ''
-                : ''
-            }
-            className="bg-darkBlue items-center text-white mt-3 float-right  px-6 py-1 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-            onClick={() => console.log()}
-          />
-
+          {
+            item?.selectedExperienceLevel ?
+              <Button
+                text={
+                  item?.selectedExperienceLevel
+                    ? experienceLevelTypes.find((each) => each._id === item.selectedExperienceLevel)?.string || ''
+                    : ''
+                }
+                className="bg-darkBlue items-center text-white mt-3 float-right  px-6 py-1 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+                onClick={() => console.log()}
+              /> :
+              <p></p>
+          }
         </p>
       </div>
       <div className="w-full flex bg-white shadow-lg rounded-[10px] p-3 px-5 gap-2">
         <div className="flex-[6] flex flex-col">
-          <p className="text-[20px] font-bold mb-1">{item[0]?.firstName} {item[0]?.lastName}</p>
+          <p className="text-[20px] font-bold mb-1">{item?.firstName} {item?.lastName}</p>
           <p className=" mb-1">
-            {item[0]?.street} {item[0]?.city}
+            {item?.street} {item?.city}
           </p>
-          <p className=" mb-1 text-blue-500">{item[0]?.country}</p>
+          <p className=" mb-1 text-blue-500">{item?.country}</p>
           <p className=" mb-1">
-            {item?.[0]?.selectedLocationYears
-              ? locationYearsTypes.find((each) => each._id === item[0].selectedLocationYears)?.string || ''
+            {item?.selectedLocationYears
+              ? locationYearsTypes.find((each) => each._id === item.selectedLocationYears)?.string || ''
               : ''}
-            {item?.[0]?.selectedLocationYears ? ' at this location' : ''}
+            {item?.selectedLocationYears ? ' at this location' : ''}
           </p>
 
         </div>
-        <div className="flex-[6] flex flex-col">
+        <div className="flex-[6] flex flex-col hidden">
           <img
             src="https://fairdayjobs.com/src/assets/images/pin_map.png"
             className="h-full
@@ -103,7 +109,7 @@ const UserHistory = ({ item }) => {
           />
         </div>
       </div>
-      <div className="w-full flex bg-white shadow-lg rounded-[10px] p-3 px-5 gap-2">
+      <div className="w-full flex bg-white shadow-lg rounded-[10px] p-3 px-5 gap-2 hidden">
         <div className="flex-[7] flex flex-col">
           <p className="text-[20px] font-bold mb-1">
             Referrals from past Employers
@@ -115,7 +121,7 @@ const UserHistory = ({ item }) => {
           </p>
           <p className=" mb-1 text-blue-500">Referalls Doc.. file</p>
         </div>
-        <div className="flex-[5] flex flex-col  border border-gray-300 rounded-lg">
+        <div className="flex-[5] flex flex-col  border border-gray-300 rounded-lg hidden">
           <img
             src="https://fairdayjobs.com/src/assets/images/userprofile_refer.png"
             className="h-full rounded-lg
@@ -124,48 +130,73 @@ const UserHistory = ({ item }) => {
         </div>
       </div>
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
-        <div className="flex items-start gap-3">
-          <div className="text-green-700 !text-[30px]">
-            <TaskAltIcon />
-          </div>
-          <div>
-            <p className="text-[20px] font-bold mb-1">Success</p>
-            <p className=" mb-1">
-              Resume has been successfully uploaded
-            </p>
-          </div>
-        </div>
+
+        {
+          item.selectedResume ?
+            <div className="flex items-start gap-3">
+              <div className="text-green-700 !text-[30px]">
+                <TaskAltIcon />
+              </div>
+              <div>
+                <p className="text-[20px] font-bold mb-1">Success</p>
+                <p className=" mb-1">
+                  Resume has been successfully uploaded
+                </p>
+              </div>
+            </div>
+            : ""
+        }
+
+
         <p className="text-[20px] font-bold mb-0">Attach resume</p>
         <p className=" mb-1">
           Resume is the most important document recruiters look for. Recruiters generally do not look at profiles without resumes.
         </p>
-        <p className=" font-bold mt-3">
-          {item[0]?.firstName}_{item[0]?.lastName}.{fileExtension} -<span className="font-normal"> Uploaded on {formattedDate}</span>
-        </p>
+        {item?.selectedResume?.name &&
+          <p className=" font-bold mt-3">
+            {item?.selectedResume?.name}  <span className="font-normal hidden"> Uploaded on {formattedDate}</span>
+          </p>
+        }
+
         <div className="w-full flex flex-col justify-center items-center py-5 border border-black pb-1 mt-10">
-          <Button
-            text="VIEW RESUME"
-            className="bg-darkBlue text-white  px-10 py-3 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-            onClick={() => window.open(fileURL, "_blank", "noopener,noreferrer")}
-          />
+          {
+            item.selectedResume ?
+              <Button
+                text="VIEW RESUME"
+                className="bg-darkBlue text-white  px-10 py-3 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+                // onClick={() => window.open(fileURL, "_blank", "noopener,noreferrer")}
+                onClick={() => (console.log(''))}
+              /> :
+              <Button
+                text="UPLOAD RESUME"
+                className="bg-darkBlue text-white  px-10 py-3 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+                // onClick={() => window.open(fileURL, "_blank", "noopener,noreferrer")}
+                onClick={() => (console.log(''))}
+              />
+          }
+
           <p className=" mt-1">
             Supported Formats: doc, pdf, upto 2MB
           </p>
         </div>
+
+
       </div>
+
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
         <p className="text-[20px] font-bold mb-3">Education Details</p>
-        <p className=" font-bold mb-1">
-          {item[0]?.educationDetail}
+        <p className="mb-1 break-words">
+          {item?.educationDetail}
         </p>
       </div>
+
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
-        <p className="text-[20px] font-bold mb-1">Work History Details</p>
-        <p className="">
-          {item[0]?.workHistoryDetail}
+        <p className="text-[20px] font-bold mb-1 word-break">Work History Details</p>
+        <p className="mb-1 break-words">
+          {item?.workHistoryDetail}
         </p>
       </div>
-      <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
+      <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5 hidden">
         <p className="text-[20px] font-bold mb-3">Pre Screening Reports</p>
         <p className=" font-bold mb-3">Link 1</p>
         <p className="">
@@ -175,7 +206,7 @@ const UserHistory = ({ item }) => {
           </a>
         </p>
       </div>
-      <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
+      <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5 hidden">
         <p className="text-[20px] font-bold mb-3">Ratting & Review</p>
         <div>
           <span className="text-yellow-400 text-[22px]">&#9733;</span>
@@ -235,44 +266,34 @@ const UserHistory = ({ item }) => {
       </div>
 
       {
-        userId == item[0].userId ? "" :
-          <>
-            <Button
-              text="Attach profile to Referral"
-              className="bg-darkBlue items-center text-white mt-3 mb-0 float-right text-[20px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-              onClick={() => console.log()}
-            />
-            <Button
-              text="Save to Shortlist"
-              className="bg-darkBlue items-center text-white mt0 mb-0 float-right text-[20px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-              onClick={() => console.log()}
-            />
+        // userId == item.userId ? "" :
+        <>
+          <Button
+            text="Attach profile to Referral"
+            className="bg-darkBlue items-center text-white mt-3 mb-0 float-right text-[20px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+            onClick={() => console.log()}
+          />
+          <Button
+            text="Save to Shortlist"
+            className="bg-darkBlue items-center text-white mt0 mb-0 float-right text-[20px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+            onClick={() => console.log()}
+          />
 
 
-            <div className="flex w-full gap-3">
-              <Button
-                text="Request Interview"
-                className="bg-darkBlue items-center w-[50%] text-white mt-0 float-right text-[20px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-                onClick={() => console.log()}
-              />
-              <Button
-                text="Hire"
-                className="bg-white items-center w-[50%] text-darkBlue border-darkBlue border mt-0 float-right text-[20px] px-6 py-2 hover:bg-blue-600 transition-all cursor-pointer hover:text-white hover:border-blue-600 focus:outline-none"
-                onClick={() => console.log()}
-              />
-            </div>
+          <div className="flex w-full gap-3">
             <Button
-              text="Attach profile to Referral"
-              className="bg-darkBlue items-center text-white mt-3 mb-0 float-right text-[20px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+              text="Request Interview"
+              className="bg-darkBlue items-center w-[50%] text-white mt-0 float-right text-[20px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
               onClick={() => console.log()}
             />
             <Button
-              text="Save to Shortlist"
-              className="bg-darkBlue items-center text-white mt0 mb-0 float-right text-[20px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+              text="Hire"
+              className="bg-white items-center w-[50%] text-darkBlue border-darkBlue border mt-0 float-right text-[20px] px-6 py-2 hover:bg-blue-600 transition-all cursor-pointer hover:text-white hover:border-blue-600 focus:outline-none"
               onClick={() => console.log()}
             />
+          </div>
 
-          </>
+        </>
       }
 
 

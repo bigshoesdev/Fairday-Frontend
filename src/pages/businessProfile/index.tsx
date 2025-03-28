@@ -13,7 +13,7 @@ import { getJobConstManage } from 'src/store/user/jobSlice';
 import { viewBusinessProfile } from 'src/store/user/businessProfileSlice';
 import Tabs from 'src/components/common/Tab';
 
-const BusinessProfile = () => {
+const BusinessProfile = ({businessProfileData}) => {
     const navigate = useNavigate();
 
     const { jobConfig } = useSelector((state: any) => state);
@@ -35,7 +35,7 @@ const BusinessProfile = () => {
 
     const jobCategoryTypes = jobConstManage.filter(item => item.category === 'jobcategory');
 
-    const selectedCategories = businessProfileDetails[0]?.selectedCategories || [];
+    const selectedCategories = businessProfileData[0]?.selectedCategories || [];
 
     const locationYearsTypes = jobConstManage.filter(item => item.category === 'locationYears');
 
@@ -45,7 +45,7 @@ const BusinessProfile = () => {
 
     const experienceLevelTypes = jobConstManage.filter(item => item.category === 'businessYears');
 
-    console.log('businessProfileDetails', businessProfileDetails);
+    console.log('businessProfileData', businessProfileData);
 
     const onClick = () => {
 
@@ -54,11 +54,11 @@ const BusinessProfile = () => {
     return (
         <div className="flex flex-col w-full justify-cenver items-center bg-[#FAFAFA] gap-y-8 container">
 
-            <Tabs />
+            {/* <Tabs /> */}
 
             <div className="flex flex-col bg-white container max-w-[950px] shadow-lg py-4 rounded-xl">
                 <div className="flex justify-between py-5 items-center">
-                    <span className='font-bold text-gray-600'>{businessProfileDetails[0]?.businessName}</span>
+                    <span className='font-bold text-gray-600'>{businessProfileData?.businessName}</span>
                     <Button
                         text="EDIT"
                         onClick={() => navigate('/business-applicant-profile-registration')}
@@ -75,10 +75,10 @@ const BusinessProfile = () => {
                 </div>
                 <div className='flex flex-row justify-between font-semibold text-[16px] sm:text-[18px]'>
                     <div className='flex flex-col'>
-                        <span>{businessProfileDetails[0]?.street}</span>
-                        <span>{businessProfileDetails[0]?.country}</span>
+                        <span>{businessProfileData?.street}</span>
+                        <span>{businessProfileData?.country}</span>
                     </div>
-                    <span>{locationYearsTypes.find((each) => each._id === businessProfileDetails[0]?.selectedLocationYears)?.string || ''}</span>
+                    <span>{locationYearsTypes.find((each) => each._id === businessProfileData?.selectedLocationYears)?.string || ''}</span>
                 </div>
                 <img src="src/assets/images/business-map.png" className='mt-5'></img>
             </div>
@@ -102,7 +102,7 @@ const BusinessProfile = () => {
 
                 <div className='flex flex-col bg-white w-full shadow-lg container py-5 rounded-xl'>
                     <span className='font-bold text-gray-600 text-[18px] sm:text-[20px] flex items-center w-full'>Service Details</span>
-                    <div className='mt-5 y-20'>{businessProfileDetails[0]?.serviceDescription}</div>
+                    <div className='mt-5 y-20'>{businessProfileData?.serviceDescription}</div>
                 </div>
             </div>
 
@@ -111,8 +111,8 @@ const BusinessProfile = () => {
                 <span className='font-bold text-gray-600 text-[18px] sm:text-[20px]'>Years in Business</span>
                 <Button
                     text={
-                        businessProfileDetails?.[0]?.selectedBusinessYears
-                            ? experienceLevelTypes.find((each) => each._id === businessProfileDetails[0].selectedBusinessYears
+                        businessProfileData?.selectedBusinessYears
+                            ? experienceLevelTypes.find((each) => each._id === businessProfileData.selectedBusinessYears
                             )?.string || ''
                             : ''
                     }
@@ -139,14 +139,14 @@ const BusinessProfile = () => {
                 </div>
                 <hr className='bg-gray-500 mt-4'></hr>
                 <span className='mt-4 font-bold text-[20px]'>Affiliations</span>
-                <span className='mt-2'>{businessProfileDetails[0]?.affiliations}</span>
+                <span className='mt-2'>{businessProfileData?.affiliations}</span>
             </div>
 
 
             <div className='flex flex-col sm:flex-row sm:justify-between w-full max-w-[950px]  gap-8'>
                 <div className='flex flex-col bg-white w-full shadow-lg container py-5 rounded-xl'>
                     <span className='font-bold text-gray-600 text-[20px] flex items-center w-full'>Verification</span>
-                    {businessProfileDetails[0]?.verifyRequireConfirm ?
+                    {businessProfileData?.verifyRequireConfirm ?
                         <div className='flex justify-between mt-4'>
                             <div className='flex flex-row items-center gap-x-3'>
                                 <MdVerifiedUser className='text-blue-500 w-[30px] h-[30px] ml-[-7px]' />
@@ -161,7 +161,7 @@ const BusinessProfile = () => {
 
                 <div className='flex flex-col bg-white w-full shadow-lg container py-5 rounded-xl'>
                     <span className='font-bold text-gray-600 text-[20px] flex items-center w-full'>Website Link</span>
-                    <a className='mt-5 text-blue-500 underline'>{businessProfileDetails[0]?.websiteLink}</a>
+                    <a className='mt-5 text-blue-500 underline'>{businessProfileData?.websiteLink}</a>
                 </div>
             </div>
 
@@ -187,7 +187,7 @@ const BusinessProfile = () => {
                 </div>
                 <hr className='bg-gray-600 my-7'></hr>
                 <span className='text-[18px] sm:text-[20px] font-bold text-gray-600'>Other insurance</span>
-                <p className='mt-4'>{businessProfileDetails[0]?.insurance}</p>
+                <p className='mt-4'>{businessProfileData?.insurance}</p>
             </div>
 
 
@@ -221,11 +221,11 @@ const BusinessProfile = () => {
 
                 <div className='flex flex-col bg-white w-full shadow-lg container py-5 rounded-xl'>
                     <span className='font-bold text-gray-600 text-[18px] sm:text-[20px] flex items-center w-full'>Currency accepted</span>
-                    <span className='font-bold mt-4 '>{businessProfileDetails[0]?.currencyAccepted}</span>
+                    <span className='font-bold mt-4 '>{businessProfileData?.currencyAccepted}</span>
                 </div>
             </div>
 
-            {businessProfileDetails[0]?.barterConfirm ?
+            {businessProfileData?.barterConfirm ?
                 <div className='flex flex-row bg-white container max-w-[950px] shadow-lg py-6 rounded-xl items-center'>
                     <BsFillCheckSquareFill className='text-[30px] text-green-500' />
                     <span className='ml-3 text-[18px] sm:text-[20px] font-bold text-gray-600'>Barter or Trade Accepted</span>
@@ -239,7 +239,7 @@ const BusinessProfile = () => {
                     <span className='font-bold text-gray-600 text-[18px] sm:text-[20px] flex items-center w-full'>Current Service Promotion</span>
                     <p className='mt-2'>Coupon <span className='text-blue-500'>#4564</span></p>
                     <span className='font-bold text-black text-[18px] sm:text-[20px] flex items-center w-full'> Expiration Date</span>
-                    <span className='text-gray-700 mt-2'>{businessProfileDetails[0]?.expirationDate}</span>
+                    <span className='text-gray-700 mt-2'>{businessProfileData?.expirationDate}</span>
 
                 </div>
 

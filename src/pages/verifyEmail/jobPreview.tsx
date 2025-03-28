@@ -8,7 +8,7 @@ const JobPreviews = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="w-full bg-[#fafafa]">
+    <div className="w-full bg-[#fafafa] hidden">
       <h2 className="text-blue-500 text-center text-2xl font-semibold pt-4">
         Top Recent Job
       </h2>

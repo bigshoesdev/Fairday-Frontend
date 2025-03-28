@@ -9,10 +9,6 @@ import Tabs from "src/components/common/Tab";
 
 const UserProfile = () => {
 
-  const viewProfileButton = () => {
-
-  }
-
   const userConfig = useSelector((state: any) => state.authSliceConfig);
   const { user } = userConfig;
   const userId = user?.sub || null;
