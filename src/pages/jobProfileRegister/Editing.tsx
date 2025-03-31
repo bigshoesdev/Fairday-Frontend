@@ -92,72 +92,85 @@ const JobProfileEditing = ({
 
     return (
         <div className='flex flex-col gap-8'>
-            <RegisterSection
-                appProfileValue={appProfileValue}
-                bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-            />
 
-            <CategorySelect
-                appProfileValue={appProfileValue}
-                bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-            />
+            <div className='flex flex-col gap-4'>
+                <p className='text-[40px] font-bold text-center'>
+                    User Account Infomation
+                </p>
+                <PicIdImage
+                    appProfileValue={appProfileValue}
+                    bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+                />
+
+                <RegisterSection
+                    appProfileValue={appProfileValue}
+                    bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+                />
+
+                <OtherSection
+                    appProfileValue={appProfileValue}
+                    bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+                />
+
+                <NameLocation
+                    appProfileValue={appProfileValue}
+                    bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+                />
+            </div>
+
+            <div className='flex flex-col gap-4'>
+
+                <p className='text-[40px] font-bold text-center mt-24'>
+                    User Additional Infomation
+                </p>
+
+                <CategorySelect
+                    appProfileValue={appProfileValue}
+                    bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+                />
+
+                <ExperienceLevel
+                    appProfileValue={appProfileValue}
+                    bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+                />
+
+                <CertificationsSection
+                    appProfileValue={appProfileValue}
+                    bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+                />
 
 
-            <OtherSection
-                appProfileValue={appProfileValue}
-                bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-            />
 
-            <ExperienceLevel
-                appProfileValue={appProfileValue}
-                bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-            />
+                <UploadResume
+                    appProfileValue={appProfileValue}
+                    bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+                />
 
-            <CertificationsSection
-                appProfileValue={appProfileValue}
-                bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-            />
+                <EducationDetail
+                    appProfileValue={appProfileValue}
+                    bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+                />
+                <WorkHistofyDetail
+                    appProfileValue={appProfileValue}
+                    bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+                />
 
-            <PicIdImage
-                appProfileValue={appProfileValue}
-                bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-            />
+                <UploadReferrials
+                    appProfileValue={appProfileValue}
+                    bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+                />
 
-            <NameLocation
-                appProfileValue={appProfileValue}
-                bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-            />
-
-            <UploadResume
-                appProfileValue={appProfileValue}
-                bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-            />
-
-            <EducationDetail
-                appProfileValue={appProfileValue}
-                bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-            />
-            <WorkHistofyDetail
-                appProfileValue={appProfileValue}
-                bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-            />
-
-            <UploadReferrials
-                appProfileValue={appProfileValue}
-                bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-            />
-
-            {/* <VerifyRequire
+                {/* <VerifyRequire
           appProfileValue={appProfileValue}
           bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
         /> */}
 
-            <ReportsLinks
-                appProfileValue={appProfileValue}
-                bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
-            />
+                <ReportsLinks
+                    appProfileValue={appProfileValue}
+                    bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
+                />
 
-            {/* <OverallRating
+                {/* <OverallRating
           hideEmployerConfirm={hideEmployerConfirm}
           setHideEmployerConfirm={setHideEmployerConfirm}
           agreeConfirm={agreeConfirm}
@@ -165,35 +178,36 @@ const JobProfileEditing = ({
           setAutoSaveContrim={setAutoSaveContrim}
           autoSaveContrim={autoSaveContrim}
         /> */}
-            {/* 
+                {/* 
         <PaymentArea
           appProfileValue={appProfileValue}
           bufferSetAppProfileValue={(value: any) => setAppProfileValue(value)}
         /> */}
 
-            <label className="flex items-center space-x-5 my-6 justify-center  ">
-                <input
-                    type="checkbox"
-                    className="w-[20px] h-[20px] form-checkbox text-blue-600"
-                    checked={autoSaveContrim}
-                    onChange={() => setAutoSaveContrim((prev) => !prev)}
-                />
-                <span className="font-bold text-[16px] text-gray-600 ">
-                    Look To Your Email for Confirmation
-                </span>
-            </label>
+                <label className="flex items-center space-x-5 my-6 justify-center  ">
+                    <input
+                        type="checkbox"
+                        className="w-[20px] h-[20px] form-checkbox text-blue-600"
+                        checked={autoSaveContrim}
+                        onChange={() => setAutoSaveContrim((prev) => !prev)}
+                    />
+                    <span className="font-bold text-[16px] text-gray-600 ">
+                        Look To Your Email for Confirmation
+                    </span>
+                </label>
 
-            <div className='flex flex-col gap-4 w-full'>
-                <Button
-                    text="REGISTER PROFILE"
-                    onClick={() => registerButton()}
-                    disable={!autoSaveContrim}
-                    className={`py-6 text-[20px] font-bold transition-all cursor-pointer rounded-xl ${!autoSaveContrim ? 'bg-gray-200 text-gray-300 cursor-not-allowed hover:border-gray-200' : 'bg-primaryBlue text-white hover:bg-blue-400 hover:border-blue-400 focus:outline-none'}`}
-                />
-                <div className='text-[15px] text-black font-bold px-10 sm:px-60 flex justify-center justify-between mt-5'>
-                    <span>Site Security / Privacy</span>
-                    <span>Verified</span>
-                    <span>Copyright</span>
+                <div className='flex flex-col gap-4 w-full'>
+                    <Button
+                        text="REGISTER PROFILE"
+                        onClick={() => registerButton()}
+                        disable={!autoSaveContrim}
+                        className={`py-6 text-[20px] font-bold transition-all cursor-pointer rounded-xl ${!autoSaveContrim ? 'bg-gray-200 text-gray-300 cursor-not-allowed hover:border-gray-200' : 'bg-primaryBlue text-white hover:bg-blue-400 hover:border-blue-400 focus:outline-none'}`}
+                    />
+                    <div className='text-[15px] text-black font-bold px-10 sm:px-60 flex justify-center justify-between mt-5'>
+                        <span>Site Security / Privacy</span>
+                        <span>Verified</span>
+                        <span>Copyright</span>
+                    </div>
                 </div>
             </div>
 

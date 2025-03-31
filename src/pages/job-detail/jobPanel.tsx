@@ -1,12 +1,28 @@
+import { AppDispatch } from 'src/store';
+import { useSelector, useDispatch } from 'react-redux';
 import SecurityIcon from "@mui/icons-material/Security";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import Button from "src/components/common/Button";
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { applyJob } from 'src/store/user/jobApplySlice';
 
 dayjs.extend(relativeTime);
 
-const JobPanel = ({ ApplyClicked, jobDeatil }: any) => {
+const JobPanel = ({ ApplyClicked, jobDeatil, isDetail, toggleDetail }: any) => {
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const jobId = jobDeatil._id;
+  const authSliceConfig = useSelector((state: any) => state.authSliceConfig);
+  const user = authSliceConfig.user;
+  const userId = user?.sub;
+
+  const applyClickButton = () => {
+    const data = { jobId, userId }
+    dispatch(applyJob(data))
+
+  }
 
   return (
     <div className="w-full max-w-[1200px] mx-10 px-2">
@@ -37,7 +53,7 @@ const JobPanel = ({ ApplyClicked, jobDeatil }: any) => {
             </div>
             <div>
               <img
-                src="http://via.placeholder.com/50"
+                src="https://fairdayjobs.com/src/assets/images/job_location.png"
                 alt="Map Icon"
                 className="w-12 h-12 object-cover rounded-full"
               />
@@ -94,18 +110,30 @@ const JobPanel = ({ ApplyClicked, jobDeatil }: any) => {
         {/* Footer Buttons */}
       </div>
       <div className="flex justify-between items-center  mb-4">
-        <div className="w-[90%] ml-[5%]  border-darkBlue border-8 rounded-b-lg">
-          <Button
-            text="JOB DETAILS"
-            className="bg-darkBlue items-center w-[50%] py-5 border-darkBlue hover:border-blue-400 border-r border-r-white rounded-none text-white  text-[20px] hover:bg-blue-400 transition-all cursor-pointer focus:outline-none"
-            onClick={() => console.log()}
-          />
-          <Button
-            text="APPLY NOW"
-            className="bg-darkBlue items-center w-[50%] py-5 border-darkBlue hover:border-blue-400 border-l rounded-none text-white  text-[20px] hover:bg-blue-400 transition-all cursor-pointer focus:outline-none"
-            onClick={ApplyClicked}
-          />
-        </div>
+        {
+          jobDeatil?.includeAdvance ?
+            <div className="w-full border-darkBlue border-8 rounded-b-lg">
+              <Button
+                text={isDetail ? "SHOW LESS" : "MORE DETAILS"}
+                className="bg-darkBlue items-center w-[50%] py-5 border-darkBlue hover:border-blue-400 border-r border-r-white rounded-none text-white  text-[20px] hover:bg-blue-400 transition-all cursor-pointer focus:outline-none"
+                onClick={toggleDetail}
+              />
+              <Button
+                text="APPLY NOW"
+                className="bg-darkBlue items-center w-[50%] py-5 border-darkBlue hover:border-blue-400 border-l rounded-none text-white  text-[20px] hover:bg-blue-400 transition-all cursor-pointer focus:outline-none"
+                onClick={() => applyClickButton()}
+              />
+            </div> :
+            <div className='w-full flex justify-center'>
+              <Button
+                text="APPLY NOW"
+                className="bg-darkBlue items-center w-full py-5 border-darkBlue hover:border-blue-400 border-l rounded-none text-white  text-[20px] hover:bg-blue-400 transition-all cursor-pointer focus:outline-none"
+                onClick={() => applyClickButton()}
+              />
+            </div>
+
+        }
+
       </div>
     </div>
   );

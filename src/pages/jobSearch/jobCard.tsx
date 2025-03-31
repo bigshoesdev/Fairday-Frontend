@@ -7,6 +7,9 @@ const JobCard = (props: any) => {
 
   const { job, GroupData } = props
 
+  console.log('job', job);
+  
+
   return (
     <div className="bg-white shadow-lg rounded-lg p-3 md:p-6 w-full mt-5 flex flex-col">
       <div className="flex items-start">

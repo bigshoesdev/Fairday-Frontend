@@ -9,15 +9,15 @@ const UserHistory = ({ item }) => {
 
   const userConfig = useSelector((state: any) => state.authSliceConfig);
   const { user } = userConfig;
-  // const userId = user?.sub;
+  const userId = user?.sub;
   const [readMore, setReadMore] = useState(false);
 
   const experienceLevelTypes = jobConstManage.filter(item => item.category === 'experienceLevel');
   const locationYearsTypes = jobConstManage.filter(item => item.category === 'locationYears');
 
-  const jobCategoryTypes = jobConstManage.filter(item => item.category === 'jobcategory');
+  const jobCategoryTypes = jobConstManage.filter(item => item.category || item[0]?.category === 'jobcategory');
 
-  const selectedCategories = item?.selectedCategories || [];
+  const selectedCategories = item?.selectedCategories || item[0]?.selectedCategories;
 
   const CategoriesStrings = jobCategoryTypes
     .filter(job => selectedCategories?.length > 0 && selectedCategories.includes(job._id))
@@ -55,44 +55,57 @@ const UserHistory = ({ item }) => {
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
         <p className="text-[20px] font-bold mb-1">Skill Set Discription </p>
         <p className="">
-          {readMore ?
-            item?.skillDetails
-            : (item?.skillDetails.slice(0, 100) + ' ... ')
-          }
-          <span className="text-blue-500 cursor-pointer" onClick={() => setReadMore(!readMore)}>
-            {
-              readMore ?
-                'Read Less' : 'Read More'
-            }
 
-          </span>
+          {(item?.skillDetails || item[0]?.skillDetails) ? (
+            <p className="">
+              {readMore
+                ? (item?.skillDetails || item[0]?.skillDetails)
+                : (item?.skillDetails || item[0]?.skillDetails).slice(0, 100) + ' ... '}
+              <span
+                className="text-blue-500 cursor-pointer"
+                onClick={() => setReadMore(!readMore)}
+              >
+                {readMore ? 'Read Less' : 'Read More'}
+              </span>
+            </p>
+          ) : (
+            ""
+          )}
+
         </p>
       </div>
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
         <p className="text-[20px] font-bold mb-1">
           <span className="">Experience Level</span>
           {
-            item?.selectedExperienceLevel ?
+            (item?.selectedExperienceLevel || item?.[0]?.selectedExperienceLevel) ? (
               <Button
                 text={
-                  item?.selectedExperienceLevel
-                    ? experienceLevelTypes.find((each) => each._id === item.selectedExperienceLevel)?.string || ''
-                    : ''
+                  experienceLevelTypes.find((each) =>
+                    each._id === (item?.selectedExperienceLevel || item?.[0]?.selectedExperienceLevel)
+                  )?.string || ''
                 }
-                className="bg-darkBlue items-center text-white mt-3 float-right  px-6 py-1 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+                className="bg-darkBlue items-center text-white mt-3 float-right px-6 py-1 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
                 onClick={() => console.log()}
-              /> :
+              />
+            ) : (
               <p></p>
+            )
           }
+
         </p>
       </div>
       <div className="w-full flex bg-white shadow-lg rounded-[10px] p-3 px-5 gap-2">
         <div className="flex-[6] flex flex-col">
-          <p className="text-[20px] font-bold mb-1">{item?.firstName} {item?.lastName}</p>
+          {
+            item?.firstName ?
+              <p className="text-[20px] font-bold mb-1">{item?.firstName || item[0]?.firstName} {item?.lastName || item[0]?.lastName}</p> :
+              <p className="text-[20px] font-bold">Name</p>
+          }
           <p className=" mb-1">
-            {item?.street} {item?.city}
+            {item?.street || item[0]?.street} {item?.city || item[0]?.city}
           </p>
-          <p className=" mb-1 text-blue-500">{item?.country}</p>
+          <p className=" mb-1 text-blue-500">{item?.country || item[0]?.country}</p>
           <p className=" mb-1">
             {item?.selectedLocationYears
               ? locationYearsTypes.find((each) => each._id === item.selectedLocationYears)?.string || ''
@@ -186,14 +199,14 @@ const UserHistory = ({ item }) => {
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
         <p className="text-[20px] font-bold mb-3">Education Details</p>
         <p className="mb-1 break-words">
-          {item?.educationDetail}
+          {item?.educationDetail || item[0]?.educationDetail}
         </p>
       </div>
 
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5">
         <p className="text-[20px] font-bold mb-1 word-break">Work History Details</p>
         <p className="mb-1 break-words">
-          {item?.workHistoryDetail}
+          {item?.workHistoryDetail || item[0]?.workHistoryDetail}
         </p>
       </div>
       <div className="w-full flex flex-col bg-white shadow-lg rounded-[10px] p-3 px-5 hidden">
@@ -227,7 +240,7 @@ const UserHistory = ({ item }) => {
         <p className="text-[20px] font-bold mb-3 mt-3">
           Past Employers Reviews
         </p>
-        <div className="flex items-start gap-3 w-full pb-4">
+        <div className="flex items-start gap-3 w-full pb-4 ">
           <div className="!w-10 flex-shrink-0">
             <img
               src="https://fairdayjobs.com/src/assets/images/user1.png"
@@ -266,34 +279,34 @@ const UserHistory = ({ item }) => {
       </div>
 
       {
-        // userId == item.userId ? "" :
-        <>
-          <Button
-            text="Attach profile to Referral"
-            className="bg-darkBlue items-center text-white mt-3 mb-0 float-right text-[20px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-            onClick={() => console.log()}
-          />
-          <Button
-            text="Save to Shortlist"
-            className="bg-darkBlue items-center text-white mt0 mb-0 float-right text-[20px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
-            onClick={() => console.log()}
-          />
-
-
-          <div className="flex w-full gap-3">
+        userId == item.userId || item[0].userId ? "" :
+          <>
             <Button
-              text="Request Interview"
-              className="bg-darkBlue items-center w-[50%] text-white mt-0 float-right text-[20px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+              text="Attach profile to Referral"
+              className="bg-darkBlue items-center text-white mt-3 mb-0 float-right text-[20px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
               onClick={() => console.log()}
             />
             <Button
-              text="Hire"
-              className="bg-white items-center w-[50%] text-darkBlue border-darkBlue border mt-0 float-right text-[20px] px-6 py-2 hover:bg-blue-600 transition-all cursor-pointer hover:text-white hover:border-blue-600 focus:outline-none"
+              text="Save to Shortlist"
+              className="bg-darkBlue items-center text-white mt0 mb-0 float-right text-[20px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
               onClick={() => console.log()}
             />
-          </div>
 
-        </>
+
+            <div className="flex w-full gap-3">
+              <Button
+                text="Request Interview"
+                className="bg-darkBlue items-center w-[50%] text-white mt-0 float-right text-[20px] px-6 py-2 hover:bg-blue-400 transition-all cursor-pointer hover:border-blue-400 focus:outline-none"
+                onClick={() => console.log()}
+              />
+              <Button
+                text="Hire"
+                className="bg-white items-center w-[50%] text-darkBlue border-darkBlue border mt-0 float-right text-[20px] px-6 py-2 hover:bg-blue-600 transition-all cursor-pointer hover:text-white hover:border-blue-600 focus:outline-none"
+                onClick={() => console.log()}
+              />
+            </div>
+
+          </>
       }
 
 

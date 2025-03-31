@@ -1,7 +1,8 @@
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
 import { FaCamera } from "react-icons/fa";
-
+import { TiDelete } from "react-icons/ti";
+import { SlPicture } from "react-icons/sl";
 const RegisterSection = ({ businessProfileValue, bufferSetBusinessProfileValue }) => {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -11,7 +12,7 @@ const RegisterSection = ({ businessProfileValue, bufferSetBusinessProfileValue }
 
       const uniqueFiles = fileArray.filter(file => !businessProfileValue.businessPhoto.some(img => img.name === file.name));
 
-      if (businessProfileValue.businessPhoto.length + uniqueFiles.length > 3) {
+      if (businessProfileValue.businessPhoto.length + uniqueFiles.length > 12) {
         alert('You can upload a maximum of 12 images.');
         return;
       }
@@ -38,7 +39,7 @@ const RegisterSection = ({ businessProfileValue, bufferSetBusinessProfileValue }
             style="w-full"
           />
 
-          <span className='font-bold my-3'>Your Name*</span>
+          {/* <span className='font-bold my-3'>Your Name*</span>
           <TextInput
             type="email"
             name="name"
@@ -56,11 +57,11 @@ const RegisterSection = ({ businessProfileValue, bufferSetBusinessProfileValue }
             value={businessProfileValue.email}
             onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
             style="w-full"
-          />
+          /> */}
         </div>
 
 
-        <label className="flex items-center space-x-5 mt-2">
+        <label className="flex items-center space-x-5 mt-2 hidden">
           <input
             name="reciveConfirm"
             type="checkbox"
@@ -104,12 +105,10 @@ const RegisterSection = ({ businessProfileValue, bufferSetBusinessProfileValue }
                   alt={`Preview ${index}`}
                   className="w-full h-full object-cover rounded-md"
                 />
-                <button
+                <TiDelete
                   onClick={() => handleRemoveImage(index)}
-                  className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-[100px] text-xs"
-                >
-                  ✕
-                </button>
+                  className="absolute top-0 right-0 text-[30px] text-red-500 cursor-pointer"
+                />
               </div>
             ))}
           </div>

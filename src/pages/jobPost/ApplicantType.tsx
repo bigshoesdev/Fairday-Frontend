@@ -26,11 +26,6 @@ const ApplicantType = ({ jobValue, bufferSetJobValue }) => {
     })
   };
 
-
-  console.log('applicantTypeData', applicantTypeData);  // _id, string
-  console.log('result', jobValue.checkboxStates);       // { [id]: boolean }
-
-
   return (
     <div className='w-full'>
       <DropPanel

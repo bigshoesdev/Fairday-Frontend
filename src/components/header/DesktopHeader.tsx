@@ -125,7 +125,7 @@ const DesktopHeader: React.FC = () => {
     //     navigate('/job-applicant-profile-registration')
     //   }
     // }
-      if (profileType === 0) {
+    if (profileType === 0) {
       if (appProfileDetails[0]) {
         navigate('/user/userProfile')
       } else {
@@ -273,10 +273,10 @@ const DesktopHeader: React.FC = () => {
                   <a className="block px-4 py-2" >
                     Profiles
                   </a>
-                    <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer ml-4" onClick={() => profileClick(0)}>
-                      Job Seeker
-                    </a>
-                  
+                  <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer ml-4" onClick={() => profileClick(0)}>
+                    Job Seeker
+                  </a>
+
                   {
                     business &&
                     <a className="block px-4 py-2 hover:bg-gray-200 cursor-pointer ml-4" onClick={() => profileClick(1)}>

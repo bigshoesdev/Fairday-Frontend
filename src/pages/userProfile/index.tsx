@@ -25,9 +25,9 @@ const UserProfile = () => {
 
   return (
     <div className="items-center flex flex-col w-full bg-[#FAFAFA] container">
-      <Tabs />
-      <div className="w-full max-w-[1400px] bg-[#FAFAFA] py-5 ">
-        <CandidateDetail item={appProfileDetails} />
+      <Tabs value={1}/>
+      <div className="w-full max-w-[1400px] bg-[#FAFAFA] py-5">
+        <CandidateDetail item={appProfileDetails} isHideEdit={false} link={'/job-applicant-profile-registration'}/>
       </div>
     </div>
 

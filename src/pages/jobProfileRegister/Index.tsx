@@ -140,7 +140,8 @@ const JobProfileRegister = () => {
           />
           :
           <CandidateDetail
-            item={appProfileValue}
+            item={appProfileValue} 
+            isHideEdit={true}
           />
         }
 

@@ -10,7 +10,7 @@ const EndedJobs = (props: any) => {
       <DropPanel
         header={
           <div className="flex flex-col gap-2">
-            <span className="text-[#1880F1] text-[24px] font-bold">All Active Jobs</span>
+            <span className="text-[#1880F1] text-[24px] font-bold">Ended Jobs</span>
           </div>
         }
       >

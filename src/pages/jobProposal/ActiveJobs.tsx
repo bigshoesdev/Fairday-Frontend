@@ -1,23 +1,23 @@
 import DropPanel from 'src/components/common/DropPanel';
-import NewJobCard from 'src/pages/jobManagement/NewJobCard';
+import ActiveJobCard from 'src/pages/jobProposal/ActiveJobCard';
 
-const NewJobPosts = (props: any) => {
+const ActiveJobs = (props: any) => {
 
-  const { jobDetailsInfos, GroupData } = props;
+  const { jobDetailsInfos, GroupData } = props
 
   return (
     <div className="w-full">
       <DropPanel
         header={
           <div className="flex flex-col gap-2">
-            <span className="text-[#1880F1] text-[24px] font-bold">New Job Posts</span>
+            <span className="text-[#1880F1] text-[24px] font-bold">All Active Jobs</span>
           </div>
         }
       >
         <div className="flex flex-col gap-4 p-6">
           {
             jobDetailsInfos.map((job, index) => (
-              <NewJobCard
+              <ActiveJobCard
                 key={index}
                 job={job}
                 GroupData={GroupData}
@@ -30,4 +30,4 @@ const NewJobPosts = (props: any) => {
   );
 };
 
-export default NewJobPosts;
+export default ActiveJobs;

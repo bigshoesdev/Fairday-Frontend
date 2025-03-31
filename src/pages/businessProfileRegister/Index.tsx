@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from 'src/store';
 import { getJobConstManage } from 'src/store/user/jobSlice';
-import Button from 'src/components/common/Button';
 import { useNavigate } from 'react-router-dom';
 
 import { registerBusinessProfile } from 'src/store/user/businessProfileSlice';
@@ -11,6 +10,7 @@ import { messageHandle } from "src/store/systemSetting/commonSlice";
 
 import BusinessProfileEditing from 'src/pages/businessProfileRegister/Editing';
 import BusinessProfile from 'src/pages/businessProfile'
+import BusinessDetail from 'src/pages/businessProfile/BusinessDetail'
 
 const BusinessProfileRegister = () => {
 
@@ -66,10 +66,6 @@ const BusinessProfileRegister = () => {
     affiliations: "",
     websiteLink: "",
     referProfileConfirm: false,
-    businessInsuranceYes: false,
-    businessInsuranceNo: false,
-    workmansInsuranceYes: false,
-    workmansInsuranceNo: false,
     insurance: "",
     currencyAccepted: "",
     barterConfirm: false,
@@ -86,7 +82,17 @@ const BusinessProfileRegister = () => {
     whatsApp: "",
     contactOther: "",
     selectedPayment: "mastercard",
+    selectedIdPic: '',
+    firstName: '',
+    lastName: '',
+    skillDetails: '',
+    businessInsurance: 'yes',
+    workmansInsurance: 'yes',
   })
+
+
+  console.log('contact', businessProfileValue.telephone);
+  
 
   useEffect(() => {
     dispatch(viewBusinessProfile({ userId: userId }));
@@ -164,8 +170,9 @@ const BusinessProfileRegister = () => {
             setBusinessProfileValue={setBusinessProfileValue}
           />
           :
-          <BusinessProfile
-            businessProfileData={businessProfileValue}
+          <BusinessDetail
+            businessProfileData={businessProfileValue || businessProfileValue[0]}
+            isHideEdit={true}
           />
         }
       </div>

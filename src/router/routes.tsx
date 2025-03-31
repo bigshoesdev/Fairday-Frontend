@@ -35,10 +35,14 @@ const EmployerSubmittedEmail = lazy(() => import("src/pages/employerSubmittedEma
 const PublishJobEmail = lazy(() => import("src/pages/publishJobEmail/index"));
 const PublishAdEmail = lazy(() => import("src/pages/publishAdEmail/index"));
 const JobManagement = lazy(() => import("src/pages/jobManagement/Index"));
+const JobProposal = lazy(() => import("src/pages/jobProposal/Index"));
 const JobProfileRegister = lazy(() => import("src/pages/jobProfileRegister/Index"));
 const BusinessProfileRegister = lazy(() => import("src/pages/businessProfileRegister/Index"));
 const BusinessProfile = lazy(() => import("src/pages/businessProfile/index"));
-
+const JobCategoryPage = lazy(() => import("src/pages/JobCategoryPage"));
+const About = lazy(() => import("src/pages/About"));
+const Login = lazy(() => import("src/pages/Login"));
+const SignUp = lazy(() => import("src/pages/SignUp"));
 
 
 const routes = [
@@ -46,6 +50,14 @@ const routes = [
   {
     path: "/admin",
     element: <Admin />,
+  },
+  {
+    path: "/login",
+    element: <Login switchToRegister={undefined} closeModal={undefined}/>,
+  },
+  {
+    path: "/register",
+    element: <SignUp switchToLogin={undefined} closeModal={undefined}/>,
   },
   {
     path: "/",
@@ -76,7 +88,7 @@ const routes = [
     element: <JobDetail />
   },
   {
-    path: "/employer-detail",
+    path: "/employer-detail/:id",
     element: <EmployerDetail />,
   },
   {
@@ -122,6 +134,10 @@ const routes = [
   {
     path: "/job-management",
     element: <JobManagement />,
+  },
+  {
+    path: "/job-proposal",
+    element: <JobProposal />,
   },
   {
     path: "/job-applicant-profile-registration",
@@ -177,7 +193,15 @@ const routes = [
   },
   {
     path: "/business-profile",
-    element: <BusinessProfile />,
+    element: <BusinessProfile businessProfileData={undefined} />,
+  },
+  {
+    path: "/job-category",
+    element: <JobCategoryPage />,
+  },
+  {
+    path: "/about",
+    element: <About />,
   },
   {
     path: "/staff",

@@ -6,8 +6,14 @@ import JobDetail from "./jobDetail";
 import JobPanel from "./jobPanel";
 import SpecialJobDetail from "./specialJobDetail";
 import ApplyTap from 'src/pages/job-detail/ApplyTap';
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "src/store";
+import { getJobConstManage } from "src/store/user/jobSlice";
 
-const PublishAd = () => {
+const JobDetailPage = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const jobConfig = useSelector((state: any) => state.jobConfig);
+  const { jobConstManage } = jobConfig;
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -15,7 +21,11 @@ const PublishAd = () => {
 
   const [activeModal, setActiveModal] = useState(false);
   const [isDetail, setIsDetail] = useState(false);
-  const [jobDeatil, setJobDeatil] = useState(null)
+  const [jobDeatil, setJobDeatil] = useState(null);
+
+  const toggleDetail = () => {
+    setIsDetail(prev => !prev);
+  };
 
   useEffect(() => {
 
@@ -29,14 +39,12 @@ const PublishAd = () => {
     if (jobId) {
       fetchData(jobId)
     }
-
+    dispatch(getJobConstManage());
   }, [jobId])
 
   const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (e.target === e.currentTarget) setActiveModal(false);
   };
-
-  console.log("jobDeatil", jobDeatil);
 
   return (
     <div className="w-full items-center flex flex-col bg-blue-50">
@@ -47,16 +55,18 @@ const PublishAd = () => {
         <JobPanel
           jobDeatil={jobDeatil}
           ApplyClicked={() => setActiveModal(true)}
+          isDetail={isDetail}
+          toggleDetail={toggleDetail}
         />
       }
       {isDetail &&
         <JobDetail
-          jobDeatil={jobDeatil}
+          jobDeatil={jobDeatil} jobConstManage={jobConstManage}
         />
       }
       {isDetail &&
         <SpecialJobDetail
-          jobDeatil={jobDeatil}
+          jobDeatil={jobDeatil} jobConstManage={jobConstManage}
         />
       }
       {activeModal && (
@@ -72,4 +82,4 @@ const PublishAd = () => {
     </div>
   );
 };
-export default PublishAd;
+export default JobDetailPage;

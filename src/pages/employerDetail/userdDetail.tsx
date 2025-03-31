@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { FaUserCircle } from "react-icons/fa";
 
 
-const UserDetail = ({ item, userprofile }) => {
+const UserDetail = ({ item, userprofile, isHideEdit, link }) => {
 
   const navigate = useNavigate();
 
@@ -24,17 +24,15 @@ const UserDetail = ({ item, userprofile }) => {
   const { jobConstManage } = jobConfig;
 
   const locationYearsTypes = jobConstManage.filter(item => item.category === 'locationYears');
-  const avatar = item?.selectedIdPic;
-
-
-
+  const avatar = item?.selectedIdPic || item[0]?.selectedIdPic;
+  const avatarPath = item[0]?.selectedIdPic.slice(1);
 
   return (
     <div className="w-full flex flex-col bg-white relative items-center shadow-lg rounded-[10px] p-6">
-      {userprofile === true ? (
+      {isHideEdit !== true ? (
         <div
           className="absolute top-0 right-0 rounded-bl-lg text-white p-5 py-2 bg-blue-500 rounded-tr-lg cursor-pointer"
-          onClick={() => navigate('/job-applicant-profile-registration')}
+          onClick={() => navigate(link)}
         >
           Edit
         </div>
@@ -51,14 +49,41 @@ const UserDetail = ({ item, userprofile }) => {
         />
       )}
       <div className="items-center relative">
-        {
+        {/* {
           avatar ?
             <img
-              src={avatar}
+              src={URL.createObjectURL(item.selectedIdPic) || ""}
               className="w-40 h-40 mt-3 rounded-full object-cover border-4 border-gray-300 shadow-lg"
               alt="User Avatar"
-            /> : <FaUserCircle className='text-gray-500 text-[10rem] ml-5 mr-4 cursor-pointer' />
+            /> :
+            avatarPath ?
+              <img
+                src={`https://api.fairdayjobs.com${avatarPath}`}
+                className="w-40 h-40 mt-3 rounded-full object-cover border-4 border-gray-300 shadow-lg"
+                alt="User Avatar"
+              />
+              : <FaUserCircle className='text-gray-500 text-[10rem] ml-5 mr-4 cursor-pointer' />
+        } */}
+        {
+          avatar ? (
+            typeof avatar === "string" ? (
+              <img
+                src={`https://api.fairdayjobs.com${avatar.slice(1)}`}
+                className="w-40 h-40 mt-3 rounded-full object-cover border-4 border-gray-300 shadow-lg"
+                alt="User Avatar"
+              />
+            ) : (
+              <img
+                src={URL.createObjectURL(avatar)}
+                className="w-40 h-40 mt-3 rounded-full object-cover border-4 border-gray-300 shadow-lg"
+                alt="User Avatar"
+              />
+            )
+          ) : (
+            <FaUserCircle className="text-gray-500 text-[10rem] ml-5 mr-4 cursor-pointer" />
+          )
         }
+
 
 
         <div className="white bg-blue-500 !text-[20px] w-10 h-10 items-center rounded-[50px] text-white absolute top-2 right-4 justify-center flex">
@@ -66,8 +91,8 @@ const UserDetail = ({ item, userprofile }) => {
         </div>
 
       </div>
-      <span className="font-semibold mt-3 text-[25px]">{item?.firstName} {item?.lastName}</span>
-      <span className="text-[16px]  mt-2">{item?.otherTitle}</span>
+      <span className="font-semibold mt-3 text-[25px]">{item?.firstName || item[0]?.firstName} {item?.lastName || item[0]?.lastName}</span>
+      <span className="text-[16px]  mt-2">{item?.otherTitle || item[0]?.otherTitle}</span>
       {/* {userId == item[0].userId ? "" : */}
       <Button
         text="HIRE"
@@ -79,23 +104,23 @@ const UserDetail = ({ item, userprofile }) => {
       <div className="w-full text-left items-center mt-2">
         <p className="text-[16px] mb-2">
           <LocationOnOutlinedIcon className="text-blue-500 mr-4 !text-[16px]" />{" "}
-          {item[0]?.street} {item?.city} {item?.country}
+          {item?.street || item[0]?.street} {item?.city || item[0]?.city} {item?.country || item[0]?.country}
         </p>
         <p className="text-[16px] mb-2">
           <BusinessCenterOutlinedIcon className="text-blue-500 mr-4 !text-[16px]" />{" "}
-          {item[0]?.selectedLocationYears}
+          {locationYearsTypes.find((each) => each._id === (item?.selectedLocationYears || item[0]?.selectedLocationYears))?.string || ''}
         </p>
         <p className="text-[16px] mb-2 hidden">
           <WorkHistoryOutlinedIcon className="text-blue-500 mr-4 !text-[16px]" />{" "}
           {locationYearsTypes.find((each) => each._id === item?.selectedLocationYears)?.string || ''}
         </p>
-        <p className="text-[16px] mb-2">
+        <p className="text-[16px] mb-2 hidden">
           <LocalPhoneOutlinedIcon className="text-blue-500 mr-4 !text-[16px]" />{" "}
           {item?.phoneNumber || ''}
         </p>
         <p className="text-[16px] mb-2">
           <EmailOutlinedIcon className="text-blue-500 mr-4 !text-[16px]" />{" "}
-          {item?.email}
+          {item?.email || item[0]?.email}
           <span className="text-right text-blue-500 float-right mt-3 hidden">
             VERIFY <SecurityIcon className=" !text-[16px]" />
           </span>

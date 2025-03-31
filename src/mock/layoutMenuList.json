@@ -23,16 +23,12 @@
                     "menu": "Jobs"
                 },
                 {
-                    "link": "/#",
-                    "menu": "labours"
-                },
-                {
-                    "link": "/#",
+                    "link": "/job-category",
                     "menu": "Categories"
                 },
                 {
-                    "link": "/#",
-                    "menu": "companies"
+                    "link": "/contact-us",
+                    "menu": "Contact Us"
                 }
             ]
         },  
@@ -40,20 +36,8 @@
             "title": "About",
             "list": [
                 {
-                    "link": "/#",
+                    "link": "/about",
                     "menu": "About us"
-                },
-                {
-                    "link": "/#",
-                    "menu": "How it Works"
-                },
-                {
-                    "link": "/#",
-                    "menu": "Security"
-                },
-                {
-                    "link": "/#",
-                    "menu": "Updates"
                 }
             ]
         },  
@@ -61,21 +45,14 @@
             "title": "Settings",
             "list": [
                 {
-                    "link": "/#",
+                    "link": "/login",
                     "menu": "Login"
                 },
                 {
-                    "link": "/#",
+                    "link": "/register",
                     "menu": "Register"
-                },
-                {
-                    "link": "/user/userprofile",
-                    "menu": "Profile"
-                },
-                {
-                    "link": "/user/userprofile",
-                    "menu": "Account"
                 }
+               
             ]
         },
         {
@@ -88,15 +65,8 @@
                 {
                     "link": "/terms",
                     "menu": "Terms and Conditions"
-                },
-                {
-                    "link": "/#",
-                    "menu": "Code Of Conduct"
-                },
-                {
-                    "link": "/#",
-                    "menu": "Fee's and Charges"
                 }
+             
             ]
         }
     ]   

@@ -5,6 +5,7 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import { BookmarkIcon, CheckCircleIcon } from "@heroicons/react/outline"
 
 interface JobDetailProps {
+    _id: string;
     avatar: string;
     logoImage: string;
     jobTitle: string;
@@ -35,6 +36,7 @@ interface JobDetailProps {
 
 const JobDetail: React.FC<{ item: JobDetailProps }> = ({ item }) => {
     const {
+        _id,
         createdAt,
         jobPayRate,
         jobCurrency,
@@ -84,7 +86,9 @@ const JobDetail: React.FC<{ item: JobDetailProps }> = ({ item }) => {
                     <div className='flex flex-row gap-5'>
                         <img src={`https://api.fairdayjobs.com${logoImage}`} alt="Company Avatar" className="w-10 h-10 object-cover rounded-full" />
                         <div className='flex flex-col'>
-                            <span className='text-black font-bold text-[16px]'>{jobTitle}, {selectedCategory && selectedCategory.string}</span>
+                            <a href={`/job-detail/?id=${item._id}`}>
+                                <span className='text-black font-bold text-[16px] cursor-pointer'>{jobTitle}, {selectedCategory && selectedCategory.string}</span>
+                            </a>
                             <span className='text-primaryBlue text-[15px]'>{employer} - <span className='text-black'>{country}</span></span>
                         </div>
                     </div>
@@ -119,10 +123,13 @@ const JobDetail: React.FC<{ item: JobDetailProps }> = ({ item }) => {
                             <span>SAVE</span>
                             <BookmarkIcon className="w-4" />
                         </button>
-                        <button className='px-4 py-2 bg-white text-gray-500 hover:text-white border border-gray-300 rounded-md hover:bg-primaryBlue focus:outline-none flex justify-between items-center w-28'>
-                            <span>APPLY</span>
-                            <CheckCircleIcon className="w-4" />
-                        </button>
+                        <a href={`/job-detail/?id=${item._id}`} className='block w-28'>
+                            <div className='px-4 py-2 bg-white text-gray-500 hover:text-white border border-gray-300 rounded-md hover:bg-primaryBlue focus:outline-none flex justify-between items-center w-full'>
+                                <span>APPLY</span>
+                                <CheckCircleIcon className="w-4" />
+                            </div>
+                        </a>
+
                     </div>
                 </div>
             </div>

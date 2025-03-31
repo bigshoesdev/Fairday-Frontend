@@ -5,33 +5,31 @@ import Button from 'src/components/common/Button';
 import { changeJob } from 'src/store/user/jobSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from 'src/store';
-import ConfirmModal from 'src/pages/jobManagement/ConrimModal';
-import { useNavigate } from 'react-router-dom';
+import ConfirmModal from 'src/pages/jobProposal/ConrimModal';
 
 
 dayjs.extend(relativeTime);
 
 const NewJobCard = (props: any) => {
-    const navigate = useNavigate();
-
     const dispatch = useDispatch<AppDispatch>();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
 
     const { job, GroupData } = props
+
+    console.log("job", job);
+
     const buttonClick = () => {
 
     }
 
-    const viewButtonClick = () => {
-        navigate(`/employer-detail/${job._id}`)
-    }
-
     const endButtonClick = () => {
         setIsModalOpen(true)
+        // const jobId = job._id;
+        // const status = 3;
+
+        // dispatch(changeJob({ jobId, status }))
     }
-
-
 
     return (
         <div className="bg-blue-50 shadow-lg rounded-lg p-6 w-full mt-5 ">
@@ -141,26 +139,6 @@ const NewJobCard = (props: any) => {
                         {dayjs(job.createdAt).fromNow()}
                     </span>
                 </div>
-            </div>
-
-            <div className='flex flex-col lg:flex-row gap-4 mt-2'>
-                <Button
-                    text="VIEW/EDIT"
-                    onClick={() => viewButtonClick()}
-                    className="font-bold bg-tealGray text-white px-4 rounded-[3px] hover:bg-gray-500 transition-all cursor-pointer hover:border-gray-500 focus:outline-none"
-                />
-                <Button
-                    text="ENHANCE DISTRIBUTION"
-                    onClick={buttonClick}
-                    className="font-bold bg-tealGray text-white px-4 rounded-[3px] hover:bg-gray-500 transition-all cursor-pointer hover:border-gray-500 focus:outline-none"
-                />
-                <Button
-                    text="END JOB"
-                    onClick={() => endButtonClick()}
-                    className="font-bold bg-blue-50  text-red-500 px-6 rounded-[3px] border-red-500 hover:bg-gray-100 transition-all cursor-pointer hover:border-gray-500 focus:outline-none"
-                />
-                <ConfirmModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} job={job} />
-
             </div>
         </div>
     );

@@ -10,11 +10,12 @@ const BusinessInsurance = ({ businessProfileValue, bufferSetBusinessProfileValue
         <div className='flex flex-row gap-8'>
           <label className="flex items-center space-x-5 ">
             <input
-              name="businessInsuranceYes"
-              type="checkbox"
-              className="sm:w-[24px] sm:h-[24px] w-[18px] h-[18px] form-checkbox text-blue-600"
-              checked={businessProfileValue.businessInsuranceYes}
-              onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: !businessProfileValue[e.target.name] })}
+              type="radio"
+              name="businessInsurance"
+              value="yes"
+              checked={businessProfileValue.businessInsurance === 'yes'}
+              onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
+              className="w-[15px] h-[15px] form-checkbox text-blue-600"
             />
             <span className="font-bold text-[15px] sm:text-[18px] text-gray-600 flex flex-row items-center">
               Yes
@@ -23,11 +24,12 @@ const BusinessInsurance = ({ businessProfileValue, bufferSetBusinessProfileValue
 
           <label className="flex items-center space-x-5 ">
             <input
-              name="businessInsuranceNo"
-              type="checkbox"
-              className="sm:w-[24px] sm:h-[24px] w-[18px] h-[18px] form-checkbox text-blue-600"
-              checked={businessProfileValue.businessInsuranceNo}
-              onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: !businessProfileValue[e.target.name] })}
+              type="radio"
+              name="businessInsurance"
+              value="no"
+              checked={businessProfileValue.businessInsurance === 'no'}
+              onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
+              className="w-[15px] h-[15px] form-checkbox text-blue-600"
             />
             <span className="font-bold text-[15px] sm:text-[18px] text-gray-600 flex flex-row items-center">
               No
@@ -39,11 +41,12 @@ const BusinessInsurance = ({ businessProfileValue, bufferSetBusinessProfileValue
         <div className='flex flex-row gap-8'>
           <label className="flex items-center space-x-5 ">
             <input
-              name="workmansInsuranceYes"
-              type="checkbox"
-              className="sm:w-[24px] sm:h-[24px] w-[18px] h-[18px] form-checkbox text-blue-600"
-              checked={businessProfileValue.workmansInsuranceYes}
-              onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: !businessProfileValue[e.target.name] })}
+              type="radio"
+              name="workmansInsurance"
+              value="yes"
+              checked={businessProfileValue.workmansInsurance === 'yes'}
+              onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
+              className="w-[15px] h-[15px] form-checkbox text-blue-600"
             />
             <span className="font-bold text-[15px] sm:text-[18px] text-gray-600 flex flex-row items-center">
               Yes
@@ -52,11 +55,12 @@ const BusinessInsurance = ({ businessProfileValue, bufferSetBusinessProfileValue
 
           <label className="flex items-center space-x-5 ">
             <input
-              name="workmansInsuranceNo"
-              type="checkbox"
-              className="sm:w-[24px] sm:h-[24px] w-[18px] h-[18px] form-checkbox text-blue-600"
-              checked={businessProfileValue.workmansInsuranceNo}
-              onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: !businessProfileValue[e.target.name] })}
+              type="radio"
+              name="workmansInsurance"
+              value="no"
+              checked={businessProfileValue.workmansInsurance === 'no'}
+              onChange={(e) => bufferSetBusinessProfileValue({ ...businessProfileValue, [e.target.name]: e.target.value })}
+              className="w-[15px] h-[15px] form-checkbox text-blue-600"
             />
             <span className="font-bold text-[15px] sm:text-[18px] text-gray-600 flex flex-row items-center">
               No

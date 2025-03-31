@@ -30,7 +30,7 @@ const AdvancedEmployer = ({ jobValue, bufferSetJobValue }) => {
               key={item._id} // Ensure a unique key is provided for each element
               label={item.string.trim()} // Use the 'string' value from the data
               checked={jobValue.selectedAdvancedEmployer === item._id}
-              onChange={(e: any) => bufferSetJobValue({ ...jobValue, [e.target.name]: item._id })}
+              onChange={(e: any) => bufferSetJobValue({ ...jobValue, [e.target.name]: item._id, includeAdvance: true })}
             />
           ))}
         </div>

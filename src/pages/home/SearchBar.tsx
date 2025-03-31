@@ -69,6 +69,7 @@ export default function SearchBar() {
     const queryParams = new URLSearchParams({
       id: timeStamp,
       keyword: keyword,
+      language: language || "",
       category: category || "",
       location: location || "",
       radius: radius || "",

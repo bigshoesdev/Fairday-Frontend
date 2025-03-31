@@ -92,6 +92,20 @@ const PostJob = () => {
     lastConfirm: false,
     boolean: ["emailConfirm", "categoryConfirm", "addressConfirm"],
     status: 0,
+    includeAdvance: false,
+    selectedAdvancedEmployer: "",
+    selectedBusinessYears: "",
+    selectedInsurance: "",
+    selectedAppRequirement: "",
+    selectedAdvancedApplicant: "",
+    selectedEmployPayment: "",
+    selectedCurrency: "",
+    selectedPayment: "",
+    specification: "",
+    schedules: "",
+    agreements: "",
+    note: "",
+    selectedPaymentMethod: "",
   })
 
   useEffect(() => {
@@ -315,7 +329,6 @@ const PostJob = () => {
                 jobValue={jobValue}
                 bufferSetJobValue={(value: any) => setJobValue(value)}
               />
-
             </div>
           </div>
         </div>

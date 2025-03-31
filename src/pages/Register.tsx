@@ -22,7 +22,7 @@ const Register = () => {
 
                 <div className='flex flex-col gap-3'>
                     <div className="flex justify-center gap-4">
-                        <img src="src/assets/images/logo_symbol.png" />
+                        <img src="https://fairdayjobs.com/src/assets/images/logo_symbol.png" />
                         <div className='flex flex-col'>
                             <span className="ml-4 text-black font-bold text-[25px]">
                                 Welcome to Fairday Jobs !
