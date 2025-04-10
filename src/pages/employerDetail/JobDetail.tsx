@@ -32,7 +32,7 @@ const JobDetail = ({ item, jobDetails, jobConstManage }) => {
           <BiPaperclip className="w-5 h-5 cursor-pointer opacity-100 hover:opacity-50" />
         </div> */}
           <div className="flex flex-row gap-[10px] mt-1">
-            <img src={`https://api.fairdayjobs.com/${item?.selectedIdPic}`} className="w-12 h-12 rounded-full object-cover" alt="User Avatar" />
+            <img src={`http://localhost:8000/${item?.selectedIdPic}`} className="w-12 h-12 rounded-full object-cover" alt="User Avatar" />
             <div className="flex flex-col text-[14px]">
               <span className="mb-2">
                 Contact: <span className="text-primaryBlue">{item?.firstName} {item?.lastName}</span>

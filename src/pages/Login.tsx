@@ -46,7 +46,7 @@ const Login: React.FC<LoginProps> = ({ switchToRegister, closeModal }) => {
     <div className=''>
       <Panel classStyle={'flex flex-col py-12 px-1 sm:px-6 gap-y-3 sm:gap-y-7 z-[1000]'}>
         <div className="flex justify-center items-center">
-          <img src="https://fairdayjobs.com/src/assets/images/logo_symbol.png" className="w-10 h-10 sm:w-12" />
+          <img src="http://localhost:5173/src/assets/images/logo_symbol.png" className="w-10 h-10 sm:w-12" />
           <h1 className="ml-4 text-black font-bold text-[16px] sm:text-[22px] text-center">
             Welcome to Fairday
           </h1>

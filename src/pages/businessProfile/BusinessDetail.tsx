@@ -230,7 +230,7 @@ const BusinessDetail = ({ businessProfileData, isHideEdit }) => {
                         </div>
                         <div className="flex-[5] flex flex-col  border border-gray-300 rounded-lg">
                             <img
-                                src="https://fairdayjobs.com/src/assets/images/userprofile_refer.png"
+                                src="http://localhost:5173/src/assets/images/userprofile_refer.png"
                                 className="h-full rounded-lg
 "
                             />
@@ -311,7 +311,7 @@ const BusinessDetail = ({ businessProfileData, isHideEdit }) => {
                         <div className="flex items-start gap-3 w-full pb-4">
                             <div className="!w-10 flex-shrink-0">
                                 <img
-                                    src="https://fairdayjobs.com/src/assets/images/user1.png"
+                                    src="http://localhost:5173/src/assets/images/user1.png"
                                     alt="User"
                                     className="w-10 h-10 rounded-full"
                                 />

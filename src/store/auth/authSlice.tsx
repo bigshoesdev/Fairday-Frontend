@@ -88,7 +88,7 @@ export const loginAPI = (credentials: { email: string; password: string }) => as
   try {
     dispatch(authLoading(true));
 
-    const response = await axios.post("https://api.fairdayjobs.com/api/v1/auth/login", credentials);
+    const response = await axios.post("http://localhost:8000/api/v1/auth/login", credentials);
 
     if (response.data.isOkay) {
       let isOkay = response.data.isOkay
@@ -114,7 +114,7 @@ export const signupAPI = (data) => async (dispatch: any): Promise<any> => {
     try {
       dispatch(authLoading(true));
 
-      const response = await axios.post("https://api.fairdayjobs.com/api/v1/auth/signup", data);
+      const response = await axios.post("http://localhost:8000/api/v1/auth/signup", data);
 
       if (response.data.isOkay) {
         

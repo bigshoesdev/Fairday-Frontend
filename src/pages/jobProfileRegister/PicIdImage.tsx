@@ -97,7 +97,7 @@ const PicIdImage: React.FC<any> = ({ appProfileValue, bufferSetAppProfileValue }
               <>
                 {/* <img
                   src={
-                    `https://api.fairdayjobs.com${appProfileValue.selectedIdPic.slice(1) || ""}`
+                    `http://localhost:8000${appProfileValue.selectedIdPic.slice(1) || ""}`
                   }
                   alt="Preview"
                   className="w-full h-full object-cover rounded-md"
@@ -105,7 +105,7 @@ const PicIdImage: React.FC<any> = ({ appProfileValue, bufferSetAppProfileValue }
                 <img
                   src={
                     typeof avatar === 'string'
-                      ? `https://api.fairdayjobs.com${avatarPath || ""}`
+                      ? `http://localhost:8000${avatarPath || ""}`
                       : URL.createObjectURL(avatar)
                   }
                   alt="Preview"

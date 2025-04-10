@@ -28,7 +28,7 @@ const About = () => {
 
     return (
         <div className="container">
-            <div className='w-full bg-[#e2e2e3a1] flex flex-col justify-center items-center bg-[url("https://fairdayjobs.com/src/assets/images/about_hero.jpg")] bg-cover h-[500px]'>
+            <div className='w-full bg-[#e2e2e3a1] flex flex-col justify-center items-center bg-[url("http://localhost:5173/src/assets/images/about_hero.jpg")] bg-cover h-[500px]'>
                 <div className="flex flex-col justify-center items-center">
                     <p className="text-white text-[42px] font-bold">ABOUT</p>
                     <p className="text-white text-[42px]">Fairday Marketplace</p>

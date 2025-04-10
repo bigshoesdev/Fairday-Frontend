@@ -30,7 +30,7 @@ const JobDetailPage = () => {
   useEffect(() => {
 
     async function fetchData(jobId) {
-      const response = await axios.get(`https://api.fairdayjobs.com/api/v1/user/job/get-job-detail/${jobId}`);
+      const response = await axios.get(`http://localhost:8000/api/v1/user/job/get-job-detail/${jobId}`);
       if (response.data) {
         setJobDeatil(response.data)
       }

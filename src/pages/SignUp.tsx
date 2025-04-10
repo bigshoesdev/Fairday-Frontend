@@ -86,7 +86,7 @@ const SignUp: React.FC<SignUpProps> = ({ switchToLogin, closeModal }) => {
 
                 <div className='flex flex-col gap-3'>
                     <div className="flex justify-center items-center">
-                        <img src="https://fairdayjobs.com/src/assets/images/logo_symbol.png" className="w-10 h-10 sm:w-12" />
+                        <img src="http://localhost:5173/src/assets/images/logo_symbol.png" className="w-10 h-10 sm:w-12" />
                         <span className="ml-4 text-black font-bold text-[16px] sm:text-[22px]">
                             Welcome to Fairday
                         </span>

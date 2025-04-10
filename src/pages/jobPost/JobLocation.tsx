@@ -1,24 +1,27 @@
 import { useEffect, useRef, useState } from 'react';
 import Panel from 'src/components/common/Panel';
 import TextInput from 'src/components/common/TextInput';
+import JobLocationMap from 'src/pages/jobPost/JobLocationMap';
 
-const JobLocation = ({ jobValue, bufferSetJobValue, errorStreet, errorCity, errorCountrt }) => {
+const JobLocation = ({ jobValue, bufferSetJobValue }) => {
 
-  const { street, city, country } = jobValue
+  const { street, city, country } = jobValue;
   const mapContainerRef = useRef(null);
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
 
+  // Initialize the map only once
   useEffect(() => {
     if (mapContainerRef.current && !map) {
       const mapInstance = new window.google.maps.Map(mapContainerRef.current, {
-        center: { lat: 37.7749, lng: -122.4194 },
+        center: { lat: 37.7749, lng: -122.4194 }, // Default to San Francisco
         zoom: 12,
       });
       setMap(mapInstance);
     }
-  }, []);
+  }, [map]);
 
+  // Update the marker and map location based on address changes
   useEffect(() => {
     if (map) {
       if (!street || !city || !country) {
@@ -38,19 +41,20 @@ const JobLocation = ({ jobValue, bufferSetJobValue, errorStreet, errorCity, erro
           map.setCenter(location);
 
           if (marker) {
-            marker.setMap(null);
+            marker.setMap(null); // Remove the old marker
           }
 
           const newMarker = new window.google.maps.Marker({
             position: location,
             map: map,
+            title: 'Job Location', // Tooltip for the marker
           });
 
           setMarker(newMarker);
         }
       });
     }
-  }, [map, street, city, country]);
+  }, [map]);
 
   return (
     <div className="w-full">
@@ -63,7 +67,6 @@ const JobLocation = ({ jobValue, bufferSetJobValue, errorStreet, errorCity, erro
           label="Street Name*"
           value={jobValue.street}
           onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value, userStreet: e.target.value })}
-          error={errorStreet}
           style="w-full"
         />
 
@@ -73,7 +76,6 @@ const JobLocation = ({ jobValue, bufferSetJobValue, errorStreet, errorCity, erro
           label="City Zip*"
           value={jobValue.city}
           onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value, userCity: e.target.value })}
-          error={errorCity}
           style="w-full"
         />
         <TextInput
@@ -82,15 +84,13 @@ const JobLocation = ({ jobValue, bufferSetJobValue, errorStreet, errorCity, erro
           label="Country*"
           value={jobValue.country}
           onChange={(e) => bufferSetJobValue({ ...jobValue, [e.target.name]: e.target.value, userCountry: e.target.value })}
-          error={errorCountrt}
           style="w-full"
         />
 
-        {/* <span className="sm:text-[26px] text-[20px font-bold text-[#33495E]">Pinpoint Map Location (Optional)</span>
-        <div
-          ref={mapContainerRef}
-          style={{ width: '100%', height: '400px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}
-        ></div> */}
+        <JobLocationMap
+          jobValue={jobValue.country}
+          bufferSetJobValue={(updatedJobValue: any) => bufferSetJobValue({ ...updatedJobValue })}
+        />
       </Panel>
     </div>
   );

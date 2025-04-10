@@ -64,6 +64,8 @@ const PostJob = () => {
     city: "",
     street: "",
     country: "",
+    latitude: "",
+    lngitude: "",
     checkboxStates: {},
     selectedCategory: "",
     selectedImages: [],
@@ -194,11 +196,8 @@ const PostJob = () => {
         <JobLocation
           jobValue={jobValue}
           bufferSetJobValue={(value: any) => setJobValue(value)}
-          errorStreet={error && error.street}
-          errorCity={error && error.city}
-          errorCountrt={error && error.country}
         />
-        
+
         <JobCategory
           jobValue={jobValue}
           bufferSetJobValue={(value: any) => setJobValue(value)}
