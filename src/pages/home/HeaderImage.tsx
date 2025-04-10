@@ -1,3 +1,3 @@
 export default () => (
-  <div className='w-full bg-[url("http://localhost:5173/src/assets/images/header_banner.png")] hidden lg:block bg-cover bg-center bg-no-repeat h-[150px]' />
+  <div className='w-full bg-[url("https://fairdayjobs.com/src/assets/images/header_banner.png")] hidden lg:block bg-cover bg-center bg-no-repeat h-[150px]' />
 );

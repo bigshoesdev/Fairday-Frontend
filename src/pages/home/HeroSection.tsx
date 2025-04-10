@@ -66,7 +66,7 @@ const HeroSection = () => {
         <div className='text-gray-800'>
             <div className='hidden lg:block container'>
 
-                <div className='w-full flex flex-col items-center py-10 lg:px-2 lg:px-10 bg-[url("http://localhost:5173/src/assets/images/hero.png")] bg-contain bg-center bg-no-repeat'>
+                <div className='w-full flex flex-col items-center py-10 lg:px-2 lg:px-10 bg-[url("https://fairdayjobs.com/src/assets/images/hero.png")] bg-contain bg-center bg-no-repeat'>
                     <h1 className='text-black  sm:text-[20px] lg:text-[24px] font-bold text-center'>
                         FAIRDAY JOBS MARKETPLACE
                     </h1>
@@ -83,7 +83,7 @@ const HeroSection = () => {
                             onClick={() => postJobClick()}
                             className='px-[20px] sm:text-[20px] lg:text-[24px] font-bold bg-[#172733] text-white px-8  transition-all cursor-pointer border-[#172733] hover:border-[#172733] focus:outline-none'
                         />
-                        <a href="http://localhost:5173/job-search">
+                        <a href="https://fairdayjobs.com/job-search">
                             <Button
                                 text="Search Jobs Earn $"
                                 onClick={onClick}
@@ -145,7 +145,7 @@ const HeroSection = () => {
             </div>
             <div className='block lg:hidden container'>
 
-                <div className='w-full h-[300px] bg-[url("http://localhost:5173/src/assets/images/hero.png")] bg-cover object-cover bg-center' />
+                <div className='w-full h-[300px] bg-[url("https://fairdayjobs.com/src/assets/images/hero.png")] bg-cover object-cover bg-center' />
                 <h1 className='text-black text-[24px] font-bold text-center mt-4'>
                     FAIRDAY JOBS MARKETPLACE
                 </h1>

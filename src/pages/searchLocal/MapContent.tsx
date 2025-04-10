@@ -6,7 +6,7 @@ const MapContent = () => {
     }
 
     return (
-        <div className='bg-[url("http://localhost:5173/src/assets/images/global_map.png")] bg-cover h-[500px] relative'>
+        <div className='bg-[url("https://fairdayjobs.com/src/assets/images/global_map.png")] bg-cover h-[500px] relative'>
             <Button
                 text="SAVED COUPONS"
                 onClick={buttonClick}

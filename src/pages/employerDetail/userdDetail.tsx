@@ -58,7 +58,7 @@ const UserDetail = ({ item, userprofile, isHideEdit, link }) => {
             /> :
             avatarPath ?
               <img
-                src={`http://localhost:8000${avatarPath}`}
+                src={`https://api.fairdayjobs.com${avatarPath}`}
                 className="w-40 h-40 mt-3 rounded-full object-cover border-4 border-gray-300 shadow-lg"
                 alt="User Avatar"
               />
@@ -68,7 +68,7 @@ const UserDetail = ({ item, userprofile, isHideEdit, link }) => {
           avatar ? (
             typeof avatar === "string" ? (
               <img
-                src={`http://localhost:8000${avatar.slice(1)}`}
+                src={`https://api.fairdayjobs.com${avatar.slice(1)}`}
                 className="w-40 h-40 mt-3 rounded-full object-cover border-4 border-gray-300 shadow-lg"
                 alt="User Avatar"
               />

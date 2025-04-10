@@ -31,7 +31,7 @@ const jobApplySlice = createSlice({
 export const applyJob = (data) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(configLoading());
-    const response = await axios.post("http://localhost:8000/api/v1/user/job/apply-job", data);
+    const response = await axios.post("https://api.fairdayjobs.com/api/v1/user/job/apply-job", data);
     if (response.data.isOkay) {
 
       dispatch(messageHandle({ type: "success", message: response.data.message }));
