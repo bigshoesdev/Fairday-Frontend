@@ -21,7 +21,7 @@ import store from './store/index';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Suspense>
-        <div className=''>
+        <div className='bg-gray-50'>
             <Provider store={store}>
                 <RouterProvider router={router} />
             </Provider>

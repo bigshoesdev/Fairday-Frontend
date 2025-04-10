@@ -36,7 +36,6 @@ export default function SearchBar() {
   const navigate = useNavigate();
   const [searchParams]: any = useSearchParams();
 
-
   useEffect(() => {
     dispatch(getJobConstManage());
     dispatch(getJobCategoryByAlpha({ category: "jobcategory" }));

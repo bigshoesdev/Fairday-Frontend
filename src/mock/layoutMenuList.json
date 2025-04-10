@@ -1,46 +1,69 @@
 {
-    "header":[
+    "header": [
         {
             "link": "/",
             "menu": "Home"
         },
         {
-            "link": "/job-search",
-            "menu": "Job"
+            "link": "/about",
+            "menu": "About"
         },
         {
-            "link": "/advertise-business",
-            "menu": "Advertisement Post"
-        }
-      
-    ],
-    "footer":[
+            "link": "/#",
+            "menu": "Help Fund US/Invest"
+        },
         {
-            "title": "Man Power",
+            "link": "/contact-us",
+            "menu": "Contact"
+        },
+        {
+            "link": "/#",
+            "menu": "Help"
+        }
+    ],
+    "footer": [
+        {
+            "title": "FairdayJobs",
             "list": [
                 {
                     "link": "/job-search",
                     "menu": "Jobs"
                 },
                 {
-                    "link": "/job-category",
+                    "link": "/#",
+                    "menu": "Trade Work"
+                },
+                {
+                    "link": "/#",
                     "menu": "Categories"
                 },
                 {
-                    "link": "/contact-us",
-                    "menu": "Contact Us"
+                    "link": "/#",
+                    "menu": "Contractor Discounts"
                 }
             ]
-        },  
+        },
         {
             "title": "About",
             "list": [
                 {
                     "link": "/about",
                     "menu": "About us"
+                },
+                {
+                    "link": "/#",
+                    "menu": "How it Works"
+                },
+                {
+                    "link": "/#",
+                    "menu": "Secrity"
+                },
+                {
+                    "link": "/#",
+                    "menu": "Updates"
                 }
             ]
-        },  
+        },
         {
             "title": "Settings",
             "list": [
@@ -51,8 +74,15 @@
                 {
                     "link": "/register",
                     "menu": "Register"
+                },
+                {
+                    "link": "/#",
+                    "menu": "Profile"
+                },
+                {
+                    "link": "/#",
+                    "menu": "Account"
                 }
-               
             ]
         },
         {
@@ -65,9 +95,12 @@
                 {
                     "link": "/terms",
                     "menu": "Terms and Conditions"
+                },
+                {
+                    "link": "/#",
+                    "menu": "Fairday Users Guide"
                 }
-             
             ]
         }
-    ]   
+    ]
 }

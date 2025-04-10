@@ -164,7 +164,7 @@ const DesktopHeader: React.FC = () => {
           {layoutMenuList.header.map((item, index) => (
             <p
               key={index}
-              className="text-[15px] mb-0 px-5 text-primaryGray hover:text-white border-r-[1px] border-primaryGray cursor-pointer h-[18px] transition-all"
+              className="text-[15px] mb-0 px-4 xl:px-5 text-primaryGray hover:text-white border-r-[1px] border-primaryGray cursor-pointer transition-all"
               onClick={() => navigate(item.link)}
             >
               {item.menu}
@@ -308,7 +308,7 @@ const DesktopHeader: React.FC = () => {
               <p onClick={() => handleOpenModal('login')} className="text-[15px] px-5 mb-0 text-white font-bold hover:text-blue-300 border-r-[1px] border-primaryGray cursor-pointer transition-all">
                 Login
               </p>
-              <p onClick={() => handleOpenModal('register')} className="text-[15px] px-5 mb-0 text-white font-bold hover:text-blue-300 border-r-[1px] border-primaryGray cursor-pointer transition-all">
+              <p onClick={() => handleOpenModal('register')} className="text-[15px] px-5 mb-0 text-white font-bold hover:text-blue-300 border-r-[0px] border-primaryGray cursor-pointer transition-all">
                 Register
               </p>
             </>
@@ -317,19 +317,19 @@ const DesktopHeader: React.FC = () => {
 
           <img
             src="http://localhost:5173/src/assets/images/fb_header.png"
-            className="ml-10 opacity-50 hover:opacity-100 cursor-pointer transition-all hidden xl:block"
+            className="xl:ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all hidden 2xl:block"
           />
           <img
             src="http://localhost:5173/src/assets/images/ig_header.png"
-            className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all hidden xl:block"
+            className="xl:ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all hidden 2xl:block"
           />
           <img
             src="http://localhost:5173/src/assets/images/x_header.png"
-            className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all hidden xl:block"
+            className="xl:ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all hidden 2xl:block"
           />
           <img
             src="http://localhost:5173/src/assets/images/linkedin.png"
-            className="ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all hidden xl:block"
+            className="xl:ml-5 opacity-50 hover:opacity-100 cursor-pointer transition-all hidden 2xl:block"
           />
         </div>
       </div>

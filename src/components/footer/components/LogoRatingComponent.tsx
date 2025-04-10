@@ -2,7 +2,7 @@ const LogoRatingComponent = () => {
     return (
         <div className="w-full flex flex-col justify-between items-start">
             <p className="text-primaryBlue text-[20px] font-bold cursor-pointer">
-                Fairday<span className="text-white">.com</span>
+                FairdayJobs<span className="text-white">.com</span>
             </p>
 
             <div className="flex items-center">

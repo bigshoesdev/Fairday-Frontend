@@ -11,7 +11,7 @@ import SearchBar from 'src/pages/home/SearchBar';
 const Home = () => {
     return (
         <div className='w-full flex justify-center items-center flex-col bg-[#f7fbff] '>
-            {/* <HeaderSection /> */}
+            <HeaderSection />
             <div className='w-full bg-primaryBlue flex justify-center  top-0 hidden lg:block'>
                 <SearchBar />
             </div>

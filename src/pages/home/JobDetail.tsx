@@ -63,33 +63,30 @@ const JobDetail: React.FC<{ item: JobDetailProps }> = ({ item }) => {
         businessName
     } = item;
 
-    function daysPassedSince(timestamp) {
+    function daysPassedSince(timestamp: any) {
         const givenDate: any = new Date(timestamp);
         const today: any = new Date();
 
         const diffInMs = today - givenDate;
-
         return Math.floor(diffInMs / (1000 * 60 * 60 * 24));
     }
 
-    // Example Usage:
-    const timestamp = "2025-02-27T14:59:57.518Z";
-    const daysPassed = daysPassedSince(timestamp);
-
-    console.log(`Days passed: ${daysPassed}`);
-
-
     return (
         <>
-            <div className='w-full flex flex-col p-5 bg-white border border-gray-200 hover:border-blue-400 rounded-lg shadow-lg gap-4 max-w-[672px] hidden sm:block'>
+            <div className='w-full flex flex-col p-5 bg-white border border-gray-200 hover:border-blue-400 rounded-lg shadow-lg gap-4 max-w-[672px] text-gray-800'>
                 <div className='flex justify-between'>
                     <div className='flex flex-row gap-5'>
                         <img src={`http://localhost:8000${logoImage}`} alt="Company Avatar" className="w-10 h-10 object-cover rounded-full" />
-                        <div className='flex flex-col'>
-                            <a href={`/job-detail/?id=${item._id}`}>
-                                <span className='text-black font-bold text-[16px] cursor-pointer'>{jobTitle}, {selectedCategory && selectedCategory.string}</span>
+                        <div className='flex flex-col overflow-hidden w-full'>
+                            <a href={`/job-detail/?id=${item._id}`} className='block overflow-hidden w-full'>
+                                <span className='text-gray-800 font-bold text-[16px] cursor-pointer block truncate'>
+                                    {jobTitle}
+                                </span>
                             </a>
-                            <span className='text-primaryBlue text-[15px]'>{employer} - <span className='text-black'>{country}</span></span>
+                            <span className='text-primaryBlue text-[15px]'>
+                                {employer} - <span className='text-gray-800'>{country}</span>
+                            </span>
+                            
                         </div>
                     </div>
                     <HiDotsHorizontal />
@@ -102,19 +99,19 @@ const JobDetail: React.FC<{ item: JobDetailProps }> = ({ item }) => {
                             <BiPaperclip className='w-5 h-5 cursor-pointer opacity-100 hover:opacity-50' />
                         </div>
 
-                        <div className='flex flex-col w-[270px] pl-4'>
+                        <div className='flex flex-col w-full pl-4'>
                             <span className='text-[14px]'>{`Posted ${daysPassedSince(createdAt)} days ago - ${otherCategory}`}</span>
                             <div className='flex flex-row gap-2 mt-1 '>
                                 {userId && userId.avatar &&
                                     <img src={userId.avatar} className='w-10 h-10 rounded-full object-cover' alt="User Avatar" />
                                 }
                                 <div className='flex flex-col text-[14px] w-full'>
-                                    <span>Contact: <span className='text-primaryBlue'>{businessName}</span></span>
+                                    <span>Contact: <span className='text-primaryBlue'>{businessName}</span>, {selectedCategory && selectedCategory.string} </span>
                                 </div>
                             </div>
                             <div className='flex flex-col text-[14px] pt-2'>
-                                <span>Salary Level: {jobPay && jobPayRate}<span className='text-black'> in {jobCurrency}</span></span>
-                            </div>
+                                <span>Salary Level: {jobPay && jobPayRate}<span className='text-gray-800'> in {jobCurrency}</span></span>
+                                </div>
                         </div>
                     </div>
 
@@ -139,8 +136,8 @@ const JobDetail: React.FC<{ item: JobDetailProps }> = ({ item }) => {
                     <div className='flex flex-row gap-5'>
                         <img src={avatar} alt="Company Avatar" className="w-10 h-10 object-cover rounded-full" />
                         <div className='flex flex-col'>
-                            <span className='text-black font-bold text-[16px]'>{jobTitle}, {jobType}</span>
-                            <span className='text-primaryBlue text-[15px]'>{company} - <span className='text-black'>{jobPosision}</span></span>
+                            <span className='text-gray-800 font-bold text-[16px]'>{jobTitle}, {jobType}</span>
+                            <span className='text-primaryBlue text-[15px]'>{company} - <span className='text-gray-800'>{jobPosision}</span></span>
                         </div>
                     </div>
                     <HiDotsHorizontal />

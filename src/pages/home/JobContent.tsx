@@ -18,6 +18,9 @@ const JobContent = () => {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 const result = await response.json();
+
+                console.log('result', result);
+                
                 setJobList(result)
             } catch (error) {
                 console.error("Error fetching data:", error);
