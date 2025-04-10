@@ -164,7 +164,7 @@ const DesktopHeader: React.FC = () => {
           {layoutMenuList.header.map((item, index) => (
             <p
               key={index}
-              className="text-[15px] mb-0 px-4 xl:px-5 text-primaryGray hover:text-white border-r-[1px] border-primaryGray cursor-pointer transition-all"
+              className="text-[15px] mb-0 px-2 xl:px-4 text-primaryGray hover:text-white border-r-[1px] border-primaryGray cursor-pointer transition-all"
               onClick={() => navigate(item.link)}
             >
               {item.menu}
@@ -265,7 +265,7 @@ const DesktopHeader: React.FC = () => {
                   /> : <FaUserCircle className='text-white text-[40px] ml-5 mr-4 cursor-pointer' />
                 }
 
-                <p className="text-white mb-0 px-1">{user?.name}</p>
+                {/* <p className="text-white mb-0 px-1">{user?.name}</p> */}
               </div>
 
               {isDropdownOpen && (

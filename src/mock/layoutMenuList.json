@@ -5,21 +5,13 @@
             "menu": "Home"
         },
         {
-            "link": "/about",
-            "menu": "About"
-        },
-        {
-            "link": "/#",
-            "menu": "Help Fund US/Invest"
+            "link": "/policy",
+            "menu": "Terms & Privacy"
         },
         {
             "link": "/contact-us",
-            "menu": "Contact"
-        },
-        {
-            "link": "/#",
-            "menu": "Help"
-        }
+            "menu": "Help or Contact Us"
+        }        
     ],
     "footer": [
         {
@@ -30,11 +22,11 @@
                     "menu": "Jobs"
                 },
                 {
-                    "link": "/#",
+                    "link": "/job-search",
                     "menu": "Trade Work"
                 },
                 {
-                    "link": "/#",
+                    "link": "/job-category",
                     "menu": "Categories"
                 },
                 {
@@ -44,14 +36,10 @@
             ]
         },
         {
-            "title": "About",
+            "title": "Guide",
             "list": [
                 {
-                    "link": "/about",
-                    "menu": "About us"
-                },
-                {
-                    "link": "/#",
+                    "link": "/fairdayjobs-guide",
                     "menu": "How it Works"
                 },
                 {

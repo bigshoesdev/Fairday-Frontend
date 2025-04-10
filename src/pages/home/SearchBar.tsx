@@ -114,6 +114,51 @@ export default function SearchBar() {
       <div className="container grid gap-2 xl:gap-8 lg:gap-6 grid-cols-12">
 
         <div className="col-span-12 xl:col-span-2 lg:col-span-6">
+          <TextField
+            fullWidth
+            variant="outlined"
+            placeholder="Job Title, keywords, ..."
+            value={keyword}
+            onChange={(e) => handleSearchValues('keyword', e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon style={{ color: "white" }} />
+                </InputAdornment>
+              ),
+              style: { backgroundColor: "#1470ef", color: "white", borderRadius: "8px", },
+            }}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                backgroundColor: "#1470ef",
+                borderRadius: "8px",
+                border: "2px solid #1470ef",
+                "& fieldset": { border: "none" },
+                "&:hover": { backgroundColor: "#1470ef" },
+                "&.Mui-focused": {
+                  backgroundColor: "#1470ef",
+                  border: "2px solid #1470ef !important",
+                  boxShadow: "0 0 0 2px #1470ef",
+                },
+              },
+              "& .MuiInputBase-input": {
+                color: "white",
+                "::placeholder": { color: "rgba(255, 255, 255, 0.7)", opacity: 1 },
+                "&:-webkit-autofill": {
+                  WebkitBoxShadow: "0 0 0px 1000px #1470ef inset !important",
+                  WebkitTextFillColor: "white !important",
+                  border: "none !important",
+                  borderRadius: "8px !important",
+                  outline: "none !important",
+                  appearance: "none !important",
+                  backgroundClip: "content-box !important",
+                },
+              },
+            }}
+          />
+        </div>
+
+        <div className="col-span-12 xl:col-span-2 lg:col-span-6">
           <Box
             sx={{
               minWidth: 120,
@@ -171,51 +216,7 @@ export default function SearchBar() {
               </Select>
             </FormControl>
           </Box>
-        </div>
 
-        <div className="col-span-12 xl:col-span-2 lg:col-span-6">
-          <TextField
-            fullWidth
-            variant="outlined"
-            placeholder="keyboard"
-            value={keyword}
-            onChange={(e) => handleSearchValues('keyword', e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon style={{ color: "white" }} />
-                </InputAdornment>
-              ),
-              style: { backgroundColor: "#1470ef", color: "white", borderRadius: "8px", },
-            }}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                backgroundColor: "#1470ef",
-                borderRadius: "8px",
-                border: "2px solid #1470ef",
-                "& fieldset": { border: "none" },
-                "&:hover": { backgroundColor: "#1470ef" },
-                "&.Mui-focused": {
-                  backgroundColor: "#1470ef",
-                  border: "2px solid #1470ef !important",
-                  boxShadow: "0 0 0 2px #1470ef",
-                },
-              },
-              "& .MuiInputBase-input": {
-                color: "white",
-                "::placeholder": { color: "rgba(255, 255, 255, 0.7)", opacity: 1 },
-                "&:-webkit-autofill": {
-                  WebkitBoxShadow: "0 0 0px 1000px #1470ef inset !important",
-                  WebkitTextFillColor: "white !important",
-                  border: "none !important",
-                  borderRadius: "8px !important",
-                  outline: "none !important",
-                  appearance: "none !important",
-                  backgroundClip: "content-box !important",
-                },
-              },
-            }}
-          />
         </div>
 
         <div className="col-span-12 xl:col-span-2 lg:col-span-6">
@@ -248,7 +249,7 @@ export default function SearchBar() {
                     color: category ? "white" : "rgba(255, 255, 255, 0.7)",
                   }}
                 />
-                <span style={{ color: "white" }}>Category</span>
+                <span style={{ color: "white" }}>Job Type</span>
               </InputLabel>
               <Select
                 labelId="category-select-label"

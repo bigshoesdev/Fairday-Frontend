@@ -34,24 +34,28 @@
     ],
     "headerMenu": [
         {
-            "link": "#",
+            "link": "/job-search",
             "title": "Employment opportunities"
         },
         {
-            "link": "#",
-            "title": "Part time Local jobs"
+            "link": "/job-search",
+            "title": "Local jobs"
         },
         {
-            "link": "#",
-            "title": "Bid on services Needed"
+            "link": "/post-job",
+            "title": "Hire Help"
         },
         {
-            "link": "#",
-            "title": "Help around the house"
+            "link": "/#",
+            "title": "Contractor Discounts"
         },
         {
-            "link": "#",
-            "title": "List Jobs for contract"
+            "link": "/#",
+            "title": "Saved Coupons"
+        },
+        {
+            "link": "/#",
+            "title": "Local Gigs"
         }
     ]
 }
