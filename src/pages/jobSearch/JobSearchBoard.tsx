@@ -34,9 +34,6 @@ const JobSearchBoard = (props: any) => {
     (item: any) => item.images[0]
   );
 
-  console.log("loading", loading);
-  
-
   return (
     <div className="container w-full grid grid-cols-12 gap-8">
       <div className="col-span-12 lg:col-span-4 xl:col-span-2">
@@ -77,6 +74,7 @@ const JobSearchBoard = (props: any) => {
           <JobBanner key={index} src={`https://api.fairdayjobs.com${imagePath}`} />
         ))}
       </div>
+      
     </div>
   );
 };

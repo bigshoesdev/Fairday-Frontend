@@ -54,13 +54,17 @@ export default function SearchBar() {
 
   const groupedData = jobConfig?.jobCategoryList || {};
 
+  const jobTypeData = jobConfig.jobConstManage.filter(item => item.category === "jobtype");
   const languageTypeData = jobConfig.jobConstManage.filter(item => item.category === "language");
   const radiusTypeData = jobConfig.jobConstManage.filter(item => item.category === "radius");
   const allCategories = Object.values(groupedData)
     .flat()
     .sort((a: any, b: any) => a.name.localeCompare(b.name));
 
-  const handleSearchValues = (key: string, value: string) => dispatch(updateCurrentJobData({ key: key, value: value }))
+  const handleSearchValues = (key: string, value: string) => {
+    dispatch(updateCurrentJobData({ key: key, value: value }))
+  }
+
 
   const buttonClick = () => {
     const timeStamp = Date.now().toString();
@@ -263,12 +267,12 @@ export default function SearchBar() {
                 }}
               >
                 <MenuItem value={""}>
-                  All Categories
+                  All Type
                 </MenuItem>
-                {allCategories.length > 0 ? (
-                  allCategories.map((cat: any, index) => (
-                    <MenuItem key={index} value={cat.id}>
-                      {cat.name}
+                {jobTypeData.length > 0 ? (
+                  jobTypeData.map((cat: any, index) => (
+                    <MenuItem key={index} value={cat._id}>
+                      {cat.string}
                     </MenuItem>
                   ))
                 ) : (
@@ -371,7 +375,7 @@ export default function SearchBar() {
 
         <div className="col-span-12 xl:col-span-2 lg:col-span-6">
           <Button
-            text="FIND JOBS"
+            text="Earn Money"
             onClick={buttonClick}
             className="w-full h-full bg-white font-bold text-blue-500 px-8 hover:bg-primaryBlue transition-all cursor-pointer hover:text-white hover:border-white focus:outline-none rounded-[6px]"
           />

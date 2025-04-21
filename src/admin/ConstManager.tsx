@@ -23,7 +23,6 @@ interface DumpData {
 	[key: string]: any; 
 }
 
-
 const ConstManager: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -155,8 +154,5 @@ const ConstManager: React.FC = () => {
     </div>
   );
 };
-
-
-  
 
 export default ConstManager;

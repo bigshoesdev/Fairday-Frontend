@@ -79,13 +79,13 @@ const HeroSection = () => {
                     </div>
                     <div className='mt-[85px] p-[5px] flex flex-row bg-[#172733] items-center rounded-[10px] '>
                         <Button
-                            text="Post All Jobs Here!"
+                            text="Post All Jobs!"
                             onClick={() => postJobClick()}
                             className='px-[20px] sm:text-[20px] lg:text-[24px] font-bold bg-[#172733] text-white px-8  transition-all cursor-pointer border-[#172733] hover:border-[#172733] focus:outline-none'
                         />
                         <a href="https://fairdayjobs.com/job-search">
                             <Button
-                                text="Search Jobs Earn $"
+                                text="Search Jobs"
                                 onClick={onClick}
                                 className='px-[20px] sm:text-[20px] lg:text-[24px] font-bold bg-white text-black px-8 hover:bg-gray-400 transition-all cursor-pointer hover:border-gray-400 focus:outline-none'
                             />

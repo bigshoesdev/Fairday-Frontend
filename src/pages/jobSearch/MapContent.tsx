@@ -7,7 +7,7 @@ const containerStyle = {
   height: "500px",
 };
 
-const center = { lat: 39.8283, lng: -98.5795 }; // Centered in the USA
+const center = { lat: 39.8283, lng: -98.5795 };
 
 const MapContent: React.FC = () => {
   const { isLoaded } = useJsApiLoader({
@@ -47,7 +47,7 @@ const MapContent: React.FC = () => {
   if (!isLoaded) return <div>Loading Google Maps...</div>;
 
   return (
-    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={4}>
+    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={4} options={{ streetViewControl: false }}>
       {markers.map((position, index) => (
         <Marker key={index} position={position} />
       ))}

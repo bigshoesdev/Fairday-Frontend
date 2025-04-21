@@ -7,11 +7,8 @@ const JobCard = (props: any) => {
 
   const { job, GroupData } = props
 
-  console.log('job', job);
-  
-
   return (
-    <div className="bg-white shadow-lg rounded-lg p-3 md:p-6 w-full mt-5 flex flex-col">
+    <div className="bg-white shadow-sm rounded-lg p-3 md:p-6 w-full mt-5 flex flex-col hover:shadow-lg transition-all">
       <div className="flex items-start">
         <div className="w-[55px] h-[55px] pt-1 flex-shrink-0 bg-cover object-cover" style={{ backgroundImage: `url(https://api.fairdayjobs.com${job.logoImage})` }} />
         <div className="ml-4 text-[15px] w-full">
@@ -22,14 +19,14 @@ const JobCard = (props: any) => {
           </a>
           <div className='flex flex-col lg:flex-row'>
             <div className='flex justify-start items-center flex-wrap'>
-              <p className="font-semibold text-gray-800 mr-2">Requirements:</p>
+              <p className="font-semibold text-gray-800 mr-2 mb-0 ">Requirements:</p>
               {job.applicantType.map((item: any, index: any) =>
-                <p key={index} className='text-gray-600 font-bold mr-2 underline'>{item.string}</p>
+                <p key={index} className='text-gray-600 font-bold mr-2 mb-0 underline'>{item.string}</p>
               )}
               <div className='flex justify-start items-center flex-wrap'>
                 <span className="font-semibold text-gray-800 mr-2">Employment Type:</span>{" "}
                 <span className="text-gray-600 font-bold text-black mr-1">
-                  {job.selectedJobType.string}
+                  {job && job.selectedJobType && job.selectedJobType.string}
                 </span>
                 <span className="text-gray-600 font-bold text-black mr-4">{job.jobPayRate}</span>
               </div>
